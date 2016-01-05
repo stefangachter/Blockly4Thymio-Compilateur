@@ -1,11 +1,6 @@
-
-   ___  __         __    __     ____________              _
-  / _ )/ /__  ____/ /__ / /_ __/ / /_  __/ /  __ ____ _  (_)__
- / _  / / _ \/ __/  '_// / // /_  _// / / _ \/ // /  ' \/ / _ \
-/____/_/\___/\__/_/\_\/_/\_, / /_/ /_/ /_//_/\_, /_/_/_/_/\___/
-                        /___/               /___/ 
-                                         www.blockly4thymio.net
-
+Blockly4Thymio
+==============
+www.blockly4thymio.net
 
 Blockly4Thymio (prononcez blockly for Thymio, soit blockly pour Thymio en anglais), est un environnement de programmation pour le robot éducatif Thymio II.
 
@@ -20,7 +15,7 @@ Blockly4thymio est composé de trois éléments :
 - un mini Framework sous Aseba
 
 Les fichers de ce repository
-============================
+----------------------------
 Les fichiers présents ici, sont les sources du compilateur Blocly4Thymio. Ces sources ne sont pas distribués sous licence libre. Il est donc interdit de les copier ou de les distibuer sans l'accord de l'auteur.
 
 Blockly4Thymio - © 2016/2017 Okimi (contact@okimi.net)
