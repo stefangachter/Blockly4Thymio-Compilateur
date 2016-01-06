@@ -31,7 +31,7 @@ namespace Blockly4Thymio {
 			// 
 			// PICTURE_Titre
 			// 
-			this.PICTURE_Titre.Image = global::Compilateur.Properties.Resources.logo;
+			this.PICTURE_Titre.Image = global::Blockly4Thymio.Properties.Resources.logo;
 			this.PICTURE_Titre.InitialImage = null;
 			this.PICTURE_Titre.Location = new System.Drawing.Point(12, 12);
 			this.PICTURE_Titre.Name = "PICTURE_Titre";
