@@ -1,4 +1,5 @@
-﻿namespace Compilateur {
+﻿
+namespace Blockly4Thymio {
 	partial class FEN_Principale {
 		/// <summary>
 		/// Variable nécessaire au concepteur.

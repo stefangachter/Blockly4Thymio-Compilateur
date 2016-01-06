@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DA7F29C6-89C1-4D2A-AFB6-56434085EF05}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Blockly4Thymio</RootNamespace>
+    <AssemblyName>Compilateur</AssemblyName>
+    <TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <ProductVersion>12.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <SynchReleaseVersion>false</SynchReleaseVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <WarningLevel>4</WarningLevel>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <WarningLevel>4</WarningLevel>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FEN_Principale.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FEN_Principale.Designer.cs">
+      <DependentUpon>FEN_Principale.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProgrammePrincipal.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FEN_Principale.resx">
+      <DependentUpon>FEN_Principale.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Compilateur\Compilateur.cs" />
+    <Compile Include="Compilateur\Blocs\Evénements\__Evénement.cs" />
+    <Compile Include="Compilateur\Blocs\Evénements\Evénement_QuandLeProgrammeCommence.cs" />
+    <Compile Include="Compilateur\Blocs\Evénements\Evénement_QuandUnBoutonFlècheEstAppuyé.cs" />
+    <Compile Include="Compilateur\Blocs\Evénements\Evénement_QuandUnOrdreArriveDeLaTélécommandeIR.cs" />
+    <Compile Include="Compilateur\__Bloc.cs" />
+    <Compile Include="Compilateur\Blocs\Groupe d%27instructions\__GroupeDInstructions.cs" />
+    <Compile Include="Compilateur\Blocs\Groupe d%27instructions\__GroupeDInstructions_Boucle.cs" />
+    <Compile Include="Compilateur\Blocs\Groupe d%27instructions\__GroupeDInstructions_Boucle_Répète_AvecNombre.cs" />
+    <Compile Include="Compilateur\Blocs\Groupe d%27instructions\GroupeDInstructions_Boucle_Répète_SAINombre.cs" />
+    <Compile Include="Compilateur\Blocs\Groupe d%27instructions\GroupeDInstructions_Boucle_RépèteToutLeTemps.cs" />
+    <Compile Include="Compilateur\Blocs\Groupe d%27instructions\__GroupeDInstructions_Condition.cs" />
+    <Compile Include="Compilateur\Blocs\Groupe d%27instructions\__GroupeDInstructions_Si_Avec_cCondition.cs" />
+    <Compile Include="Compilateur\Blocs\Instructions\__Instruction.cs" />
+    <Compile Include="Compilateur\Blocs\Instructions\Instructions_Contrôles\Contrôle_Attends_ENTDurée.cs" />
+    <Compile Include="Compilateur\Blocs\Instructions\Instructions_Contrôles\Contrôle_Attends_SAIDurée.cs" />
+    <Compile Include="Compilateur\Blocs\Instructions\Instructions_Contrôles\__Contrôle_Attends_Avec_cDurée.cs" />
+    <Compile Include="Compilateur\Blocs\Instructions\Instructions_Contrôles\__Contrôle_Attends_Avec_eDurée.cs" />
+    <Compile Include="Compilateur\Blocs\Instructions\Instructions_Lumières\__LED.cs" />
+    <Compile Include="Compilateur\Blocs\Instructions\Instructions_Lumières\__Lumières_AllumeLesLED_AvecDurée.cs" />
+    <Compile Include="Compilateur\Blocs\Instructions\Instructions_Lumières\__Lumières_AllumeLesLEDs.cs" />
+    <Compile Include="Compilateur\Blocs\Instructions\Instructions_Lumières\Lumières_AllumeLesLEDs_SELLED_SELCouleur.cs" />
+    <Compile Include="Compilateur\Blocs\Instructions\Instructions_Lumières\Lumières_AllumeLesLEDs_SELLED_SELCouleur_SAIDurée.cs" />
+    <Compile Include="Compilateur\Blocs\Instructions\Instructions_Lumières\Lumières_AllumeToutesLesLEDsPendant1Seconde_SELCouleur.cs" />
+    <Compile Include="Compilateur\Blocs\Instructions\Instructions_Lumières\Lumières_AllumeToutesLesLEDs_SELCouleur.cs" />
+    <Compile Include="Compilateur\Blocs\Instructions\Instructions_Mouvements\Mouvement_Déplacement_SELVitesse_SAIDistance.cs" />
+    <Compile Include="Compilateur\Blocs\Instructions\Instructions_Mouvements\Mouvement_Tourne_SAIAngle.cs" />
+    <Compile Include="Compilateur\Blocs\Instructions\Instructions_Mouvements\Mouvement_Tourne_SELSens_SAIAngle.cs" />
+    <Compile Include="Compilateur\Blocs\Instructions\Instructions_Mouvements\__MOTEUR.cs" />
+    <Compile Include="Compilateur\Blocs\Instructions\Instructions_Mouvements\__Mouvement_Arrêt.cs" />
+    <Compile Include="Compilateur\Blocs\Instructions\Instructions_Mouvements\__Mouvement_Déplacement.cs" />
+    <Compile Include="Compilateur\Blocs\Instructions\Instructions_Mouvements\__Mouvement_Déplacement_AvecDistance.cs" />
+    <Compile Include="Compilateur\Blocs\Instructions\Instructions_Mouvements\__Mouvement_Tourne_AvecAngle.cs" />
+    <Compile Include="Compilateur\Blocs\Instructions\Instructions_Sons\Sons_JoueUneNote.cs" />
+    <Compile Include="Compilateur\Blocs\Instructions\Instructions_Sons\Sons_JoueUneNote_SELNote.cs" />
+    <Compile Include="Compilateur\Blocs\Instructions\Instructions_Sons\__SONS.cs" />
+    <Compile Include="Compilateur\Blocs\Instructions\Instructions_Sons\__Sons_JoueUnSon_SELSon.cs" />
+    <Compile Include="Compilateur\Blocs\Instructions\Instructions_Sons\__Sons_JoueUneFréquence_AvecDurée.cs" />
+    <Compile Include="Compilateur\Blocs\Valeurs\__BOUTONS.cs" />
+    <Compile Include="Compilateur\Blocs\Valeurs\__CAPTEURS.cs" />
+    <Compile Include="Compilateur\Blocs\Valeurs\__Valeur_Boutons.cs" />
+    <Compile Include="Compilateur\Blocs\Valeurs\Valeur_CapteurIR_SELTouche.cs" />
+    <Compile Include="Compilateur\Blocs\Valeurs\__Valeur_Capteurs.cs" />
+    <Compile Include="Compilateur\Blocs\Valeurs\__Valeurs.cs" />
+    <Compile Include="Compilateur\FrameworkASEBA.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\logo.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ItemGroup>
+    <Folder Include="Compilateur\" />
+    <Folder Include="Compilateur\Blocs\" />
+    <Folder Include="Compilateur\Blocs\Evénements\" />
+    <Folder Include="Compilateur\Blocs\Groupe d%27instructions\" />
+    <Folder Include="Compilateur\Blocs\Instructions\" />
+    <Folder Include="Compilateur\Blocs\Valeurs\" />
+    <Folder Include="Compilateur\Blocs\Instructions\Instructions_Contrôles\" />
+    <Folder Include="Compilateur\Blocs\Instructions\Instructions_Mouvements\" />
+    <Folder Include="Compilateur\Blocs\Instructions\Instructions_Sons\" />
+  </ItemGroup>
+</Project>
