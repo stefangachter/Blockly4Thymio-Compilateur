@@ -45,7 +45,7 @@ namespace Blockly4Thymio {
 			this.TEXT_Messages.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(175)))), ((int)(((byte)(218)))));
 			this.TEXT_Messages.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.TEXT_Messages.CausesValidation = false;
-			this.TEXT_Messages.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.TEXT_Messages.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.TEXT_Messages.ForeColor = System.Drawing.Color.White;
 			this.TEXT_Messages.Location = new System.Drawing.Point(12, 123);
 			this.TEXT_Messages.Multiline = true;
@@ -71,6 +71,7 @@ namespace Blockly4Thymio {
 			this.Name = "FEN_Principale";
 			this.ShowIcon = false;
 			this.Text = "Blockly4Thymio - Compilateur v<VERSION>";
+			this.Load += new System.EventHandler(this.FEN_Principale_Load);
 			((System.ComponentModel.ISupportInitialize)(this.PICTURE_Titre)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();

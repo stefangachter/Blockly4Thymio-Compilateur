@@ -1,20 +1,11 @@
-﻿<Properties StartupItem="Compilateur.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Properties/Resources.Designer.cs">
+﻿<Properties StartupItem="Compilateur Blockly4Thymio.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="ProgrammePrincipal.cs">
     <Files>
-      <File FileName="FEN_Principale.cs" Line="17" Column="11" />
-      <File FileName="Properties/Resources.Designer.cs" Line="68" Column="1" />
+      <File FileName="FEN_Principale.cs" Line="1" Column="1" />
+      <File FileName="Properties\Resources.Designer.cs" Line="68" Column="1" />
+      <File FileName="ProgrammePrincipal.cs" Line="66" Column="3" />
     </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State expanded="True">
-          <Node name="Compilateur Blockly4Thymio" expanded="True">
-            <Node name="Properties" expanded="True" />
-            <Node name="FEN_Principale.cs" expanded="True" />
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

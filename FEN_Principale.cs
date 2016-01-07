@@ -37,7 +37,7 @@ public		partial	class	FEN_Principale : Form {
 	}
 	
 	
-	private	void FenêtrePrincipale_Load( object sender, EventArgs e ) {
+	private	void FEN_Principale_Load( object sender, EventArgs e ) {
 
 		// Affiche l'entête
 		// ----------------

@@ -40,6 +40,7 @@
     <OutputPath>bin\x86\Debug\</OutputPath>
     <WarningLevel>4</WarningLevel>
     <Optimize>false</Optimize>
+    <DefineConstants>DEBUG</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <PlatformTarget>x86</PlatformTarget>
@@ -144,15 +145,5 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <ItemGroup>
-    <Folder Include="Compilateur\" />
-    <Folder Include="Compilateur\Blocs\" />
-    <Folder Include="Compilateur\Blocs\Evénements\" />
-    <Folder Include="Compilateur\Blocs\Groupe d%27instructions\" />
-    <Folder Include="Compilateur\Blocs\Instructions\" />
-    <Folder Include="Compilateur\Blocs\Valeurs\" />
-    <Folder Include="Compilateur\Blocs\Instructions\Instructions_Contrôles\" />
-    <Folder Include="Compilateur\Blocs\Instructions\Instructions_Mouvements\" />
-    <Folder Include="Compilateur\Blocs\Instructions\Instructions_Sons\" />
-  </ItemGroup>
+  <ItemGroup />
 </Project>

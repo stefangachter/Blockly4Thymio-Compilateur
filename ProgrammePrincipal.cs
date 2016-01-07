@@ -62,8 +62,8 @@ static	class 	ProgrammePrincipal {
 
 		// Anlyse les arguments
 		// --------------------
-		Compilateur.nomDuFichierASEBASCRATCH = Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase).Substring(6);                
-		Compilateur.nomDuFichierASEBASCRATCH += @"\transfert_thymio\asebascratch.exe";
+		Compilateur.nomDuFichierASEBAMASSLOADER = Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase).Substring(6);                
+		Compilateur.nomDuFichierASEBAMASSLOADER += @"\transfert_thymio\asebascratch.exe";
 
 		Compilateur.afficheLesMessagesDErreur = true;
 
