@@ -608,7 +608,7 @@ du fichier Aseba vers le robot Thymio.
         String			framework;
 
 
-		Debugger.Break ();
+		//Debugger.Break ();
         /*
 		 * Initialisations
 		 */

@@ -1,7 +1,7 @@
 ﻿
-//#define	WINDOWS
+#define	WINDOWS
 
-#define	LINUX
+//#define	LINUX
 
 
 
