@@ -25,11 +25,16 @@ Suivi des versions
 
 ###Version 0.1b
 
+
 ###Version 0.2
 
+
 ###Version 0.21
+* Correction sur l'instruction Blockly REPETER n FOIS.
+
 
 ###Version 0.3
+* Préparation du code source pour migrer le compilateur sur Linux et Mac.
 * Le compilateur utilise asebamassloader.exe (fourni avec AsebaStudio) pour transférer le fichier .aesl.
 
 
