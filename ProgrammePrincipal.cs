@@ -44,7 +44,7 @@ static	class 	ProgrammePrincipal {
 
 		Compilateur.afficherLesCommentaires = true;
 
-		// Nom et répertoire du fichier asebascratch.exe
+		// Nom et répertoire du fichier asebamassloader.exe
 		Compilateur.nomDuFichierASEBAMASSLOADER = @"C:\Users\Okimi\Mes projets\2015\Blockly4Thymio\CompilateurAseba\asebamassloader\asebamassloader.exe";
 
 		Compilateur.nomDuFichierB4T = @"C:\Users\Okimi\Downloads\programme.b4t";
@@ -63,7 +63,7 @@ static	class 	ProgrammePrincipal {
 		// Anlyse les arguments
 		// --------------------
 		Compilateur.nomDuFichierASEBAMASSLOADER = Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase).Substring(6);                
-		Compilateur.nomDuFichierASEBAMASSLOADER += @"\transfert_thymio\asebascratch.exe";
+		Compilateur.nomDuFichierASEBAMASSLOADER += @"\asebamassloader\asebamassloader.exe";
 
 		Compilateur.afficheLesMessagesDErreur = true;
 
@@ -77,7 +77,7 @@ static	class 	ProgrammePrincipal {
 
 		Application.EnableVisualStyles();
 		Application.SetCompatibleTextRenderingDefault(false);
-		Application.Run(new FEN_Principale( _args ));
+		Application.Run( new FEN_Principale( _args ) );
 
 	}
 

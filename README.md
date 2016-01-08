@@ -14,8 +14,23 @@ Blockly4thymio est composé de trois éléments :
 - un compilateur qui adapte le code blockly en code Aseba
 - un mini Framework sous Aseba
 
+
 Les fichers de ce repository
 ----------------------------
 Les fichiers présents ici, sont les sources du compilateur Blocly4Thymio. Ces sources ne sont pas distribués sous licence libre. Il est donc interdit de les copier ou de les distibuer sans l'accord de l'auteur.
+
+
+Suivi des versions
+------------------
+
+###Version 0.1b
+
+###Version 0.2
+
+###Version 0.21
+
+###Version 0.3
+* Le compilateur utilise asebamassloader.exe (fourni avec AsebaStudio) pour transférer le fichier .aesl.
+
 
 Blockly4Thymio - © 2016/2017 Okimi (contact@okimi.net)

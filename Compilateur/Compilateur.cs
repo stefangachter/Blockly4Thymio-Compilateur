@@ -86,11 +86,11 @@ Utilisation : Associez les fichier .b4t à cet éxécutable.
 ";
 		#endif
 
-		_textBox.Text += @"Compilateur Blockly4Thymio - Okimi ©2015 - version " + version + @"
+		_textBox.Text += @"Compilateur Blockly4Thymio - Okimi ©2015/2016 - version " + version + @"
 
 Compile un fichier .b4t en  fichier Aseba  et le transmet  au robot Thymio II.
-Blockly4Thymio utilise le programme asebascratch.exe, de David James Scherman,
-pour le transfert du fichier Aseba vers le robot Thymio.
+Blockly4Thymio utilise le programme asebamassloader.exe pour le transfert
+du fichier Aseba vers le robot Thymio.
 ";
 	
 	}
@@ -618,6 +618,7 @@ pour le transfert du fichier Aseba vers le robot Thymio.
         codeEvénementLancementDuProgramme = "";
         codeSéquenceur = "";
         framework = FrameworkASEBA.version_0_2();
+		framework = framework.Replace( "### VERSION ###", version );
 
 
 
@@ -837,7 +838,7 @@ pour le transfert du fichier Aseba vers le robot Thymio.
     
 	
 	/// <summary>
-    /// Transmission du fichier .aesl, à l'aide de l'exécutable asebascratch.exe
+    /// Transmission du fichier .aesl, à l'aide de l'exécutable asebamassloader.exe
     /// </summary>
     /// <returns><c>true</c>, si le fichier a été transmis, <c>false</c> sinon.</returns>
     private	static	bool	TransmissionDuFichierAESL( FEN_Principale _fenêtrePrincipal ) {
@@ -870,13 +871,13 @@ pour le transfert du fichier Aseba vers le robot Thymio.
         // Traitements
         // -----------
 
-        // Lance asebascratch.exe
+        // Lance asebamassloader.exe
         using (Process proc = Process.Start(exécutable)) {
 
             // Attend 2 secondes (le temps du transfert)
             System.Threading.Thread.Sleep(2000);
 
-            // Ferme asebascratch.exe
+            // Ferme asebamassloader.exe
             proc.Kill();
 
         }

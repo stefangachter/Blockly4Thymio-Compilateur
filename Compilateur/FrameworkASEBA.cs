@@ -185,9 +185,9 @@ onevent	motor
 #  / _  / / _ \/ __/  '_// / // /_  _// / / _ \/ // /  ' \/ / _ \
 # /____/_/\___/\__/_/\_\/_/\_, / /_/ /_/ /_//_/\_, /_/_/_/_/\___/
 #                         /___/               /___/ 
-#               Programme AESL pour Thymio II
+#        Programme AESL pour Thymio II - Version ### VERSION ###
 # généré automatiquement par Blockly4THymio www.blockly4thymio.net
-#      Blockly4Thymio - © 2015/2016 Okimi (contact@okimi.net)
+#     Blockly4Thymio - © 2015/2016 Okimi (contact@okimi.net)
 
 # ----------------------------------
 # DECLARATION DES VARIABLES GLOBALES
