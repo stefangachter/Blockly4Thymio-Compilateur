@@ -545,7 +545,7 @@ du fichier Aseba vers le robot Thymio.
 		 * 1er passe.
 		 * Les blocs sont décomposés depuis le fichier b4t
 		 */
-        AjouteUnMessage( "Lecture du fichier b4y...\n" );
+        AjouteUnMessage( "Lecture du fichier b4t...\n" );
         if ( !DécompositionDuFichierBlockly4Thymio(_fenêtrePrincipal) ) { return false; }
 
 
@@ -608,7 +608,7 @@ du fichier Aseba vers le robot Thymio.
         String			framework;
 
 
-
+		Debugger.Break ();
         /*
 		 * Initialisations
 		 */

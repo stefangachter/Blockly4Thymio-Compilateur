@@ -1,4 +1,18 @@
 ﻿
+//#define	WINDOWS
+
+#define	LINUX
+
+
+
+#if WINDOWS
+#warning Compilation pour WINDOWS
+#endif
+#if LINUX
+#warning "Compilation pour LINUX"
+#endif
+
+
 using	System;
 using	System.IO;
 using	System.Reflection;
@@ -31,10 +45,15 @@ static	class 	ProgrammePrincipal {
 		// Lance automatiquement le programme sur le Thymio à la fin du transfert
 		Compilateur.lancementAutomatique = true;
 
-		//Compilateur.suppressionDuFichierAESL = true;
+		// Emplacement de programme de transfert AsebaMassloader
 
+		#if WINDOWS
 		Compilateur.nomDuFichierASEBAMASSLOADER = Directory.GetCurrentDirectory() + "\\asebamassloader\\asebamassloader.exe";
-
+		#endif
+		#if LINUX
+		Compilateur.nomDuFichierASEBAMASSLOADER = "asebamassloader";
+		#endif
+		
 		Compilateur.nomDuFichierB4T = "";
 		if ( _args != null )
 			if ( _args.Length != 0 )
@@ -43,15 +62,22 @@ static	class 	ProgrammePrincipal {
 		#if DEBUG
 
 		Compilateur.afficherLesCommentaires = true;
-
+		
+		
 		// Nom et répertoire du fichier asebamassloader.exe
+		#if WINDOWS
 		Compilateur.nomDuFichierASEBAMASSLOADER = @"C:\Users\Okimi\Mes projets\2015\Blockly4Thymio\CompilateurAseba\asebamassloader\asebamassloader.exe";
-
+		// Nom du fichier programme.b4t à tester
 		Compilateur.nomDuFichierB4T = @"C:\Users\Okimi\Downloads\programme.b4t";
 		//Compilateur.nomDuFichierB4T = @"C:\Users\fort\Downloads\programme.b4t";
-
+		#endif
+		#if LINUX
+		Compilateur.nomDuFichierASEBAMASSLOADER = "asebamassloader";
+		Compilateur.nomDuFichierB4T = @"/home/okimi/Téléchargements/programme.b4t";
+		#endif
+		
 		Compilateur.lancementAutomatique = true;
-
+		
 		//Compilateur.suppressionDuFichierAESL = false;
 
 		Compilateur.afficheLesMessagesDErreur = false;
@@ -62,9 +88,14 @@ static	class 	ProgrammePrincipal {
 
 		// Anlyse les arguments
 		// --------------------
+		#if WINDOWS
 		Compilateur.nomDuFichierASEBAMASSLOADER = Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase).Substring(6);                
 		Compilateur.nomDuFichierASEBAMASSLOADER += @"\asebamassloader\asebamassloader.exe";
-
+		#endif
+		#if LINUX
+		Compilateur.nomDuFichierASEBAMASSLOADER += @"asebamassloader.exe";
+		#endif
+		
 		Compilateur.afficheLesMessagesDErreur = true;
 
 		Compilateur.afficheLesMessagesDInformation = true;
