@@ -3,18 +3,19 @@
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProjectGuid>{DA7F29C6-89C1-4D2A-AFB6-56434085EF05}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Blockly4Thymio</RootNamespace>
-    <AssemblyName>Compilateur</AssemblyName>
+    <AssemblyName>Compilateur.0.3</AssemblyName>
     <TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
-    <ProductVersion>12.0.0</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <SynchReleaseVersion>false</SynchReleaseVersion>
+    <ReleaseVersion>0.3</ReleaseVersion>
+    <Description>Compilateur du projet Blockly4Thymio.
+Transforme un fichiers .b4t en fichier .aesl puis le transmet à Thymio.</Description>
+    <ApplicationIcon>robot.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <PlatformTarget>x86</PlatformTarget>
@@ -22,12 +23,15 @@
     <WarningLevel>4</WarningLevel>
     <Optimize>false</Optimize>
     <DefineConstants>DEBUG</DefineConstants>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <Commandlineparameters>"C:\Users\Okimi\Downloads\Compilateur Blockly4Thymio\bin\Release\tester-le-compilateur.b4t"</Commandlineparameters>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <PlatformTarget>x86</PlatformTarget>
     <OutputPath>bin\x86\Release\</OutputPath>
     <WarningLevel>4</WarningLevel>
     <Optimize>false</Optimize>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

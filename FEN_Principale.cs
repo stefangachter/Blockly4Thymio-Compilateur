@@ -24,6 +24,7 @@ public		partial	class	FEN_Principale : Form {
 	public FEN_Principale( string[] _args ) {
 		args = _args;
 		InitializeComponent();
+		this.Text = this.Text.Replace( "<VERSION>", Compilateur.version );
 	}
 	
 	
