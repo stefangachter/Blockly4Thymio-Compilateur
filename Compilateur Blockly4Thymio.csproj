@@ -15,7 +15,7 @@
     <ReleaseVersion>0.3</ReleaseVersion>
     <Description>Compilateur du projet Blockly4Thymio.
 Transforme un fichiers .b4t en fichier .aesl puis le transmet à Thymio.</Description>
-    <ApplicationIcon>robot.ico</ApplicationIcon>
+    <ApplicationIcon>icone.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <PlatformTarget>x86</PlatformTarget>
