@@ -34,8 +34,10 @@ Suivi des versions
 
 
 ###Version 0.3
-* Préparation du code source pour migrer le compilateur sur Linux et Mac.
+* Mise en place du versionning (GIT+BitBucket) sur les sources du compilateur,
+* Préparation du code source pour migrer le compilateur sur Linux et Mac,
 * Le compilateur utilise asebamassloader.exe (fourni avec AsebaStudio) pour transférer le fichier .aesl.
+* Mise en place d'un installeur (Setup) pour simplifier l'installation.
 
 
 
