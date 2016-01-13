@@ -8,11 +8,11 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Blockly4Thymio</RootNamespace>
-    <AssemblyName>Compilateur.0.3</AssemblyName>
+    <AssemblyName>Compilateur.0.31</AssemblyName>
     <TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
-    <ReleaseVersion>0.3</ReleaseVersion>
+    <ReleaseVersion>0.31</ReleaseVersion>
     <Description>Compilateur du projet Blockly4Thymio.
 Transforme un fichiers .b4t en fichier .aesl puis le transmet à Thymio.</Description>
     <ApplicationIcon>icone.ico</ApplicationIcon>

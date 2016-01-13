@@ -40,6 +40,8 @@ Suivi des versions
 * Mise en place d'un installeur (Setup) pour simplifier l'installation.
 
 
+###Version 0.31
+* Le fichier .aesl est crée dans le répertoire temporaire du système si le répertoire d'origine du fichier .b4t n'est pas accessible en écriture.
 
 
 Blockly4Thymio - © 2016/2017 Okimi (contact@okimi.net)

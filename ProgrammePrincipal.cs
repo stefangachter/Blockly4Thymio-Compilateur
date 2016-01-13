@@ -32,8 +32,7 @@ static	class 	ProgrammePrincipal {
 		// Initialisations
 		// ---------------
 
-		// ATTENTION !!! Le numéro de version doit aussi être modifié dans la méthode FrameworkASEBA.version_x_x
-		Compilateur.version = "0.3";
+		Compilateur.version = "0.31";
 
 
 		// Affichage des commentaires dans le fichier .aesl

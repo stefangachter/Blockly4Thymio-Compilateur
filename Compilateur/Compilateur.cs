@@ -43,7 +43,8 @@ public	class	Compilateur {
 	public	static	int					compteurDeMarqueur;
 
     public	static	String				nomDuFichierB4T;
-    public	static	String				nomDuFichierAESL;
+	public	static	String				nomDuFichierAESL;
+    public	static	String				nomDuFichierAESLTemp;
     public	static	String				nomDuFichierASEBAMASSLOADER;
 	public	static	String				version;
 
@@ -533,7 +534,8 @@ du fichier Aseba vers le robot Thymio.
         compteurDeSéquenceur = 0;
 		compteurDeMarqueur = 0;
 
-        nomDuFichierAESL = Path.GetDirectoryName(nomDuFichierB4T) + @"\" + "temp.aesl";
+		nomDuFichierAESL = Path.GetDirectoryName(nomDuFichierB4T) + @"\" + "temp.aesl";
+        nomDuFichierAESLTemp = Path.GetTempPath() + @"\" + "temp.aesl";
 
         événementsRacines = new List<__Evénement>();
 
@@ -711,7 +713,8 @@ du fichier Aseba vers le robot Thymio.
 
 
         // Sauve le fichier .aesl
-        fichierAESL = new StreamWriter( nomDuFichierAESL );
+        try {	fichierAESL = new StreamWriter( nomDuFichierAESL ); }
+		catch {	fichierAESL = new StreamWriter( nomDuFichierAESLTemp ); }
         fichierAESL.Write( framework );
         fichierAESL.Close();
 
