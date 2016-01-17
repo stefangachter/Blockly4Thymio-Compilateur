@@ -181,7 +181,7 @@ Global
 		$28.inheritsScope = text/x-csharp
 		$28.scope = text/x-csharp
 		description = @Compilateur du projet Blockly4Thymio.\nTransforme un fichiers .b4t en fichier .aesl puis le transmet à Thymio.
-		version = 0.31
+		version = 0.32
 		StartupItem = Compilateur Blockly4Thymio.csproj
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution

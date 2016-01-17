@@ -11,7 +11,7 @@
     <AssemblyName>Compilateur.0.31</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
-    <ReleaseVersion>0.31</ReleaseVersion>
+    <ReleaseVersion>0.32</ReleaseVersion>
     <Description>Compilateur du projet Blockly4Thymio.
 Transforme un fichiers .b4t en fichier .aesl puis le transmet à Thymio.</Description>
     <ApplicationIcon>icone.ico</ApplicationIcon>
