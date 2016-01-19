@@ -20,17 +20,44 @@ Les fichers de ce repository
 Les fichiers présents ici, sont les sources du compilateur Blocly4Thymio. Ces sources ne sont pas distribués sous licence libre. Il est donc interdit de les copier ou de les distibuer sans l'accord de l'auteur.
 
 
+Note sur le suivi des téléchargements sous Google Analytics
+-----------------------------------------------------------
+
+A paramétrer comme ceci :
+Toutes les données du site Web -> Objectifs
+Nouvel objectif
+  Configuration de l'objectif : Personnalisée
+  Description de l'objectif
+    Nom : Téléchargement de la version **VERSION**
+    Type : Evénement
+  Détails de l'objectif
+    Catégorie : Compilateur
+    Action : Téléchargement
+    Libellé : Version **VERSION**
+    Valeur : **NOMBRE D'EVENEMENTS** + 1
+
+
 Suivi des versions
 ------------------
 
 ###Version 0.1b
+* Mouvements
+* Lumières
+* Sons : Joue une gamme + sons sur la carte SD
+* Boucle de répétition
 
 
 ###Version 0.2
+* Ajout d'icones dans les blocs			
+* Nouvellles instructions pour jouer de la musique : plus de note (sur 2 gammes) et plus de durée (croche, noire et blanche)			
+* Mise en place du bloc de condition : Si			
+* Récupération des informations des capteurs de proximité (avant et arrière)			
+* Récupération des informations des capteurs de couleur du sol			
+* Traitement de l'évenement provenant de la télécommande infra-rouge			
 
 
 ###Version 0.21
-* Correction sur l'instruction Blockly REPETER n FOIS.
+* Correction sur l'instruction Blockly FAIRE n FOIS.
 
 
 ###Version 0.3
@@ -42,6 +69,10 @@ Suivi des versions
 
 ###Version 0.31
 * Le fichier .aesl est crée dans le répertoire temporaire du système si le répertoire d'origine du fichier .b4t n'est pas accessible en écriture.
+
+
+###Version 0.32
+* Corrections de l'installeur (InnoSetup) pour que l'association des fichiers .b4t soit correcte sous Windows XP.
 
 
 Blockly4Thymio - © 2016/2017 Okimi (contact@okimi.net)
