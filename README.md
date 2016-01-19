@@ -23,18 +23,23 @@ Les fichiers présents ici, sont les sources du compilateur Blocly4Thymio. Ces s
 Note sur le suivi des téléchargements sous Google Analytics
 -----------------------------------------------------------
 
-A paramétrer comme ceci :
-Toutes les données du site Web -> Objectifs
-Nouvel objectif
-  Configuration de l'objectif : Personnalisée
-  Description de l'objectif
-    Nom : Téléchargement de la version **VERSION**
-    Type : Evénement
-  Détails de l'objectif
-    Catégorie : Compilateur
-    Action : Téléchargement
-    Libellé : Version **VERSION**
-    Valeur : **NOMBRE D'EVENEMENTS** + 1
+A paramétrer comme ceci :  
+Toutes les données du site Web -> Objectifs + Nouvel objectif  
+Configuration de l'objectif
+
+* Personnalisée
+
+Description de l'objectif  
+
+* Nom : Téléchargement de la version **VERSION**  
+* Type : Evénement  
+
+Détails de l'objectif
+
+* Catégorie : Compilateur  
+* Action : Téléchargement  
+* Libellé : Version **VERSION**  
+* Valeur : **NOMBRE D'EVENEMENTS** + 1  
 
 
 Suivi des versions
