@@ -61,17 +61,17 @@ public 		class 	__SONS {
 
 		// Traitements
 		switch( _note ) {
-		case (int)NOTES.DO_3 :	fréquence = 262; break;
+		case (int)NOTES.DO_3 :	fréquence = 261; break;
 		case (int)NOTES.RÉ_3 :	fréquence = 294; break;
 		case (int)NOTES.MI_3 :	fréquence = 330; break;
 		case (int)NOTES.FA_3 :	fréquence = 349; break;
 		case (int)NOTES.SOL_3 :	fréquence = 392; break;
 		case (int)NOTES.LA_3 :	fréquence = 440; break;
 		case (int)NOTES.SI_3 :	fréquence = 494; break;
-		case (int)NOTES.DO_4 :	fréquence = 523; break;
-		case (int)NOTES.RÉ_4 :	fréquence = 587; break;
+		case (int)NOTES.DO_4 :	fréquence = 522; break;		// 523->522, note corrigée le 08.02.16
+		case (int)NOTES.RÉ_4 :	fréquence = 586; break;		// 587->586, note corrigée le 08.02.16 
 		case (int)NOTES.MI_4 :	fréquence = 659; break;
-		case (int)NOTES.FA_4 :	fréquence = 699; break;
+		case (int)NOTES.FA_4 :	fréquence = 698; break;		// 699->698, note corrigée le 08.02.16
 		case (int)NOTES.SOL_4 :	fréquence = 784; break;
 		case (int)NOTES.LA_4 :	fréquence = 880; break;
 		case (int)NOTES.SI_4 :	fréquence = 988; break;
