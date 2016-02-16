@@ -80,4 +80,8 @@ Suivi des versions
 * Corrections de l'installeur (InnoSetup) pour que l'association des fichiers .b4t soit correcte sous Windows XP.
 
 
+###Version 0.33
+* Corrections sur les couacs des notes de musique.
+
+
 Blockly4Thymio - © 2016/2017 Okimi (contact@okimi.net)

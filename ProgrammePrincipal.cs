@@ -32,7 +32,7 @@ static	class 	ProgrammePrincipal {
 		// Initialisations
 		// ---------------
 
-		Compilateur.version = "0.32";
+		Compilateur.version = "0.33";
 
 
 		// Affichage des commentaires dans le fichier .aesl
