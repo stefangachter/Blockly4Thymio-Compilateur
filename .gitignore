@@ -7,14 +7,14 @@
 *.sln.docstates
 
 # Build results
-[Dd]ebug/
-[Dd]ebugPublic/
-[Rr]elease/
-x64/
-build/
-bld/
-[Bb]in/
-[Oo]bj/
+sources-csharp/[Dd]ebug/
+sources-csharp/[Dd]ebugPublic/
+sources-csharp/[Rr]elease/
+sources-csharp/x64/
+sources-csharp/build/
+sources-csharp/bld/
+sources-csharp/[Bb]in/
+sources-csharp/[Oo]bj/
 
 # Roslyn cache directories
 *.ide/
