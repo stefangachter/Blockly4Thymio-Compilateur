@@ -121,7 +121,9 @@ public	class	Compilateur {
 
 	public	static	List<__Evénement>	événementsRacines;
 
-	private	static	FEN_Principale	__fenêtrePrincipal;
+	private	static	bool				transfertEnCours;
+
+	private	static	FEN_Principale		__fenêtrePrincipal;
 
 
 
@@ -919,6 +921,8 @@ du fichier Aseba vers le robot Thymio.
 
         // Déclarations
         // ------------
+        Process				processus;
+
         ProcessStartInfo	exécutable;
 
 
@@ -937,16 +941,18 @@ du fichier Aseba vers le robot Thymio.
         exécutable.Arguments = "\"" + nomDuFichierAESL + "\" ser:name=Thymio-II";
         exécutable.FileName = nomDuFichierASEBAMASSLOADER;
         exécutable.WorkingDirectory = Path.GetDirectoryName(nomDuFichierASEBAMASSLOADER);
-        exécutable.WindowStyle = ProcessWindowStyle.Hidden;
-        exécutable.CreateNoWindow = true;
-
+        exécutable.WindowStyle = ProcessWindowStyle.Normal;
+        exécutable.CreateNoWindow = false;
+		exécutable.RedirectStandardOutput = true;
+		exécutable.RedirectStandardError = true;
+		exécutable.UseShellExecute = false;
 
 
         // Traitements
         // -----------
 
         // Lance asebamassloader.exe
-        using (Process proc = Process.Start(exécutable)) {
+        /*using (Process proc = Process.Start(exécutable)) {
 
             // Attend 2 secondes (le temps du transfert)
             System.Threading.Thread.Sleep(2000);
@@ -954,7 +960,24 @@ du fichier Aseba vers le robot Thymio.
             // Ferme asebamassloader.exe
             proc.Kill();
 
-        }
+        }*/
+		transfertEnCours = true;
+		processus = new Process();
+		processus.OutputDataReceived += new DataReceivedEventHandler(RedirectionDeLaConsole);
+		processus.ErrorDataReceived += new DataReceivedEventHandler(RedirectionDeLaConsole);	
+		processus.EnableRaisingEvents = true;
+		processus.StartInfo = exécutable;
+		processus.Start();
+		processus.BeginOutputReadLine();
+		processus.BeginErrorReadLine();
+
+		// Boucle de TimeOut de 20 secondes
+		for ( int i=0; i<40; i++ ) {
+			if ( !transfertEnCours )
+				break;
+			System.Threading.Thread.Sleep(500);
+		}
+		processus.Kill();
 
 
         // Fin
@@ -962,6 +985,18 @@ du fichier Aseba vers le robot Thymio.
 
         return true;
 
+    }
+
+
+    /*
+     * Analyse le texte renvoyé sur la console par AsebaMassLoader.
+     * Si le texte contient la chaîne "loaded to target", c'est que le transfert est terminé.
+     */
+	private	static	void	RedirectionDeLaConsole( object _sender, DataReceivedEventArgs _e ) {
+		//Console.Write( _e.Data );		
+        if ( _e.Data != null ) 
+        	if ( _e.Data.IndexOf("loaded to target") != -1 )
+				transfertEnCours = false;
     }
 
 
