@@ -17,30 +17,24 @@ Blockly4thymio est composé de trois éléments :
 
 Les fichers de ce repository
 ----------------------------
-Les fichiers présents ici, sont les sources du compilateur Blocly4Thymio. Ces sources sont distribués sous licence livbre CeCILL-C.
+Les fichiers présents ici, sont les sources du compilateur Blocly4Thymio.  
+Ces sources sont distribuées sous licence libre CeCILL-C.
 
 
 Suivi des versions
 ------------------
 
-###Version 0.1b
-* Mouvements
-* Lumières
-* Sons : Joue une gamme + sons sur la carte SD
-* Boucle de répétition
+###Version 0.33
+* Corrections sur les couacs des notes de musique.
+* Amélioration du transfert pour les Thymio Wireless.
 
 
-###Version 0.2
-* Ajout d'icones dans les blocs			
-* Nouvellles instructions pour jouer de la musique : plus de note (sur 2 gammes) et plus de durée (croche, noire et blanche)			
-* Mise en place du bloc de condition : Si			
-* Récupération des informations des capteurs de proximité (avant et arrière)			
-* Récupération des informations des capteurs de couleur du sol			
-* Traitement de l'évenement provenant de la télécommande infra-rouge			
+###Version 0.32
+* Corrections de l'installeur (InnoSetup) pour que l'association des fichiers .b4t soit correcte sous Windows XP.
 
 
-###Version 0.21
-* Correction sur l'instruction Blockly FAIRE n FOIS.
+###Version 0.31
+* Le fichier .aesl est crée dans le répertoire temporaire du système si le répertoire d'origine du fichier .b4t n'est pas accessible en écriture.
 
 
 ###Version 0.3
@@ -50,17 +44,25 @@ Suivi des versions
 * Mise en place d'un installeur (Setup) pour simplifier l'installation.
 
 
-###Version 0.31
-* Le fichier .aesl est crée dans le répertoire temporaire du système si le répertoire d'origine du fichier .b4t n'est pas accessible en écriture.
+###Version 0.21
+* Correction sur l'instruction Blockly FAIRE n FOIS.
 
 
-###Version 0.32
-* Corrections de l'installeur (InnoSetup) pour que l'association des fichiers .b4t soit correcte sous Windows XP.
+###Version 0.2
+* Ajout d'icones dans les blocs			
+* Nouvellles instructions pour jouer de la musique : plus de note (sur 2 gammes) et plus de durée (croche, noire et blanche) 	
+* Mise en place du bloc de condition : Si			
+* Récupération des informations des capteurs de proximité (avant et arrière)			
+* Récupération des informations des capteurs de couleur du sol			
+* Traitement de l'évenement provenant de la télécommande infra-rouge	
 
 
-###Version 0.33
-* Corrections sur les couacs des notes de musique.
-* Amélioration du transfert pour les Thymio Wireless.
+###Version 0.1b
+* Mouvements
+* Lumières
+* Sons : Joue une gamme + sons sur la carte SD
+* Boucle de répétition
+
 
 
 Blockly4Thymio - © 2015-2016 Okimi (contact at okimi dot net)
