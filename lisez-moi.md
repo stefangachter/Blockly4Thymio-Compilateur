@@ -17,29 +17,7 @@ Blockly4thymio est composé de trois éléments :
 
 Les fichers de ce repository
 ----------------------------
-Les fichiers présents ici, sont les sources du compilateur Blocly4Thymio. Ces sources ne sont pas distribués sous licence libre. Il est donc interdit de les copier ou de les distibuer sans l'accord de l'auteur.
-
-
-Note sur le suivi des téléchargements sous Google Analytics
------------------------------------------------------------
-
-A paramétrer comme ceci :  
-Toutes les données du site Web -> Objectifs + Nouvel objectif  
-Configuration de l'objectif
-
-* Personnalisée
-
-Description de l'objectif  
-
-* Nom : Téléchargement de la version **VERSION**  
-* Type : Evénement  
-
-Détails de l'objectif
-
-* Catégorie : Compilateur  
-* Action : Téléchargement  
-* Libellé : Version **VERSION**  
-* Valeur : **NOMBRE D'EVENEMENTS** + 1  
+Les fichiers présents ici, sont les sources du compilateur Blocly4Thymio. Ces sources sont distribués sous licence livbre CeCILL-C.
 
 
 Suivi des versions
@@ -85,4 +63,4 @@ Suivi des versions
 * Amélioration du transfert pour les Thymio Wireless.
 
 
-Blockly4Thymio - © 2016 Okimi (contact@okimi.net)
+Blockly4Thymio - © 2016 Okimi (contact at okimi dot net)

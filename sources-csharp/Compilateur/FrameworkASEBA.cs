@@ -1,6 +1,6 @@
 ﻿
 /*
-Copyright ou © ou Copr. Okimi, 2015, contact@okimi.net
+Copyright Okimi 2016 (contact at okimi dot net)
 
 Ce logiciel est un programme informatique servant à compiler un fichier
 Blockly4Thymio (.b4t), à le transfomer en fichier Aseba (.aesl) et le
@@ -36,7 +36,7 @@ termes.
 
 ===============================================================================
 
-Copyright or © or Copr. Okimi, 2015, contact@okimi.net
+Copyright Okimi 2016 (contact at okimi dot net)
 
 This software is a computer program whose purpose is to compil Blockly4Thymio
 file (.b4t), to transform it into Aseba file (.aesl) and send it to Thymio
@@ -68,7 +68,6 @@ same conditions as regards security.
 The fact that you are presently reading this means that you have had
 knowledge of the CeCILL-C license and that you accept its terms.
 */
-
 
 
 using System;
@@ -259,7 +258,7 @@ onevent	motor
 #                         /___/               /___/ 
 #        Programme AESL pour Thymio II - Version ### VERSION ###
 # généré automatiquement par Blockly4THymio www.blockly4thymio.net
-#     Blockly4Thymio - © 2015/2016 Okimi (contact@okimi.net)
+#     Blockly4Thymio - © 2016 Okimi (contact at okimi dot net)
 
 # ----------------------------------
 # DECLARATION DES VARIABLES GLOBALES
