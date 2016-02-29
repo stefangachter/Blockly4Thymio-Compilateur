@@ -80,36 +80,50 @@ using	System.Windows.Forms;
 namespace	Blockly4Thymio {
 public		partial	class	FEN_Principale : Form {
 
-	/*
-	 * Déclarations
-	 */
-	static	Timer	timer;
-	
+	// Déclarations
+	// ------------
+
+	static	Timer	temporisationDAttente;
+	static	Timer	temporisationDeCompilation;
+
 	string[] args;
+
 	
 	
-	
-	/*
-     * Constructeur de la fenêtre
-     */
+	// Constructeur de la fenêtre
+    // --------------------------
 	public FEN_Principale( string[] _args ) {
 		args = _args;
 		InitializeComponent();
-		this.Text = this.Text.Replace( "<VERSION>", Compilateur.version );
+		this.Text = this.Text.Replace( "<VERSION>", Compilateur.version );	
 	}
 	
 	
 	public	void	AjouteUnMessage( String _texte ) {
 		TEXT_Messages.Text += _texte + "\r\n";
+		this.Refresh();
 	}
 	
 	
 	public	void	EffaceLesMessages() {
 		TEXT_Messages.Text = "";
+		this.Refresh();
 	}
 	
 	
 	private	void FEN_Principale_Load( object sender, EventArgs e ) {
+
+		// Lance la compilation dans un autre thread
+		temporisationDeCompilation = new Timer();
+		temporisationDeCompilation.Interval = 1000;
+		temporisationDeCompilation.Tick+= new EventHandler( Evénement_TemporisationDeCompilation );
+		temporisationDeCompilation.Start();
+
+	}
+
+	private	void	Evénement_TemporisationDeCompilation( object _sender, EventArgs _e ) {
+
+		temporisationDeCompilation.Stop();
 
 		// Affiche l'entête
 		// ----------------
@@ -128,26 +142,25 @@ public		partial	class	FEN_Principale : Form {
 		// Si la compilation s'est bien déroulée, le programme se ferme automatiquement
 		try {
 			if (Compilateur.Compile(this)) {
-				//#if !DEBUG
-				FermeLaFenêtreDans2Secondes();            
-				//#endif
+				#if !DEBUG
+				FermeLaFenêtreAprès2Secondes();            
+				#endif
 			}
-			AjouteUnMessage( "\nCompilation terminée !" );
+			AjouteUnMessage( "\n\nCompilation et transfert terminés !" );
 		} catch ( Exception ex ) {
 			AfficheUnMessageDErreur( ex.Message );
 		}
 
-
 	}
 
-	private	void	FermeLaFenêtreDans2Secondes() {
-		timer = new Timer();
-		timer.Interval = 2000;
-		timer.Tick+= new EventHandler( Evénement_FinDuTimer );
-		timer.Start();
+	private	void	FermeLaFenêtreAprès2Secondes() {
+		temporisationDAttente = new Timer();
+		temporisationDAttente.Interval = 2000;
+		temporisationDAttente.Tick+= new EventHandler( Evénement_FinDeLaTemporisation );
+		temporisationDAttente.Start();
 	}
-	private	void	Evénement_FinDuTimer( object sender, EventArgs e  ) {
-		timer.Stop();
+	private	void	Evénement_FinDeLaTemporisation( object sender, EventArgs e  ) {
+		temporisationDAttente.Stop();
 		Application.Exit();
 	}
 

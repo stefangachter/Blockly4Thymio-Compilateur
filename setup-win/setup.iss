@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Blockly4Thymio.v0.33"
-#define MyAppExeName "blockly4thymio.v0.33.exe"
+#define MyAppExeName "compilateur.0.33.exe"
 #define MyAppVersion "0.33"
 #define MyAppPublisher "Okimi"
 #define MyAppURL "http://www.blockly4thymio.net"

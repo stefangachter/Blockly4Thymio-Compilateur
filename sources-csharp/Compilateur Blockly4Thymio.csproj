@@ -41,7 +41,7 @@ Transforme un fichiers .b4t en fichier .aesl puis le transmet à Thymio.</Descri
     <Optimize>false</Optimize>
     <DefineConstants>DEBUG</DefineConstants>
     <RunCodeAnalysis>false</RunCodeAnalysis>
-    <Commandlineparameters>"C:\Users\Okimi\Downloads\Compilateur Blockly4Thymio\bin\Release\tester-le-compilateur.b4t"</Commandlineparameters>
+    <Commandlineparameters>"C:\Users\fort\Downloads\compilateur\programme.b4t"</Commandlineparameters>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <PlatformTarget>x86</PlatformTarget>

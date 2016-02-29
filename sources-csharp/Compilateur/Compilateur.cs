@@ -163,8 +163,8 @@ Utilisation : Associez les fichier .b4t à cet éxécutable.
 		_textBox.Text += @"Compilateur Blockly4Thymio - Okimi ©2016 - version " + version + @"
 
 Compile un fichier .b4t en  fichier Aseba  et le transmet  au robot Thymio II.
-Blockly4Thymio utilise le programme asebamassloader.exe pour le transfert
-du fichier Aseba vers le robot Thymio.
+Blockly4Thymio utilise le programme asebamassloader.exe pour le transfert du fichier Aseba vers le robot Thymio.
+
 ";
 	
 	}
@@ -639,8 +639,9 @@ du fichier Aseba vers le robot Thymio.
          * Le programme est transmis au robot Thymio
          */
         AjouteUnMessage( "Transfert du fichier Aseba...\n" );
-        TransmissionDuFichierAESL( _fenêtrePrincipal );
-
+        if ( !TransmissionDuFichierAESL( _fenêtrePrincipal ) )
+        	return false;
+        
 
 
         /*
@@ -925,8 +926,9 @@ du fichier Aseba vers le robot Thymio.
         }
 
 
-        // Initialisations
-        // ---------------
+
+		// Traitements
+        // -----------
 
         // Prépare le processus de transfert avec l'application asebamassloader.exe
         exécutable = new ProcessStartInfo();
@@ -939,10 +941,6 @@ du fichier Aseba vers le robot Thymio.
 		exécutable.RedirectStandardError = true;
 		exécutable.UseShellExecute = false;
 
-
-        // Traitements
-        // -----------
-
         // Lance le processus de transfert
 		transfertEnCours = true;
 		processus = new Process();
@@ -954,13 +952,14 @@ du fichier Aseba vers le robot Thymio.
 		processus.BeginOutputReadLine();
 		processus.BeginErrorReadLine();
 
-		// Boucle de TimeOut de 20 secondes
-		for ( int i=0; i<40; i++ ) {
+		// Boucle de TimeOut de 10 secondes
+		for ( int i=0; i<10*2; i++ ) {
 			if ( !transfertEnCours )
 				break;
 			System.Threading.Thread.Sleep(500);
 		}
 		processus.Kill();
+
 
 
         // Fin
