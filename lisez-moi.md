@@ -82,6 +82,7 @@ Suivi des versions
 
 ###Version 0.33
 * Corrections sur les couacs des notes de musique.
+* Amélioration du transfert pour les Thymio Wireless.
 
 
-Blockly4Thymio - © 2016/2017 Okimi (contact@okimi.net)
+Blockly4Thymio - © 2016 Okimi (contact@okimi.net)

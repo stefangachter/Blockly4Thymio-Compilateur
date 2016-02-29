@@ -160,7 +160,7 @@ Utilisation : Associez les fichier .b4t à cet éxécutable.
 ";
 		#endif
 
-		_textBox.Text += @"Compilateur Blockly4Thymio - Okimi ©2015/2016 - version " + version + @"
+		_textBox.Text += @"Compilateur Blockly4Thymio - Okimi ©2016 - version " + version + @"
 
 Compile un fichier .b4t en  fichier Aseba  et le transmet  au robot Thymio II.
 Blockly4Thymio utilise le programme asebamassloader.exe pour le transfert
