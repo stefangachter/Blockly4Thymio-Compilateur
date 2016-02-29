@@ -63,4 +63,4 @@ Suivi des versions
 * Amélioration du transfert pour les Thymio Wireless.
 
 
-Blockly4Thymio - © 2016 Okimi (contact at okimi dot net)
+Blockly4Thymio - © 2015-2016 Okimi (contact at okimi dot net)
