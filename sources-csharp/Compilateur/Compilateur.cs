@@ -621,7 +621,8 @@ du fichier Aseba vers le robot Thymio.
 		 * Les blocs sont décomposés depuis le fichier b4t
 		 */
         AjouteUnMessage( "Lecture du fichier b4t...\n" );
-        if ( !DécompositionDuFichierBlockly4Thymio(_fenêtrePrincipal) ) { return false; }
+        if ( !DécompositionDuFichierBlockly4Thymio(_fenêtrePrincipal) )
+        	return false;
 
 
         /*
@@ -629,17 +630,8 @@ du fichier Aseba vers le robot Thymio.
          * Le programme est empaqueté dans un fichier .aesl
          */
         AjouteUnMessage( "Compilation du fichier b4t...\n" );
-        if ( !CréationDuFichierAESL() ) {
-
-			//if ( suppressionDuFichierAESL ) {
-			//	// Supprime le fichier .aesl généré
-			//	try { System.IO.File.Delete(nomDuFichierAESL); }
-			//	catch {}
-			//}
-
-            return false;
-
-        }
+        if ( !CréationDuFichierAESL() )
+        	return false;
 
 
         /*
@@ -648,16 +640,11 @@ du fichier Aseba vers le robot Thymio.
          */
         AjouteUnMessage( "Transfert du fichier Aseba...\n" );
         TransmissionDuFichierAESL( _fenêtrePrincipal );
-		//if ( suppressionDuFichierAESL ) {
-		//	// Supprime le fichier .aesl généré
-		//	try { System.IO.File.Delete(nomDuFichierAESL); }
-		//	catch {}
-		//}
 
 
 
         /*
-         * Traitements
+         * Fin
          */
         return true;
 
@@ -683,7 +670,6 @@ du fichier Aseba vers le robot Thymio.
         String			framework;
 
 
-		//Debugger.Break ();
         /*
 		 * Initialisations
 		 */
@@ -880,6 +866,10 @@ du fichier Aseba vers le robot Thymio.
 	}
 
 
+	/// <summary>
+	/// Liste des messages d'erreur.
+	/// </summary>
+	/// <returns>String</returns>
 	public	static	String	Message( int _numéro ) {		
 		switch( _numéro ) {
 		
@@ -937,12 +927,14 @@ du fichier Aseba vers le robot Thymio.
 
         // Initialisations
         // ---------------
+
+        // Prépare le processus de transfert avec l'application asebamassloader.exe
         exécutable = new ProcessStartInfo();
         exécutable.Arguments = "\"" + nomDuFichierAESL + "\" ser:name=Thymio-II";
         exécutable.FileName = nomDuFichierASEBAMASSLOADER;
         exécutable.WorkingDirectory = Path.GetDirectoryName(nomDuFichierASEBAMASSLOADER);
-        exécutable.WindowStyle = ProcessWindowStyle.Normal;
-        exécutable.CreateNoWindow = false;
+        exécutable.WindowStyle = ProcessWindowStyle.Hidden;
+        exécutable.CreateNoWindow = true;
 		exécutable.RedirectStandardOutput = true;
 		exécutable.RedirectStandardError = true;
 		exécutable.UseShellExecute = false;
@@ -951,16 +943,7 @@ du fichier Aseba vers le robot Thymio.
         // Traitements
         // -----------
 
-        // Lance asebamassloader.exe
-        /*using (Process proc = Process.Start(exécutable)) {
-
-            // Attend 2 secondes (le temps du transfert)
-            System.Threading.Thread.Sleep(2000);
-
-            // Ferme asebamassloader.exe
-            proc.Kill();
-
-        }*/
+        // Lance le processus de transfert
 		transfertEnCours = true;
 		processus = new Process();
 		processus.OutputDataReceived += new DataReceivedEventHandler(RedirectionDeLaConsole);

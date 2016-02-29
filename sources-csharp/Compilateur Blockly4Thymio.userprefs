@@ -4,7 +4,7 @@
     <Files>
       <File FileName="FEN_Principale.cs" Line="1" Column="1" />
       <File FileName="FEN_Principale.Designer.cs" Line="1" Column="1" />
-      <File FileName="Compilateur\Compilateur.cs" Line="152" Column="5" />
+      <File FileName="Compilateur\Compilateur.cs" Line="936" Column="59" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
