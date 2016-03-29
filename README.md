@@ -24,6 +24,10 @@ Ces sources sont distribuées sous licence libre CeCILL-C.
 Suivi des versions
 ------------------
 
+###Version 0.4
+* Ajout d'une variable de calibration pour la vitesse des moteurs.
+
+
 ###Version 0.33
 * Corrections sur les couacs des notes de musique.
 * Amélioration du transfert pour les Thymio Wireless.

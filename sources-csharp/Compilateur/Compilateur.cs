@@ -80,8 +80,8 @@ using 	System.Xml;
 
 
 
-namespace	Blockly4Thymio {
-public	class	Compilateur {
+namespace		Blockly4Thymio {
+public class	Compilateur {
 
 	/*
 	 * Attributs
@@ -108,10 +108,12 @@ public	class	Compilateur {
     /// </summary>
     public	static	bool				lancementAutomatique;
 
-    //public	static	bool				suppressionDuFichierAESL;
-
 	public	static	int					compteurDeSéquenceur;
 	public	static	int					compteurDeMarqueur;
+	/// <summary>
+	/// Valeur constante permettant de calculer la distance parcourue par le robot.
+	/// </summary>
+	public	static	int					coefficientDOdométrie = 170;
 
     public	static	String				nomDuFichierB4T;
 	public	static	String				nomDuFichierAESL;
@@ -121,7 +123,7 @@ public	class	Compilateur {
 
 	public	static	List<__Evénement>	événementsRacines;
 
-	private	static	bool				transfertEnCours;
+	private	static	bool				__transfertEnCours;
 
 	private	static	FEN_Principale		__fenêtrePrincipal;
 
@@ -379,8 +381,15 @@ Blockly4Thymio utilise le programme asebamassloader.exe pour le transfert du fic
 		case "0_2_Contrôles_Si_ENTCondition_Alors":
 			bloc = new __GroupeDInstructions_Si_Avec_cCondition( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe, "" );
 			break;
-			
 
+
+		// Paramètres - version 0.4
+		// ------------------------
+		case "0_4_Paramètre_CalibreLesMoteurs_SAIValeur":
+			bloc = new Paramètre_CalibreLesMoteurs_SAIValeur( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
+			break;
+		
+		
 
 		// Sinon, une erreur est déclenchée
 		// --------------------------------
@@ -410,9 +419,10 @@ Blockly4Thymio utilise le programme asebamassloader.exe pour le transfert du fic
 		else if ( bloc is __GroupeDInstructions ) {
 			groupe = (__GroupeDInstructions)bloc;
 			bloc.blocSuivant = Compilateur.AnalyseUnNoeudDInstruction( groupe.UID + groupe.nombreDeSéquence, XmlDuBlocSuivant, bloc, _groupe );
-		}
-
-
+		} else if ( bloc is __Paramètre )
+			bloc.blocSuivant = Compilateur.AnalyseUnNoeudDInstruction( bloc.UID+bloc.nombreDeSéquence, XmlDuBlocSuivant, bloc, _groupe );
+		
+		
 		// Fin
 		// ---
         return bloc;
@@ -421,8 +431,7 @@ Blockly4Thymio utilise le programme asebamassloader.exe pour le transfert du fic
 
 
     /// <summary>
-    /// Analyse un noeud d'expression et retourne
-	/// la chaine équivalente de cette expression.
+    /// Analyse un noeud d'expression et retourne la chaine équivalente de cette expression.
     /// </summary>
 	public	static	String	AnalyseUnNoeudDExpression( int _UIDPourLeBloc, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDInstructions _groupe ) {
 
@@ -432,7 +441,7 @@ Blockly4Thymio utilise le programme asebamassloader.exe pour le transfert du fic
 		String		erreur;
 		String		instruction;		
 		
-		__Valeurs	expression;
+		__Valeur	expression;
 
 
 
@@ -681,7 +690,7 @@ Blockly4Thymio utilise le programme asebamassloader.exe pour le transfert du fic
         codeSéquenceur = "";
         framework = FrameworkASEBA.version_0_2();
 		framework = framework.Replace( "### VERSION ###", version );
-
+		framework = framework.Replace( "### COEFFICIENT D ODOMETRIE ###", coefficientDOdométrie.ToString() );
 
 
         /*
@@ -745,7 +754,7 @@ Blockly4Thymio utilise le programme asebamassloader.exe pour le transfert du fic
                                 "  __etat = ETAT_ARRET\n" +
                                 "end\n";
         }
-        // Nettoie le fichier du séquenceur
+        // Nettoie le fichier du séquenceur des <
         codeSéquenceur = codeSéquenceur.Replace("<", "&lt;");
 
 
@@ -942,7 +951,7 @@ Blockly4Thymio utilise le programme asebamassloader.exe pour le transfert du fic
 		exécutable.UseShellExecute = false;
 
         // Lance le processus de transfert
-		transfertEnCours = true;
+		__transfertEnCours = true;
 		processus = new Process();
 		processus.OutputDataReceived += new DataReceivedEventHandler(RedirectionDeLaConsole);
 		processus.ErrorDataReceived += new DataReceivedEventHandler(RedirectionDeLaConsole);	
@@ -954,7 +963,7 @@ Blockly4Thymio utilise le programme asebamassloader.exe pour le transfert du fic
 
 		// Boucle de TimeOut de 10 secondes
 		for ( int i=0; i<10*2; i++ ) {
-			if ( !transfertEnCours )
+			if ( !__transfertEnCours )
 				break;
 			System.Threading.Thread.Sleep(500);
 		}
@@ -978,7 +987,7 @@ Blockly4Thymio utilise le programme asebamassloader.exe pour le transfert du fic
 		//Console.Write( _e.Data );		
         if ( _e.Data != null ) 
         	if ( _e.Data.IndexOf("loaded to target") != -1 )
-				transfertEnCours = false;
+				__transfertEnCours = false;
     }
 
 

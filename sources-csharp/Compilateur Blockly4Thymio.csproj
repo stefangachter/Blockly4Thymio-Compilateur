@@ -130,8 +130,10 @@ Transforme un fichiers .b4t en fichier .aesl puis le transmet à Thymio.</Descri
     <Compile Include="Compilateur\Blocs\Valeurs\__Valeur_Boutons.cs" />
     <Compile Include="Compilateur\Blocs\Valeurs\Valeur_CapteurIR_SELTouche.cs" />
     <Compile Include="Compilateur\Blocs\Valeurs\__Valeur_Capteurs.cs" />
-    <Compile Include="Compilateur\Blocs\Valeurs\__Valeurs.cs" />
     <Compile Include="Compilateur\FrameworkASEBA.cs" />
+    <Compile Include="Compilateur\Blocs\Paramètres\__Paramètre.cs" />
+    <Compile Include="Compilateur\Blocs\Paramètres\Paramètre_CalibreLesMoteurs_SAIValeur.cs" />
+    <Compile Include="Compilateur\Blocs\Valeurs\__Valeur.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -158,5 +160,8 @@ Transforme un fichiers .b4t en fichier .aesl puis le transmet à Thymio.</Descri
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Compilateur\Blocs\Paramètres\" />
   </ItemGroup>
 </Project>

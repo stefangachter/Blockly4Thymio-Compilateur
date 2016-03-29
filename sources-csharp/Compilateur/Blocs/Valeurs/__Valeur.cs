@@ -71,35 +71,41 @@ knowledge of the CeCILL-C license and that you accept its terms.
 
 
 
-/*
- * __Capteur_RetourneLEtat
- * -----------------------
- *
- * Retourne l'état des capteurs.
- * 
- */
-
-
 using 	System;
 using 	System.Xml;
 
 
 
-namespace Blockly4Thymio {
-public class __Valeur_Capteurs : __Valeur {
+namespace		Blockly4Thymio {
+public class	__Valeur : __Bloc {
 
+    /*
+     * Membres
+     */
+    protected   String	__code;
+
+    
 
 	/*
-	 * Constructeur
-	 */
-	public	__Valeur_Capteurs( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDInstructions _groupe, int _capteur, int _valeur ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupe ) {
+	 * Propriétés surchargeant la classe mère __Bloc.
+     */
+    public override String codePourLeSéquenceur {
+    get { return __code; }
+    }
 
-		// Initialisation des membres
-		// --------------------------
+    
+    
+    /*
+     * Constructeur
+     */
+    public	__Valeur( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDInstructions _groupe ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupe ) {
 
-		__code = __CAPTEURS.code( _capteur, _valeur );
+		// Initialisations
+        // ---------------
+		__code = "";
 
-	}
+    }
+
 
 
 }

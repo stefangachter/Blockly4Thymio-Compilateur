@@ -71,41 +71,54 @@ knowledge of the CeCILL-C license and that you accept its terms.
 
 
 
-using 	System;
+/*
+ * __Paramètre
+ * -----------
+ */
+
 using 	System.Xml;
 
 
 
-namespace	Blockly4Thymio {
-public	class	__Valeurs : __Bloc {
-
-    /*
-     * Membres
-     */
-    protected   String	__code;
-
-    
+namespace   	Blockly4Thymio {
+public	class   __Paramètre : __Instruction {
 
 	/*
-	 * Propriétés surchargeant la classe mère __Bloc.
+	 * Propriétés surchargeant la classe mère Instruction.
      */
-    public override String codePourLeSéquenceur {
-    get { return __code; }
+	public	override	int		nombreDeSéquence { get { return 0; } }
+
+
+
+	/*
+	 * Constructeur
+	 */
+	public	__Paramètre( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDInstructions _groupe ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupe ) {
+
+        // Code d'initialisation
+        // ---------------------
+
+        // Aucun
+
+
+        // Code de traitement
+        // ------------------
+
+		// Aucun
+
+
+        // Code de fin
+        // -----------
+
+        // Aucun
+
+
+        // Condition de passage à l'instruction suivante
+        // ---------------------------------------------
+
+        // Aucun
+
     }
-
-    
-    
-    /*
-     * Constructeur
-     */
-    public	__Valeurs( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDInstructions _groupe ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupe ) {
-
-		// Initialisations
-        // ---------------
-		__code = "";
-
-    }
-
 
 
 }

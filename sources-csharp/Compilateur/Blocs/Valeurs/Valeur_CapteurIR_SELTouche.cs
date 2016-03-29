@@ -85,8 +85,8 @@ using 	System.Xml;
 
 
 
-namespace Blockly4Thymio {
-public class Valeur_CapteurIR_SELTouche : __Valeurs {
+namespace 		Blockly4Thymio {
+public 	class 	Valeur_CapteurIR_SELTouche : __Valeur {
 
 
 	/*

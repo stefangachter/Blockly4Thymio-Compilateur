@@ -72,34 +72,52 @@ knowledge of the CeCILL-C license and that you accept its terms.
 
 
 /*
- * __Capteur_RetourneLEtat
- * -----------------------
+ * Mouvement_Tourne_SAIAngle
+ * -------------------------
  *
- * Retourne l'état des capteurs.
+ * Le robot tourne sur lui même,
+ * de l'angle demandé.
+ * 
+ * Niveau de l'instruction : Facile
  * 
  */
 
 
-using 	System;
-using 	System.Xml;
+using System;
+using System.Xml;
 
 
 
-namespace Blockly4Thymio {
-public class __Valeur_Capteurs : __Valeur {
+namespace		Blockly4Thymio {
+public	class	Paramètre_CalibreLesMoteurs_SAIValeur : __Paramètre {
+
+    /*
+     * Constructeur
+     */
+	public Paramètre_CalibreLesMoteurs_SAIValeur( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDInstructions _groupe ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupe ) {
+
+        // Déclarations
+        // ------------
+        String nomDeLAttribut;
 
 
-	/*
-	 * Constructeur
-	 */
-	public	__Valeur_Capteurs( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDInstructions _groupe, int _capteur, int _valeur ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupe ) {
 
-		// Initialisation des membres
-		// --------------------------
+        // Analyse du Bloc d'instruction
+        foreach (XmlNode XMLDUnNoeudFils in _XMLDuBloc.ChildNodes) {
 
-		__code = __CAPTEURS.code( _capteur, _valeur );
+            nomDeLAttribut = "";
+            if ( XMLDUnNoeudFils.Attributes["name"] != null )
+                nomDeLAttribut = XMLDUnNoeudFils.Attributes["name"].Value;
 
-	}
+            switch( nomDeLAttribut ) {
+            case "Valeur":
+                Compilateur.coefficientDOdométrie = Int32.Parse( XMLDUnNoeudFils.InnerText );				
+                break;
+            }
+
+        }
+
+    }
 
 
 }

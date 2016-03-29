@@ -86,7 +86,7 @@ using 	System.Xml;
 
 
 namespace Blockly4Thymio {
-public class __Valeur_Boutons : __Valeurs {
+public class __Valeur_Boutons : __Valeur {
 
 
 	/*
