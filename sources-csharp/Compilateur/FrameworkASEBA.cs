@@ -87,7 +87,6 @@ public class FrameworkASEBA {
 <!--list of constants-->
 <constant value=""0"" name=""ETAT_ARRET""/>
 <constant value=""1"" name=""ETAT_EN_MARCHE""/>
-<constant value=""### COEFFICIENT D ODOMETRIE ###"" name=""COEFFICIENT_D_ODOMETRIE""/>
 <constant value=""2500"" name=""COEUR_QUI_BAT""/>
 <constant value=""10"" name=""FREQUENCE_TIMER""/>
 
@@ -257,8 +256,8 @@ onevent	motor
     __odo.theta += __temp[0]
     call math.cos(__temp[0:1],[__odo.theta,16384-__odo.theta])
     call math.muldiv(__temp[0:1], [__odo.delta,__odo.delta],__temp[0:1], [32767,32767])
-    __odo.x += __temp[0]/45   #45 pour le Thymio maison, 51 pour le Thymio de ZBis
-    __odo.degre = __odo.theta / COEFFICIENT_D_ODOMETRIE
+    __odo.x += __temp[0]/### COEFFICIENT D AVANCE ###   			# 45 pour le Thymio maison, 51 pour le Thymio de ZBis
+    __odo.degre = __odo.theta / 170		# 170 Coefficient de rotation
   end
 
 </node>

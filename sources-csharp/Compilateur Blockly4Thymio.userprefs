@@ -1,46 +1,9 @@
 ﻿<Properties StartupItem="Compilateur Blockly4Thymio.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Compilateur\Compilateur.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Compilateur\FrameworkASEBA.cs">
     <Files>
-      <File FileName="Compilateur\Compilateur.cs" Line="407" Column="34" />
-      <File FileName="Compilateur\Blocs\Paramètres\__Paramètre.cs" Line="85" Column="27" />
-      <File FileName="Compilateur\Blocs\Instructions\__Instruction.cs" Line="54" Column="1" />
+      <File FileName="Compilateur\FrameworkASEBA.cs" Line="248" Column="28" />
     </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State name="__root__">
-          <Node name="Compilateur Blockly4Thymio" expanded="True">
-            <Node name="Compilateur Blockly4Thymio" expanded="True">
-              <Node name="Compilateur" expanded="True">
-                <Node name="Blocs" expanded="True">
-                  <Node name="Instructions" expanded="True">
-                    <Node name="Instructions_Lumières" expanded="True" />
-                  </Node>
-                  <Node name="Paramètres" expanded="True" />
-                </Node>
-                <Node name="Compilateur.cs" selected="True" />
-              </Node>
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-      <Pad Id="ClassPad">
-        <State name="__root__">
-          <Node name="Compilateur Blockly4Thymio" expanded="True">
-            <Node name="Compilateur Blockly4Thymio" expanded="True">
-              <Node name="Blockly4Thymio" expanded="True">
-                <Node name="Blockly4Thymio.Compilateur" expanded="True">
-                  <Node name="CréationDuFichierAESL" selected="True" />
-                </Node>
-              </Node>
-              <Node name="Compilateur" expanded="True">
-                <Node name="Properties" expanded="True" />
-              </Node>
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
