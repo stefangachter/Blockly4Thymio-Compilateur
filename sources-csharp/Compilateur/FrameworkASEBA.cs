@@ -114,14 +114,15 @@ public class FrameworkASEBA {
 
 var __etat
 var __coeurQuiBat = 0
-var __temp[9]
+var __temp
 var __lectureDUnSon = 0
 
 # Variables pour l'odométrie
-var __odo.delta
-var __odo.theta = 0
-var __odo.x = 0			# 500 for 100mm
 var __odo.degre
+var __odo.delta
+var __odo.temp
+var __odo.theta = 0
+var __odo.x = 0			# 500 pour ~100mm (précision à 0,2mm)
 
 ### VARIABLES ###
 
@@ -209,8 +210,8 @@ onevent timer0
     
     # La LED de la flèche avant clignote, le programme s'execute
     __coeurQuiBat+=(COEUR_QUI_BAT/FREQUENCE_TIMER)
-    call math.sin(__temp[0],__coeurQuiBat)
-    call leds.buttons( abs(__temp[0])>>12, 0, 0, 0 )
+    call math.sin(__temp,__coeurQuiBat)
+    call leds.buttons( abs(__temp)>>12, 0, 0, 0 )
     
     # Appel le séquenceur
     callsub __Sequenceur
@@ -246,18 +247,20 @@ onevent	sound.finished
 onevent	motor
   # Calcul du déplacementet de la rotation par odométrie.
   # Code basé sur le fichier thymio_motion.aels de David Sherman
+  # A lire aussi : https://fr.wikipedia.org/wiki/Odom%C3%A9trie
   if motor.right.target == 0 and motor.left.target == 0 then
 	__odo.x = 0
 	__odo.degre = 0
 	__odo.theta = 0
-  else
-    __odo.delta = (motor.right.target + motor.left.target) / 2
-    call math.muldiv(__temp[0], (motor.right.target - motor.left.target), 3406, 10000)
-    __odo.theta += __temp[0]
-    call math.cos(__temp[0],__odo.theta)
-    call math.muldiv(__temp[0], __odo.delta,__temp[0], 32767)
-    __odo.x += __temp[0]/### COEFFICIENT D AVANCE ###   			# 45 pour le Thymio maison, 51 pour le Thymio de ZBis
-    __odo.degre = __odo.theta / 170		# 170 Coefficient de rotation
+  else    
+    call math.muldiv(__odo.temp, (motor.right.target - motor.left.target), 3406, 10000)		# dΘ = (différence de vitesse des roues * 3406) / 10000
+    __odo.theta += __odo.temp																# Θ = Θ+dΘ
+    __odo.degre = __odo.theta / 170															# Convertis θ en angle (en degré)
+    call math.cos(__odo.temp,__odo.theta)													# = cosΘ
+    __odo.delta = (motor.right.target + motor.left.target) / 2								# Δ = moyenne des vitesses des roues
+    call math.muldiv(__odo.temp, __odo.delta,__odo.temp, 32767)								# = (Δ*cosΘ ) / PI
+    __odo.x += __odo.temp/### COEFFICIENT D AVANCE ###   									# Coef=45 (Thymio maison), Coef=51 (Thymio zBis)
+
   end
 
 </node>
