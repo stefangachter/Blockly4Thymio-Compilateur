@@ -254,8 +254,8 @@ onevent	motor
     __odo.delta = (motor.right.target + motor.left.target) / 2
     call math.muldiv(__temp[0], (motor.right.target - motor.left.target), 3406, 10000)
     __odo.theta += __temp[0]
-    call math.cos(__temp[0:1],[__odo.theta,16384-__odo.theta])
-    call math.muldiv(__temp[0:1], [__odo.delta,__odo.delta],__temp[0:1], [32767,32767])
+    call math.cos(__temp[0],__odo.theta)
+    call math.muldiv(__temp[0], __odo.delta,__temp[0], 32767)
     __odo.x += __temp[0]/### COEFFICIENT D AVANCE ###   			# 45 pour le Thymio maison, 51 pour le Thymio de ZBis
     __odo.degre = __odo.theta / 170		# 170 Coefficient de rotation
   end
