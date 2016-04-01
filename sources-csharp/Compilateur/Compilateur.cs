@@ -915,6 +915,14 @@ Blockly4Thymio utilise le programme asebamassloader.exe pour le transfert du fic
 	
 	/// <summary>
     /// Transmission du fichier .aesl, à l'aide de l'exécutable asebamassloader.exe
+    /// Tests en cours pour réaliser la transmission à l'aide de asebahttp, qui est compatible avec Aseba protocol 5 (pour le firware 10 de Thymio)
+	/// Commande : asebahttp --aesl "C:\Users\fort\Downloads\test.aesl" "tcp:localhost;33333"
+	/// En version 5, il y a un message d'erreur : "1 scripts have no corresponding nodes in the current network and have not been loaded."
+	///
+	/// <!--node e-puck-->
+	/// <node nodeId="1" name="e-puck0">roues_vitesse_gauche =100
+	/// roues_vitesse_droite = 10</node>
+	///
     /// </summary>
     /// <returns><c>true</c>, si le fichier a été transmis, <c>false</c> sinon.</returns>
     private	static	bool	TransmissionDuFichierAESL( FEN_Principale _fenêtrePrincipal ) {
