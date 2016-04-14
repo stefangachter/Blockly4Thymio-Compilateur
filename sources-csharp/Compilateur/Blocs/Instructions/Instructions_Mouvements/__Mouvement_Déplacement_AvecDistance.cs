@@ -88,16 +88,16 @@ using System.Xml;
 
 
 
-namespace	Blockly4Thymio {
+namespace		Blockly4Thymio {
 public	class	__Mouvement_Déplacement_AvecDistance : __Instruction {
 
     /*
 	 * Membres
 	 */
-	private		int	__distance;   // Distance en centimètres
+	private		int	__distance;   		// Distance en centimètres
     
-	protected	int	__vitesse;    // Vitesse de déplacement
-    protected	int	__sens;       // Sens de déplacement
+	protected	int	__vitesse;    		// Vitesse de déplacement
+    protected	int	__sens;       		// Sens de déplacement
 
 
 
@@ -131,15 +131,21 @@ public	class	__Mouvement_Déplacement_AvecDistance : __Instruction {
 
     public	override	String	conditionDePassageALInstructionSuivante {
     get {
-        String code;
+    	int		correctionDeCalibration = 0;
 
+        String	code;
+
+
+		if (__vitesse==__MOTEUR.VITESSE_LENTE)
+			correctionDeCalibration = 7;
+		
         code = "";
         switch (__sens) {
         case (int)__MOTEUR.SENS_EN_AVANT:
-            code = "__odo.x>" + (__distance * 50);
+            code = "__odo.x>" + ( __distance * ( __MOTEUR.calibration - correctionDeCalibration) );
             break;
         case (int)__MOTEUR.SENS_EN_ARRIERE:
-            code = "__odo.x<-" + (__distance * 50);
+			code = "__odo.x<-" + ( __distance * ( __MOTEUR.calibration - correctionDeCalibration) );
             break;
         }
 
@@ -168,7 +174,7 @@ public	class	__Mouvement_Déplacement_AvecDistance : __Instruction {
 	}
 
 
-	
+
 	/*
 	 * Constructeur
 	 */

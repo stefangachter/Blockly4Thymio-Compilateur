@@ -141,7 +141,7 @@ static	class 	ProgrammePrincipal {
 		
 		// Nom du fichier programme.b4t à tester
 		Compilateur.nomDuFichierB4T = @"C:\Users\Okimi\Downloads\programme.b4t";
-		Compilateur.nomDuFichierB4T = @"C:\Users\fort\Downloads\programme.b4t";
+		//Compilateur.nomDuFichierB4T = @"C:\Users\fort\Downloads\programme.b4t";
 
 		#endif
 		#if LINUX
@@ -150,8 +150,6 @@ static	class 	ProgrammePrincipal {
 		#endif
 		
 		Compilateur.lancementAutomatique = true;
-		
-		//Compilateur.suppressionDuFichierAESL = false;
 
 		Compilateur.afficheLesMessagesDErreur = true;
 

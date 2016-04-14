@@ -110,10 +110,6 @@ public class	Compilateur {
 
 	public	static	int					compteurDeSéquenceur;
 	public	static	int					compteurDeMarqueur;
-	/// <summary>
-	/// Valeur constante permettant de calculer la distance parcourue par le robot.
-	/// </summary>
-	public	static	int					coefficientDAvance = 45;
 
     public	static	String				nomDuFichierB4T;
 	public	static	String				nomDuFichierAESL;
@@ -690,7 +686,6 @@ Blockly4Thymio utilise le programme asebamassloader.exe pour le transfert du fic
         codeSéquenceur = "";
         framework = FrameworkASEBA.version_0_2();
 		framework = framework.Replace( "### VERSION ###", version );
-		framework = framework.Replace( "### COEFFICIENT D AVANCE ###", coefficientDAvance.ToString() );
 
 
         /*

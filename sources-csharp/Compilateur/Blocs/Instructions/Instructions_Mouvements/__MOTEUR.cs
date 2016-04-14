@@ -109,6 +109,17 @@ public 		class 	__MOTEUR {
 
 
 	/*
+	 * Propriétés statiques
+	 */
+	// Valeur de calibration pour le parcours d'une distance. Sur le Thymio d'Okimi, les valeurs relevée
+	// 59 en vitesse normale (soit target=250)
+    // 52 en vitesse lente (soit target=50)
+    // 59 en vitesse rapide (soit target=350)
+	public	static	int	calibration = 50;
+
+
+
+	/*
 	 * Méthodes statiques
 	 */
 	

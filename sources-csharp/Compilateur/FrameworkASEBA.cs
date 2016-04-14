@@ -245,7 +245,7 @@ onevent	sound.finished
 # Evénement moteur, appelé toutes les 10ms (100Hz)
 # ------------------------------------------------
 onevent	motor
-  # Calcul du déplacementet de la rotation par odométrie.
+  # Calcul du déplacement et de la rotation par odométrie.
   # Code basé sur le fichier thymio_motion.aels de David Sherman
   # A lire aussi : https://fr.wikipedia.org/wiki/Odom%C3%A9trie
   if motor.right.target == 0 and motor.left.target == 0 then
@@ -259,8 +259,7 @@ onevent	motor
     call math.cos(__odo.temp,__odo.theta)													# = cosΘ
     __odo.delta = (motor.right.target + motor.left.target) / 2								# Δ = moyenne des vitesses des roues
     call math.muldiv(__odo.temp, __odo.delta,__odo.temp, 32767)								# = (Δ*cosΘ ) / PI
-    __odo.x += __odo.temp/45							   									# Coef=45 (Thymio maison et code original de David S.), Coef=51 (Thymio zBis)
-
+    __odo.x += __odo.temp/45
   end
 
 </node>

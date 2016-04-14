@@ -111,7 +111,7 @@ public	class	Paramètre_CalibreLesMoteurs_SAIValeur : __Paramètre {
 
             switch( nomDeLAttribut ) {
             case "Valeur":
-                Compilateur.coefficientDAvance = Int32.Parse( XMLDUnNoeudFils.InnerText );				
+            	__MOTEUR.calibration = Int32.Parse( XMLDUnNoeudFils.InnerText );				
                 break;
             }
 
