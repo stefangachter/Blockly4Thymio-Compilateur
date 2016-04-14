@@ -1,8 +1,11 @@
 ﻿<Properties StartupItem="Compilateur Blockly4Thymio.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Compilateur\Compilateur.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Compilateur\FrameworkASEBA.cs">
     <Files>
-      <File FileName="Compilateur\Compilateur.cs" Line="925" Column="5" />
+      <File FileName="Compilateur\Compilateur.cs" Line="920" Column="47" />
+      <File FileName="ProgrammePrincipal.cs" Line="144" Column="3" />
+      <File FileName="Compilateur\FrameworkASEBA.cs" Line="253" Column="17" />
+      <File FileName="Compilateur\Blocs\Instructions\Instructions_Mouvements\__Mouvement_Déplacement_AvecDistance.cs" Line="25" Column="42" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
