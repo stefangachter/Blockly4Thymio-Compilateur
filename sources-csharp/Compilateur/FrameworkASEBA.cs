@@ -76,7 +76,7 @@ using System;
 
 public class FrameworkASEBA {
 	
-	public static String	version_0_2() {
+	public static String	version_0_2_1() {
 		return @"<!DOCTYPE aesl-source>
 <network>
 
@@ -117,6 +117,11 @@ var __coeurQuiBat = 0
 var __temp
 var __lectureDUnSon = 0
 
+# Variables pour les LEDs
+var __led.rouge
+var __led.vert
+var __led.bleu
+
 # Variables pour l'odométrie
 var __odo.degre
 var __odo.delta
@@ -144,6 +149,13 @@ timer.period[0] = FREQUENCE_TIMER
 # DECLARATIONS DES PROCEDURES
 # ---------------------------
 
+# Allume toutes les LEDs (left, right & top)
+sub	__AllumeLesLEDs
+  call leds.bottom.left( __led.rouge, __led.vert, __led.bleu )
+  call leds.bottom.right( __led.rouge, __led.vert, __led.bleu )
+  call leds.top( __led.rouge, __led.vert, __led.bleu )
+
+
 # Arrête les moteurs
 sub	__ArreteLesMoteurs
   motor.left.target = 0
@@ -163,13 +175,14 @@ sub __ArreteLeProgramme
   callsub __ArreteLesMoteurs
   
   # Eteins toutes les LEDs
-  call leds.bottom.left( 0, 0, 0 )
-  call leds.bottom.right( 0, 0, 0 )
   call leds.buttons(0,0,0,0)
   call leds.circle( 0, 0, 0, 0, 0, 0, 0, 0 ) 
-  call leds.top(0,0,0)
   call leds.sound(0)
   call leds.temperature(0,0)
+  __led.rouge = 0
+  __led.vert = 0
+  __led.bleu = 0
+  callsub __AllumeLesLEDs
 
 
 # ----------

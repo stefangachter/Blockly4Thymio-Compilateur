@@ -138,7 +138,7 @@ public 		class 	__LED {
 	}
 
 
-	public	static	String	code( int _led, int _couleur ) {
+	public	static	String	code (int _led, int _couleur) {
 
 		// Déclarations
 		// ------------
@@ -153,6 +153,21 @@ public 		class 	__LED {
 
 		// Traitements
 		// -----------
+		if ((_led == (int)TOUTE_LES_LEDS))
+			code += "__led.rouge=" + CalculLaCouleur (_couleur, (int)COMPOSANTE_ROUGE) + " __led.vert=" + CalculLaCouleur (_couleur, (int)COMPOSANTE_VERTE) + " __led.bleu=" + CalculLaCouleur (_couleur, (int)COMPOSANTE_BLEUE) + " callsub __AllumeLesLEDs";
+		else
+			switch (_led) {
+			case (int)LED_DU_DESSUS:
+				code += "call leds.top(" + CalculLaCouleur(_couleur, (int)COMPOSANTE_BLEUE) + "," + CalculLaCouleur(_couleur, (int)COMPOSANTE_VERTE) + "," + CalculLaCouleur(_couleur, (int)COMPOSANTE_ROUGE) + ")";
+				break;
+			case (int)LED_DE_GAUCHE:
+				code += "call leds.bottom.left(" + CalculLaCouleur(_couleur, (int)COMPOSANTE_BLEUE) + "," + CalculLaCouleur(_couleur, (int)COMPOSANTE_VERTE) + "," + CalculLaCouleur(_couleur, (int)COMPOSANTE_ROUGE) + ")";
+				break;
+			case (int)LED_DE_DROITE:
+				code += "call leds.bottom.right(" + CalculLaCouleur(_couleur, (int)COMPOSANTE_BLEUE) + "," + CalculLaCouleur(_couleur, (int)COMPOSANTE_VERTE) + "," + CalculLaCouleur(_couleur, (int)COMPOSANTE_ROUGE) + ")";
+				break;
+			}
+		/*
 		if ((_led == (int)LED_DU_DESSUS) || (_led == (int)TOUTE_LES_LEDS))
 			code += "call leds.top(" + CalculLaCouleur(_couleur, (int)COMPOSANTE_BLEUE) + "," + CalculLaCouleur(_couleur, (int)COMPOSANTE_VERTE) + "," + CalculLaCouleur(_couleur, (int)COMPOSANTE_ROUGE) + ") ";
 
@@ -163,7 +178,7 @@ public 		class 	__LED {
 			code += "call leds.bottom.right(" + CalculLaCouleur(_couleur, (int)COMPOSANTE_BLEUE) + "," + CalculLaCouleur(_couleur, (int)COMPOSANTE_VERTE) + "," + CalculLaCouleur(_couleur, (int)COMPOSANTE_ROUGE) + ") ";
 
 		code = code.Trim();
-
+		*/
 
 		// Fin
 		// ---

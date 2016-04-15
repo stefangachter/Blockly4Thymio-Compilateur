@@ -684,7 +684,7 @@ Blockly4Thymio utilise le programme asebamassloader.exe pour le transfert du fic
 		codeEvénementCommandeIR = "";
         codeEvénementLancementDuProgramme = "";
         codeSéquenceur = "";
-        framework = FrameworkASEBA.version_0_2();
+        framework = FrameworkASEBA.version_0_2_1();
 		framework = framework.Replace( "### VERSION ###", version );
 
 
