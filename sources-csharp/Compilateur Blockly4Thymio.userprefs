@@ -1,6 +1,13 @@
 ﻿<Properties StartupItem="Compilateur Blockly4Thymio.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Compilateur\FrameworkASEBA.cs">
+    <Files>
+      <File FileName="ProgrammePrincipal.cs" Line="1" Column="1" />
+      <File FileName="Compilateur\FrameworkASEBA.cs" Line="156" Column="53" />
+      <File FileName="Compilateur\Blocs\Instructions\Instructions_Lumières\Lumières_AllumeLesLEDs_SELLED_SELCouleur.cs" Line="1" Column="1" />
+      <File FileName="Compilateur\Blocs\Instructions\Instructions_Lumières\__LED.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

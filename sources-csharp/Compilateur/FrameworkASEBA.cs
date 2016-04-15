@@ -149,11 +149,11 @@ timer.period[0] = FREQUENCE_TIMER
 # DECLARATIONS DES PROCEDURES
 # ---------------------------
 
-# Allume toutes les LEDs (left, right & top)
+# Allume toutes les LEDs (bottom.left, bottom.right et top)
 sub	__AllumeLesLEDs
-  call leds.bottom.left( __led.rouge, __led.vert, __led.bleu )
-  call leds.bottom.right( __led.rouge, __led.vert, __led.bleu )
-  call leds.top( __led.rouge, __led.vert, __led.bleu )
+  call leds.bottom.left( __led.bleu, __led.vert, __led.rouge )
+  call leds.bottom.right( __led.bleu, __led.vert, __led.rouge )
+  call leds.top( __led.bleu, __led.vert, __led.rouge )
 
 
 # Arrête les moteurs
