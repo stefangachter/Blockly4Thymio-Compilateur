@@ -109,7 +109,19 @@ public 		class 	__SONS {
         HO					=   1,
         QUOI				=   2,
         JE_SUIS_PAS_CONTENT	=   3,
-        SIRÈNE_DES_POMPIERS	= 100
+
+        SIRÈNE_DES_POMPIERS	= 100,
+
+		PERSONNEL_01		= 1001,
+		PERSONNEL_02		= 1002,
+		PERSONNEL_03		= 1003,
+		PERSONNEL_04		= 1004,
+		PERSONNEL_05		= 1005,
+        PERSONNEL_06		= 1006,
+		PERSONNEL_07		= 1007,
+		PERSONNEL_08		= 1008,
+		PERSONNEL_09		= 1009,
+		PERSONNEL_10		= 1010
     }
 
 

@@ -26,6 +26,8 @@ Suivi des versions
 
 ###Version 0.4
 * Ajout d'une variable de calibration pour la vitesse des moteurs.
+* Ajout de la lecture de sons personnels
+* Réduction du code généré sur les instructions 'Allume les lumières'
 
 
 ###Version 0.33

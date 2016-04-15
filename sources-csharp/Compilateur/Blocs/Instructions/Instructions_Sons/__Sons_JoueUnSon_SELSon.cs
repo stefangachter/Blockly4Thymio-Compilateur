@@ -142,7 +142,37 @@ public	class	__Sons_JoueUnSon_SELSon : __Instruction {
 				case "SON_SIRENE_DES_POMPIERS":
 					son = (int)__SONS.SON.SIRÈNE_DES_POMPIERS;
                     break;
-                }
+				case "SON_PERSONNEL_01":
+					son = (int)__SONS.SON.PERSONNEL_01;
+                    break;
+				case "SON_PERSONNEL_02":
+					son = (int)__SONS.SON.PERSONNEL_02;
+                    break;
+				case "SON_PERSONNEL_03":
+					son = (int)__SONS.SON.PERSONNEL_03;
+                    break;
+				case "SON_PERSONNEL_04":
+					son = (int)__SONS.SON.PERSONNEL_04;
+                    break;
+				case "SON_PERSONNEL_05":
+					son = (int)__SONS.SON.PERSONNEL_05;
+                    break;
+				case "SON_PERSONNEL_06":
+					son = (int)__SONS.SON.PERSONNEL_06;
+                    break;
+				case "SON_PERSONNEL_07":
+					son = (int)__SONS.SON.PERSONNEL_07;
+                    break;
+				case "SON_PERSONNEL_08":
+					son = (int)__SONS.SON.PERSONNEL_08;
+                    break;
+				case "SON_PERSONNEL_09":
+					son = (int)__SONS.SON.PERSONNEL_09;
+                    break;
+				case "SON_PERSONNEL_10":
+					son = (int)__SONS.SON.PERSONNEL_10;
+                    break;
+				}
                 break;
 
             }
