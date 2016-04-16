@@ -26,10 +26,10 @@ Suivi des versions
 
 ###Version 0.4
 * Ajout d'une variable de calibration pour la vitesse des moteurs.
-* Création d'une documentation (disponible sur : https://github.com/Okimi-/Blockly4Thymio-Documents), sur la calibration de Thymio.
-* Ajout de la lecture de sons personnels
-* Création d'une documentation (disponible sur : https://github.com/Okimi-/Blockly4Thymio-Documents), sur la création de sons personnels.
-* Réduction du code généré sur les instructions 'Allume les lumières'
+* Création d'une documentation (disponible sur : https://github.com/Okimi-/Blockly4Thymio-Documents), sur la calibration de Thymio et la création de sons personnels.
+* Ajout de la lecture de sons personnels.
+* Enregistrement de son depuis le microphone.
+* Réduction du code généré sur les instructions 'Allume les lumières'.
 
 
 ###Version 0.33

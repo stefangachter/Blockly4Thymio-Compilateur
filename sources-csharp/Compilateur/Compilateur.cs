@@ -355,6 +355,12 @@ Blockly4Thymio utilise le programme asebamassloader.exe pour le transfert du fic
 		case "0_4_Sons_JoueUnSonPersonnel_SELSon":
 			bloc = new __Sons_JoueUnSon_SELSon( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
 			break;
+		case "0_4_Sons_EnregistreUnSon_Pendant04Seconde":
+			bloc = new __Sons_EnregistreUnSon_AvecDurée( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe, 4.0f );
+			break;
+		case "0_4_Sons_RelireLeSonEnregistré":
+			bloc = new Sons_RejoueLeSonEnregistré( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
+			break;
 
 
 		// Contrôles - version 0.1b
