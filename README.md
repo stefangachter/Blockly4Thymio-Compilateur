@@ -24,6 +24,10 @@ Ces sources sont distribuées sous licence libre CeCILL-C.
 Suivi des versions
 ------------------
 
+###Version 0.5
+* Nouvelles instructions pour tourner à gauche et à droite
+
+
 ###Version 0.4
 * Ajout d'une variable de calibration pour la vitesse des moteurs.
 * Création d'une documentation (disponible sur : https://github.com/Okimi-/Blockly4Thymio-Documents), sur la calibration de Thymio et la création de sons personnels.
@@ -58,7 +62,7 @@ Suivi des versions
 
 ###Version 0.2
 * Ajout d'icones dans les blocs			
-* Nouvellles instructions pour jouer de la musique : plus de note (sur 2 gammes) et plus de durée (croche, noire et blanche) 	
+* Nouvelles instructions pour jouer de la musique : plus de note (sur 2 gammes) et plus de durée (croche, noire et blanche) 	
 * Mise en place du bloc de condition : Si			
 * Récupération des informations des capteurs de proximité (avant et arrière)			
 * Récupération des informations des capteurs de couleur du sol			
