@@ -285,6 +285,15 @@ Blockly4Thymio utilise le programme asebamassloader.exe pour le transfert du fic
 			bloc = new Mouvement_Tourne_SELSens_SAIAngle( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
 			break;
 
+		// Mouvements - version 0.5
+		// ------------------------
+		case "0_5_Mouvement_TourneADroite":
+			bloc = new __Mouvement_Tourne_AvecAngle( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe, (int)__MOTEUR.TOURNE_A_DROITE, 90 );
+			break;
+		case "0_5_Mouvement_TourneAGauche":
+			bloc = new __Mouvement_Tourne_AvecAngle( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe, (int)__MOTEUR.TOURNE_A_GAUCHE, 90 );
+			break;
+
 
 		// Lumières - version 0.1b
 		// -----------------------
