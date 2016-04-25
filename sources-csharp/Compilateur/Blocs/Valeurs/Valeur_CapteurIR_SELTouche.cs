@@ -76,7 +76,11 @@ knowledge of the CeCILL license and that you accept its terms.
  * --------------------------
  *
  * Retourne le code pour vérifier une commande rc5.
- * 
+ *
+ * Exemple de paires commande/adress pour la télécommande officielle Thymio
+ * bouton		GO	UP	DOWN	LEFT	RIGHT	STOP	-	+	1	2	3	4	5	6	7	8	9	0
+ * rc5.adress	0	0	0		0		0		0		0	0	0	0	0	0	0	0	0	0	0	0
+ * rc5.commande	53	80	81		85		86		87		17	16	1	2	3	4	5	6	7	8	9	0
  */
 
 
