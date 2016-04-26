@@ -1,4 +1,5 @@
-﻿/*
+﻿
+/*
 Copyright Okimi 2015-2016 (contact at okimi dot net)
 
 Ce logiciel est un programme informatique servant à compiler un fichier
@@ -35,7 +36,7 @@ termes.
 
 ===============================================================================
 
-Copyright Okimi 2016 (contact at okimi dot net)
+Copyright Okimi 2015-2016 (contact at okimi dot net)
 
 This software is a computer program whose purpose is to compil Blockly4Thymio
 file (.b4t), to transform it into Aseba file (.aesl) and send it to Thymio
@@ -70,120 +71,53 @@ knowledge of the CeCILL license and that you accept its terms.
 
 
 
-#define	WINDOWS
-
-//#define	LINUX
-
-
-
-#if WINDOWS
-#warning Compilation pour WINDOWS
-#endif
-#if LINUX
-#warning "Compilation pour LINUX"
-#endif
+/*
+ * Paramètre_LAdresseDeLaTélécommandeEst_SAIValeur
+ * -----------------------------------------------
+ *
+ * Change le paramètre rc5.adress utilisé lors de la réception
+ * de commandes par infra-rouge.
+ * 
+ */
 
 
-using	System;
-using	System.IO;
-using	System.Reflection;
-using	System.Windows.Forms;
+using System;
+using System.Xml;
 
 
 
-namespace 		Blockly4Thymio {
-static	class 	ProgrammePrincipal {
+namespace		Blockly4Thymio {
+public	class	Paramètre_LAdresseDeLaTélécommandeEst_SAIValeur : __Paramètre {
 
-	/// <summary>
-	/// Point d'entrée principal de l'application.
-	/// </summary>
-	[STAThread]
-	static void Main( string[] _args ) {
+    /*
+     * Constructeur
+     */
+	public Paramètre_LAdresseDeLaTélécommandeEst_SAIValeur( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDInstructions _groupe ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupe ) {
 
-		// Initialisations
-		// ---------------
-
-		Compilateur.version = "0.5";
+        // Déclarations
+        // ------------
+        String nomDeLAttribut;
 
 
-		// Affichage des commentaires dans le fichier .aesl
-		Compilateur.afficherLesCommentaires = false;
 
-		// Arrête le robot si tous les séquenceurs sont terminés
-		Compilateur.arrêtDuRobotALaFinDesSéquenceurs = true;
+        // Analyse du Bloc d'instruction
+        foreach (XmlNode XMLDUnNoeudFils in _XMLDuBloc.ChildNodes) {
 
-		// Lance automatiquement le programme sur le Thymio à la fin du transfert
-		Compilateur.lancementAutomatique = true;
+            nomDeLAttribut = "";
+            if ( XMLDUnNoeudFils.Attributes["name"] != null )
+                nomDeLAttribut = XMLDUnNoeudFils.Attributes["name"].Value;
 
-		// Emplacement de programme de transfert AsebaMassloader
+            switch( nomDeLAttribut ) {
+            case "Adresse":
+            	Valeur_CapteurIR_SELBouton.adresseIR = Int32.Parse( XMLDUnNoeudFils.InnerText );				
+                break;
+            }
 
-		#if WINDOWS
-		Compilateur.nomDuFichierASEBAMASSLOADER = Directory.GetCurrentDirectory() + "\\asebamassloader\\asebamassloader.exe";
-		#endif
-		#if LINUX
-		Compilateur.nomDuFichierASEBAMASSLOADER = "asebamassloader";
-		#endif
-		
-		Compilateur.nomDuFichierB4T = "";
-		if ( _args != null )
-			if ( _args.Length != 0 )
-				Compilateur.nomDuFichierB4T = _args[0];
+        }
 
-		#if DEBUG
+    }
 
-		Compilateur.afficherLesCommentaires = true;
-		
-		
-		// Nom et répertoire du fichier asebamassloader.exe
-		#if WINDOWS
-		Compilateur.nomDuFichierASEBAMASSLOADER = @"C:\Users\Okimi\Mes projets\2015\Blockly4Thymio\CompilateurAseba\asebamassloader\asebamassloader.exe";
-		//Compilateur.nomDuFichierASEBAMASSLOADER = @"C:\Users\fort\Downloads\compilateur\setup-win\fichiers\asebamassloader\asebamassloader.exe";
-		
-		// Nom du fichier programme.b4t à tester
-		Compilateur.nomDuFichierB4T = @"C:\Users\Okimi\Downloads\programme.b4t";
-		Compilateur.nomDuFichierB4T = @"C:\Users\fort\Downloads\programme.b4t";
-
-		#endif
-		#if LINUX
-		Compilateur.nomDuFichierASEBAMASSLOADER = "asebamassloader";
-		Compilateur.nomDuFichierB4T = @"/home/okimi/Téléchargements/programme.b4t";
-		#endif
-		
-		Compilateur.lancementAutomatique = true;
-
-		Compilateur.afficheLesMessagesDErreur = true;
-
-		Compilateur.afficheLesMessagesDInformation = false;
-
-		#else
-
-		// Anlyse les arguments
-		// --------------------
-		#if WINDOWS
-		Compilateur.nomDuFichierASEBAMASSLOADER = Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase).Substring(6);                
-		Compilateur.nomDuFichierASEBAMASSLOADER += @"\asebamassloader\asebamassloader.exe";
-		#endif
-		#if LINUX
-		Compilateur.nomDuFichierASEBAMASSLOADER += @"asebamassloader.exe";
-		#endif
-		
-		Compilateur.afficheLesMessagesDErreur = true;
-
-		Compilateur.afficheLesMessagesDInformation = true;
-
-		#endif
-
-
-		// Traitements
-		// -----------
-
-		Application.EnableVisualStyles();
-		Application.SetCompatibleTextRenderingDefault(false);
-		Application.Run( new FEN_Principale( _args ) );
-
-	}
 
 }
 }
-
 

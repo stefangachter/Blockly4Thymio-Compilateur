@@ -26,6 +26,7 @@ Suivi des versions
 
 ###Version 0.5
 * Nouvelles instructions pour tourner à gauche et à droite
+* Nouvelles instructions pour la télécommande infra-rouge
 
 
 ###Version 0.4

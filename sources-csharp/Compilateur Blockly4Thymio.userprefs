@@ -1,12 +1,6 @@
 ﻿<Properties StartupItem="Compilateur Blockly4Thymio.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Compilateur\Blocs\Valeurs\Valeur_CapteurIR_SELTouche.cs">
-    <Files>
-      <File FileName="Compilateur\Compilateur.cs" Line="948" Column="40" />
-      <File FileName="Compilateur\Blocs\Valeurs\__BOUTONS.cs" Line="89" Column="1" />
-      <File FileName="Compilateur\Blocs\Valeurs\Valeur_CapteurIR_SELTouche.cs" Line="85" Column="1" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

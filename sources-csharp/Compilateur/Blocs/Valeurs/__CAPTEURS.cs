@@ -105,18 +105,7 @@ public 		class 	__CAPTEURS {
 		DISTANCE_PRÈS,
 		// Enumération des couleurs vues par les capteurs du dessous.
 		COULEUR_SOL_BLANC,
-		COULEUR_SOL_NOIR,
-		// Enumération des touches de la télécommande IR
-		TOUCHE_0,
-		TOUCHE_1,
-		TOUCHE_2,
-		TOUCHE_3,
-		TOUCHE_4,
-		TOUCHE_5,
-		TOUCHE_6,
-		TOUCHE_7,
-		TOUCHE_8,
-		TOUCHE_9
+		COULEUR_SOL_NOIR
 	}
 	
 

@@ -1,4 +1,5 @@
-﻿/*
+﻿
+/*
 Copyright Okimi 2015-2016 (contact at okimi dot net)
 
 Ce logiciel est un programme informatique servant à compiler un fichier
@@ -35,7 +36,7 @@ termes.
 
 ===============================================================================
 
-Copyright Okimi 2016 (contact at okimi dot net)
+Copyright Okimi 2015-2016 (contact at okimi dot net)
 
 This software is a computer program whose purpose is to compil Blockly4Thymio
 file (.b4t), to transform it into Aseba file (.aesl) and send it to Thymio
@@ -70,120 +71,111 @@ knowledge of the CeCILL license and that you accept its terms.
 
 
 
-#define	WINDOWS
+/*
+ * Valeur_CapteurIR_SELBouton
+ * --------------------------
+ *
+ * Retourne le code pour vérifier une commande rc5.
+ *
+ * Exemple de paires commande/adress pour la télécommande officielle Thymio
+ * bouton		GO	UP	DOWN	LEFT	RIGHT	STOP	-	+	1	2	3	4	5	6	7	8	9	0
+ * rc5.adress	0	0	0		0		0		0		0	0	0	0	0	0	0	0	0	0	0	0
+ * rc5.commande	53	80	81		85		86		87		17	16	1	2	3	4	5	6	7	8	9	0
+ *
+ */
 
-//#define	LINUX
 
-
-
-#if WINDOWS
-#warning Compilation pour WINDOWS
-#endif
-#if LINUX
-#warning "Compilation pour LINUX"
-#endif
-
-
-using	System;
-using	System.IO;
-using	System.Reflection;
-using	System.Windows.Forms;
+using 	System;
+using 	System.Xml;
 
 
 
 namespace 		Blockly4Thymio {
-static	class 	ProgrammePrincipal {
-
-	/// <summary>
-	/// Point d'entrée principal de l'application.
-	/// </summary>
-	[STAThread]
-	static void Main( string[] _args ) {
-
-		// Initialisations
-		// ---------------
-
-		Compilateur.version = "0.5";
+public 	class 	Valeur_CapteurIR_SELBouton : __Valeur {
 
 
-		// Affichage des commentaires dans le fichier .aesl
-		Compilateur.afficherLesCommentaires = false;
-
-		// Arrête le robot si tous les séquenceurs sont terminés
-		Compilateur.arrêtDuRobotALaFinDesSéquenceurs = true;
-
-		// Lance automatiquement le programme sur le Thymio à la fin du transfert
-		Compilateur.lancementAutomatique = true;
-
-		// Emplacement de programme de transfert AsebaMassloader
-
-		#if WINDOWS
-		Compilateur.nomDuFichierASEBAMASSLOADER = Directory.GetCurrentDirectory() + "\\asebamassloader\\asebamassloader.exe";
-		#endif
-		#if LINUX
-		Compilateur.nomDuFichierASEBAMASSLOADER = "asebamassloader";
-		#endif
-		
-		Compilateur.nomDuFichierB4T = "";
-		if ( _args != null )
-			if ( _args.Length != 0 )
-				Compilateur.nomDuFichierB4T = _args[0];
-
-		#if DEBUG
-
-		Compilateur.afficherLesCommentaires = true;
-		
-		
-		// Nom et répertoire du fichier asebamassloader.exe
-		#if WINDOWS
-		Compilateur.nomDuFichierASEBAMASSLOADER = @"C:\Users\Okimi\Mes projets\2015\Blockly4Thymio\CompilateurAseba\asebamassloader\asebamassloader.exe";
-		//Compilateur.nomDuFichierASEBAMASSLOADER = @"C:\Users\fort\Downloads\compilateur\setup-win\fichiers\asebamassloader\asebamassloader.exe";
-		
-		// Nom du fichier programme.b4t à tester
-		Compilateur.nomDuFichierB4T = @"C:\Users\Okimi\Downloads\programme.b4t";
-		Compilateur.nomDuFichierB4T = @"C:\Users\fort\Downloads\programme.b4t";
-
-		#endif
-		#if LINUX
-		Compilateur.nomDuFichierASEBAMASSLOADER = "asebamassloader";
-		Compilateur.nomDuFichierB4T = @"/home/okimi/Téléchargements/programme.b4t";
-		#endif
-		
-		Compilateur.lancementAutomatique = true;
-
-		Compilateur.afficheLesMessagesDErreur = true;
-
-		Compilateur.afficheLesMessagesDInformation = false;
-
-		#else
-
-		// Anlyse les arguments
-		// --------------------
-		#if WINDOWS
-		Compilateur.nomDuFichierASEBAMASSLOADER = Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase).Substring(6);                
-		Compilateur.nomDuFichierASEBAMASSLOADER += @"\asebamassloader\asebamassloader.exe";
-		#endif
-		#if LINUX
-		Compilateur.nomDuFichierASEBAMASSLOADER += @"asebamassloader.exe";
-		#endif
-		
-		Compilateur.afficheLesMessagesDErreur = true;
-
-		Compilateur.afficheLesMessagesDInformation = true;
-
-		#endif
+	// Valeur 'adress' du récépteur IR
+	public	static	int	adresseIR = 0;
 
 
-		// Traitements
-		// -----------
 
-		Application.EnableVisualStyles();
-		Application.SetCompatibleTextRenderingDefault(false);
-		Application.Run( new FEN_Principale( _args ) );
+	/*
+	 * Constructeur
+	 */
+	public	Valeur_CapteurIR_SELBouton( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDInstructions _groupe ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupe ) {
+
+		// Déclarations
+		// ------------
+
+		String	nomDeLAttribut;
+
+
+
+        // Traitements
+        // -----------
+
+        // Analyse du Bloc d'instruction
+        foreach  (XmlNode XMLDUnNoeudFils in _XMLDuBloc ) {
+
+            nomDeLAttribut = "";
+            if (XMLDUnNoeudFils.Attributes["name"] != null)
+                nomDeLAttribut = XMLDUnNoeudFils.Attributes["name"].Value;
+			
+            switch(nomDeLAttribut) {
+			
+			case "Bouton":
+				switch (XMLDUnNoeudFils.InnerText) {
+				case "GO":
+					__code = "rc5.command==53";
+					break;
+				case "STOP":
+					__code = "rc5.command==87";
+					break;
+				case "AVANT":
+					__code = "rc5.command==80";
+					break;
+				case "ARRIERE":
+					__code = "rc5.command==81";
+					break;
+				case "GAUCHE":
+					__code = "rc5.command==85";
+					break;
+				case "DROITE":
+					__code = "rc5.command==86";
+					break;
+				case "MOINS":
+					__code = "rc5.command==17";
+					break;
+				case "PLUS":
+					__code = "rc5.command==16";
+					break;
+				case "0":
+				case "1":
+				case "2":
+				case "3":
+				case "4":
+				case "5":
+				case "6":
+				case "7":
+				case "8":
+				case "9":
+					__code = "rc5.command==" + XMLDUnNoeudFils.InnerText;
+					break;
+				}
+
+				// Complète le test avec l'adresse de la commande IR
+				__code = __code + " and rc5.adress==";
+				__code += Valeur_CapteurIR_SELBouton.adresseIR;
+				break;
+
+			}
+
+		}
+
 
 	}
 
-}
-}
 
+}
+}
 

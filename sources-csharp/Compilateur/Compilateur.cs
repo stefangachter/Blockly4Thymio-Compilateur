@@ -405,8 +405,13 @@ Blockly4Thymio utilise le programme asebamassloader.exe pour le transfert du fic
 		case "0_4_Paramètre_CalibreLesMoteurs_SAIValeur":
 			bloc = new Paramètre_CalibreLesMoteurs_SAIValeur( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
 			break;
-		
-		
+
+		// Paramètres - version 0.5
+		// ------------------------
+		case "0_5_Paramètre_LAdresseDeLaTélécommandeEst_SAIAdresse" :
+			bloc = new Paramètre_LAdresseDeLaTélécommandeEst_SAIValeur( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
+			break;
+
 
 		// Sinon, une erreur est déclenchée
 		// --------------------------------
@@ -496,83 +501,68 @@ Blockly4Thymio utilise le programme asebamassloader.exe pour le transfert du fic
 		case "0_2_Valeur_Booléen_Bouton_FlècheAvant" :
 			code = __BOUTONS.code( (int)__BOUTONS.NOM.FLECHE_VERS_L_AVANT );
 			break;
-			
-
 		case "0_2_Valeur_Booléen_Bouton_FlècheArrière" :
 			code = __BOUTONS.code( (int)__BOUTONS.NOM.FLECHE_VERS_L_ARRIERE );
 			break;
-		
-			
 		case "0_2_Valeur_Booléen_Bouton_FlècheADroite" :
 			code = __BOUTONS.code( (int)__BOUTONS.NOM.FLECHE_VERS_LA_DROITE );
 			break;
-		
-		
 		case "0_2_Valeur_Booléen_Bouton_FlècheAGauche" :
 			code = __BOUTONS.code( (int)__BOUTONS.NOM.FLECHE_VERS_LA_GAUCHE );
 			break;
 
-
+		// Capteurs de proximité avant
+		// ---------------------------
 		case "0_2_Valeur_Booléen_Capteur_AvantDroite" :
 			code = __CAPTEURS.code( (int)__CAPTEURS.NOM.AVANT_DROITE, (int)__CAPTEURS.PARAMÈTRE.DISTANCE_PRÈS );
 			break;
-
-
 		case "0_2_Valeur_Booléen_Capteur_AvantGauche" :
 			code = __CAPTEURS.code( (int)__CAPTEURS.NOM.AVANT_GAUCHE, (int)__CAPTEURS.PARAMÈTRE.DISTANCE_PRÈS );
 			break;
-
-
 		case "0_2_Valeur_Booléen_Capteur_AvantMilieu" :
 			code = __CAPTEURS.code( (int)__CAPTEURS.NOM.AVANT_MILIEU, (int)__CAPTEURS.PARAMÈTRE.DISTANCE_PRÈS );
 			break;
-		
-
 		case "0_2_Valeur_Booléen_Capteur_AvantMilieuDroite" :
 			code = __CAPTEURS.code( (int)__CAPTEURS.NOM.AVANT_MILIEU_DROITE, (int)__CAPTEURS.PARAMÈTRE.DISTANCE_PRÈS );
 			break;
-
-
 		case "0_2_Valeur_Booléen_Capteur_AvantMilieuGauche" :
 			code = __CAPTEURS.code( (int)__CAPTEURS.NOM.AVANT_MILIEU_GAUCHE, (int)__CAPTEURS.PARAMÈTRE.DISTANCE_PRÈS );
 			break;
 
-
+		// Capteurs de proximité arrière
+		// -----------------------------
 		case "0_2_Valeur_Booléen_Capteur_ArrièreDroite" :
 			code = __CAPTEURS.code( (int)__CAPTEURS.NOM.ARRIÈRE_DROITE, (int)__CAPTEURS.PARAMÈTRE.DISTANCE_PRÈS );
 			break;
-
-
 		case "0_2_Valeur_Booléen_Capteur_ArrièreGauche" :
 			code = __CAPTEURS.code( (int)__CAPTEURS.NOM.ARRIÈRE_GAUCHE, (int)__CAPTEURS.PARAMÈTRE.DISTANCE_PRÈS );
 			break;
-			
 
+		// Capteur de teinte du dessous
+		// ----------------------------
 		case "0_2_Valeur_Booléen_Capteur_DessousGauche_Noir" :
 			code = __CAPTEURS.code( (int)__CAPTEURS.NOM.DESSOUS_GAUCHE, (int)__CAPTEURS.PARAMÈTRE.COULEUR_SOL_NOIR );
 			break;
-
-
 		case "0_2_Valeur_Booléen_Capteur_DessousGauche_Blanc" :
 			code = __CAPTEURS.code( (int)__CAPTEURS.NOM.DESSOUS_GAUCHE, (int)__CAPTEURS.PARAMÈTRE.COULEUR_SOL_BLANC );
 			break;
-
-
 		case "0_2_Valeur_Booléen_Capteur_DessousDroite_Noir" :
 			code = __CAPTEURS.code( (int)__CAPTEURS.NOM.DESSOUS_DROITE, (int)__CAPTEURS.PARAMÈTRE.COULEUR_SOL_NOIR );
 			break;
-
-
 		case "0_2_Valeur_Booléen_Capteur_DessousDroite_Blanc" :
 			code = __CAPTEURS.code( (int)__CAPTEURS.NOM.DESSOUS_DROITE, (int)__CAPTEURS.PARAMÈTRE.COULEUR_SOL_BLANC );
 			break;
 
-
+		// Télécommande infra-rouge
+		// ------------------------
 		case "0_2_Valeur_Booléen_ToucheDeLaTélécommandeEst_SELTouche" :
 			expression = new Valeur_CapteurIR_SELTouche( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
 			code = expression.codePourLeSéquenceur;
 			break;
-
+		case "0_5_Valeur_Booléen_BoutonDeLaTélécommandeEst_SELTouche" :
+			expression = new Valeur_CapteurIR_SELBouton( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
+			code = expression.codePourLeSéquenceur;
+			break;
 
 		// Valeurs entières
 		// ----------------

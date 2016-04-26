@@ -72,13 +72,10 @@ knowledge of the CeCILL license and that you accept its terms.
 
 
 /*
- * Mouvement_Tourne_SAIAngle
- * -------------------------
+ * Paramètre_CalibreLesMoteurs_SAIValeur
+ * -------------------------------------
  *
- * Le robot tourne sur lui même,
- * de l'angle demandé.
- * 
- * Niveau de l'instruction : Facile
+ * Change le paramètre de calibration des moteurs
  * 
  */
 
