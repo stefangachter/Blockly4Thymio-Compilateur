@@ -121,12 +121,6 @@ public	class	__GroupeDInstructions_Si_Avec_cCondition : __GroupeDInstructions_Co
 		}
 
 
-
-
-
-
-		
-
 		// Blocs internes au groupe
 		// ------------------------
 	
