@@ -5,7 +5,7 @@ using 	System.Xml;
 
 
 
-namespace	Blockly4Thymio {
+namespace		Blockly4Thymio {
 public	class	__Instruction : __Bloc {
 
     /*
@@ -36,16 +36,17 @@ public	class	__Instruction : __Bloc {
 	 * Propriétés surchargeant la classe mère __Bloc.
      */
     public override String codePourLeSéquenceur {
-    get {
+	get {
         // Déclarations
 		// ------------
-        String					code;
+		String code;
+
 		__GroupeDInstructions	groupeDuBloc;
 
 
-        // Initialisations
+		// Initialisations
 		// ---------------
-        code = "";
+		code = "";
 
 
 
@@ -53,23 +54,27 @@ public	class	__Instruction : __Bloc {
 		// -----------
 
 		// Début de l'instruction
-		if ( Compilateur.afficherLesCommentaires ) { code += "\n# Instruction Blockly (UID " + __UID + ") = " + __nomDansBlockly + "\n"; }
+		if (Compilateur.afficherLesCommentaires) {
+			code += "\n# Instruction Blockly (UID " + __UID + ") = " + __nomDansBlockly + "\n";
+		}
 
 
-		if ( conditionDePassageALInstructionSuivante == "" ) {
+		if (conditionDePassageALInstructionSuivante == "") {
 
 			// Il n'y a pas de condition de passage au bloc suivant
 
 			code += "if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n";
 
 			// Ajoute le code de traitement
-			if ( codeDeTraitement != "" ) { code += "  " + codeDeTraitement + "\n"; }
+			if (codeDeTraitement != "") {
+				code += "  " + codeDeTraitement + "\n";
+			}
 
 
-			if ( blocSuivant == null ) {
+			if (blocSuivant == null) {
 					
 				// Il n'y a pas de bloc suivant
-				if ( groupe == null ) {
+				if (groupe == null) {
 					// Le bloc n'est pas dans un groupe,
 					// le séquenceur s'arrête.
 					code += "  __sequenceur[" + UIDDuSéquenceur + "]=0\n";
@@ -77,7 +82,39 @@ public	class	__Instruction : __Bloc {
 					// Le bloc est dans un groupe,
 					// le séquenceur passe à la séquence de fin de ce groupe
 					groupeDuBloc = (__GroupeDInstructions)groupe;
-					code += "  __sequenceur[" + UIDDuSéquenceur + "]=" + groupeDuBloc.UIDDeFin + "\n";						
+
+					// Note : Ce switch n'est pas très propre, mais à l'avantage d'être très lisible
+					switch (groupeDuBloc.GetType().ToString()) {
+
+					case "Blockly4Thymio.GroupeDInstructions_Boucle_Répète_SAINombre":
+					case "Blockly4Thymio.GroupeDInstructions_Boucle_RépèteToutLeTemps":
+						
+						// Dans les instructions de boucle, il y a une séquencce de fin
+						code += "  __sequenceur[" + UIDDuSéquenceur + "]=" + groupeDuBloc.UIDDeFin + "\n";
+						break;
+
+					case "Blockly4Thymio.__GroupeDInstructions_Si_Avec_cCondition":
+						
+						// Dans __GroupeDInstructions_Si_Avec_cConditio, il n'y a pas de séquence de fin,
+						// on passe au bloc suivant
+						if (groupeDuBloc.blocSuivant == null) {
+							// Pas de bloc suivant le groupe, le séquenceur s'arrête
+							code += "  __sequenceur[" + UIDDuSéquenceur + "]=0\n";
+						} else {
+							// Il y a un bloc après le groupe, le séquenceur passe sur celui-ci
+							code += "  __sequenceur[" + UIDDuSéquenceur + "]=" + groupeDuBloc.blocSuivant.UID + "\n";
+						}
+						break;
+
+					default :
+						
+						// Le type n'est pas reconnu, il s'agit d'un oubli dans le code, 
+						// il vaut mieux le signaler.
+						throw new Exception ("Le type " + groupeDuBloc.GetType().ToString() + " n'est pas géré dans Blockly4Thymio.");
+
+					}
+
+
 				}
 
 			} else {

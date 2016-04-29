@@ -76,7 +76,7 @@ using 	System.Xml;
 
 
 
-namespace	Blockly4Thymio {
+namespace		Blockly4Thymio {
 public	class	__Bloc {
 	
     /*
@@ -114,6 +114,10 @@ public	class	__Bloc {
 
 	public	int		UIDDuSéquenceur { get { return __UIDDuSéquenceur; } }
 
+	/// <summary>
+	/// blocSuivant représente le bloc qui suit
+	/// le bloc en cours
+	/// </summary>
 	public	__Bloc	blocSuivant {
 	get { return __blocSuivant; }
 	set { __blocSuivant = value ; }

@@ -75,7 +75,7 @@ using 	System.Xml;
 
 
 
-namespace	Blockly4Thymio {
+namespace		Blockly4Thymio {
 public	class	GroupeDInstructions_Boucle_RépèteToutLeTemps : __GroupeDInstructions_Boucle { 
 		
     /*
