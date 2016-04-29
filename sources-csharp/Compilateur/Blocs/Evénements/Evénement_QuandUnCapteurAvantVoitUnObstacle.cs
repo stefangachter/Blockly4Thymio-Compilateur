@@ -77,13 +77,13 @@ using 	System.Xml;
 
 
 namespace		Blockly4Thymio {
-public	class	Evénement_QuandUnCapteurVoitUnObstacle : __Evénement {
+public	class	Evénement_QuandUnCapteurAvantVoitUnObstacle : __Evénement {
 
 
 	/*
 	 * Constructeur
 	 */
-	public	Evénement_QuandUnCapteurVoitUnObstacle( XmlNode _XMLDuBloc ) : base( _XMLDuBloc ) { }
+	public	Evénement_QuandUnCapteurAvantVoitUnObstacle( XmlNode _XMLDuBloc ) : base( _XMLDuBloc ) { }
 
 	
 }

@@ -197,8 +197,13 @@ sub __Sequenceur
 # ---------------------------
 # DECLARATIONS DES EVENEMENTS
 # ---------------------------
+
 onevent buttons
 ### EVENEMENT BOUTON FLECHE ###
+
+
+onevent prox
+### EVENEMENT CAPTEUR DISTANCE ###
 
 
 # Avec le bouton central, l'utilisateur lance ou arrête le programme

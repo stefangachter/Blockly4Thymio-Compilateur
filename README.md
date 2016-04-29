@@ -27,6 +27,8 @@ Suivi des versions
 ###Version 0.5
 * Nouvelles instructions pour tourner à gauche et à droite
 * Nouvelles instructions pour la télécommande infra-rouge
+* Correction sur la compilation des blocs SI ... FAIRE ...
+* Nouvelles instructions pour déclencher un événement avec les capteurs de distance avant et arrière
 
 
 ###Version 0.4

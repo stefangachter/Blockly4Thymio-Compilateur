@@ -251,6 +251,17 @@ Blockly4Thymio utilise le programme asebamassloader.exe pour le transfert du fic
 			bloc = new Evénement_QuandUnBoutonFlècheEstAppuyé( _XMLDuBloc );
 			break;
 
+		// Evénements - Version 0.5
+		// ------------------------
+		case "0_5_Evénement_QuandUnCapteurAvantVoitUnObstacle":
+			// Note : L'UID d'un événement est 1
+			bloc = new Evénement_QuandUnCapteurAvantVoitUnObstacle( _XMLDuBloc );
+			break;
+		case "0_5_Evénement_QuandUnCapteurArrièreVoitUnObstacle":
+			// Note : L'UID d'un événement est 1
+			bloc = new Evénement_QuandUnCapteurArrièreVoitUnObstacle( _XMLDuBloc );
+			break;
+
 
 		// Mouvements - version 0.1b
 		// -------------------------
@@ -680,6 +691,9 @@ Blockly4Thymio utilise le programme asebamassloader.exe pour le transfert du fic
         StreamWriter	fichierAESL;
 
         String			codeDéclarationDesVariables;
+		String			codeEvénementCapteur;
+		String			codeEvénementCapteurArrière;
+		String			codeEvénementCapteurAvant;
 		String			codeEvénementBoutonFlèche;
         String			codeEvénementCommandeIR;
 		String			codeEvénementLancementDuProgramme;        
@@ -691,6 +705,9 @@ Blockly4Thymio utilise le programme asebamassloader.exe pour le transfert du fic
 		 * Initialisations
 		 */
         codeDéclarationDesVariables = "";
+		codeEvénementCapteur = "";
+		codeEvénementCapteurArrière = "";
+		codeEvénementCapteurAvant = "";
 		codeEvénementBoutonFlèche = "";
 		codeEvénementCommandeIR = "";
         codeEvénementLancementDuProgramme = "";
@@ -716,34 +733,59 @@ Blockly4Thymio utilise le programme asebamassloader.exe pour le transfert du fic
 
         // Ajoute le code généré pour chaque événement
         foreach ( __Evénement événementRacine in événementsRacines ) {
-
-            // Evénement : Quand le programme commence
+			
             if	( événementRacine is Evénement_QuandLeProgrammeCommence ) {
+
+				// Evénement : Quand le programme commence
                 if ( événementRacine.blocSuivant != null ) {
                     // Exécute l'instruction qui suit l'événement
                     if ( codeEvénementLancementDuProgramme != "" ) { codeEvénementLancementDuProgramme += " "; }
                     codeEvénementLancementDuProgramme += "  __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + événementRacine.blocSuivant.UID;
                     codeSéquenceur += événementRacine.blocSuivant.codePourLeSéquenceur + "\n";
                 }
-            }
-			// Evénement : Quand un ordre arrive de la télécommande IR
-            if	( événementRacine is Evénement_QuandUnOrdreArriveDeLaTélécommandeIR ) {
+
+			} else if 	( événementRacine is Evénement_QuandUnOrdreArriveDeLaTélécommandeIR ) {
+
+				// Evénement : Quand un ordre arrive de la télécommande IR
                 if ( événementRacine.blocSuivant != null ) {
                     // Exécute l'instruction qui suit l'événement
 					if ( codeEvénementCommandeIR != "" ) { codeEvénementCommandeIR += "  "; }
                     codeEvénementCommandeIR += "  __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + événementRacine.blocSuivant.UID;
                     codeSéquenceur += événementRacine.blocSuivant.codePourLeSéquenceur + "\n";
                 }
-            }
-			// Evénement : Quand un bouton flèche est appuyé
-            if	( événementRacine is Evénement_QuandUnBoutonFlècheEstAppuyé ) {
+
+            } else if	( événementRacine is Evénement_QuandUnBoutonFlècheEstAppuyé ) {
+
+				// Evénement : Quand un bouton flèche est appuyé
                 if ( événementRacine.blocSuivant != null ) {
                     // Exécute l'instruction qui suit l'événement
 					if ( codeEvénementBoutonFlèche != "" ) { codeEvénementBoutonFlèche += "  "; }
                     codeEvénementBoutonFlèche += "  __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + événementRacine.blocSuivant.UID;
                     codeSéquenceur += événementRacine.blocSuivant.codePourLeSéquenceur + "\n";
                 }
+
+			} else if	( événementRacine is Evénement_QuandUnCapteurAvantVoitUnObstacle ) {
+
+				// Evénement : Quand un capteur avant voit un obstacle
+                if ( événementRacine.blocSuivant != null ) {
+                    // Exécute l'instruction qui suit l'événement
+					if ( codeEvénementCapteurAvant != "" ) { codeEvénementCapteurAvant += "  "; }
+					codeEvénementCapteurAvant += "  __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + événementRacine.blocSuivant.UID;
+                    codeSéquenceur += événementRacine.blocSuivant.codePourLeSéquenceur + "\n";
+                }
+
+			} else if	( événementRacine is Evénement_QuandUnCapteurAvantVoitUnObstacle ) {
+
+				// Evénement : Quand un capteur arrière voit un obstacle
+                if ( événementRacine.blocSuivant != null ) {
+                    // Exécute l'instruction qui suit l'événement
+					if ( codeEvénementCapteurArrière != "" ) { codeEvénementCapteurArrière += "  "; }
+					codeEvénementCapteurArrière += "  __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + événementRacine.blocSuivant.UID;
+                    codeSéquenceur += événementRacine.blocSuivant.codePourLeSéquenceur + "\n";
+                }
+
             }
+
         }
 
 
@@ -766,15 +808,25 @@ Blockly4Thymio utilise le programme asebamassloader.exe pour le transfert du fic
 
         // Remplace les sections définis par des marqueurs par le code correspondant
         framework = framework.Replace("### VARIABLES ###", codeDéclarationDesVariables);
+
         framework = framework.Replace("### EVENEMENT AU LANCEMENT ###", codeEvénementLancementDuProgramme );
+
         if ( codeEvénementCommandeIR != "" )
 			codeEvénementCommandeIR += "  \n__etat = ETAT_EN_MARCHE";
 		framework = framework.Replace("### EVENEMENT COMMANDE INFRAROUGE ###", codeEvénementCommandeIR );
-		if( codeEvénementBoutonFlèche != "" ) {
-			codeEvénementBoutonFlèche = "  if button.forward==1 or button.backward==1 or button.left==1 or button.right==1 then\n  " + codeEvénementBoutonFlèche + "\n    __etat = ETAT_EN_MARCHE\n  end";
 
-		}
+		if( codeEvénementBoutonFlèche != "" )
+			codeEvénementBoutonFlèche = "  if button.forward==1 or button.backward==1 or button.left==1 or button.right==1 then\n  " + codeEvénementBoutonFlèche + "\n    __etat = ETAT_EN_MARCHE\n  end";
 		framework = framework.Replace("### EVENEMENT BOUTON FLECHE ###", codeEvénementBoutonFlèche );
+
+		if( codeEvénementCapteurAvant != "" )
+			codeEvénementCapteur = "  if prox.horizontal[0]!=0 or prox.horizontal[1]!=0 or prox.horizontal[2]!=0 or prox.horizontal[3]!=0 or prox.horizontal[4]!=0 then\n  " + codeEvénementCapteurAvant + "\n    __etat = ETAT_EN_MARCHE\n  end";
+		if( codeEvénementCapteurArrière != "" ) {
+			if ( codeEvénementCapteur != "" )
+				codeEvénementCapteur += "\n";
+			codeEvénementCapteur = "  if prox.horizontal[5]!=0 or prox.horizontal[6]!=0 then\n  " + codeEvénementCapteurArrière + "\n    __etat = ETAT_EN_MARCHE\n  end";
+		}
+		framework = framework.Replace("### EVENEMENT CAPTEUR DISTANCE ###", codeEvénementCapteurAvant + "\n" + codeEvénementCapteur );
 		
 		// Met en place le code du séquenceur
 		framework = framework.Replace( "### SEQUENCEUR ###", codeSéquenceur );
@@ -863,6 +915,14 @@ Blockly4Thymio utilise le programme asebamassloader.exe pour le transfert du fic
 				}
 				if ( bloc is Evénement_QuandUnBoutonFlècheEstAppuyé ) {
 					événementRacine = (Evénement_QuandUnBoutonFlècheEstAppuyé)bloc;
+					événementsRacines.Add( événementRacine );
+				}
+				if ( bloc is Evénement_QuandUnCapteurAvantVoitUnObstacle ) {
+					événementRacine = (Evénement_QuandUnCapteurAvantVoitUnObstacle)bloc;
+					événementsRacines.Add( événementRacine );
+				}
+				if ( bloc is Evénement_QuandUnCapteurArrièreVoitUnObstacle ) {
+					événementRacine = (Evénement_QuandUnCapteurArrièreVoitUnObstacle)bloc;
 					événementsRacines.Add( événementRacine );
 				}
 			}

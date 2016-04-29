@@ -138,6 +138,8 @@ Transforme un fichiers .b4t en fichier .aesl puis le transmet à Thymio.</Descri
     <Compile Include="Compilateur\Blocs\Valeurs\Valeur_CapteurIR_SELBouton.cs" />
     <Compile Include="Compilateur\Blocs\Valeurs\Valeur_CapteurIR_SELTouche.cs" />
     <Compile Include="Compilateur\Blocs\Paramètres\Paramètre_LAdresseDeLaTélécommandeEst_SAIValeur.cs" />
+    <Compile Include="Compilateur\Blocs\Evénements\Evénement_QuandUnCapteurAvantVoitUnObstacle.cs" />
+    <Compile Include="Compilateur\Blocs\Evénements\Evénement_QuandUnCapteurArrièreVoitUnObstacle.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

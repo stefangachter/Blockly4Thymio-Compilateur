@@ -76,7 +76,7 @@ using 	System.Xml;
 
 
 
-namespace	Blockly4Thymio {
+namespace		Blockly4Thymio {
 public	class	Evénement_QuandUnBoutonFlècheEstAppuyé : __Evénement {
 
 
