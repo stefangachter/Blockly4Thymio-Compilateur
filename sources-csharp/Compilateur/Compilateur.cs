@@ -826,7 +826,7 @@ Blockly4Thymio utilise le programme asebamassloader.exe pour le transfert du fic
 				codeEvénementCapteur += "\n";
 			codeEvénementCapteur = "  if prox.horizontal[5]!=0 or prox.horizontal[6]!=0 then\n  " + codeEvénementCapteurArrière + "\n    __etat = ETAT_EN_MARCHE\n  end";
 		}
-		framework = framework.Replace("### EVENEMENT CAPTEUR DISTANCE ###", codeEvénementCapteurAvant + "\n" + codeEvénementCapteur );
+		framework = framework.Replace("### EVENEMENT CAPTEUR DISTANCE ###", codeEvénementCapteur );
 		
 		// Met en place le code du séquenceur
 		framework = framework.Replace( "### SEQUENCEUR ###", codeSéquenceur );
