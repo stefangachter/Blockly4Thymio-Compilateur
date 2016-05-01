@@ -87,7 +87,7 @@ using 	System;
 using 	System.Xml;
 
 
-namespace	Blockly4Thymio {
+namespace		Blockly4Thymio {
 public	class	Mouvement_Déplacement_SELVitesse_SAIDistance : __Mouvement_Déplacement_AvecDistance {
 
     /*

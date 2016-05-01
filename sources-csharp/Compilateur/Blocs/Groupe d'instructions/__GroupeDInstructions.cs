@@ -75,12 +75,14 @@ using 	System;
 using 	System.Xml;
 
 
-namespace	Blockly4Thymio {
+namespace		Blockly4Thymio {
 public	class	__GroupeDInstructions : __Bloc {
 
 	/*
 	 * Membres
 	 */
+	protected	bool	__AvecSéquenceDeFin;
+
 	protected	__Bloc	__blocsInternes;
 
 

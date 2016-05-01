@@ -78,10 +78,12 @@ knowledge of the CeCILL license and that you accept its terms.
  * Retourne le code pour vérifier une commande rc5.
  *
  * Exemple de paires commande/adress pour la télécommande officielle Thymio
- * bouton		GO	UP	DOWN	LEFT	RIGHT	STOP	-	+	1	2	3	4	5	6	7	8	9	0
- * rc5.adress	0	0	0		0		0		0		0	0	0	0	0	0	0	0	0	0	0	0
- * rc5.commande	53	80	81		85		86		87		17	16	1	2	3	4	5	6	7	8	9	0
- *
+ * bouton			GO	UP	DOWN	LEFT	RIGHT	STOP			-	+	1	2	3	4	5	6	7	8	9	0
+ * rc5.adress		0	0	0		0		0		0				0	0	0	0	0	0	0	0	0	0	0	0
+ * rc5.commande		53	80	81		85		86		87				17	16	1	2	3	4	5	6	7	8	9	0
+ * Autres télécommandes
+ * bouton				UP	DOWN	LEFT	RIGHT			OK		-	+	1	2	3	4	5	6	7	8	9	0
+ * rc5.commande			32	33		85		86				11		17	16	1	2	3	4	5	6	7	8	9	0
  */
 
 
@@ -132,16 +134,19 @@ public 	class 	Valeur_CapteurIR_SELBouton : __Valeur {
 					__code = "rc5.command==87";
 					break;
 				case "AVANT":
-					__code = "rc5.command==80";
+					__code = "rc5.command==80 or rc5.command==32";
 					break;
 				case "ARRIERE":
-					__code = "rc5.command==81";
+					__code = "rc5.command==81 or rc5.command==33";
 					break;
 				case "GAUCHE":
 					__code = "rc5.command==85";
 					break;
 				case "DROITE":
 					__code = "rc5.command==86";
+					break;
+				case "OK":
+					__code = "rc5.command==11";
 					break;
 				case "MOINS":
 					__code = "rc5.command==17";

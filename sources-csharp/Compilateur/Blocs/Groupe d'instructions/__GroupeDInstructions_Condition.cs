@@ -76,7 +76,7 @@ using System.Xml;
 
 
 
-namespace	Blockly4Thymio {
+namespace		Blockly4Thymio {
 public	class	__GroupeDInstructions_Condition : __GroupeDInstructions {
 
 	/*
@@ -194,6 +194,9 @@ public	class	__GroupeDInstructions_Condition : __GroupeDInstructions {
 
 		// Initialisations
 		// ---------------
+
+		// Dans les groupes SI ... FAIRE ..., il n'y a pas de séquence à la fin du groupe
+		__AvecSéquenceDeFin = false;
 
 		__conditionDEntré = "";
 

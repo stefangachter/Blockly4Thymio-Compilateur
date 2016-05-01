@@ -88,7 +88,7 @@ using System.Xml;
 
 
 
-namespace	Blockly4Thymio {
+namespace		Blockly4Thymio {
 public	class	Mouvement_Tourne_SAIAngle : __Mouvement_Tourne_AvecAngle {
 
     /*

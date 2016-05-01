@@ -86,7 +86,7 @@ using 	System;
 using 	System.Xml;
 
 
-namespace	Blockly4Thymio {
+namespace		Blockly4Thymio {
 public	class	__Sons_JoueUneFréquence_AvecDurée : __Instruction {
 
     /*
@@ -105,7 +105,7 @@ public	class	__Sons_JoueUneFréquence_AvecDurée : __Instruction {
 
 	public	override	String	codeDInitialisation {
     get {
-        return "__chrono[" + UIDDuSéquenceur + "]=0 " +
+        return	"__chrono[" + UIDDuSéquenceur + "]=0 " +
                 "call sound.freq(" + __fréquence + ", " + (int)(__durée * 60) + ")";
     }
     }

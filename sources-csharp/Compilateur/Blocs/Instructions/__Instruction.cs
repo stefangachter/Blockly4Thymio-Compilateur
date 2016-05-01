@@ -95,7 +95,7 @@ public	class	__Instruction : __Bloc {
 
 					case "Blockly4Thymio.__GroupeDInstructions_Si_Avec_cCondition":
 						
-						// Dans __GroupeDInstructions_Si_Avec_cConditio, il n'y a pas de séquence de fin,
+						// Dans __GroupeDInstructions_Si_Avec_cCondition, il n'y a pas de séquence de fin,
 						// on passe au bloc suivant
 						if (groupeDuBloc.blocSuivant == null) {
 							// Pas de bloc suivant le groupe, le séquenceur s'arrête

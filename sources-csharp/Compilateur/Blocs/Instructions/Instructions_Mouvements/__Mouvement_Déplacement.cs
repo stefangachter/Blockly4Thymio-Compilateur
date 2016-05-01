@@ -85,7 +85,7 @@ using 	System;
 using 	System.Xml;
 
 
-namespace	Blockly4Thymio {
+namespace		Blockly4Thymio {
 public	class	__Mouvement_Déplacement : __Instruction {
 
     /*

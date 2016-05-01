@@ -85,7 +85,7 @@ using 	System.Xml;
 
 
 
-namespace	Blockly4Thymio {
+namespace		Blockly4Thymio {
 public	class	__Sons_JoueUnSon_SELSon : __Instruction {
 	
 	/*

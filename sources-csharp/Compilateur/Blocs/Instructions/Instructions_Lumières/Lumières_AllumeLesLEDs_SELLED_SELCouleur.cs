@@ -89,7 +89,7 @@ using 	System.Xml;
 
 
 
-namespace	Blockly4Thymio {
+namespace		Blockly4Thymio {
 public	class	Lumières_AllumeLesLEDs_SELLED_SELCouleur : __Lumières_AllumeLesLEDs {
 
 	/*

@@ -85,7 +85,7 @@ using 	System.Xml;
 
 
 
-namespace	Blockly4Thymio {
+namespace		Blockly4Thymio {
 public	class	Sons_JoueUneNote_SELNote : __Sons_JoueUneFréquence_AvecDurée {
 
     /*

@@ -1,4 +1,4 @@
-﻿
+﻿	
 /*
 Copyright Okimi 2015-2016 (contact at okimi dot net)
 
@@ -85,7 +85,7 @@ using 	System.Xml;
 
 
 
-namespace	Blockly4Thymio {
+namespace		Blockly4Thymio {
 public	class	Sons_JoueUneNote : __Sons_JoueUneFréquence_AvecDurée {
 
     /*

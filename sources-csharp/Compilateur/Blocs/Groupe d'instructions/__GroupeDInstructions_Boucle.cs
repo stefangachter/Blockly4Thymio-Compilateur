@@ -76,7 +76,7 @@ using System.Xml;
 
 
 
-namespace	Blockly4Thymio {
+namespace		Blockly4Thymio {
 public	class	__GroupeDInstructions_Boucle : __GroupeDInstructions {
 
 	/*
@@ -239,6 +239,7 @@ public	class	__GroupeDInstructions_Boucle : __GroupeDInstructions {
      */
 	public	__GroupeDInstructions_Boucle( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDInstructions _groupe ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupe ) {
 
+		__AvecSéquenceDeFin	= true;
 		__codeDActionEnDébut	= "";
 		__codeDActionEnFin		= "";
 		__codeDInitialisation	= "";
