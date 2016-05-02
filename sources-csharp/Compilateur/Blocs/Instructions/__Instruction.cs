@@ -79,24 +79,18 @@ public	class	__Instruction : __Bloc {
 					// le séquenceur s'arrête.
 					code += "  __sequenceur[" + UIDDuSéquenceur + "]=0\n";
 				} else {
+					
 					// Le bloc est dans un groupe,
 					// le séquenceur passe à la séquence de fin de ce groupe
 					groupeDuBloc = (__GroupeDInstructions)groupe;
 
-					// Note : Ce switch n'est pas très propre, mais à l'avantage d'être très lisible
-					switch (groupeDuBloc.GetType().ToString()) {
-
-					case "Blockly4Thymio.GroupeDInstructions_Boucle_Répète_SAINombre":
-					case "Blockly4Thymio.GroupeDInstructions_Boucle_RépèteToutLeTemps":
-						
-						// Dans les instructions de boucle, il y a une séquencce de fin
+					if (groupeDuBloc.AvecSéqunceDeFin) {
+						// Il y a une séquence de fin dans les groupes de type boucle
+						// comme : GroupeDInstructions_Boucle_Répète_SAINombre ou GroupeDInstructions_Boucle_RépèteToutLeTemps
 						code += "  __sequenceur[" + UIDDuSéquenceur + "]=" + groupeDuBloc.UIDDeFin + "\n";
-						break;
-
-					case "Blockly4Thymio.__GroupeDInstructions_Si_Avec_cCondition":
-						
-						// Dans __GroupeDInstructions_Si_Avec_cCondition, il n'y a pas de séquence de fin,
-						// on passe au bloc suivant
+					} else {
+						// Il n'y a pas de séquence de fin dans les groupes de type condition
+						// comme : __GroupeDInstructions_Si_Avec_cCondition
 						if (groupeDuBloc.blocSuivant == null) {
 							// Pas de bloc suivant le groupe, le séquenceur s'arrête
 							code += "  __sequenceur[" + UIDDuSéquenceur + "]=0\n";
@@ -104,16 +98,8 @@ public	class	__Instruction : __Bloc {
 							// Il y a un bloc après le groupe, le séquenceur passe sur celui-ci
 							code += "  __sequenceur[" + UIDDuSéquenceur + "]=" + groupeDuBloc.blocSuivant.UID + "\n";
 						}
-						break;
-
-					default :
 						
-						// Le type n'est pas reconnu, il s'agit d'un oubli dans le code, 
-						// il vaut mieux le signaler.
-						throw new Exception ("Le type " + groupeDuBloc.GetType().ToString() + " n'est pas géré dans Blockly4Thymio.");
-
 					}
-
 
 				}
 
@@ -158,10 +144,28 @@ public	class	__Instruction : __Bloc {
 					// le séquenceur s'arrête.
 					code += "    __sequenceur[" + UIDDuSéquenceur + "]=0\n";
 				} else {
+
 					// Le bloc est dans un groupe,
 					// le séquenceur passe à la séquence de fin de ce groupe
 					groupeDuBloc = (__GroupeDInstructions)groupe;
-					code += "  __sequenceur[" + UIDDuSéquenceur + "]=" + groupeDuBloc.UIDDeFin + "\n";	
+
+					if (groupeDuBloc.AvecSéqunceDeFin) {
+						// Il y a une séquence de fin dans les groupes de type boucle
+						// comme : GroupeDInstructions_Boucle_Répète_SAINombre ou GroupeDInstructions_Boucle_RépèteToutLeTemps
+						code += "  __sequenceur[" + UIDDuSéquenceur + "]=" + groupeDuBloc.UIDDeFin + "\n";
+					} else {
+						// Il n'y a pas de séquence de fin dans les groupes de type condition
+						// comme : __GroupeDInstructions_Si_Avec_cCondition
+						if (groupeDuBloc.blocSuivant == null) {
+							// Pas de bloc suivant le groupe, le séquenceur s'arrête
+							code += "  __sequenceur[" + UIDDuSéquenceur + "]=0\n";
+						} else {
+							// Il y a un bloc après le groupe, le séquenceur passe sur celui-ci
+							code += "  __sequenceur[" + UIDDuSéquenceur + "]=" + groupeDuBloc.blocSuivant.UID + "\n";
+						}
+						
+					}
+				
 				}
 
 			} else {

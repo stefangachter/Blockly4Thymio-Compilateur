@@ -104,7 +104,12 @@ public	class	__GroupeDInstructions : __Bloc {
 	/*
 	 * Propriétés
      */
-	
+    
+    public	bool	AvecSéqunceDeFin {
+	get { return __AvecSéquenceDeFin; }
+    }
+
+
 	/// <summary>
 	/// UID de la dernière séquence du groupe.
 	/// </summary>
