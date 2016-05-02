@@ -647,7 +647,7 @@ Blockly4Thymio utilise le programme asebamassloader.exe pour le transfert du fic
 		 * 1er passe.
 		 * Les blocs sont décomposés depuis le fichier b4t
 		 */
-		AjouteUnMessage( Messages.Message((int)Messages.TYPE.LECTURE_DU_FICHIER_B4T) + "\n" );
+		AjouteUnMessage( Messages.Message( (int)Messages.TYPE.LECTURE_DU_FICHIER_B4T ) + "\n" );
         if ( !DécompositionDuFichierBlockly4Thymio(_fenêtrePrincipal) )
         	return false;
 

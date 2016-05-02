@@ -118,17 +118,17 @@ public class 	Messages {
 		case (int)TYPE.ANGLE_INFÉRIEURE_A_0 :		return "Un angle est plus petit que 0°. Celle-ci a été corrigé pour être au moins à 0°.";
 		case (int)TYPE.ANGLE_SUPÉRIEURE_A_360 :		return "Un angle est plus grand que 360°. Celle-ci a été corrigé pour être de 360°.";
 
-		case (int)TYPE.ASEBAMASSLOADER_INTROUVABLE:	return "Erreur ! L'exécutable {1} pour transmettre le fichier .aesl au robot Thymio n'existe pas.";
+		case (int)TYPE.ASEBAMASSLOADER_INTROUVABLE:	return "Erreur ! L'exécutable {0} pour transmettre le fichier .aesl au robot Thymio n'existe pas.";
 
-		case (int)TYPE.PAS_D_INSTRUCTION_DE_DEPART:	return "Il n'y a pas d'instruction de départ dans le fichier {1} .";
+		case (int)TYPE.PAS_D_INSTRUCTION_DE_DEPART:	return "Il n'y a pas d'instruction de départ dans le fichier {0} .";
 
 		case (int)TYPE.LECTURE_DU_FICHIER_B4T:		return "Lecture du fichier b4t...";
 		case (int)TYPE.COMPILATION_DU_FICHIER_B4T:	return "Compilation du fichier b4t...";
 		case (int)TYPE.TRANSFERT_DU_FICHIER_ASEBA:	return "Transfert du fichier Aseba...";
 
-		case (int)TYPE.FICHIER_N_EXISTE_PAS :		return "Erreur ! Le fichier {1} n'existe pas.";
+		case (int)TYPE.FICHIER_N_EXISTE_PAS :		return "Erreur ! Le fichier {0} n'existe pas.";
 
-		case (int)TYPE.FICHIER_NON_LISIBLE :		return "Erreur lors de la lecture du fichier {1} .";
+		case (int)TYPE.FICHIER_NON_LISIBLE :		return "Erreur lors de la lecture du fichier {0} .";
 
 		}
 
