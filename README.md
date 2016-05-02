@@ -18,17 +18,18 @@ Blockly4thymio est composé de trois éléments :
 Les fichers de ce repository
 ----------------------------
 Les fichiers présents ici, sont les sources du compilateur Blocly4Thymio.  
-Ces sources sont distribuées sous licence libre CeCILL-C.
+Ces sources sont distribuées sous licence libre CeCILL-C V2.
 
 
 Suivi des versions
 ------------------
 
 ###Version 0.5
-* Nouvelles instructions pour tourner à gauche et à droite
-* Nouvelles instructions pour la télécommande infra-rouge
 * Correction sur la compilation des blocs SI ... FAIRE ...
-* Nouvelles instructions pour déclencher un événement avec les capteurs de distance avant et arrière
+* Nouvelles instructions pour la télécommande infra-rouge : plus de boutons  et gestion d'un canal 'rc5.adress' pour utiliser différentes télécommandes et commander plusieurs Thymio.
+* Gestion des capteurs de proximité avant et arrière, comme des événements.
+* Gestion des boutons flèche, comme des événements.
+* Nouvelles instructions de déplacement simplifiées 'Tourne à gauche' et 'Tourne à droite'.
 
 
 ###Version 0.4
