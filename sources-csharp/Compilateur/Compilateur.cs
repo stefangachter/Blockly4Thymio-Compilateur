@@ -160,7 +160,7 @@ Utilisation : Associez les fichier .b4t à cet éxécutable.
 
 		_textBox.Text += @"Compilateur Blockly4Thymio - Okimi ©2016 - version " + version + @"
 
-Compile un fichier .b4t en  fichier Aseba  et le transmet  au robot Thymio II.
+Compile un fichier .b4t en fichier Aseba et le transmet au robot Thymio II.
 Blockly4Thymio utilise le programme asebamassloader.exe pour le transfert du fichier Aseba vers le robot Thymio.
 
 ";
@@ -318,7 +318,7 @@ Blockly4Thymio utilise le programme asebamassloader.exe pour le transfert du fic
 			bloc = new Lumières_AllumeToutesLesLEDsPendant1Seconde_SELCouleur( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
 			break;
 		case "0_1b_Lumières_EteinsToutesLesLEDsPendant1Seconde":
-			bloc = new __Lumières_AllumeLesLED_AvecDurée( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe, (int)__LED.TOUTE_LES_LEDS, 0, 1.0f );
+			bloc = new __Lumières_AllumeLesLEDs_AvecDurée( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe, (int)__LED.TOUTE_LES_LEDS, 0, 1.0f );
 			break;
 			
 		// Lumières - version 0.2
@@ -622,7 +622,7 @@ Blockly4Thymio utilise le programme asebamassloader.exe pour le transfert du fic
          * Contrôles
          */
         if ( !File.Exists(nomDuFichierB4T) ) {
-            AfficheUnMessageDErreur( "Erreur ! Le fichier " + nomDuFichierB4T + " n'existe pas.");
+			AfficheUnMessageDErreur( String.Format( Messages.Message( (int)Messages.TYPE.FICHIER_N_EXISTE_PAS ), nomDuFichierB4T ) );
             return false;
         }
 
@@ -647,7 +647,7 @@ Blockly4Thymio utilise le programme asebamassloader.exe pour le transfert du fic
 		 * 1er passe.
 		 * Les blocs sont décomposés depuis le fichier b4t
 		 */
-        AjouteUnMessage( "Lecture du fichier b4t...\n" );
+		AjouteUnMessage( Messages.Message((int)Messages.TYPE.LECTURE_DU_FICHIER_B4T) + "\n" );
         if ( !DécompositionDuFichierBlockly4Thymio(_fenêtrePrincipal) )
         	return false;
 
@@ -656,7 +656,7 @@ Blockly4Thymio utilise le programme asebamassloader.exe pour le transfert du fic
          * 2ème passe.
          * Le programme est empaqueté dans un fichier .aesl
          */
-        AjouteUnMessage( "Compilation du fichier b4t...\n" );
+		AjouteUnMessage( Messages.Message((int)Messages.TYPE.COMPILATION_DU_FICHIER_B4T) + "\n" );
         if ( !CréationDuFichierAESL() )
         	return false;
 
@@ -665,7 +665,7 @@ Blockly4Thymio utilise le programme asebamassloader.exe pour le transfert du fic
          * 3ème passe.
          * Le programme est transmis au robot Thymio
          */
-        AjouteUnMessage( "Transfert du fichier Aseba...\n" );
+		AjouteUnMessage( Messages.Message((int)Messages.TYPE.TRANSFERT_DU_FICHIER_ASEBA) + "\n" );
         if ( !TransmissionDuFichierAESL( _fenêtrePrincipal ) )
         	return false;
         
@@ -897,7 +897,7 @@ Blockly4Thymio utilise le programme asebamassloader.exe pour le transfert du fic
             XMLDoc = new XmlDocument();
             XMLDoc.LoadXml( fichierXML );
         } catch {
-            AfficheUnMessageDErreur( "Erreur lors de la lecture du fichier " + nomDuFichierB4T );
+			AfficheUnMessageDErreur( String.Format( Messages.Message((int)Messages.TYPE.FICHIER_NON_LISIBLE), nomDuFichierB4T ) );
             return false;
         }
 
@@ -928,7 +928,7 @@ Blockly4Thymio utilise le programme asebamassloader.exe pour le transfert du fic
 			}
         }
 		if ( événementsRacines.Count == 0 ) {
-			AfficheUnMessageDInformation( "Il n'y a pas d'instruction de départ dans le fichier " + nomDuFichierB4T );
+			AfficheUnMessageDInformation( String.Format( Messages.Message((int)Messages.TYPE.PAS_D_INSTRUCTION_DE_DEPART), nomDuFichierB4T ) );
 			return false;
 		}
 
@@ -938,32 +938,6 @@ Blockly4Thymio utilise le programme asebamassloader.exe pour le transfert du fic
 		 * Fin
 		 */
 		return true;
-
-	}
-
-
-	/// <summary>
-	/// Liste des messages d'erreur.
-	/// </summary>
-	/// <returns>String</returns>
-	public	static	String	Message( int _numéro ) {		
-		switch( _numéro ) {
-		
-		case 0x0001 :	return "Dans une des boucle, le nombre de répétition est plus petit que 1. Celui-ci a été corrigé pour être au moins à 1.";
-		case 0x0002 :	return "Dans une des boucle, le nombre de répétition est plus grand que 100. Celui-ci a été corrigé pour être à 100.";
-		
-		case 0x0003 :	return "Une durée est plus petite que 0s. Celle-ci a été corrigée pour être au moins à 0 seconde.";
-		case 0x0004 :	return "Une durée est plus grande que 60s. Celle-ci a été corrigée pour être à 60 secondes.";
-		
-		case 0x0005 :	return "Une distance est plus petite que 1cm. Celle-ci a été corrigée pour être au moins à 1cm.";
-		case 0x0006 :	return "Une distance est plus grande que 100cm. Celle-ci a été corrigée pour être de 100cm.";
-		
-		case 0x0007 :	return "Un angle est plus petit que 0°. Celle-ci a été corrigé pour être au moins à 0°.";
-		case 0x0008 :	return "Un angle est plus grand que 360°. Celle-ci a été corrigé pour être de 360°.";
-
-		}
-
-		throw new Exception( "Le message " + _numéro + " n'existe pas dans la liste des  messages." );
 
 	}
 
@@ -1010,7 +984,7 @@ Blockly4Thymio utilise le programme asebamassloader.exe pour le transfert du fic
         // Contrôles
         // ---------
         if (!File.Exists(nomDuFichierASEBAMASSLOADER)) {
-            AfficheUnMessageDErreur( "Erreur ! L'exécutable " + nomDuFichierASEBAMASSLOADER + " pour transmettre le fichier .aesl au robot Thymio n'existe pas." );
+            AfficheUnMessageDErreur( String.Format( Messages.Message((int)Messages.TYPE.ASEBAMASSLOADER_INTROUVABLE), nomDuFichierASEBAMASSLOADER ) );
             return false;
         }
 

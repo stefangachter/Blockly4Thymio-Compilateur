@@ -86,7 +86,7 @@ using 	System;
 using 	System.Xml;
 
 
-namespace	Blockly4Thymio {
+namespace		Blockly4Thymio {
 public	class	__Contrôle_Attends_Avec_cDurée : __Instruction {
 
 	/*

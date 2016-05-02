@@ -108,11 +108,11 @@ public	class	__GroupeDInstructions_Boucle_Répère_AvecNombre : __GroupeDInstruc
 		// Limite le nombre de boucles
 		if ( __nombreDeBoucleAFaire <= 0 ) {
 			__nombreDeBoucleAFaire = 1;
-			Compilateur.AfficheUnMessageDInformation( Compilateur.Message(0x0001) );
+			Compilateur.AfficheUnMessageDInformation( Messages.Message((int)Messages.TYPE.BOUCLE_INFÉRIEURE_A_1) );
 		}
 		if ( __nombreDeBoucleAFaire > 100 ) {
 			__nombreDeBoucleAFaire = 100;
-			Compilateur.AfficheUnMessageDInformation( Compilateur.Message(0x0002) );
+			Compilateur.AfficheUnMessageDInformation( Messages.Message((int)Messages.TYPE.BOUCLE_SUPÉRIEURE_A_100) );
 		}
 	}
 	}

@@ -1,6 +1,32 @@
 ﻿<Properties StartupItem="Compilateur Blockly4Thymio.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Compilateur Blockly4Thymio" expanded="True">
+            <Node name="Compilateur Blockly4Thymio" expanded="True">
+              <Node name="Compilateur" expanded="True">
+                <Node name="Blocs" expanded="True">
+                  <Node name="Groupe d'instructions" expanded="True" />
+                  <Node name="Instructions" expanded="True">
+                    <Node name="Instructions_Contrôles" expanded="True" />
+                    <Node name="Instructions_Mouvements" expanded="True" />
+                  </Node>
+                </Node>
+                <Node name="Messages.cs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="ClassPad">
+        <State name="__root__">
+          <Node name="Compilateur Blockly4Thymio" expanded="True" selected="True" />
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="C:\Users\Okimi\Mes projets\2016\Blockly4Thymio-Compilateur\sources-csharp\Compilateur\Blocs\Instructions\Instructions_Sons\__Sons_JoueUneFréquence_AvecDurée.cs" line="109" column="1" />

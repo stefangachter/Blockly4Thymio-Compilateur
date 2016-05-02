@@ -109,11 +109,11 @@ public	class	__Mouvement_Tourne_AvecAngle : __Instruction {
 		__angle = value;
 		if ( __angle < 0 ) {
 			__angle = 0;
-			Compilateur.AfficheUnMessageDInformation( Compilateur.Message(0x0007) );
+			Compilateur.AfficheUnMessageDInformation( Messages.Message((int)Messages.TYPE.ANGLE_INFÉRIEURE_A_0) );
 		}
 		if ( __angle > 360 ) {
 			__angle = 360;
-			Compilateur.AfficheUnMessageDInformation( Compilateur.Message(0x0008) );
+			Compilateur.AfficheUnMessageDInformation( Messages.Message((int)Messages.TYPE.ANGLE_SUPÉRIEURE_A_360) );
 		}
 	}
 	}

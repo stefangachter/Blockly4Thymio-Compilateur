@@ -86,7 +86,7 @@ using 	System;
 using 	System.Xml;
 
 
-namespace	Blockly4Thymio {
+namespace		Blockly4Thymio {
 public	class	__Contrôle_Attends_Avec_eDurée : __Instruction {
 
 	/*
@@ -118,11 +118,11 @@ public	class	__Contrôle_Attends_Avec_eDurée : __Instruction {
 		__durée = value;
 		if ( __durée < 0 ) {			
 			__durée = 0;
-			Compilateur.AfficheUnMessageDInformation( Compilateur.Message(0x0003) );
+			Compilateur.AfficheUnMessageDInformation( Messages.Message((int)Messages.TYPE.DURÉE_INFÉRIEURE_A_0) );
 		}
 		if ( __durée > 60 ) {			
 			__durée = 60;
-			Compilateur.AfficheUnMessageDInformation( Compilateur.Message(0x0004) );
+			Compilateur.AfficheUnMessageDInformation( Messages.Message((int)Messages.TYPE.DURÉE_SUPÉRIEURE_A_60) );
 		}
 	}
 	}

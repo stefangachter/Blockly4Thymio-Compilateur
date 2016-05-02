@@ -106,7 +106,6 @@ Transforme un fichiers .b4t en fichier .aesl puis le transmet à Thymio.</Descri
     <Compile Include="Compilateur\Blocs\Instructions\Instructions_Contrôles\__Contrôle_Attends_Avec_cDurée.cs" />
     <Compile Include="Compilateur\Blocs\Instructions\Instructions_Contrôles\__Contrôle_Attends_Avec_eDurée.cs" />
     <Compile Include="Compilateur\Blocs\Instructions\Instructions_Lumières\__LED.cs" />
-    <Compile Include="Compilateur\Blocs\Instructions\Instructions_Lumières\__Lumières_AllumeLesLED_AvecDurée.cs" />
     <Compile Include="Compilateur\Blocs\Instructions\Instructions_Lumières\__Lumières_AllumeLesLEDs.cs" />
     <Compile Include="Compilateur\Blocs\Instructions\Instructions_Lumières\Lumières_AllumeLesLEDs_SELLED_SELCouleur.cs" />
     <Compile Include="Compilateur\Blocs\Instructions\Instructions_Lumières\Lumières_AllumeLesLEDs_SELLED_SELCouleur_SAIDurée.cs" />
@@ -140,6 +139,8 @@ Transforme un fichiers .b4t en fichier .aesl puis le transmet à Thymio.</Descri
     <Compile Include="Compilateur\Blocs\Paramètres\Paramètre_LAdresseDeLaTélécommandeEst_SAIValeur.cs" />
     <Compile Include="Compilateur\Blocs\Evénements\Evénement_QuandUnCapteurAvantVoitUnObstacle.cs" />
     <Compile Include="Compilateur\Blocs\Evénements\Evénement_QuandUnCapteurArrièreVoitUnObstacle.cs" />
+    <Compile Include="Compilateur\Blocs\Instructions\Instructions_Lumières\__Lumières_AllumeLesLEDs_AvecDurée.cs" />
+    <Compile Include="Compilateur\Messages.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

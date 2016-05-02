@@ -164,11 +164,11 @@ public	class	__Mouvement_Déplacement_AvecDistance : __Instruction {
 		__distance = value;
 		if ( __distance < 1 ) {
 			__distance = 1;
-			Compilateur.AfficheUnMessageDInformation( Compilateur.Message(0x0005) );
+			Compilateur.AfficheUnMessageDInformation( Messages.Message((int)Messages.TYPE.DISTANCE_INFÉRIEURE_A_1) );
 		}
 		if ( __distance > 100 ) {
 			__distance = 100;
-			Compilateur.AfficheUnMessageDInformation( Compilateur.Message(0x0006) );
+			Compilateur.AfficheUnMessageDInformation( Messages.Message((int)Messages.TYPE.DURÉE_SUPÉRIEURE_A_60) );
 		}
 	}
 	}

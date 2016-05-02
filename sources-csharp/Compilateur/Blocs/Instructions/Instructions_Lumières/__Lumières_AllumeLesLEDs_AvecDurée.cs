@@ -88,7 +88,7 @@ using 	System.Xml;
 
 
 namespace		Blockly4Thymio {
-public	class	__Lumières_AllumeLesLED_AvecDurée : __Instruction {
+public	class	__Lumières_AllumeLesLEDs_AvecDurée : __Instruction {
 
     /*
 	 * Membres
@@ -128,11 +128,11 @@ public	class	__Lumières_AllumeLesLED_AvecDurée : __Instruction {
 		__durée = value;
 		if ( __durée < 0 ) {			
 			__durée = 0;
-			Compilateur.AfficheUnMessageDInformation( Compilateur.Message(0x0003) );
+			Compilateur.AfficheUnMessageDInformation( Messages.Message((int)Messages.TYPE.DURÉE_INFÉRIEURE_A_0) );
 		}
 		if ( __durée > 60 ) {			
 			__durée = 60;
-			Compilateur.AfficheUnMessageDInformation( Compilateur.Message(0x0004) );
+			Compilateur.AfficheUnMessageDInformation( Messages.Message((int)Messages.TYPE.DURÉE_SUPÉRIEURE_A_60) );
 		}
 	}
 	}
@@ -141,7 +141,7 @@ public	class	__Lumières_AllumeLesLED_AvecDurée : __Instruction {
     /*
      * Constructeur
      */
-	public	__Lumières_AllumeLesLED_AvecDurée( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDInstructions _groupe, int _led, int _couleur, float _durée ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupe ) {
+	public	__Lumières_AllumeLesLEDs_AvecDurée( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDInstructions _groupe, int _led, int _couleur, float _durée ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupe ) {
 
         // Initialisation des membres
         // --------------------------
