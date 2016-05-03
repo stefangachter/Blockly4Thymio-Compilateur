@@ -503,12 +503,12 @@ Blockly4Thymio utilise le programme asebamassloader.exe pour le transfert du fic
 
 
 		/*
-		 * Blocs d'instruction de la version 0.2
-		 * -------------------------------------
+		 * Valeurs booléenes
+		 * -----------------
 		 */
 
-		// Valeurs booléenes
-		// -----------------
+		// Boutons fléches
+		// ---------------
 		case "0_2_Valeur_Booléen_Bouton_FlècheAvant" :
 			code = __BOUTONS.code( (int)__BOUTONS.NOM.FLECHE_VERS_L_AVANT );
 			break;
@@ -521,7 +521,7 @@ Blockly4Thymio utilise le programme asebamassloader.exe pour le transfert du fic
 		case "0_2_Valeur_Booléen_Bouton_FlècheAGauche" :
 			code = __BOUTONS.code( (int)__BOUTONS.NOM.FLECHE_VERS_LA_GAUCHE );
 			break;
-
+		
 		// Capteurs de proximité avant
 		// ---------------------------
 		case "0_2_Valeur_Booléen_Capteur_AvantDroite" :
@@ -575,15 +575,31 @@ Blockly4Thymio utilise le programme asebamassloader.exe pour le transfert du fic
 			code = expression.codePourLeSéquenceur;
 			break;
 
-		// Valeurs entières
-		// ----------------
+
+
+		/*
+		 * Valeurs entières
+		 * -----------------
+		 */
+
+		// Valeur 1
+		// --------
 		case "0_2_Valeur_Entier_1" :
 			code = "1";
 			break;
 
+		// Valeur au hasard
+		// ----------------
+		case "0_6_Valeur_Aléatoire_Entre0et7":
+			code = "__valeurAleatoire & 0x7";
+			break;
 
-		// Sinon, une erreur est déclenchée
-		// --------------------------------
+
+
+		/*
+		 * Sinon, une erreur est déclenchée
+		 * --------------------------------
+		 */
 		default:
 			int		pos;	
 			String	ver;

@@ -117,6 +117,9 @@ var __coeurQuiBat = 0
 var __temp
 var __lectureDUnSon = 0
 
+# Variable pour les nombres aléatoires
+var __nombreAleatoire
+
 # Variables pour les LEDs
 var __led.rouge
 var __led.vert
@@ -224,6 +227,11 @@ onevent button.center
 # Evénement déclenché par le timer pour le séquenceur
 # ---------------------------------------------------
 onevent timer0
+
+  # A chaque appel du timer, on sort un nombre aléatoire de 0 à 32767
+  call math.rand( __nombreAleatoire )
+  __nombreAleatoire = __nombreAleatoire & 0x7fff
+
   if __etat == ETAT_EN_MARCHE then
     
     # La LED de la flèche avant clignote, le programme s'execute
