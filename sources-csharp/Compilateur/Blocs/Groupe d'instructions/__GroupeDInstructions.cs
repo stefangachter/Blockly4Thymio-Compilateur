@@ -105,7 +105,7 @@ public	class	__GroupeDInstructions : __Bloc {
 	 * Propriétés
      */
     
-    public	bool	AvecSéqunceDeFin {
+    public	bool	AvecSéquenceDeFin {
 	get { return __AvecSéquenceDeFin; }
     }
 

@@ -84,7 +84,7 @@ public	class	__Instruction : __Bloc {
 					// le séquenceur passe à la séquence de fin de ce groupe
 					groupeDuBloc = (__GroupeDInstructions)groupe;
 
-					if (groupeDuBloc.AvecSéqunceDeFin) {
+					if (groupeDuBloc.AvecSéquenceDeFin) {
 						// Il y a une séquence de fin dans les groupes de type boucle
 						// comme : GroupeDInstructions_Boucle_Répète_SAINombre ou GroupeDInstructions_Boucle_RépèteToutLeTemps
 						code += "  __sequenceur[" + UIDDuSéquenceur + "]=" + groupeDuBloc.UIDDeFin + "\n";
@@ -149,7 +149,7 @@ public	class	__Instruction : __Bloc {
 					// le séquenceur passe à la séquence de fin de ce groupe
 					groupeDuBloc = (__GroupeDInstructions)groupe;
 
-					if (groupeDuBloc.AvecSéqunceDeFin) {
+					if (groupeDuBloc.AvecSéquenceDeFin) {
 						// Il y a une séquence de fin dans les groupes de type boucle
 						// comme : GroupeDInstructions_Boucle_Répète_SAINombre ou GroupeDInstructions_Boucle_RépèteToutLeTemps
 						code += "  __sequenceur[" + UIDDuSéquenceur + "]=" + groupeDuBloc.UIDDeFin + "\n";
