@@ -14,7 +14,8 @@ public	class	__Instruction : __Bloc {
     protected	String	__codeDeFin;
     protected	String	__codeDeTraitement;
     protected	String	__codeDInitialisation;
-    protected	String	__conditionDePassageALInstructionSuivante;
+   	protected	String	__conditionDePassageALInstructionSuivante;
+
 
 
 
@@ -39,7 +40,7 @@ public	class	__Instruction : __Bloc {
 	get {
         // Déclarations
 		// ------------
-		String code;
+		String 					code;
 
 		__GroupeDInstructions	groupeDuBloc;
 
@@ -47,7 +48,6 @@ public	class	__Instruction : __Bloc {
 		// Initialisations
 		// ---------------
 		code = "";
-
 
 
 		// Traitements
@@ -203,10 +203,10 @@ public	class	__Instruction : __Bloc {
 		// Initialisations
 		// ---------------
 
-		__codeDeFin = "";
-        __codeDeTraitement = "";
-        __codeDInitialisation = "";
-        __conditionDePassageALInstructionSuivante = "";
+		__codeDeFin									= "";
+        __codeDeTraitement							= "";
+        __codeDInitialisation						= "";
+        __conditionDePassageALInstructionSuivante	= "";
 
     }
 

@@ -330,65 +330,65 @@ Blockly4Thymio utilise le programme asebamassloader.exe pour le transfert du fic
 
 		// Sons - version 0.1b
 		// -------------------
-		case "0_1b_Sons_JoueLaNote_DO_Pendant05Seconde":
+		case "0_1b_Sons_JoueLaNote_DO_Pendant05Seconde" :
 			bloc = new Sons_JoueUneNote( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe, (int)__SONS.NOTES.DO_3, 0.5f );
 			break;
-		case "0_1b_Sons_JoueLaNote_RE_Pendant05Seconde":
+		case "0_1b_Sons_JoueLaNote_RE_Pendant05Seconde" :
 			bloc = new Sons_JoueUneNote( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe, (int)__SONS.NOTES.RÉ_3, 0.5f );
 			break;
-		case "0_1b_Sons_JoueLaNote_MI_Pendant05Seconde":
+		case "0_1b_Sons_JoueLaNote_MI_Pendant05Seconde" :
 			bloc = new Sons_JoueUneNote( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe, (int)__SONS.NOTES.MI_3, 0.5f );
 			break;
-		case "0_1b_Sons_JoueLaNote_FA_Pendant05Seconde":
+		case "0_1b_Sons_JoueLaNote_FA_Pendant05Seconde" :
 			bloc = new Sons_JoueUneNote( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe, (int)__SONS.NOTES.FA_3, 0.5f );
 			break;
-		case "0_1b_Sons_JoueLaNote_SOL_Pendant05Seconde":
+		case "0_1b_Sons_JoueLaNote_SOL_Pendant05Seconde" :
 			bloc = new Sons_JoueUneNote( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe, (int)__SONS.NOTES.SOL_3, 0.5f );
 			break;
-		case "0_1b_Sons_JoueLaNote_LA_Pendant05Seconde":
+		case "0_1b_Sons_JoueLaNote_LA_Pendant05Seconde" :
 			bloc = new Sons_JoueUneNote( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe, (int)__SONS.NOTES.LA_3, 0.5f );
 			break;
-		case "0_1b_Sons_JoueLaNote_SI_Pendant05Seconde":
+		case "0_1b_Sons_JoueLaNote_SI_Pendant05Seconde" :
 			bloc = new Sons_JoueUneNote( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe, (int)__SONS.NOTES.SI_3, 0.5f );
 			break;
-		case "0_1b_Sons_JoueUnSon_SELSon":
+		case "0_1b_Sons_JoueUnSon_SELSon" :
 			bloc = new __Sons_JoueUnSon_SELSon( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
 			break;
 		
 		// Sons - version 0.2
 		// ------------------
-        case "0_2_Sons_JoueUneNoteCroche_SELNote":
+        case "0_2_Sons_JoueUneNoteCroche_SELNote" :
             bloc = new Sons_JoueUneNote_SELNote( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe, (int)__SONS.DUREE.CROCHE );
             break;
-		case "0_2_Sons_JoueUneNoteNoire_SELNote":
+		case "0_2_Sons_JoueUneNoteNoire_SELNote" :
 			bloc = new Sons_JoueUneNote_SELNote( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe, (int)__SONS.DUREE.NOIRE );
 			break;
-		case "0_2_Sons_JoueUneNoteBlanche_SELNote":
+		case "0_2_Sons_JoueUneNoteBlanche_SELNote" :
 			bloc = new Sons_JoueUneNote_SELNote( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe, (int)__SONS.DUREE.BLANCHE );
 			break;
-		case "0_2_Sons_JoueUnSon_SELSon":
+		case "0_2_Sons_JoueUnSon_SELSon" :
 			bloc = new __Sons_JoueUnSon_SELSon( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
 			break;
 
 		// Sons - version 0.4
 		// ------------------
-		case "0_4_Sons_JoueUnSonPersonnel_SELSon":
+		case "0_4_Sons_JoueUnSonPersonnel_SELSon" :
 			bloc = new __Sons_JoueUnSon_SELSon( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
 			break;
-		case "0_4_Sons_EnregistreUnSon_Pendant04Seconde":
+		case "0_4_Sons_EnregistreUnSon_Pendant04Seconde" :
 			bloc = new __Sons_EnregistreUnSon_AvecDurée( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe, 4.0f );
 			break;
-		case "0_4_Sons_RelireLeSonEnregistré":
+		case "0_4_Sons_RelireLeSonEnregistré" :
 			bloc = new Sons_RejoueLeSonEnregistré( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
 			break;
 
 
 		// Contrôles - version 0.1b
 		// ------------------------
-		case "0_1b_Contrôles_Attends1Seconde":
+		case "0_1b_Contrôles_Attends1Seconde" :
 			bloc = new __Contrôle_Attends_Avec_eDurée( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe, 1 );
 			break;
-		case "0_1b_Contrôles_Répète_SAIBoucle":
+		case "0_1b_Contrôles_Répète_SAIBoucle" :
 			bloc = new GroupeDInstructions_Boucle_Répète_SAINombre( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
 			break;
 		case "0_1b_Contrôles_RépèteToutLeTemps" :
@@ -397,23 +397,29 @@ Blockly4Thymio utilise le programme asebamassloader.exe pour le transfert du fic
 
 		// Contrôles - version 0.2
 		// -----------------------
-		case "0_2_Contrôles_Attends_SAIDurée":
+		case "0_2_Contrôles_Attends_SAIDurée" :
 			bloc = new Contrôle_Attends_SAIDurée( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
 			break;
-		case "0_2_Contrôles_Attends_ENTDurée":
+		case "0_2_Contrôles_Attends_ENTDurée" :
 			bloc = new Contrôle_Attends_ENTDurée( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
 			break;
-		case "0_2_Contrôles_Si_IlYAUnObstacleDevant_Alors":
+		case "0_2_Contrôles_Si_IlYAUnObstacleDevant_Alors" :
 			bloc = new __GroupeDInstructions_Si_Avec_cCondition( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe, __CAPTEURS.code( (int)__CAPTEURS.NOM.AVANT, (int)__CAPTEURS.PARAMÈTRE.DISTANCE_PRÈS ) );
 			break;
-		case "0_2_Contrôles_Si_ENTCondition_Alors":
+		case "0_2_Contrôles_Si_ENTCondition_Alors" :
 			bloc = new __GroupeDInstructions_Si_Avec_cCondition( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe, "" );
+			break;
+
+		// Contrôles - version 0.6
+		// -----------------------
+		case "0_6_Contrôles_ArrêteLeProgramme":
+			bloc = new Contrôle_ArrêteLeProgramme( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
 			break;
 
 
 		// Paramètres - version 0.4
 		// ------------------------
-		case "0_4_Paramètre_CalibreLesMoteurs_SAIValeur":
+		case "0_4_Paramètre_CalibreLesMoteurs_SAIValeur" :
 			bloc = new Paramètre_CalibreLesMoteurs_SAIValeur( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
 			break;
 

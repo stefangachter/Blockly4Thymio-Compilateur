@@ -90,46 +90,53 @@ using 	System.Xml;
 
 
 namespace		Blockly4Thymio {
-public	class	Lumières_AllumeToutesLesLEDs_SELCouleur : __Lumières_AllumeLesLEDs {
+public	class	Contrôle_ArrêteLeProgramme : __Instruction {
+
+	/*
+	 * Propriétés surchargeant la classe mère Instruction.
+     */
+	public	override	int		nombreDeSéquence { get { return 1; } }
+
+
+	public	override	string	codePourLeSéquenceur{
+	get {
+		// Déclarations
+		// ------------
+		String	code;
+
+
+		// Initialisations
+		// ---------------
+		code = "";
+
+
+		// Traitements
+		// -----------
+
+		// Début de l'instruction
+		if (Compilateur.afficherLesCommentaires) {
+			code += "\n# Instruction Blockly (UID " + __UID + ") = " + __nomDansBlockly + "\n";
+		}
+
+		code += "if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n";
+		code += "  __sequenceur[" + UIDDuSéquenceur + "]==0\n";
+		code += "end\n";
+
+		return code;
+		}
+	}
+
+
 
 	/*
 	 * Constructeur
 	 */
-	public	Lumières_AllumeToutesLesLEDs_SELCouleur( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDInstructions _groupe ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupe, __LED.TOUTE_LES_LEDS, 0 ) {
-
-		// Déclarations
-		// ------------
-
-		String	nomDeLAttribut;
-
-
-
-        // Traitements
-        // -----------
-
-        // Analyse du Bloc d'instruction
-        foreach ( XmlNode XMLDUnNoeudFils in _XMLDuBloc.ChildNodes ) {
-
-            nomDeLAttribut = "";
-            if (XMLDUnNoeudFils.Attributes["name"] != null)
-                nomDeLAttribut = XMLDUnNoeudFils.Attributes["name"].Value;
-
-            switch( nomDeLAttribut ) {
-
-            case "Couleur" :
-				// Convertie la couleur en notation html, en entier
-				__couleur = Int32.Parse( XMLDUnNoeudFils.InnerText.TrimStart('#'), NumberStyles.HexNumber );
-				break;
-			
-			}
-
-		}
-
+	public	Contrôle_ArrêteLeProgramme( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDInstructions _groupe ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupe ) {
 
 		// Taille de l'instruction
 		// -----------------------
 
-		// Dans la classe mère
+		// Par défaut : 1
 
 
 		// Code d'initialisation
@@ -141,7 +148,7 @@ public	class	Lumières_AllumeToutesLesLEDs_SELCouleur : __Lumières_AllumeLesLED
 		// Code de traitement
 		// ------------------
 
-		// Dans la classe mère
+		// Aucun
 
 
 		// Code de fin
@@ -156,7 +163,7 @@ public	class	Lumières_AllumeToutesLesLEDs_SELCouleur : __Lumières_AllumeLesLED
 		// Aucune
 	
 	}
-	
+
 
 }
 }
