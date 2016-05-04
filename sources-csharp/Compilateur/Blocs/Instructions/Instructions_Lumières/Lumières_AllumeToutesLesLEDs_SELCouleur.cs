@@ -90,41 +90,12 @@ using 	System.Xml;
 
 
 namespace		Blockly4Thymio {
-public	class	Lumières_AllumeToutesLesLEDs_SELCouleur : __Lumières_AllumeLesLEDs {
+public	class	Contrôle_ArrêteLeProgramme : __Instruction {
 
 	/*
 	 * Constructeur
 	 */
-	public	Lumières_AllumeToutesLesLEDs_SELCouleur( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDInstructions _groupe ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupe, __LED.TOUTE_LES_LEDS, 0 ) {
-
-		// Déclarations
-		// ------------
-
-		String	nomDeLAttribut;
-
-
-
-        // Traitements
-        // -----------
-
-        // Analyse du Bloc d'instruction
-        foreach ( XmlNode XMLDUnNoeudFils in _XMLDuBloc.ChildNodes ) {
-
-            nomDeLAttribut = "";
-            if (XMLDUnNoeudFils.Attributes["name"] != null)
-                nomDeLAttribut = XMLDUnNoeudFils.Attributes["name"].Value;
-
-            switch( nomDeLAttribut ) {
-
-            case "Couleur" :
-				// Convertie la couleur en notation html, en entier
-				__couleur = Int32.Parse( XMLDUnNoeudFils.InnerText.TrimStart('#'), NumberStyles.HexNumber );
-				break;
-			
-			}
-
-		}
-
+	public	Contrôle_ArrêteLeProgramme( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDInstructions _groupe ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupe ) {
 
 		// Taille de l'instruction
 		// -----------------------
@@ -141,7 +112,7 @@ public	class	Lumières_AllumeToutesLesLEDs_SELCouleur : __Lumières_AllumeLesLED
 		// Code de traitement
 		// ------------------
 
-		// Dans la classe mère
+		// Surchargé dans la classe
 
 
 		// Code de fin
@@ -156,7 +127,15 @@ public	class	Lumières_AllumeToutesLesLEDs_SELCouleur : __Lumières_AllumeLesLED
 		// Aucune
 	
 	}
-	
+
+
+
+	public override string codeDeTraitement {
+	get {
+		return "__sequenceur[" + __UIDDuSéquenceur + "]=0";
+	}
+	}
+
 
 }
 }
