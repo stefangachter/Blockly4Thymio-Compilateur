@@ -24,6 +24,10 @@ Ces sources sont distribuées sous licence libre CeCILL-C V2.
 Suivi des versions
 ------------------
 
+###Version 0.6
+* Nouvelles instructions : ARRETER LE PROGRAMME
+
+
 ###Version 0.5
 * Correction sur la compilation des blocs SI ... FAIRE ...
 * Nouvelles instructions pour la télécommande infra-rouge : plus de boutons  et gestion d'un canal 'rc5.adress' pour utiliser différentes télécommandes et commander plusieurs Thymio.
