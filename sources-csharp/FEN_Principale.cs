@@ -125,19 +125,19 @@ public		partial	class	FEN_Principale : Form {
 
 		temporisationDeCompilation.Stop();
 
-		// Affiche l'entête
-		// ----------------
-
+		// Affiche l'aide si aucun fichier .b4t n'est envoyé
 		if ( Compilateur.nomDuFichierB4T == "" ) {
 			Compilateur.AfficheLAide(this.TEXT_Messages);
 			return;
 		}
 
+		// Affiche le texte d'entête
 		Compilateur.AfficheLEntête(this.TEXT_Messages);
 
-		AjouteUnMessage("\nFichier : " + Compilateur.nomDuFichierB4T + "\n\n");
+		// Affiche le nom du fichier
+		AjouteUnMessage( "\n" + String.Format( Messages.Message( (int)Messages.TYPE.FICHIER ), Compilateur.nomDuFichierB4T  ) + "\n\n" );
 
-
+	
 		// Lance la compilation.
 		// Si la compilation s'est bien déroulée, le programme se ferme automatiquement
 		try {
@@ -146,7 +146,8 @@ public		partial	class	FEN_Principale : Form {
 				FermeLaFenêtreAprès2Secondes();            
 				#endif
 			}
-			AjouteUnMessage( "\n\nCompilation et transfert terminés !" );
+			// Message : Transfert terminé
+			AjouteUnMessage( "\n\n" + Messages.Message( (int)Messages.TYPE.COMPILATION_ET_TRANSFERT_TERMINÉ ) );
 		} catch ( Exception ex ) {
 			AfficheUnMessageDErreur( ex.Message );
 		}

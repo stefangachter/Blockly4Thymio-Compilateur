@@ -134,37 +134,16 @@ public class	Compilateur {
     /// </summary>
     public	static	void	AfficheLAide( TextBox _textBox ) {
         AfficheLEntête( _textBox );
-        _textBox.Text += @"
-Aucun fichier source .b4t n'a été déclaré.
-
-Utilisation : Associez les fichier .b4t à cet éxécutable.
-
-";
+        _textBox.Text += Messages.Message( (int)Messages.TYPE.AIDE );
     }
 
 
     /// <summary>
-    /// Affiche l'aide.
+    /// Affiche l'entête du texte.
     /// </summary>
     public	static	void	AfficheLEntête( TextBox _textBox ) {
-
         _textBox.Clear();
-
-		#if DEBUG
-		_textBox.Text += @"
-***********************
-* !!! MODE DEBUG !!! *
-***********************
-";
-		#endif
-
-		_textBox.Text += @"Compilateur Blockly4Thymio - Okimi ©2016 - version " + version + @"
-
-Compile un fichier .b4t en fichier Aseba et le transmet au robot Thymio II.
-Blockly4Thymio utilise le programme asebamassloader.exe pour le transfert du fichier Aseba vers le robot Thymio.
-
-";
-	
+		_textBox.Text += Messages.Message( (int)Messages.TYPE.ENTÊTE );
 	}
 
 
@@ -950,7 +929,7 @@ Blockly4Thymio utilise le programme asebamassloader.exe pour le transfert du fic
 			}
         }
 		if ( événementsRacines.Count == 0 ) {
-			AfficheUnMessageDInformation( String.Format( Messages.Message((int)Messages.TYPE.PAS_D_INSTRUCTION_DE_DEPART), nomDuFichierB4T ) );
+			AfficheUnMessageDInformation( String.Format( Messages.Message((int)Messages.TYPE.PAS_D_INSTRUCTION_DE_DÉPART), nomDuFichierB4T ) );
 			return false;
 		}
 
