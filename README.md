@@ -25,7 +25,7 @@ Suivi des versions
 ------------------
 
 ###Version 0.6
-* Nouvelles instructions : ARRETER LE PROGRAMME
+* Nouvelles instructions : ARRETER LE PROGRAMME, SORT DE LA BOUCLE
 
 
 ###Version 0.5

@@ -125,10 +125,21 @@ public	class	Contrôle_SortDeLaBoucle : __Instruction {
 			code += "  __sequenceur[" + UIDDuSéquenceur + "]==0\n";
 			code += "end\n";
 		} else {
-			// Le 
-			code += "if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n";
-			code += "  __sequenceur[" + UIDDuSéquenceur + "]==" + groupe.UIDDeFin + "\n";
-			code += "end\n";
+
+			if ( groupe.blocSuivant == null ) {
+				// Il n'y a pas de bloc après le groupe,
+				// le séquenceur s'arrête.
+				code += "if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n";
+				code += "  __sequenceur[" + UIDDuSéquenceur + "]==0\n";
+				code += "end\n";
+			} else {
+				// Le séquencceur passe à l'instruction
+				// qui suit la boucle
+				code += "if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n";
+				code += "  __sequenceur[" + UIDDuSéquenceur + "]==" + groupe.UIDDuBlocSuivant + "\n";
+				code += "end\n";
+			}
+
 		}
 
 		return code;
@@ -140,7 +151,7 @@ public	class	Contrôle_SortDeLaBoucle : __Instruction {
 	/*
 	 * Constructeur
 	 */
-	public	Contrôle_ArrêteLeProgramme( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDInstructions _groupe ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupe ) {
+	public	Contrôle_SortDeLaBoucle( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDInstructions _groupe ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupe ) {
 
 		// Taille de l'instruction
 		// -----------------------

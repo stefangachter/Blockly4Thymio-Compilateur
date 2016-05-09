@@ -391,8 +391,11 @@ public class	Compilateur {
 
 		// Contrôles - version 0.6
 		// -----------------------
-		case "0_6_Contrôles_ArrêteLeProgramme":
+		case "0_6_Contrôles_ArrêteLeProgramme" :
 			bloc = new Contrôle_ArrêteLeProgramme( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
+			break;
+		case "0_6_Contrôles_SortDeLaBoucle" :
+			bloc = new Contrôle_SortDeLaBoucle( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
 			break;
 
 

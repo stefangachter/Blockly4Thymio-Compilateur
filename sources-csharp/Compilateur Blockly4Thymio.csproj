@@ -142,6 +142,7 @@ Transforme un fichiers .b4t en fichier .aesl puis le transmet à Thymio.</Descri
     <Compile Include="Compilateur\Blocs\Instructions\Instructions_Lumières\__Lumières_AllumeLesLEDs_AvecDurée.cs" />
     <Compile Include="Compilateur\Messages.cs" />
     <Compile Include="Compilateur\Blocs\Instructions\Instructions_Contrôles\Contrôle_ArrêteLeProgramme.cs" />
+    <Compile Include="Compilateur\Blocs\Instructions\Instructions_Contrôles\Contrôle_SortDeLaBoucle.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
