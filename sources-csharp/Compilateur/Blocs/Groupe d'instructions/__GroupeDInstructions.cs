@@ -78,10 +78,18 @@ using 	System.Xml;
 namespace		Blockly4Thymio {
 public	class	__GroupeDInstructions : __Bloc {
 
+	// Types de groupe d'instructions
+	public enum TYPE {
+		BOUCLE = 1,
+		CONDITION
+	}
+
+
+
 	/*
 	 * Membres
 	 */
-	protected	bool	__AvecSéquenceDeFin;
+	protected	int		__type;
 
 	protected	__Bloc	__blocsInternes;
 
@@ -104,9 +112,10 @@ public	class	__GroupeDInstructions : __Bloc {
 	/*
 	 * Propriétés
      */
-    
-    public	bool	AvecSéqunceDeFin {
-	get { return __AvecSéquenceDeFin; }
+
+     // Type de groupe d'instruction : boucle ou condition
+    public	int	type {
+	get { return __type; }
     }
 
 

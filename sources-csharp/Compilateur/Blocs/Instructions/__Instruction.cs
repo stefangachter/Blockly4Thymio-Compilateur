@@ -84,21 +84,21 @@ public	class	__Instruction : __Bloc {
 					// le séquenceur passe à la séquence de fin de ce groupe
 					groupeDuBloc = (__GroupeDInstructions)groupe;
 
-					if (groupeDuBloc.AvecSéqunceDeFin) {
+					switch( groupeDuBloc.type ) {
+					case (int)__GroupeDInstructions.TYPE.BOUCLE :
 						// Il y a une séquence de fin dans les groupes de type boucle
-						// comme : GroupeDInstructions_Boucle_Répète_SAINombre ou GroupeDInstructions_Boucle_RépèteToutLeTemps
 						code += "  __sequenceur[" + UIDDuSéquenceur + "]=" + groupeDuBloc.UIDDeFin + "\n";
-					} else {
+						break;
+					case (int)__GroupeDInstructions.TYPE.CONDITION :
 						// Il n'y a pas de séquence de fin dans les groupes de type condition
-						// comme : __GroupeDInstructions_Si_Avec_cCondition
-						if (groupeDuBloc.blocSuivant == null) {
+						if ( groupeDuBloc.blocSuivant == null ) {
 							// Pas de bloc suivant le groupe, le séquenceur s'arrête
 							code += "  __sequenceur[" + UIDDuSéquenceur + "]=0\n";
 						} else {
 							// Il y a un bloc après le groupe, le séquenceur passe sur celui-ci
 							code += "  __sequenceur[" + UIDDuSéquenceur + "]=" + groupeDuBloc.blocSuivant.UID + "\n";
 						}
-						
+						break;
 					}
 
 				}
@@ -148,14 +148,13 @@ public	class	__Instruction : __Bloc {
 					// Le bloc est dans un groupe,
 					// le séquenceur passe à la séquence de fin de ce groupe
 					groupeDuBloc = (__GroupeDInstructions)groupe;
-
-					if (groupeDuBloc.AvecSéqunceDeFin) {
+					switch( groupeDuBloc.type ) {
+					case (int)__GroupeDInstructions.TYPE.BOUCLE :
 						// Il y a une séquence de fin dans les groupes de type boucle
-						// comme : GroupeDInstructions_Boucle_Répète_SAINombre ou GroupeDInstructions_Boucle_RépèteToutLeTemps
 						code += "  __sequenceur[" + UIDDuSéquenceur + "]=" + groupeDuBloc.UIDDeFin + "\n";
-					} else {
+						break;
+					case (int)__GroupeDInstructions.TYPE.CONDITION :
 						// Il n'y a pas de séquence de fin dans les groupes de type condition
-						// comme : __GroupeDInstructions_Si_Avec_cCondition
 						if (groupeDuBloc.blocSuivant == null) {
 							// Pas de bloc suivant le groupe, le séquenceur s'arrête
 							code += "  __sequenceur[" + UIDDuSéquenceur + "]=0\n";
@@ -163,8 +162,9 @@ public	class	__Instruction : __Bloc {
 							// Il y a un bloc après le groupe, le séquenceur passe sur celui-ci
 							code += "  __sequenceur[" + UIDDuSéquenceur + "]=" + groupeDuBloc.blocSuivant.UID + "\n";
 						}
-						
+						break;
 					}
+
 				
 				}
 

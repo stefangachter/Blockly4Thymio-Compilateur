@@ -71,136 +71,106 @@ knowledge of the CeCILL license and that you accept its terms.
 
 
 
-using System;
-using System.Xml;
+/*
+ * Lumières_AllumeToutesLesLEDs_SELCouleur
+ * ---------------------------------------
+ *
+ * Allume toutes les LEDs de Thymio,
+ * avec la couleur choisie.
+ * 
+ * Niveau de l'instruction : Facile
+ * 
+ */
+
+
+using 	System;
+using 	System.Globalization;
+using 	System.Xml;
 
 
 
 namespace		Blockly4Thymio {
-public	class	__GroupeDInstructions_Condition : __GroupeDInstructions {
+public	class	Contrôle_SortDeLaBoucle : __Instruction {
 
 	/*
-	 * Membres
-	 */
-	protected	String	__conditionDEntré;
-
-
-
-	/*
-	 * Propriétés virtuelles
+	 * Propriétés surchargeant la classe mère Instruction.
      */
-	virtual	public	String	conditionDEntré { get { return __conditionDEntré; } }
+	public	override	int		nombreDeSéquence { get { return 1; } }
 
-	virtual	public	__Bloc	blocsInternes { get { return __blocsInternes; } }
-	
-	
-	
-	/*
-	 * Propriétés surchargeant la classe mère Bloc.
-     */
-	public	override	int		nombreDeSéquence {
+
+	public	override	string	codePourLeSéquenceur {
 	get {
-		// Déclarations
-		int		nombre;
-		__Bloc	dernierBloc;
-
-		// Traitements
-		nombre = __nombreDeSéquenceInitiale;
-		if ( __blocsInternes != null ) {
-			dernierBloc = blocsInternes.DernierBlocsSuivant();
-			nombre += dernierBloc.UID - __blocsInternes.UID + dernierBloc.nombreDeSéquence;
-		}
-
-		// Fin
-		return nombre;
-
-	}
-	}
-
-	public	override	String	codePourLeSéquenceur {
-	get {
-
 		// Déclarations
 		// ------------
 		String	code;
-		String	marqueur;
 
 
 		// Initialisations
 		// ---------------
-		code ="";
-		// Un marqueur de code est créer. Il sera remplacé par l'UID de l'instruction de fin de la condition
-		// quand le code interne de la condition sera évalué et que l'UID de l'instruction de fin sera connue.
-		marqueur = Compilateur.NouveauMarqueur();
-
+		code = "";
 
 
 		// Traitements
 		// -----------
-			
-		// Séquences de début de groupe
-		// ----------------------------
-		if ( Compilateur.afficherLesCommentaires ) { code += "\n# Instruction Blockly (UID " + __UID + ") = DEBUT " + __nomDansBlockly + "\n"; }
-						
-		
-		// Teste la condition d'entrée.
-		code += "if __sequenceur[" + __UIDDuSéquenceur + "]==" + __UID + " then\n";
-		code += "  if " + conditionDEntré  + " then\n";
-		code += "    __sequenceur[" + __UIDDuSéquenceur + "]=" + UIDDuPremierBloc + "\n";
-		code += "  else\n";
-		code += "    __sequenceur[" + __UIDDuSéquenceur + "]=" + marqueur + "\n";
-		code += "  end\n";
-		code += "end\n";
-		
-		
-		// Blocs internes
-		// --------------
-		
-		// Ajoute les blocs internes
-		if ( blocsInternes != null ) { code += blocsInternes.codePourLeSéquenceur; }
-		
-		// Remplace le marqueur par l'UID du bloc suivant
-		if ( blocSuivant != null ) {
-			// UID de l'instruction après la condition
-			code = code.Replace( marqueur, "" + UIDDeFin );
-		} else {
-			// Il n'y a pas de bloc suivant, le séquenceur s'arrête
-			code = code.Replace( marqueur, "" + UIDDuBlocSuivant );
+
+		// Début de l'instruction
+		if (Compilateur.afficherLesCommentaires) {
+			code += "\n# Instruction Blockly (UID " + __UID + ") = " + __nomDansBlockly + "\n";
 		}
 
-
-		// Séquence de fin du groupe
-		// -------------------------
-		if ( Compilateur.afficherLesCommentaires ) { code += "\n# Instruction Blockly (UID " + __UID + ") = FIN " + __nomDansBlockly + "\n"; }
-		
-		// Ajoute le bloc suivant
-		if ( blocSuivant != null ) { code += blocSuivant.codePourLeSéquenceur; }
-
-
-		// Fin
-		// ---
+		if ( groupe == null ) {
+			// Le bloc n'est pas dans un groupe,
+			// le séquenceur s'arrête.
+			code += "if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n";
+			code += "  __sequenceur[" + UIDDuSéquenceur + "]==0\n";
+			code += "end\n";
+		} else {
+			// Le 
+			code += "if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n";
+			code += "  __sequenceur[" + UIDDuSéquenceur + "]==" + groupe.UIDDeFin + "\n";
+			code += "end\n";
+		}
 
 		return code;
-
-	}
+		}
 	}
 
 
 
 	/*
-     * Constructeur
-     */
-	public	__GroupeDInstructions_Condition( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDInstructions _groupe ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupe ) {
+	 * Constructeur
+	 */
+	public	Contrôle_ArrêteLeProgramme( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDInstructions _groupe ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupe ) {
 
-		// Initialisations
-		// ---------------
+		// Taille de l'instruction
+		// -----------------------
 
-		__type = (int)TYPE.CONDITION;
+		// Par défaut : 1
 
-		__conditionDEntré = "";
 
-		__blocsInternes = null;
+		// Code d'initialisation
+		// ---------------------
 
+		// Aucun
+
+
+		// Code de traitement
+		// ------------------
+
+		// Aucun
+
+
+		// Code de fin
+		// -----------
+
+		// Aucun
+
+
+		// Condition de passage à l'instruction suivante
+		// ---------------------------------------------
+
+		// Aucune
+	
 	}
 
 

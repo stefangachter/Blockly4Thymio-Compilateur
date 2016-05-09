@@ -239,9 +239,7 @@ public	class	__GroupeDInstructions_Boucle : __GroupeDInstructions {
      */
 	public	__GroupeDInstructions_Boucle( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDInstructions _groupe ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupe ) {
 
-		// Dans les groupes de boucle, il n'y a une séquence à la fin du groupe
-		// pour renvoyer (ou pas) à la séquence de début de boucle
-		__AvecSéquenceDeFin		= true;
+		__type = (int)TYPE.BOUCLE;
 
 		__codeDActionEnDébut	= "";
 		__codeDActionEnFin		= "";
