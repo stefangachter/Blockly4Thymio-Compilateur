@@ -100,46 +100,46 @@ public	class	Contrôle_SortDeLaBoucle : __Instruction {
 
 	public	override	string	codePourLeSéquenceur {
 	get {
+
 		// Déclarations
 		// ------------
-		String	code;
+		String					code;
+
+		__GroupeDInstructions	bouclePrécédente;
+
 
 
 		// Initialisations
 		// ---------------
 		code = "";
 
+		bouclePrécédente = groupe.BouclePrécédente;
+
 
 		// Traitements
 		// -----------
 
 		// Début de l'instruction
-		if (Compilateur.afficherLesCommentaires) {
+		if (Compilateur.afficherLesCommentaires)
 			code += "\n# Instruction Blockly (UID " + __UID + ") = " + __nomDansBlockly + "\n";
-		}
 
-		if ( groupe == null ) {
-			// Le bloc n'est pas dans un groupe,
-			// le séquenceur s'arrête.
+		if ( bouclePrécédente == null ) {
+			// Le bloc n'est pas dans un groupe, le séquenceur s'arrête.
 			code += "if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n";
 			code += "  __sequenceur[" + UIDDuSéquenceur + "]==0\n";
 			code += "end\n";
 		} else {
-
-			if ( groupe.blocSuivant == null ) {
-				// Il n'y a pas de bloc après le groupe,
-				// le séquenceur s'arrête.
+			if ( bouclePrécédente.blocSuivant == null ) {
+				// Il n'y a pas de bloc après le groupe, le séquenceur s'arrête.
 				code += "if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n";
 				code += "  __sequenceur[" + UIDDuSéquenceur + "]==0\n";
 				code += "end\n";
 			} else {
-				// Le séquencceur passe à l'instruction
-				// qui suit la boucle
+				// Le séquencceur passe à l'instruction qui suit la boucle
 				code += "if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n";
-				code += "  __sequenceur[" + UIDDuSéquenceur + "]==" + groupe.UIDDuBlocSuivant + "\n";
+				code += "  __sequenceur[" + UIDDuSéquenceur + "]==" + bouclePrécédente.UIDDuBlocSuivant + "\n";
 				code += "end\n";
 			}
-
 		}
 
 		return code;

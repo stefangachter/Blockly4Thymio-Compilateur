@@ -179,6 +179,22 @@ public	class	__GroupeDInstructions : __Bloc {
 	}
 
 
+	/// <summary>
+	/// Retourne le bloc de la plus proche boucle
+	/// </summary>
+	public	__GroupeDInstructions	BouclePrécédente {
+	get {
+		if ( __groupe == null )
+			return null;
+		if ( __groupe.type == (int)TYPE.CONDITION )
+			return  __groupe.BouclePrécédente;
+		if ( __groupe.type == (int)TYPE.BOUCLE )
+			return __groupe;
+		return null;
+	}
+	}
+
+
 }
 }
 
