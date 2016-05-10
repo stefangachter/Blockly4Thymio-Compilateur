@@ -26,6 +26,7 @@ Suivi des versions
 
 ###Version 0.6
 * Nouvelles instructions : ARRETER LE PROGRAMME, SORT DE LA BOUCLE
+* Ajout d'une version hors ligne de l'interface de programmation
 
 
 ###Version 0.5
