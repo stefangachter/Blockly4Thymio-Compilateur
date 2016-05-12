@@ -171,7 +171,7 @@ public 	class 	Valeur_CapteurIR_SELBouton : __Valeur {
 
 				// Complète le test avec l'adresse de la commande IR
 				if ( Valeur_CapteurIR_SELBouton.adresseIR != -1 )
-					__code += " and rc5.adress==" + Valeur_CapteurIR_SELBouton.adresseIR;
+					__code += " and rc5.address==" + Valeur_CapteurIR_SELBouton.adresseIR;
 
 				break;
 
