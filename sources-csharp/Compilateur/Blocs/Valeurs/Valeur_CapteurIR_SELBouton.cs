@@ -96,8 +96,9 @@ namespace 		Blockly4Thymio {
 public 	class 	Valeur_CapteurIR_SELBouton : __Valeur {
 
 
-	// Valeur 'adress' du récépteur IR
-	public	static	int	adresseIR = 0;
+	// Valeur 'rc5.adress' du récépteur IR
+	// Note : La valeur -1 désactive le filtre de l'adresse
+	public	static	int	adresseIR = -1;
 
 
 
@@ -169,8 +170,9 @@ public 	class 	Valeur_CapteurIR_SELBouton : __Valeur {
 				}
 
 				// Complète le test avec l'adresse de la commande IR
-				__code = __code + " and rc5.adress==";
-				__code += Valeur_CapteurIR_SELBouton.adresseIR;
+				if ( Valeur_CapteurIR_SELBouton.adresseIR != -1 )
+					__code += " and rc5.adress==" + Valeur_CapteurIR_SELBouton.adresseIR;
+
 				break;
 
 			}
