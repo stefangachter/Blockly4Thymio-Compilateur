@@ -103,7 +103,7 @@ static	class 	ProgrammePrincipal {
 		// Initialisations
 		// ---------------
 
-		Compilateur.version = "0.5";
+		Compilateur.version = "0.51";
 
 
 		// Affichage des commentaires dans le fichier .aesl
