@@ -139,11 +139,6 @@ public	class	GroupeDInstructions_Boucle_TantQue_ENTCondition_Faire : __GroupeDIn
 		// Aucun
 		
 
-		// Condition de sortie dans le groupe
-		// ----------------------------------
-
-		// Aucun
-		
 
 		// Analyse du Bloc d'instruction
 		// -----------------------------

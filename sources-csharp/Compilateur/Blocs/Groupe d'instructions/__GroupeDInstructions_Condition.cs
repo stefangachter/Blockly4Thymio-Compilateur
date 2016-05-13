@@ -83,8 +83,8 @@ public	class	__GroupeDInstructions_Condition : __GroupeDInstructions {
 	 * Membres
 	 */
 	protected	String	__code;
+	protected	String	__codeDeFin;
 	protected	String	__conditionDEntré;
-	protected	String	__conditionDeSortie;
 
 
 
@@ -92,7 +92,6 @@ public	class	__GroupeDInstructions_Condition : __GroupeDInstructions {
 	 * Propriétés virtuelles
      */
 	virtual	public	String	conditionDEntré { get { return __conditionDEntré; } }
-	virtual	public	String	conditionDeSortie { get { return __conditionDeSortie; } }
 
 	virtual	public	__Bloc	blocsInternes { get { return __blocsInternes; } }
 	
@@ -175,7 +174,18 @@ public	class	__GroupeDInstructions_Condition : __GroupeDInstructions {
 		// Séquence de fin du groupe
 		// -------------------------
 		if ( Compilateur.afficherLesCommentaires ) { code += "\n# Instruction Blockly (UID " + __UID + ") = FIN " + __nomDansBlockly + "\n"; }
-		
+
+		// Cas particulier des GroupeDInstructions_Boucle_TantQue_ENTCondition_Faire,
+		// retourne à la séquence initiale du groupe pour retester la condition
+		/*if ( this is GroupeDInstructions_Boucle_TantQue_ENTCondition_Faire ) {
+			
+			code += "if __sequenceur[" + __UIDDuSéquenceur + "]==" + UIDdublDeFin + " then\n";
+			code += "  __sequenceur[" + __UIDDuSéquenceur + "]=" + __UID + "\n";
+			code += "end\n";
+
+		}*/
+
+
 		// Ajoute le bloc suivant
 		if ( blocSuivant != null ) { code += blocSuivant.codePourLeSéquenceur; }
 
@@ -203,6 +213,8 @@ public	class	__GroupeDInstructions_Condition : __GroupeDInstructions {
 		__conditionDEntré = "";
 
 		__blocsInternes = null;
+
+		__codeDeFin = "";
 
 	}
 

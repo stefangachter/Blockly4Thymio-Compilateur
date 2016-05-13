@@ -404,7 +404,9 @@ public class	Compilateur {
 		case "0_6_Contrôles_SortDeLaBoucle" :
 			bloc = new Contrôle_SortDeLaBoucle( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
 			break;
-
+		case "0_6_Contrôles_TantQue_ENTCondition_Faire" :
+			bloc = new GroupeDInstructions_Boucle_TantQue_ENTCondition_Faire( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
+			break;
 
 
 		// Paramètres - version 0.4
