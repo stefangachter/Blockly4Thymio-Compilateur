@@ -242,6 +242,7 @@ public class	Compilateur {
 			break;
 
 
+
 		// Mouvements - version 0.1b
 		// -------------------------
 		case "0_1b_Mouvement_Arrête":
@@ -285,6 +286,7 @@ public class	Compilateur {
 			break;
 
 
+
 		// Lumières - version 0.1b
 		// -----------------------
 		case "0_1b_Lumières_AllumeLesLEDs_SELLED_SELCouleur" :
@@ -305,6 +307,7 @@ public class	Compilateur {
 		case "0_2_Lumières_AllumeLesLEDs_SELLED_SELCouleur_SAIDurée" :
 			bloc = new Lumières_AllumeLesLEDs_SELLED_SELCouleur_SAIDurée( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
 			break;
+
 
 
 		// Sons - version 0.1b
@@ -362,6 +365,7 @@ public class	Compilateur {
 			break;
 
 
+
 		// Contrôles - version 0.1b
 		// ------------------------
 		case "0_1b_Contrôles_Attends1Seconde" :
@@ -394,9 +398,13 @@ public class	Compilateur {
 		case "0_6_Contrôles_ArrêteLeProgramme" :
 			bloc = new Contrôle_ArrêteLeProgramme( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
 			break;
+		case "0_6_Contrôles_Faire_TantQue_ENTCondition" :
+			bloc = new GroupeDInstructions_Boucle_Faire_TantQue_ENTCondition( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
+			break;
 		case "0_6_Contrôles_SortDeLaBoucle" :
 			bloc = new Contrôle_SortDeLaBoucle( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
 			break;
+
 
 
 		// Paramètres - version 0.4
@@ -410,6 +418,7 @@ public class	Compilateur {
 		case "0_5_Paramètre_LAdresseDeLaTélécommandeEst_SAIAdresse" :
 			bloc = new Paramètre_LAdresseDeLaTélécommandeEst_SAIValeur( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
 			break;
+
 
 
 		// Sinon, une erreur est déclenchée

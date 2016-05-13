@@ -71,142 +71,109 @@ knowledge of the CeCILL license and that you accept its terms.
 
 
 
-using System;
-using System.Xml;
-
+using 	System;
+using 	System.Xml;
 
 
 namespace		Blockly4Thymio {
-public	class	__GroupeDInstructions_Condition : __GroupeDInstructions {
+public	class	GroupeDInstructions_Boucle_TantQue_ENTCondition_Faire : __GroupeDInstructions_Condition {
 
-	/*
-	 * Membres
-	 */
-	protected	String	__code;
-	protected	String	__conditionDEntré;
-	protected	String	__conditionDeSortie;
-
-
-
-	/*
-	 * Propriétés virtuelles
+    /*
+     * Membres
      */
-	virtual	public	String	conditionDEntré { get { return __conditionDEntré; } }
-	virtual	public	String	conditionDeSortie { get { return __conditionDeSortie; } }
 
-	virtual	public	__Bloc	blocsInternes { get { return __blocsInternes; } }
-	
-	
 	
 	/*
-	 * Propriétés surchargeant la classe mère Bloc.
+	 * Propriétés surchargeant la classe mère __GroupeDInstructions.
      */
-	public	override	int		nombreDeSéquence {
-	get {
-		// Déclarations
-		int		nombre;
-		__Bloc	dernierBloc;
-
-		// Traitements
-		nombre = __nombreDeSéquenceInitiale;
-		if ( __blocsInternes != null ) {
-			dernierBloc = blocsInternes.DernierBlocsSuivant();
-			nombre += dernierBloc.UID - __blocsInternes.UID + dernierBloc.nombreDeSéquence;
-		}
-
-		// Fin
-		return nombre;
-
-	}
-	}
-
-	public	override	String	codePourLeSéquenceur {
-	get {
-
-		// Déclarations
-		// ------------
-		String	code;
-		String	marqueur;
-
-
-		// Initialisations
-		// ---------------
-		code ="";
-		// Un marqueur de code est créer. Il sera remplacé par l'UID de l'instruction de fin de la condition
-		// quand le code interne de la condition sera évalué et que l'UID de l'instruction de fin sera connue.
-		marqueur = Compilateur.NouveauMarqueur();
-
-
-
-		// Traitements
-		// -----------
-			
-		// Séquences de début de groupe
-		// ----------------------------
-		if ( Compilateur.afficherLesCommentaires ) { code += "\n# Instruction Blockly (UID " + __UID + ") = DEBUT " + __nomDansBlockly + "\n"; }
-						
-		
-		// Teste la condition d'entrée.
-		code += "if __sequenceur[" + __UIDDuSéquenceur + "]==" + __UID + " then\n";
-		code += "  if " + conditionDEntré  + " then\n";
-		code += "    __sequenceur[" + __UIDDuSéquenceur + "]=" + UIDDuPremierBloc + "\n";
-		code += "  else\n";
-		code += "    __sequenceur[" + __UIDDuSéquenceur + "]=" + marqueur + "\n";
-		code += "  end\n";
-		code += "end\n";
-		
-		
-		// Blocs internes
-		// --------------
-		
-		// Ajoute les blocs internes
-		if ( blocsInternes != null ) { code += blocsInternes.codePourLeSéquenceur; }
-		
-		// Remplace le marqueur par l'UID du bloc suivant
-		if ( blocSuivant != null ) {
-			// UID de l'instruction après la condition
-			code = code.Replace( marqueur, "" + UIDDeFin );
-		} else {
-			// Il n'y a pas de bloc suivant, le séquenceur s'arrête
-			code = code.Replace( marqueur, "" + UIDDuBlocSuivant );
-		}
-
-
-		// Séquence de fin du groupe
-		// -------------------------
-		if ( Compilateur.afficherLesCommentaires ) { code += "\n# Instruction Blockly (UID " + __UID + ") = FIN " + __nomDansBlockly + "\n"; }
-		
-		// Ajoute le bloc suivant
-		if ( blocSuivant != null ) { code += blocSuivant.codePourLeSéquenceur; }
-
-
-		// Fin
-		// ---
-
-		return code;
-
-	}
-	}
-
 
 
 	/*
+	 * Propriétés
+     */
+	public override String conditionDEntré {
+	get { return __conditionDEntré; }
+	}
+
+	
+
+    /*
      * Constructeur
      */
-	public	__GroupeDInstructions_Condition( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDInstructions _groupe ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupe ) {
+	public	GroupeDInstructions_Boucle_TantQue_ENTCondition_Faire( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDInstructions _groupe ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupe ) {
+	
+		// Déclarations
+		// ------------
+		String	nomDeLAttribut;
 
-		// Initialisations
-		// ---------------
+		XmlNode	XMLInterne;
 
-		__type = (int)TYPE.CONDITION;
 
-		__conditionDEntré = "";
+		// Initialisation des membres
+		// --------------------------
 
-		__blocsInternes = null;
+		__nombreDeSéquenceInitiale = 2;
 
-	}
+
+		// Code d'initialisation du groupe
+		// -------------------------------
+
+		// Aucun
+
+
+		// Code d'action en début de boucle
+		// --------------------------------
+
+		// Aucun
+
+
+		// Condition d'entrée dans le groupe
+		// ---------------------------------
+
+		// Surchargée dans la classe
+		
+		
+		// Code d'action en fin de groupe
+		// ------------------------------
+
+		// Aucun
+		
+
+		// Condition de sortie dans le groupe
+		// ----------------------------------
+
+		// Aucun
+		
+
+		// Analyse du Bloc d'instruction
+		// -----------------------------
+
+        foreach ( XmlNode XMLDUnNoeudFils in _XMLDuBloc.ChildNodes ) {
+
+            nomDeLAttribut = "";
+            if ( XMLDUnNoeudFils.Attributes["name"] != null )
+                nomDeLAttribut = XMLDUnNoeudFils.Attributes["name"].Value;
+
+            switch( nomDeLAttribut ) {
+            case "Condition" :
+				__conditionDEntré = Compilateur.AnalyseUnNoeudDExpression( _UID,  XMLDUnNoeudFils.FirstChild, _blocPrécédent, _groupe );
+				break;
+			}
+
+		}
+
+
+		// Blocs internes au groupe
+		// ------------------------
+		
+		XMLInterne = _XMLDuBloc.SelectSingleNode( "./statement" );
+		if ( XMLInterne != null )
+			__blocsInternes = Compilateur.AnalyseUnNoeudDInstruction( _UID+1, XMLInterne.FirstChild, null, this );
+		
+    }
 
 
 }
 }
+
 
