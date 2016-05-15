@@ -70,6 +70,11 @@ knowledge of the CeCILL license and that you accept its terms.
 
 
 
+// Désactive les messages sur les variables unitilisées
+#pragma warning disable 0414
+
+
+
 using	System;
 using	System.Drawing;
 using	System.Reflection;
