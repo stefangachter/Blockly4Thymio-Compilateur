@@ -70,20 +70,6 @@ knowledge of the CeCILL license and that you accept its terms.
 
 
 
-#define	WINDOWS
-
-//#define	LINUX
-
-
-
-#if WINDOWS
-#warning Compilation pour WINDOWS
-#endif
-#if LINUX
-#warning "Compilation pour LINUX"
-#endif
-
-
 using	System;
 using	System.IO;
 using	System.Reflection;
@@ -107,70 +93,58 @@ static	class 	ProgrammePrincipal {
 
 
 		// Affichage des commentaires dans le fichier .aesl
+		#if (DEBUG)
+		Compilateur.afficherLesCommentaires = true;
+		#else
 		Compilateur.afficherLesCommentaires = false;
-
+		#endif
+		
+		
 		// Arrête le robot si tous les séquenceurs sont terminés
 		Compilateur.arrêtDuRobotALaFinDesSéquenceurs = true;
-
+		
+		
 		// Lance automatiquement le programme sur le Thymio à la fin du transfert
 		Compilateur.lancementAutomatique = true;
 
 		// Emplacement de programme de transfert AsebaMassloader
-
-		#if WINDOWS
+		#if (DEBUG && WINDOWS)
+		Compilateur.nomDuFichierASEBAMASSLOADER = @"C:\Blockly4Thymio.v0.5\asebamassloader\asebamassloader.exe";
+		//Compilateur.nomDuFichierASEBAMASSLOADER = @"C:\Users\fort\Downloads\compilateur\setup-win\fichiers\asebamassloader\asebamassloader.exe";
+		#endif
+		#if (!DEBUG && WINDOWS)
 		Compilateur.nomDuFichierASEBAMASSLOADER = Directory.GetCurrentDirectory() + "\\asebamassloader\\asebamassloader.exe";
 		#endif
-		#if LINUX
-		Compilateur.nomDuFichierASEBAMASSLOADER = "asebamassloader";
+		#if (LINUX)
+		Compilateur.nomDuFichierASEBAMASSLOADER = @"/usr/bin/asebamassloader";
 		#endif
 		
+
+		// Nom du fichier programme.b4t à tester
+		#if (DEBUG && WINDOWS)
+		Compilateur.nomDuFichierB4T = @"C:\Users\Okimi\Downloads\programme.b4t";
+		//Compilateur.nomDuFichierB4T = @"C:\Users\fort\Downloads\programme.b4t";
+		#endif
+		#if (DEBUG && LINUX)
+		Compilateur.nomDuFichierB4T = @"/home/okimi/Téléchargements/programme.b4t";
+		#endif
+		#if (!DEBUG)
 		Compilateur.nomDuFichierB4T = "";
 		if ( _args != null )
 			if ( _args.Length != 0 )
 				Compilateur.nomDuFichierB4T = _args[0];
-
-		#if DEBUG
-
-		Compilateur.afficherLesCommentaires = true;
-		
-		
-		// Nom et répertoire du fichier asebamassloader.exe
-		#if WINDOWS
-		Compilateur.nomDuFichierASEBAMASSLOADER = @"C:\Blockly4Thymio.v0.5\asebamassloader\asebamassloader.exe";
-		//Compilateur.nomDuFichierASEBAMASSLOADER = @"C:\Users\fort\Downloads\compilateur\setup-win\fichiers\asebamassloader\asebamassloader.exe";
-		
-		// Nom du fichier programme.b4t à tester
-		Compilateur.nomDuFichierB4T = @"C:\Users\Okimi\Downloads\programme.b4t";
-		//Compilateur.nomDuFichierB4T = @"C:\Users\fort\Downloads\programme.b4t";
-
-		#endif
-		#if LINUX
-		Compilateur.nomDuFichierASEBAMASSLOADER = "asebamassloader";
-		Compilateur.nomDuFichierB4T = @"/home/okimi/Téléchargements/programme.b4t";
 		#endif
 		
-		Compilateur.lancementAutomatique = true;
-
+		
+		// Affichage des messages d'erreur
 		Compilateur.afficheLesMessagesDErreur = true;
-
-		Compilateur.afficheLesMessagesDInformation = false;
-
-		#else
-
-		// Anlyse les arguments
-		// --------------------
-		#if WINDOWS
-		Compilateur.nomDuFichierASEBAMASSLOADER = Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase).Substring(6);                
-		Compilateur.nomDuFichierASEBAMASSLOADER += @"\asebamassloader\asebamassloader.exe";
-		#endif
-		#if LINUX
-		Compilateur.nomDuFichierASEBAMASSLOADER += @"asebamassloader.exe";
-		#endif
 		
-		Compilateur.afficheLesMessagesDErreur = true;
-
+		
+		// Affiche les messages d'information
+		#if (DEBUG)
 		Compilateur.afficheLesMessagesDInformation = true;
-
+		#else
+		Compilateur.afficheLesMessagesDInformation = false;
 		#endif
 
 

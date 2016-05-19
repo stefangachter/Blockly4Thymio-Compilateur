@@ -70,6 +70,10 @@ knowledge of the CeCILL license and that you accept its terms.
 
 
 
+#pragma warning disable 0414
+
+
+
 using	System;
 using	System.Drawing;
 using	System.Reflection;

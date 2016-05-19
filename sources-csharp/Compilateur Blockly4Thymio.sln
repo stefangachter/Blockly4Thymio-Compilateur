@@ -5,16 +5,23 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Compilateur Blockly4Thymio"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|x86 = Debug|x86
-		Release|x86 = Release|x86
+		Release-WINDOWS|x86 = Release-WINDOWS|x86
+		Debug-WINDOWS|x86 = Debug-WINDOWS|x86
+		Debug-LINUX|x86 = Debug-LINUX|x86
+		Release-LINUX|x86 = Release-LINUX|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{DA7F29C6-89C1-4D2A-AFB6-56434085EF05}.Debug|x86.ActiveCfg = Debug|x86
-		{DA7F29C6-89C1-4D2A-AFB6-56434085EF05}.Debug|x86.Build.0 = Debug|x86
-		{DA7F29C6-89C1-4D2A-AFB6-56434085EF05}.Release|x86.ActiveCfg = Release|x86
-		{DA7F29C6-89C1-4D2A-AFB6-56434085EF05}.Release|x86.Build.0 = Release|x86
+		{DA7F29C6-89C1-4D2A-AFB6-56434085EF05}.Debug-LINUX|x86.ActiveCfg = Debug-LINUX|x86
+		{DA7F29C6-89C1-4D2A-AFB6-56434085EF05}.Debug-LINUX|x86.Build.0 = Debug-LINUX|x86
+		{DA7F29C6-89C1-4D2A-AFB6-56434085EF05}.Debug-WINDOWS|x86.ActiveCfg = Debug-Windows|x86
+		{DA7F29C6-89C1-4D2A-AFB6-56434085EF05}.Debug-WINDOWS|x86.Build.0 = Debug-Windows|x86
+		{DA7F29C6-89C1-4D2A-AFB6-56434085EF05}.Release-LINUX|x86.ActiveCfg = Release-LINUX|x86
+		{DA7F29C6-89C1-4D2A-AFB6-56434085EF05}.Release-LINUX|x86.Build.0 = Release-LINUX|x86
+		{DA7F29C6-89C1-4D2A-AFB6-56434085EF05}.Release-WINDOWS|x86.ActiveCfg = Release-WINDOWS|x86
+		{DA7F29C6-89C1-4D2A-AFB6-56434085EF05}.Release-WINDOWS|x86.Build.0 = Release-WINDOWS|x86
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Compilateur Blockly4Thymio.csproj
 		Policies = $0
 		$0.DotNetNamingPolicy = $1
 		$1.DirectoryNamespaceAssociation = None
@@ -40,11 +47,9 @@ Global
 		$3.ConstructorBraceStyle = EndOfLine
 		$3.DestructorBraceStyle = EndOfLine
 		$3.ElseNewLinePlacement = DoNotCare
-		$3.ElseIfNewLinePlacement = DoNotCare
 		$3.CatchNewLinePlacement = DoNotCare
 		$3.FinallyNewLinePlacement = DoNotCare
 		$3.WhileNewLinePlacement = DoNotCare
-		$3.EmbeddedStatementPlacement = DoNotCare
 		$3.ArrayInitializerWrapping = DoNotChange
 		$3.inheritsSet = Mono
 		$3.inheritsScope = text/x-csharp

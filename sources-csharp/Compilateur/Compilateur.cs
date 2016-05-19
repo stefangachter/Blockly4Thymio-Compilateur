@@ -633,9 +633,16 @@ Blockly4Thymio utilise le programme asebamassloader.exe pour le transfert du fic
 		 */
         compteurDeSéquenceur = 0;
 		compteurDeMarqueur = 0;
-
+		
+		#if (WINDOWS)
 		nomDuFichierAESL = Path.GetDirectoryName(nomDuFichierB4T) + @"\" + "temp.aesl";
         nomDuFichierAESLTemp = Path.GetTempPath() + @"\" + "temp.aesl";
+		#endif
+		
+		#if (LINUX)
+		nomDuFichierAESL = Path.GetDirectoryName(nomDuFichierB4T) + "/temp.aesl";
+		nomDuFichierAESLTemp = Path.GetTempPath() + "/temp.aesl";
+		#endif
 
         événementsRacines = new List<__Evénement>();
 
@@ -840,6 +847,8 @@ Blockly4Thymio utilise le programme asebamassloader.exe pour le transfert du fic
 
 
         // Sauve le fichier .aesl
+		// Si le fichier ne peut être sauvegardé dans le répertoire du fichier .b4t,
+		// celui-ci est redirigé vers le répertoire temporaire du système
         try {	fichierAESL = new StreamWriter( nomDuFichierAESL ); }
 		catch {	fichierAESL = new StreamWriter( nomDuFichierAESLTemp ); }
         fichierAESL.Write( framework );
