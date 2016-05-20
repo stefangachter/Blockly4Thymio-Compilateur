@@ -635,8 +635,8 @@ Blockly4Thymio utilise le programme asebamassloader.exe pour le transfert du fic
 		compteurDeMarqueur = 0;
 		
 		#if (WINDOWS)
-		nomDuFichierAESL = Path.GetDirectoryName(nomDuFichierB4T) + @"\" + "temp.aesl";
-        nomDuFichierAESLTemp = Path.GetTempPath() + @"\" + "temp.aesl";
+		nomDuFichierAESL = Path.GetDirectoryName(nomDuFichierB4T) + @"\temp.aesl";
+        nomDuFichierAESLTemp = Path.GetTempPath() + @"\temp.aesl";
 		#endif
 		
 		#if (LINUX)
