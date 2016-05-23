@@ -136,12 +136,12 @@ static	class 	ProgrammePrincipal {
 		
 		// Nom et répertoire du fichier asebamassloader.exe
 		#if WINDOWS
-		Compilateur.nomDuFichierASEBAMASSLOADER = @"C:\Blockly4Thymio.v0.4\asebamassloader\asebamassloader.exe";
+		Compilateur.nomDuFichierASEBAMASSLOADER = @"C:\Blockly4Thymio.v0.51\asebamassloader\asebamassloader.exe";
 		//Compilateur.nomDuFichierASEBAMASSLOADER = @"C:\Users\fort\Downloads\compilateur\setup-win\fichiers\asebamassloader\asebamassloader.exe";
 		
 		// Nom du fichier programme.b4t à tester
 		Compilateur.nomDuFichierB4T = @"C:\Users\Okimi\Downloads\programme.b4t";
-		Compilateur.nomDuFichierB4T = @"C:\Users\fort\Downloads\programme.b4t";
+		//Compilateur.nomDuFichierB4T = @"C:\Users\fort\Downloads\programme.b4t";
 
 		#endif
 		#if LINUX

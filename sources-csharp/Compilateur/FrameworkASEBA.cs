@@ -230,7 +230,7 @@ onevent timer0
 
   # A chaque appel du timer, on sort un nombre aléatoire de 0 à 32767
   call math.rand( __nombreAleatoire )
-  __nombreAleatoire = __nombreAleatoire & 0x7fff
+  __nombreAleatoire = __nombreAleatoire &amp; 0x7fff
 
   if __etat == ETAT_EN_MARCHE then
     
