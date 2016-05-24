@@ -169,11 +169,10 @@ sub	__ArreteLesMoteurs
 
 
 sub __ExecuteLeProgramme
-  ### EVENEMENT AU LANCEMENT ###
+### EVENEMENT AU LANCEMENT ###
 
 
 sub __ArreteLeProgramme
-  
   # Arrête les moteurs
   callsub __ArreteLesMoteurs
   
@@ -193,7 +192,7 @@ sub __ArreteLeProgramme
 # ----------
 
 sub __Sequenceur
-  ### SEQUENCEUR ###
+### SEQUENCEUR ###
 
 
 
@@ -227,7 +226,6 @@ onevent button.center
 # Evénement déclenché par le timer pour le séquenceur
 # ---------------------------------------------------
 onevent timer0
-
   # A chaque appel du timer, on sort un nombre aléatoire de 0 à 32767
   call math.rand( __nombreAleatoire )
   __nombreAleatoire = __nombreAleatoire &amp; 0x7fff

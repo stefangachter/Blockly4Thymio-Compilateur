@@ -156,7 +156,7 @@ public	class	GroupeDInstructions_Boucle_Faire_TantQue_ENTCondition : __GroupeDIn
 
             switch( nomDeLAttribut ) {
             case "Condition" :
-				__conditionDeSortie = Compilateur.AnalyseUnNoeudDExpression( _UID,  XMLDUnNoeudFils.FirstChild, _blocPrécédent, _groupe );
+				__conditionDeSortie = "not ( " + Compilateur.AnalyseUnNoeudDExpression( _UID,  XMLDUnNoeudFils.FirstChild, _blocPrécédent, _groupe ) + " )";
 				break;
 			}
 

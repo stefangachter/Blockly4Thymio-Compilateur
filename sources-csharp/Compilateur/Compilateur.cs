@@ -404,9 +404,7 @@ public class	Compilateur {
 		case "0_6_Contrôles_SortDeLaBoucle" :
 			bloc = new Contrôle_SortDeLaBoucle( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
 			break;
-		case "0_6_Contrôles_TantQue_ENTCondition_Faire" :
-			bloc = new GroupeDInstructions_Boucle_TantQue_ENTCondition_Faire( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
-			break;
+
 
 
 		// Paramètres - version 0.4
@@ -509,18 +507,21 @@ public class	Compilateur {
 		// Boutons fléches
 		// ---------------
 		case "0_2_Valeur_Booléen_Bouton_FlècheAvant" :
-			code = __BOUTONS.code( (int)__BOUTONS.NOM.FLECHE_VERS_L_AVANT );
+			code = __BOUTONS.code( (int)__BOUTONS.NOM.FLÈCHE_VERS_L_AVANT );
 			break;
 		case "0_2_Valeur_Booléen_Bouton_FlècheArrière" :
-			code = __BOUTONS.code( (int)__BOUTONS.NOM.FLECHE_VERS_L_ARRIERE );
+			code = __BOUTONS.code( (int)__BOUTONS.NOM.FLÈCHE_VERS_L_ARRIÈRE );
 			break;
 		case "0_2_Valeur_Booléen_Bouton_FlècheADroite" :
-			code = __BOUTONS.code( (int)__BOUTONS.NOM.FLECHE_VERS_LA_DROITE );
+			code = __BOUTONS.code( (int)__BOUTONS.NOM.FLÈCHE_VERS_LA_DROITE );
 			break;
 		case "0_2_Valeur_Booléen_Bouton_FlècheAGauche" :
-			code = __BOUTONS.code( (int)__BOUTONS.NOM.FLECHE_VERS_LA_GAUCHE );
+			code = __BOUTONS.code( (int)__BOUTONS.NOM.FLÈCHE_VERS_LA_GAUCHE );
 			break;
-		
+		case "0_6_Valeur_Booléen_Bouton_AucuneFlèche" :
+			code = __BOUTONS.code( (int)__BOUTONS.NOM.FLÈCHE_AUCUNE );
+			break;
+
 		// Capteurs de proximité avant
 		// ---------------------------
 		case "0_2_Valeur_Booléen_Capteur_AvantDroite" :

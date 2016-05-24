@@ -93,10 +93,11 @@ public 		class 	__BOUTONS {
 
 	public	enum NOM {
 		// Enumération des boutons des flèches
-		FLECHE_VERS_L_ARRIERE,
-		FLECHE_VERS_L_AVANT,
-		FLECHE_VERS_LA_DROITE,		
-		FLECHE_VERS_LA_GAUCHE
+		FLÈCHE_AUCUNE,
+		FLÈCHE_VERS_L_ARRIÈRE,
+		FLÈCHE_VERS_L_AVANT,
+		FLÈCHE_VERS_LA_DROITE,		
+		FLÈCHE_VERS_LA_GAUCHE
 	}
 
 
@@ -123,16 +124,19 @@ public 		class 	__BOUTONS {
 		// Traitements
 		// -----------
 		switch( _bouton ) {
-		case (int)NOM.FLECHE_VERS_L_ARRIERE :
+		case (int)NOM.FLÈCHE_AUCUNE:
+			code = "(button.forward==0 and button.right==0 and button.backward==0 and button.left==0)";
+			break;
+		case (int)NOM.FLÈCHE_VERS_L_ARRIÈRE :
 			code = "button.backward==1";
 			break;
-		case (int)NOM.FLECHE_VERS_L_AVANT :
+		case (int)NOM.FLÈCHE_VERS_L_AVANT :
 			code = "button.forward==1";
 			break;
-		case (int)NOM.FLECHE_VERS_LA_DROITE :
+		case (int)NOM.FLÈCHE_VERS_LA_DROITE :
 			code = "button.right==1";
 			break;
-		case (int)NOM.FLECHE_VERS_LA_GAUCHE :
+		case (int)NOM.FLÈCHE_VERS_LA_GAUCHE :
 			code = "button.left==1";
 			break;
 		}

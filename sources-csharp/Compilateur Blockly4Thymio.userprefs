@@ -1,8 +1,10 @@
 ﻿<Properties StartupItem="Compilateur Blockly4Thymio.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Compilateur\FrameworkASEBA.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Compilateur\Compilateur.cs">
     <Files>
-      <File FileName="Compilateur\FrameworkASEBA.cs" Line="233" Column="46" />
+      <File FileName="ProgrammePrincipal.cs" Line="130" Column="33" />
+      <File FileName="Compilateur\Blocs\Valeurs\__Valeur_Capteurs.cs" Line="22" Column="19" />
+      <File FileName="Compilateur\Compilateur.cs" Line="522" Column="59" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
