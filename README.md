@@ -26,7 +26,9 @@ Suivi des versions
 
 ###Version 0.6
 * Nouvelles instructions : ARRETER LE PROGRAMME, SORT DE LA BOUCLE
+* Nouvelle boucle : FAIRE ... TANTQUE ...
 * Ajout d'une version hors ligne de l'interface de programmation
+* Nouveaux opérateurs logiques : OU, ET et NON
 
 
 ###Version 0.5
