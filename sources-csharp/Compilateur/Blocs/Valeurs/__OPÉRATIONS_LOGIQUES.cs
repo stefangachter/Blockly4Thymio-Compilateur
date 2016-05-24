@@ -71,44 +71,35 @@ knowledge of the CeCILL license and that you accept its terms.
 
 
 
+/*
+ * Classe OPÉRATIONS_LOGIQUES
+ * --------------------------
+ *
+ * Pour la déclaration des constantes
+ * et des fonctions des opérations logiques
+ *
+ */
+
+
 using 	System;
-using 	System.Xml;
 
 
-
-namespace		Blockly4Thymio {
-public class	__Valeur : __Bloc {
-
-    /*
-     * Membres
-     */
-    protected   String	__code;
-
-    
+namespace			Blockly4Thymio {
+public 		class 	__OPÉRATIONS_LOGIQUES {
 
 	/*
-	 * Propriétés surchargeant la classe mère __Bloc.
-     */
-    public override String codePourLeSéquenceur {
-    get { return __code; }
-    }
+	 * Constantes
+	 */
 
-    
-    
-    /*
-     * Constructeur
-     */
-    public	__Valeur( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDInstructions _groupe ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupe ) {
-
-		// Initialisations
-        // ---------------
-		__code = "";
-
-    }
+	public	enum NOM {
+		// Enumération des opérations logiques
+		OU,
+		ET,
+		NON
+	}
 
 
 
 }
 }
-
 

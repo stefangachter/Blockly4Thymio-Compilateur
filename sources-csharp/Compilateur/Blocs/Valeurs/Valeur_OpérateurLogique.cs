@@ -71,44 +71,74 @@ knowledge of the CeCILL license and that you accept its terms.
 
 
 
+/*
+ * Valeur_OpérateurLogique
+ * -----------------------
+ */
+
+
 using 	System;
 using 	System.Xml;
 
 
 
-namespace		Blockly4Thymio {
-public class	__Valeur : __Bloc {
+namespace 		Blockly4Thymio {
+public 	class 	Valeur_OpérateurLogique : __Valeur {
 
-    /*
-     * Membres
-     */
-    protected   String	__code;
+	String	valeur1;
+	String	valeur2;
 
-    
+
 
 	/*
-	 * Propriétés surchargeant la classe mère __Bloc.
-     */
-    public override String codePourLeSéquenceur {
-    get { return __code; }
-    }
+	 * Constructeur
+	 */
+	public	Valeur_OpérateurLogique( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDInstructions _groupe, int _opérationLogique ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupe ) {
 
-    
-    
-    /*
-     * Constructeur
-     */
-    public	__Valeur( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDInstructions _groupe ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupe ) {
+		// Déclarations
+		// ------------
 
-		// Initialisations
-        // ---------------
-		__code = "";
+		String	nomDeLAttribut;
 
-    }
 
+
+        // Traitements
+        // -----------
+
+        // Analyse du Bloc d'instruction
+        foreach  (XmlNode XMLDUnNoeudFils in _XMLDuBloc ) {
+
+            nomDeLAttribut = "";
+            if (XMLDUnNoeudFils.Attributes["name"] != null)
+                nomDeLAttribut = XMLDUnNoeudFils.Attributes["name"].Value;
+			
+            switch(nomDeLAttribut) {
+			case "Valeur1":
+				valeur1 = Compilateur.AnalyseUnNoeudDExpression( _UID, XMLDUnNoeudFils.FirstChild, _blocPrécédent, _groupe );
+				break;
+			case "Valeur2":
+				valeur2 = Compilateur.AnalyseUnNoeudDExpression( _UID, XMLDUnNoeudFils.FirstChild, _blocPrécédent, _groupe );
+				break;
+			}
+
+		}
+
+
+		switch( _opérationLogique ) {
+		case (int)__OPÉRATIONS_LOGIQUES.NOM.OU :
+			__code = "(" + valeur1 + " or " + valeur2 + ")";
+			break;
+		case (int)__OPÉRATIONS_LOGIQUES.NOM.ET :
+			__code = "(" + valeur1 + " and " + valeur2 + ")";
+			break;
+		case (int)__OPÉRATIONS_LOGIQUES.NOM.NON :
+			__code = "not (" + valeur1 + ")";
+			break;
+		}
+
+	}
 
 
 }
 }
-
 

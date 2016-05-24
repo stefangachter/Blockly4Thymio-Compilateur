@@ -591,7 +591,22 @@ public class	Compilateur {
 		// Valeur au hasard
 		// ----------------
 		case "0_6_Valeur_Aléatoire_Entre0et7":
-			code = "__valeurAleatoire & 0x7";
+			code = "__valeurAleatoire &amp; 0x7";
+			break;
+
+		 // Opérateurs logiques
+		 // -------------------
+		case "0_6_Valeur_Booléen_OULogique_ENTBooleen_ENTBooleen" :
+			expression = new Valeur_OpérateurLogique( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe, (int)__OPÉRATIONS_LOGIQUES.NOM.OU );
+			code = expression.codePourLeSéquenceur;
+			break;
+		case "0_6_Valeur_Booléen_ETLogique_ENTBooleen_ENTBooleen" :
+			expression = new Valeur_OpérateurLogique( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe, (int)__OPÉRATIONS_LOGIQUES.NOM.ET );
+			code = expression.codePourLeSéquenceur;
+			break;
+		case "0_6_Valeur_Booléen_NONLogique_ENTBooleen":
+			expression = new Valeur_OpérateurLogique( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe, (int)__OPÉRATIONS_LOGIQUES.NOM.NON );
+			code = expression.codePourLeSéquenceur;
 			break;
 
 
