@@ -285,6 +285,11 @@ public class	Compilateur {
 			bloc = new __Mouvement_Tourne_AvecAngle( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe, (int)__MOTEUR.TOURNE_A_GAUCHE, 90 );
 			break;
 
+		// Mouvements - version 0.6
+		// ------------------------
+		case "0_6_Mouvement_VitesseDesRoues_SAIVitesseAGauche_SAIVitesseADroite":
+			bloc = new Mouvement_VitesseDesRoues_SAIVitesseAGauche_SAIVitesseADroite( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
+			break;
 
 
 		// Lumières - version 0.1b

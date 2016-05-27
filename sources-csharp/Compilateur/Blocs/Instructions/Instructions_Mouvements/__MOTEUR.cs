@@ -99,6 +99,7 @@ public 		class 	__MOTEUR {
     public	const	int	SENS_AUCUN			= 0;
 	public	const	int	SENS_EN_AVANT		= 1;
 	public	const	int	SENS_EN_ARRIERE		= 2;
+	public	const	int	SENS_LIBRE			= 3;
 
 	// Vitesses
 	public	const	int	VITESSE_NULLE 		=   0;
@@ -123,7 +124,7 @@ public 		class 	__MOTEUR {
 	 * Méthodes statiques
 	 */
 	
-	public	static	String	codeDeTraitement( int _sens, int _vitesse ) {
+	public	static	String	codeDeTraitement( int _sens, int _vitesseAGauche, int _vitesseADroite = 0 ) {
 
 		// Déclarations
 		// ------------
@@ -137,17 +138,21 @@ public 		class 	__MOTEUR {
 
 		// Contrôles
 		// ---------
-		_vitesse = contrôleDeLaVitesse( _vitesse );
+		_vitesseADroite = contrôleDeLaVitesse( _vitesseADroite );
+		_vitesseAGauche = contrôleDeLaVitesse( _vitesseAGauche );
 
 
 		// Traitements
 		// -----------
 		switch( _sens ) {
 		case (int)SENS_EN_AVANT :
-			code = "motor.left.target=" + _vitesse + " motor.right.target=" + _vitesse;
+			code = "motor.left.target=" + _vitesseAGauche + " motor.right.target=" + _vitesseAGauche;
 			break;
 		case (int)SENS_EN_ARRIERE :
-			code = "motor.left.target=-" + _vitesse + " motor.right.target=-" + _vitesse;
+			code = "motor.left.target=-" + _vitesseAGauche + " motor.right.target=-" + _vitesseAGauche;
+			break;
+		case (int)SENS_LIBRE :
+			code = "motor.left.target=-" + _vitesseAGauche + " motor.right.target=-" + _vitesseADroite;
 			break;
 		}
 

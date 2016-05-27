@@ -72,79 +72,87 @@ knowledge of the CeCILL license and that you accept its terms.
 
 
 /*
- * __Mouvement_Déplacement
- * -----------------------
+ * Mouvement_Déplacement_SAIVitesseAGauche_SAIVitesseADroite
+ * ---------------------------------------------------------
  *
- * Fait se déplacer le robot.
- *
- * Niveau de l'instruction : Découverte
+ * Met en marche les roues du robot en fonction de la 
+ * vitesse de chaque moteur.
  * 
  */
+
 
 using 	System;
 using 	System.Xml;
 
 
 namespace		Blockly4Thymio {
-public	class	__Mouvement_Déplacement : __Instruction {
-
-    /*
-	 * Membres
-	 */
-	protected int __vitesseADroite;		// Vitesse de déplacement pour la roue droite
-    protected int __vitesseAGauche;		// Vitesse de déplacement globale ou pour la roue gauche
-    protected int __sens;				// Sens de déplacememt
-
-
-
-	/*
-	 * Propriétés surchargeant la classe mère Instruction.
-     */
-	public	override	int		nombreDeSéquence { get { return 1; } }
-
-    public	override	String	codeDeTraitement {
-	get { return __MOTEUR.codeDeTraitement( __sens, __vitesseAGauche, __vitesseADroite ); }
-    }
-
-
+public	class	Mouvement_VitesseDesRoues_SAIVitesseAGauche_SAIVitesseADroite : __Mouvement_Déplacement {
 
     /*
 	 * Constructeur
 	 */
-    public	__Mouvement_Déplacement( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDInstructions _groupe, int _sens, int _vitesseAGauche, int _vitesseADroite = 0 ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupe ) {
+	public	Mouvement_VitesseDesRoues_SAIVitesseAGauche_SAIVitesseADroite( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDInstructions _groupe ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupe, __MOTEUR.SENS_LIBRE, 0, 0 ) {
 
-        // Initialisation des membres
-        // --------------------------
+        // Déclarations
+        // ------------
+        String nomDeLAttribut;
 
-		__vitesseADroite = _vitesseADroite;
-        __vitesseAGauche = _vitesseAGauche;
-        __sens = _sens;
 
+        // Analyse du Bloc d'instruction
+        foreach ( XmlNode XMLDUnNoeudFils in _XMLDuBloc.ChildNodes ) {
+
+            nomDeLAttribut = "";
+            if ( XMLDUnNoeudFils.Attributes["name"] != null )
+                nomDeLAttribut = XMLDUnNoeudFils.Attributes["name"].Value;
+
+            switch ( nomDeLAttribut ) {
+			case "VitesseAGauche":
+				__vitesseAGauche = ContrôleLaVitesse( int.Parse(XMLDUnNoeudFils.InnerText) );
+                break;
+			case "VitesseADroite":
+				__vitesseADroite = ContrôleLaVitesse( int.Parse(XMLDUnNoeudFils.InnerText) );
+                break;
+            }
+
+        }
 
 
         // Code d'initialisation
         // ---------------------
 
-        // Aucun
+        // Dans la classe mère
 
 
         // Code de traitement
         // ------------------
 
-        // Surchargé par la classe
+        // Dans la classe mère : Aucun
 
 
         // Code de fin
         // -----------
 
-        // Aucun
+        // Dans la classe mère
 
 
         // Condition de passage à l'instruction suivante
         // ---------------------------------------------
 
-        // Aucun
+        // Dans la classe mère
 
+    }
+
+
+    private	int	ContrôleLaVitesse( int _vitesse ) {
+		if (_vitesse < -100) {
+			_vitesse = -100;
+			Compilateur.AfficheUnMessageDInformation( Messages.Message((int)Messages.TYPE.VITESSE_INFÉRIEURE_A_MOINS_100_POURCENT) );
+		}
+		if (_vitesse > 100) {
+			_vitesse = 100;
+			Compilateur.AfficheUnMessageDInformation( Messages.Message((int)Messages.TYPE.VITESSE_SUPÉRIEURE_A_100_POURCENT) );
+		}
+		return _vitesse;
     }
 
 
