@@ -993,7 +993,30 @@ public class	Compilateur {
 		return "%%%MARQUEUR_" + compteurDeMarqueur + "%%%";
 	}
     
-	
+
+    /// <summary>
+    /// Optimise le code du séquenceur, en supprimant les instructions "Saute mouton"
+    /// </summary>
+    public	static	String	Optimisation() {
+		/* Recherche une séquence de saute monton à l'aide d'une expession régulière
+		Aide sur les sites :
+			http://www.regexlib.com/RETester.aspx
+			http://lgmorand.developpez.com/dotnet/regex/#L5
+			http://www.expreg.com/symbole.php
+
+		Expression de test
+			\s*if\s*sequenceur\[[0-9]+\]==[0-9]+\s*then\s*sequenceur\[[0-9]+\]=[0-9]+\s*end
+		Retourne le résultat
+			if sequenceur[0]==1 then sequenceur[0]=2 end
+		Pour la séquencce :
+			if sequenceur[0]==1 then
+			  sequenceur[0]=2
+			end
+		*/
+    }
+
+
+
 	/// <summary>
     /// Transmission du fichier .aesl, à l'aide de l'exécutable asebamassloader.exe
     /// Tests en cours pour réaliser la transmission à l'aide de asebahttp, qui est compatible avec Aseba protocol 5 (pour le firware 10 de Thymio)
