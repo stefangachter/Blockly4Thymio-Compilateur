@@ -313,6 +313,11 @@ public class	Compilateur {
 			bloc = new Lumières_AllumeLesLEDs_SELLED_SELCouleur_SAIDurée( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
 			break;
 
+		// Lumières - version 0.6
+		// ----------------------
+		case "0_6_Lumières_EteinsToutesLesLEDs" :
+			bloc = new __Lumières_AllumeLesLEDs( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe, __LED.TOUTE_LES_LEDS, 0 );
+			break;
 
 
 		// Sons - version 0.1b
