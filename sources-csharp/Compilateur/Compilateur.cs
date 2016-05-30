@@ -411,8 +411,8 @@ public class	Compilateur {
 		case "0_6_Contrôles_Faire_TantQue_ENTCondition" :
 			bloc = new GroupeDInstructions_Boucle_Faire_TantQue_ENTCondition( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
 			break;
-		case "0_6_Contrôles_SortDeLaBoucle" :
-			bloc = new Contrôle_SortDeLaBoucle( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
+		case "0_6_Contrôles_SortDeLaBoucleFaire" :
+			bloc = new Contrôle_SortDeLaBoucleFaire( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
 			break;
 
 
@@ -997,7 +997,7 @@ public class	Compilateur {
     /// <summary>
     /// Optimise le code du séquenceur, en supprimant les instructions "Saute mouton"
     /// </summary>
-    public	static	String	Optimisation() {
+    public	static	void Optimisation() {
 		/* Recherche une séquence de saute monton à l'aide d'une expession régulière
 		Aide sur les sites :
 			http://www.regexlib.com/RETester.aspx

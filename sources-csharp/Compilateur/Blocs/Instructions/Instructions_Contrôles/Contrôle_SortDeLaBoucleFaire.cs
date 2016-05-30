@@ -90,7 +90,7 @@ using 	System.Xml;
 
 
 namespace		Blockly4Thymio {
-public	class	Contrôle_SortDeLaBoucle : __Instruction {
+public	class	Contrôle_SortDeLaBoucleFaire : __Instruction {
 
 	/*
 	 * Propriétés surchargeant la classe mère Instruction.
@@ -126,18 +126,18 @@ public	class	Contrôle_SortDeLaBoucle : __Instruction {
 		if ( bouclePrécédente == null ) {
 			// Le bloc n'est pas dans un groupe, le séquenceur s'arrête.
 			code += "if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n";
-			code += "  __sequenceur[" + UIDDuSéquenceur + "]==0\n";
+			code += "  __sequenceur[" + UIDDuSéquenceur + "]=0\n";
 			code += "end\n";
 		} else {
 			if ( bouclePrécédente.blocSuivant == null ) {
 				// Il n'y a pas de bloc après le groupe, le séquenceur s'arrête.
 				code += "if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n";
-				code += "  __sequenceur[" + UIDDuSéquenceur + "]==0\n";
+				code += "  __sequenceur[" + UIDDuSéquenceur + "]=0\n";
 				code += "end\n";
 			} else {
 				// Le séquencceur passe à l'instruction qui suit la boucle
 				code += "if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n";
-				code += "  __sequenceur[" + UIDDuSéquenceur + "]==" + bouclePrécédente.UIDDuBlocSuivant + "\n";
+				code += "  __sequenceur[" + UIDDuSéquenceur + "]=" + bouclePrécédente.UIDDuBlocSuivant + "\n";
 				code += "end\n";
 			}
 		}
@@ -151,7 +151,7 @@ public	class	Contrôle_SortDeLaBoucle : __Instruction {
 	/*
 	 * Constructeur
 	 */
-	public	Contrôle_SortDeLaBoucle( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDInstructions _groupe ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupe ) {
+	public	Contrôle_SortDeLaBoucleFaire( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDInstructions _groupe ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupe ) {
 
 		// Taille de l'instruction
 		// -----------------------

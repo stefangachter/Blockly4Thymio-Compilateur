@@ -119,7 +119,7 @@ public	class	Contrôle_ArrêteLeProgramme : __Instruction {
 		}
 
 		code += "if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n";
-		code += "  __sequenceur[" + UIDDuSéquenceur + "]==0\n";
+		code += "  __sequenceur[" + UIDDuSéquenceur + "]=0\n";
 		code += "end\n";
 
 		return code;
