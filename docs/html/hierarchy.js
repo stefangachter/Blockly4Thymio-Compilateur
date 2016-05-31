@@ -37,7 +37,9 @@ var hierarchy =
           [ "Blockly4Thymio.Lumières_AllumeToutesLesLEDsPendant1Seconde_SELCouleur", "class_blockly4_thymio_1_1_lumi_xC3_xA8res___allume_toutes_les_l_e_ds_pendant1_seconde___s_e_l_couleur.html", null ]
         ] ],
         [ "Blockly4Thymio.__Mouvement_Arrêt", "class_blockly4_thymio_1_1_____mouvement___arr_xC3_xAAt.html", null ],
-        [ "Blockly4Thymio.__Mouvement_Déplacement", "class_blockly4_thymio_1_1_____mouvement___d_xC3_xA9placement.html", null ],
+        [ "Blockly4Thymio.__Mouvement_Déplacement", "class_blockly4_thymio_1_1_____mouvement___d_xC3_xA9placement.html", [
+          [ "Blockly4Thymio.Mouvement_VitesseDesRoues_SAIVitesseAGauche_SAIVitesseADroite", "class_blockly4_thymio_1_1_mouvement___vitesse_des_roues___s_a_i_vitesse_a_gauche___s_a_i_vitesse_a_droite.html", null ]
+        ] ],
         [ "Blockly4Thymio.__Mouvement_Déplacement_AvecDistance", "class_blockly4_thymio_1_1_____mouvement___d_xC3_xA9placement___avec_distance.html", [
           [ "Blockly4Thymio.Mouvement_Déplacement_SELVitesse_SAIDistance", "class_blockly4_thymio_1_1_mouvement___d_xC3_xA9placement___s_e_l_vitesse___s_a_i_distance.html", null ]
         ] ],
@@ -52,7 +54,7 @@ var hierarchy =
         ] ],
         [ "Blockly4Thymio.__Sons_JoueUnSon_SELSon", "class_blockly4_thymio_1_1_____sons___joue_un_son___s_e_l_son.html", null ],
         [ "Blockly4Thymio.Contrôle_ArrêteLeProgramme", "class_blockly4_thymio_1_1_contr_xC3_xB4le___arr_xC3_xAAte_le_programme.html", null ],
-        [ "Blockly4Thymio.Contrôle_SortDeLaBoucle", "class_blockly4_thymio_1_1_contr_xC3_xB4le___sort_de_la_boucle.html", null ],
+        [ "Blockly4Thymio.Contrôle_SortDeLaBoucleFaire", "class_blockly4_thymio_1_1_contr_xC3_xB4le___sort_de_la_boucle_faire.html", null ],
         [ "Blockly4Thymio.Sons_RejoueLeSonEnregistré", "class_blockly4_thymio_1_1_sons___rejoue_le_son_enregistr_xC3_xA9.html", null ]
       ] ],
       [ "Blockly4Thymio.__Paramètre", "class_blockly4_thymio_1_1_____param_xC3_xA8tre.html", [
@@ -63,13 +65,15 @@ var hierarchy =
         [ "Blockly4Thymio.__Valeur_Boutons", "class_blockly4_thymio_1_1_____valeur___boutons.html", null ],
         [ "Blockly4Thymio.__Valeur_Capteurs", "class_blockly4_thymio_1_1_____valeur___capteurs.html", null ],
         [ "Blockly4Thymio.Valeur_CapteurIR_SELBouton", "class_blockly4_thymio_1_1_valeur___capteur_i_r___s_e_l_bouton.html", null ],
-        [ "Blockly4Thymio.Valeur_CapteurIR_SELTouche", "class_blockly4_thymio_1_1_valeur___capteur_i_r___s_e_l_touche.html", null ]
+        [ "Blockly4Thymio.Valeur_CapteurIR_SELTouche", "class_blockly4_thymio_1_1_valeur___capteur_i_r___s_e_l_touche.html", null ],
+        [ "Blockly4Thymio.Valeur_OpérateurLogique", "class_blockly4_thymio_1_1_valeur___op_xC3_xA9rateur_logique.html", null ]
       ] ]
     ] ],
     [ "Blockly4Thymio.__BOUTONS", "class_blockly4_thymio_1_1_____b_o_u_t_o_n_s.html", null ],
     [ "Blockly4Thymio.__CAPTEURS", "class_blockly4_thymio_1_1_____c_a_p_t_e_u_r_s.html", null ],
     [ "Blockly4Thymio.__LED", "class_blockly4_thymio_1_1_____l_e_d.html", null ],
     [ "__MOTEUR", "class_____m_o_t_e_u_r.html", null ],
+    [ "Blockly4Thymio.__OPÉRATIONS_LOGIQUES", "class_blockly4_thymio_1_1_____o_p_xC3_x89_r_a_t_i_o_n_s___l_o_g_i_q_u_e_s.html", null ],
     [ "__SONS", "class_____s_o_n_s.html", null ],
     [ "Blockly4Thymio.Compilateur", "class_blockly4_thymio_1_1_compilateur.html", null ],
     [ "Form", null, [

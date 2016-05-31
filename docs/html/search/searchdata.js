@@ -1,9 +1,9 @@
 var indexSectionsWithContent =
 {
-  0: "_abcdefglmnpsuv",
+  0: "_abcdefglmnopsuv",
   1: "_cefglmpsv",
   2: "bc",
-  3: "acdmn",
+  3: "acdmno",
   4: "_al",
   5: "bu"
 };
@@ -20,11 +20,11 @@ var indexSectionNames =
 
 var indexSectionLabels =
 {
-  0: "All",
+  0: "Tout",
   1: "Classes",
-  2: "Namespaces",
-  3: "Functions",
+  2: "Espaces de nommage",
+  3: "Fonctions",
   4: "Variables",
-  5: "Properties"
+  5: "Propriétés"
 };
 

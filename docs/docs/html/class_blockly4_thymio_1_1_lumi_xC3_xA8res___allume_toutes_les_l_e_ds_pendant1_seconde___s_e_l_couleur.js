@@ -1,4 +1,0 @@
-var class_blockly4_thymio_1_1_lumi_xC3_xA8res___allume_toutes_les_l_e_ds_pendant1_seconde___s_e_l_couleur =
-[
-    [ "Lumières_AllumeToutesLesLEDsPendant1Seconde_SELCouleur", "class_blockly4_thymio_1_1_lumi_xC3_xA8res___allume_toutes_les_l_e_ds_pendant1_seconde___s_e_l_couleur.html#a58a5a961599248be5e7da5595f5fea42", null ]
-];

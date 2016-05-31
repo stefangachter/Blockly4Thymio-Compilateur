@@ -22,6 +22,7 @@ var searchData=
   ['_5f_5fmouvement_5fdéplacement',['__Mouvement_Déplacement',['../class_blockly4_thymio_1_1_____mouvement___d_xC3_xA9placement.html',1,'Blockly4Thymio']]],
   ['_5f_5fmouvement_5fdéplacement_5favecdistance',['__Mouvement_Déplacement_AvecDistance',['../class_blockly4_thymio_1_1_____mouvement___d_xC3_xA9placement___avec_distance.html',1,'Blockly4Thymio']]],
   ['_5f_5fmouvement_5ftourne_5favecangle',['__Mouvement_Tourne_AvecAngle',['../class_blockly4_thymio_1_1_____mouvement___tourne___avec_angle.html',1,'Blockly4Thymio']]],
+  ['_5f_5fopÉrations_5flogiques',['__OPÉRATIONS_LOGIQUES',['../class_blockly4_thymio_1_1_____o_p_xC3_x89_r_a_t_i_o_n_s___l_o_g_i_q_u_e_s.html',1,'Blockly4Thymio']]],
   ['_5f_5fparamètre',['__Paramètre',['../class_blockly4_thymio_1_1_____param_xC3_xA8tre.html',1,'Blockly4Thymio']]],
   ['_5f_5fsons',['__SONS',['../class_____s_o_n_s.html',1,'']]],
   ['_5f_5fsons_5fenregistreunson_5favecdurée',['__Sons_EnregistreUnSon_AvecDurée',['../class_blockly4_thymio_1_1_____sons___enregistre_un_son___avec_dur_xC3_xA9e.html',1,'Blockly4Thymio']]],

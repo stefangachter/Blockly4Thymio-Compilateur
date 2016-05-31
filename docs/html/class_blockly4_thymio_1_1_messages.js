@@ -9,6 +9,8 @@ var class_blockly4_thymio_1_1_messages =
       [ "DISTANCE_SUPÉRIEURE_A_100", "class_blockly4_thymio_1_1_messages.html#a46af00780c7967d92edc32c000ac6591acefa897443edd17f12e200ccee4e1271", null ],
       [ "ANGLE_INFÉRIEURE_A_0", "class_blockly4_thymio_1_1_messages.html#a46af00780c7967d92edc32c000ac6591afce1a0eaa395d6238083787e51eeb490", null ],
       [ "ANGLE_SUPÉRIEURE_A_360", "class_blockly4_thymio_1_1_messages.html#a46af00780c7967d92edc32c000ac6591a69b28bdc652c6606f621da1afcda134f", null ],
+      [ "VITESSE_INFÉRIEURE_A_MOINS_100_POURCENT", "class_blockly4_thymio_1_1_messages.html#a46af00780c7967d92edc32c000ac6591a5c7a8705dd1527ecaf15b5659e4243ec", null ],
+      [ "VITESSE_SUPÉRIEURE_A_100_POURCENT", "class_blockly4_thymio_1_1_messages.html#a46af00780c7967d92edc32c000ac6591a43d2913677cb9c286abec35fc12463b0", null ],
       [ "ASEBAMASSLOADER_INTROUVABLE", "class_blockly4_thymio_1_1_messages.html#a46af00780c7967d92edc32c000ac6591a145025ba5889d1aff76f1cea84f275fe", null ],
       [ "PAS_D_INSTRUCTION_DE_DÉPART", "class_blockly4_thymio_1_1_messages.html#a46af00780c7967d92edc32c000ac6591a0909f0d492f450ac9ef3d5fee069e790", null ],
       [ "FICHIER", "class_blockly4_thymio_1_1_messages.html#a46af00780c7967d92edc32c000ac6591a71bfb003becd7cb41f34a446badb708f", null ],
