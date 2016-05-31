@@ -16,6 +16,8 @@ sources-csharp/bld/
 sources-csharp/[Bb]in/
 sources-csharp/[Oo]bj/
 
+setup-win/fichiers/interface-hors-ligne/
+
 # Roslyn cache directories
 *.ide/
 
