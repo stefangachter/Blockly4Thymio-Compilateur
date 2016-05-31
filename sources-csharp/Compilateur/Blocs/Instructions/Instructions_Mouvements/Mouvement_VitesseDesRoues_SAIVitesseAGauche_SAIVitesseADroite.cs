@@ -107,10 +107,10 @@ public	class	Mouvement_VitesseDesRoues_SAIVitesseAGauche_SAIVitesseADroite : __M
 
             switch ( nomDeLAttribut ) {
 			case "VitesseAGauche":
-				__vitesseAGauche = ContrôleLaVitesse( int.Parse(XMLDUnNoeudFils.InnerText) );
+				__vitesseAGauche = 5 * ContrôleLaVitesse( int.Parse(XMLDUnNoeudFils.InnerText) );
                 break;
 			case "VitesseADroite":
-				__vitesseADroite = ContrôleLaVitesse( int.Parse(XMLDUnNoeudFils.InnerText) );
+				__vitesseADroite = 5 * ContrôleLaVitesse( int.Parse(XMLDUnNoeudFils.InnerText) );
                 break;
             }
 

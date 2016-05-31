@@ -1,9 +1,12 @@
 ﻿<Properties StartupItem="Compilateur Blockly4Thymio.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Compilateur\Compilateur.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Compilateur\Blocs\Instructions\Instructions_Mouvements\__MOTEUR.cs">
     <Files>
       <File FileName="Compilateur\Compilateur.cs" Line="414" Column="42" />
-      <File FileName="Compilateur\Blocs\Instructions\Instructions_Contrôles\Contrôle_SortDeLaBoucleFaire.cs" Line="154" Column="37" />
+      <File FileName="ProgrammePrincipal.cs" Line="144" Column="3" />
+      <File FileName="Compilateur\Blocs\Instructions\Instructions_Mouvements\Mouvement_VitesseDesRoues_SAIVitesseAGauche_SAIVitesseADroite.cs" Line="113" Column="28" />
+      <File FileName="Compilateur\Blocs\Instructions\Instructions_Mouvements\__Mouvement_Déplacement.cs" Line="106" Column="40" />
+      <File FileName="Compilateur\Blocs\Instructions\Instructions_Mouvements\__MOTEUR.cs" Line="166" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -152,7 +152,7 @@ public 		class 	__MOTEUR {
 			code = "motor.left.target=-" + _vitesseAGauche + " motor.right.target=-" + _vitesseAGauche;
 			break;
 		case (int)SENS_LIBRE :
-			code = "motor.left.target=-" + _vitesseAGauche + " motor.right.target=-" + _vitesseADroite;
+			code = "motor.left.target=" + _vitesseAGauche + " motor.right.target=" + _vitesseADroite;
 			break;
 		}
 
