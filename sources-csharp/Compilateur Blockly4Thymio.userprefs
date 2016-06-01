@@ -1,5 +1,5 @@
 ﻿<Properties StartupItem="Compilateur Blockly4Thymio.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|x86" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Compilateur\Blocs\Instructions\Instructions_Mouvements\__Mouvement_Tourne_AvecAngle.cs">
     <Files>
       <File FileName="Compilateur\Blocs\Instructions\Instructions_Mouvements\__Mouvement_Tourne_AvecAngle.cs" Line="93" Column="58" />
