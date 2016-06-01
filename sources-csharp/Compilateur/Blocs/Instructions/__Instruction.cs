@@ -157,7 +157,8 @@ public	class	__Instruction : __Bloc {
 						// Il n'y a pas de séquence de fin dans les groupes de type condition
 						if (groupeDuBloc.blocSuivant == null) {
 							// Pas de bloc suivant le groupe, le séquenceur s'arrête
-							code += "  __sequenceur[" + UIDDuSéquenceur + "]=0\n";
+							//code += "  __sequenceur[" + UIDDuSéquenceur + "]=0\n";
+							code += "  __sequenceur[" + UIDDuSéquenceur + "]=" + groupeDuBloc.UIDDeFin + "\n";
 						} else {
 							// Il y a un bloc après le groupe, le séquenceur passe sur celui-ci
 							code += "  __sequenceur[" + UIDDuSéquenceur + "]=" + groupeDuBloc.blocSuivant.UID + "\n";
