@@ -1,12 +1,8 @@
 ﻿<Properties StartupItem="Compilateur Blockly4Thymio.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="ProgrammePrincipal.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Compilateur\Blocs\Instructions\Instructions_Mouvements\__Mouvement_Tourne_AvecAngle.cs">
     <Files>
-      <File FileName="Compilateur\Compilateur.cs" Line="79" Column="19" />
-      <File FileName="ProgrammePrincipal.cs" Line="88" Column="17" />
-      <File FileName="Compilateur\Blocs\Instructions\Instructions_Mouvements\Mouvement_VitesseDesRoues_SAIVitesseAGauche_SAIVitesseADroite.cs" Line="1" Column="1" />
-      <File FileName="Compilateur\Blocs\Instructions\Instructions_Mouvements\__Mouvement_Déplacement.cs" Line="1" Column="1" />
-      <File FileName="Compilateur\Blocs\Instructions\Instructions_Mouvements\__MOTEUR.cs" Line="166" Column="2" />
+      <File FileName="Compilateur\Blocs\Instructions\Instructions_Mouvements\__Mouvement_Tourne_AvecAngle.cs" Line="93" Column="58" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
