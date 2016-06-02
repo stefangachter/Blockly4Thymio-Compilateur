@@ -7,7 +7,7 @@
                    www.blockly4thymio.net
       Blockly4Thymio - © 2015-2016 Okimi (contact at okimi dot net)
 
-Liste des sons pour le compilateur Blockly4Thymio version 0.4 minimum
+Liste des sons pour le compilateur Blockly4Thymio, version 0.4 minimum
 
 p0.wav		Thymio dit bonjour
 p1.wav		Thymio est surpris

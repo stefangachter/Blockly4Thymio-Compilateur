@@ -79,7 +79,6 @@ public	class	__Instruction : __Bloc {
 					// le séquenceur s'arrête.
 					code += "  __sequenceur[" + UIDDuSéquenceur + "]=0\n";
 				} else {
-					
 					// Le bloc est dans un groupe,
 					// le séquenceur passe à la séquence de fin de ce groupe
 					groupeDuBloc = (__GroupeDInstructions)groupe;
@@ -144,7 +143,6 @@ public	class	__Instruction : __Bloc {
 					// le séquenceur s'arrête.
 					code += "    __sequenceur[" + UIDDuSéquenceur + "]=0\n";
 				} else {
-
 					// Le bloc est dans un groupe,
 					// le séquenceur passe à la séquence de fin de ce groupe
 					groupeDuBloc = (__GroupeDInstructions)groupe;

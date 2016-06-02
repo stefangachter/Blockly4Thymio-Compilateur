@@ -2,7 +2,7 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug-Windows</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProjectGuid>{DA7F29C6-89C1-4D2A-AFB6-56434085EF05}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -15,7 +15,6 @@
     <Description>Compilateur du projet Blockly4Thymio.
 Transforme un fichiers .b4t en fichier .aesl puis le transmet à Thymio.</Description>
     <ApplicationIcon>icone.ico</ApplicationIcon>
-    <TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
     <PublishUrl>publier\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -33,22 +32,48 @@ Transforme un fichiers .b4t en fichier .aesl puis le transmet à Thymio.</Descri
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
+    <TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
-    <PlatformTarget>x86</PlatformTarget>
-    <OutputPath>bin\x86\Debug\</OutputPath>
-    <WarningLevel>4</WarningLevel>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug-Windows|x86' ">
     <Optimize>false</Optimize>
-    <DefineConstants>DEBUG</DefineConstants>
+    <OutputPath>bin\x86\Debug-Windows\</OutputPath>
+    <DefineConstants>DEBUG WINDOWS</DefineConstants>
+    <WarningLevel>4</WarningLevel>
     <RunCodeAnalysis>false</RunCodeAnalysis>
     <Commandlineparameters>"C:\Users\fort\Downloads\compilateur\programme.b4t"</Commandlineparameters>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <PlatformTarget>x86</PlatformTarget>
+    <AssemblyName>Compilateur.0.51</AssemblyName>
+    <TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release-WINDOWS|x86' ">
+    <Optimize>false</Optimize>
     <OutputPath>bin\x86\Release\</OutputPath>
     <WarningLevel>4</WarningLevel>
-    <Optimize>false</Optimize>
     <RunCodeAnalysis>false</RunCodeAnalysis>
+    <PlatformTarget>x86</PlatformTarget>
+    <AssemblyName>Compilateur.0.51</AssemblyName>
+    <TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
+    <DefineConstants>WINDOWS</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug-LINUX|x86' ">
+    <Optimize>false</Optimize>
+    <OutputPath>bin\x86\Debug-LINUX</OutputPath>
+    <WarningLevel>4</WarningLevel>
+    <AssemblyName>Compilateur Blockly4Thymio</AssemblyName>
+    <PlatformTarget>x86</PlatformTarget>
+    <DefineConstants>DEBUG LINUX</DefineConstants>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release-LINUX|x86' ">
+    <Optimize>false</Optimize>
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>LINUX</DefineConstants>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
+    <AssemblyName>Compilateur.0.51</AssemblyName>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

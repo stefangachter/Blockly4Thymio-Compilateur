@@ -31,6 +31,10 @@ Suivi des versions
 * Nouveaux opérateurs logiques : OU, ET et NON
 
 
+###Version 0.51
+* Correction la gestion du canal de la télécommande infra-rouge.
+
+
 ###Version 0.5
 * Correction sur la compilation des blocs SI ... FAIRE ...
 * Nouvelles instructions pour la télécommande infra-rouge : plus de boutons  et gestion d'un canal 'rc5.adress' pour utiliser différentes télécommandes et commander plusieurs Thymio.

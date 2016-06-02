@@ -133,7 +133,7 @@ begin
 end;
 
 
-// Fonction appelée au lancement du Setup.exe
+// Fonction appelï¿½e au lancement du Setup.exe
 function InitializeSetup(): Boolean;
 begin 
   if not ( IsDotNetDetected('v3.0', 0) or IsDotNetDetected('v4.0', 0) or IsDotNetDetected('v4.5', 0) ) then begin

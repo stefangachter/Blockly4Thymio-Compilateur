@@ -128,6 +128,11 @@ public 	class 	Valeur_CapteurIR_SELTouche : __Valeur {
 					__code = "rc5.command==" + XMLDUnNoeudFils.InnerText;
 					break;
 				}
+
+				// Complète le test avec l'adresse de la commande IR
+				if ( Valeur_CapteurIR_SELBouton.adresseIR != -1 )
+					__code += " and rc5.address==" + Valeur_CapteurIR_SELBouton.adresseIR;
+
                 break;
 				
 			}

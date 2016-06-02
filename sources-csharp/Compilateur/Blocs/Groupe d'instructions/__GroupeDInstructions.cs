@@ -121,20 +121,43 @@ public	class	__GroupeDInstructions : __Bloc {
 
 	/// <summary>
 	/// UID de la dernière séquence du groupe.
+	/// Attention ! Certain groupe n'ont pas de séquence de fin
 	/// </summary>
 	public	int	UIDDeFin {
 	get {
 		__Bloc	dernierBloc;
 
-		if ( __blocsInternes == null ) {
-			// Il n'y a pas de bloc internes,
-			// l'UID de la dernière séquence du groupe est calculé ici			
-			return __UID + __nombreDeSéquenceInitiale -1;
+		if (__AvecSéquenceDeFin) {
+			// Groupe d'instructions avec une séquence de fin
+			// Exemples : FAIRE xx FOIS, FAIRE TOUT LE TEMPS
+			if (__blocsInternes == null) {
+				// Il n'y a pas de bloc internes,
+				// l'UID de la dernière séquence du groupe est calculé ici			
+				return __UID + __nombreDeSéquenceInitiale - 1;
+			} else {
+				// L'UID de la dernière séquence du groupe est calculé
+				// par le dernier bloc du groupe.
+				dernierBloc = __blocsInternes.DernierBlocsSuivant ();	
+				return dernierBloc.UID + dernierBloc.nombreDeSéquence;
+			}
 		} else {
-			// L'UID de la dernière séquence du groupe est calculé
-			// par le dernier bloc du groupe.
-			dernierBloc = __blocsInternes.DernierBlocsSuivant();	
-			return dernierBloc.UID + dernierBloc.nombreDeSéquence;
+			// Groupe d'instructions sans séquence de fin
+			// Exemple : SI ... FAIRE ...
+			if ( blocSuivant == null ) {
+				if ( groupe == null ) {
+					// Il n'y a pas de bloc après le groupe d'instruction
+					// et le groupe n'est pas dans un autre groupe, le séquenceur s'arrête
+					return 0;
+				} else {
+					// Il n'y a pas de bloc après le groupe d'instruction
+					// mais le groupe est inclus pas dans un autre groupe,
+					// le séquenceur passe à la séquence de fin de cet autre groupe
+					return groupe.UIDDeFin;
+				}
+			} else {
+				// Le séquencceur passe à l'instruction suivante
+				return blocSuivant.UID;
+			}
 		}
 	}
 	}
