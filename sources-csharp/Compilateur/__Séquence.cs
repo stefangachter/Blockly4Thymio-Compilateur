@@ -75,18 +75,39 @@ using 	System;
 
 
 
+/// <summary>
+/// Une séquence est un ensemble de d'instructions en Aseba.
+/// Elle compose les blocs.
+/// </summary>
+
 namespace 		Blockly4Thymio {
 public	class 	__Séquence {
 
+	/*
+     * Membres
+     */
 	private	String	__code;
+
+	private	__Bloc	__blocParent;
+
+
+
+	/*
+     * Propriétés publiques
+     */
+	public	String	code {
+	get{ return __code; }
+	}
+
 
 
 
 	/*
 	 * Constructeur
 	 */
-	public	__Séquence( String _code ) {
+	public	__Séquence( __Bloc _blocParent, String _code ) {
 		__code = _code;
+		__blocParent = _blocParent;
 	}
 
 

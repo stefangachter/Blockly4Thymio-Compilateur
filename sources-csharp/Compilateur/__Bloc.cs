@@ -72,6 +72,7 @@ knowledge of the CeCILL license and that you accept its terms.
 
 
 using 	System;
+using 	System.Collections.Generic;
 using 	System.Xml;
 
 
@@ -92,6 +93,10 @@ public	class	__Bloc {
     
 	protected	__Bloc					__blocPrécédent;		// Bloc précédent
 	protected	__Bloc					__blocSuivant;			// Bloc suivant
+	/*
+     * Membres en version 0.7
+     */
+    protected	List<__Séquence>		__Séquences;			// Séquences qui composent le bloc
 
 
 
