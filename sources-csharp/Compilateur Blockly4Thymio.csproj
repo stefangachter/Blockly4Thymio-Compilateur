@@ -169,6 +169,7 @@ Transforme un fichiers .b4t en fichier .aesl puis le transmet à Thymio.</Descri
     <Compile Include="Compilateur\Blocs\Valeurs\Valeur_OpérateurLogique.cs" />
     <Compile Include="Compilateur\Blocs\Instructions\Instructions_Mouvements\Mouvement_VitesseDesRoues_SAIVitesseAGauche_SAIVitesseADroite.cs" />
     <Compile Include="Compilateur\Blocs\Instructions\Instructions_Contrôles\Contrôle_SortDeLaBoucleFaire.cs" />
+    <Compile Include="Compilateur\__Séquence.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
