@@ -113,7 +113,7 @@ static	class 	ProgrammePrincipal {
 		//Compilateur.nomDuFichierASEBAMASSLOADER = @"C:\Users\fort\Downloads\compilateur\setup-win\fichiers\asebamassloader\asebamassloader.exe";
 		#endif
 		#if (!DEBUG && WINDOWS)
-		Compilateur.nomDuFichierASEBAMASSLOADER = Directory.GetCurrentDirectory() + "\\asebamassloader\\asebamassloader.exe";
+		Compilateur.nomDuFichierASEBAMASSLOADER =  Path.GetDirectoryName(Application.ExecutablePath) + @"\asebamassloader\asebamassloader.exe";
 		#endif
 		#if (LINUX)
 		Compilateur.nomDuFichierASEBAMASSLOADER = @"/usr/bin/asebamassloader";

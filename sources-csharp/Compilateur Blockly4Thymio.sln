@@ -5,23 +5,22 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Compilateur Blockly4Thymio"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Release-WINDOWS|x86 = Release-WINDOWS|x86
-		Debug-WINDOWS|x86 = Debug-WINDOWS|x86
-		Debug-LINUX|x86 = Debug-LINUX|x86
-		Release-LINUX|x86 = Release-LINUX|x86
+		WINDOWS-Release|x86 = WINDOWS-Release|x86
+		WINDOWS-Debug|x86 = WINDOWS-Debug|x86
+		LINUX-Debug|x86 = LINUX-Debug|x86
+		LINUX-Release|x86 = LINUX-Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{DA7F29C6-89C1-4D2A-AFB6-56434085EF05}.Debug-LINUX|x86.ActiveCfg = Debug-LINUX|x86
-		{DA7F29C6-89C1-4D2A-AFB6-56434085EF05}.Debug-LINUX|x86.Build.0 = Debug-LINUX|x86
-		{DA7F29C6-89C1-4D2A-AFB6-56434085EF05}.Debug-WINDOWS|x86.ActiveCfg = Debug-Windows|x86
-		{DA7F29C6-89C1-4D2A-AFB6-56434085EF05}.Debug-WINDOWS|x86.Build.0 = Debug-Windows|x86
-		{DA7F29C6-89C1-4D2A-AFB6-56434085EF05}.Release-LINUX|x86.ActiveCfg = Release-LINUX|x86
-		{DA7F29C6-89C1-4D2A-AFB6-56434085EF05}.Release-LINUX|x86.Build.0 = Release-LINUX|x86
-		{DA7F29C6-89C1-4D2A-AFB6-56434085EF05}.Release-WINDOWS|x86.ActiveCfg = Release-WINDOWS|x86
-		{DA7F29C6-89C1-4D2A-AFB6-56434085EF05}.Release-WINDOWS|x86.Build.0 = Release-WINDOWS|x86
+		{DA7F29C6-89C1-4D2A-AFB6-56434085EF05}.LINUX-Debug|x86.ActiveCfg = LINUX-Debug|x86
+		{DA7F29C6-89C1-4D2A-AFB6-56434085EF05}.LINUX-Debug|x86.Build.0 = LINUX-Debug|x86
+		{DA7F29C6-89C1-4D2A-AFB6-56434085EF05}.LINUX-Release|x86.ActiveCfg = LINUX-Release|x86
+		{DA7F29C6-89C1-4D2A-AFB6-56434085EF05}.LINUX-Release|x86.Build.0 = LINUX-Release|x86
+		{DA7F29C6-89C1-4D2A-AFB6-56434085EF05}.WINDOWS-Debug|x86.ActiveCfg = WINDOWS-Debug|x86
+		{DA7F29C6-89C1-4D2A-AFB6-56434085EF05}.WINDOWS-Debug|x86.Build.0 = WINDOWS-Debug|x86
+		{DA7F29C6-89C1-4D2A-AFB6-56434085EF05}.WINDOWS-Release|x86.ActiveCfg = WINDOWS-Release|x86
+		{DA7F29C6-89C1-4D2A-AFB6-56434085EF05}.WINDOWS-Release|x86.Build.0 = WINDOWS-Release|x86
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Compilateur Blockly4Thymio.csproj
 		Policies = $0
 		$0.DotNetNamingPolicy = $1
 		$1.DirectoryNamespaceAssociation = None
@@ -196,5 +195,6 @@ Global
 		$0.VersionControlPolicy = $31
 		$31.inheritsSet = Mono
 		version = 0.6
+		StartupItem = Compilateur Blockly4Thymio.csproj
 	EndGlobalSection
 EndGlobal

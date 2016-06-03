@@ -2,13 +2,12 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug-Windows</Configuration>
+    <Configuration Condition=" '$(Configuration)' == '' ">WINDOWS-Release</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProjectGuid>{DA7F29C6-89C1-4D2A-AFB6-56434085EF05}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Blockly4Thymio</RootNamespace>
-    <AssemblyName>Compilateur.0.6</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
     <ReleaseVersion>0.6</ReleaseVersion>
@@ -34,45 +33,43 @@ Transforme un fichiers .b4t en fichier .aesl puis le transmet à Thymio.</Descri
     <SchemaVersion>2.0</SchemaVersion>
     <TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug-Windows|x86' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'WINDOWS-Release|x86' ">
     <Optimize>false</Optimize>
-    <OutputPath>bin\x86\Debug-Windows\</OutputPath>
-    <DefineConstants>DEBUG WINDOWS</DefineConstants>
-    <WarningLevel>4</WarningLevel>
-    <RunCodeAnalysis>false</RunCodeAnalysis>
-    <Commandlineparameters>"C:\Users\fort\Downloads\compilateur\programme.b4t"</Commandlineparameters>
-    <PlatformTarget>x86</PlatformTarget>
-    <AssemblyName>Compilateur.0.51</AssemblyName>
-    <TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
-    <DebugSymbols>true</DebugSymbols>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release-WINDOWS|x86' ">
-    <Optimize>false</Optimize>
-    <OutputPath>bin\x86\Release\</OutputPath>
-    <WarningLevel>4</WarningLevel>
-    <RunCodeAnalysis>false</RunCodeAnalysis>
-    <PlatformTarget>x86</PlatformTarget>
-    <AssemblyName>Compilateur.0.51</AssemblyName>
-    <TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
+    <OutputPath>bin\WINDOWS-Release\</OutputPath>
     <DefineConstants>WINDOWS</DefineConstants>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <AssemblyName>Compilateur.0.6</AssemblyName>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug-LINUX|x86' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'LINUX-Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
     <Optimize>false</Optimize>
     <OutputPath>bin\x86\Debug-LINUX</OutputPath>
+    <DefineConstants>DEBUG LINUX</DefineConstants>
     <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
     <AssemblyName>Compilateur Blockly4Thymio</AssemblyName>
     <PlatformTarget>x86</PlatformTarget>
-    <DefineConstants>DEBUG LINUX</DefineConstants>
-    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release-LINUX|x86' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'LINUX-Release|x86' ">
     <Optimize>false</Optimize>
     <OutputPath>bin\x86\Release\</OutputPath>
     <DefineConstants>LINUX</DefineConstants>
     <WarningLevel>4</WarningLevel>
     <RunCodeAnalysis>false</RunCodeAnalysis>
-    <TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
     <AssemblyName>Compilateur.0.51</AssemblyName>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'WINDOWS-Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\WINDOWS-Debug\</OutputPath>
+    <DefineConstants>DEBUG WINDOWS</DefineConstants>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <Commandlineparameters>"C:\Users\fort\Downloads\compilateur\programme.b4t"</Commandlineparameters>
+    <AssemblyName>Compilateur.0.6</AssemblyName>
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
