@@ -83,15 +83,14 @@ public	class	__Bloc {
     /*
      * Membres
      */
-    protected	int						__UID;
-	protected	int						__UIDDuSéquenceur;
+    protected	int 		__nombreDeSéquence;
+    protected	int			__UID;
+	protected	int			__UIDDuSéquenceur;
 
-	protected	String					__nomDansBlockly;
+	protected	String		__nomDansBlockly;
 
-	protected	__Bloc					__blocPrécédent;
-	protected	__Bloc					__blocSuivant;
-
-    protected	List<__Séquence>		__Séquences;			// Séquences qui composent le bloc
+	protected	__Bloc		__blocPrécédent;
+	protected	__Bloc		__blocSuivant;
 
 
 
@@ -102,17 +101,17 @@ public	class	__Bloc {
 
 	public	int		UIDDuSéquenceur { get { return __UIDDuSéquenceur; } }
 
-	public	int		nombreDeSéquence { get { return __Séquences.Count; } }
-
-	public	String	codePourLeSéquenceur {
+	public	int		UIDDuBlocSuivant {
 	get {
-		String		code = "";
-		foreach (__Séquence séquence in __Séquences) {
-			code += séquence.code + "\n";
-		}
-		return code;
+		if (__blocSuivant==null)
+			return 0;
+		return __blocSuivant.UID;
 	}
 	}
+
+	public	int		nombreDeSéquence { get { return __nombreDeSéquence; } }
+
+	public	virtual	String	codePourLeSéquenceur { get { return ""; } }
 
 	public	__Bloc	blocSuivant {
 	get{ return __blocSuivant; }

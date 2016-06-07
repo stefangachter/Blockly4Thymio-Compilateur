@@ -109,7 +109,6 @@ public class	Compilateur {
     public	static	bool				lancementAutomatique;
 
 	public	static	int					compteurDeSéquenceur;
-	public	static	int					compteurDeMarqueur;
 
     public	static	String				nomDuFichierB4T;
 	public	static	String				nomDuFichierAESL;
@@ -286,7 +285,6 @@ public class	Compilateur {
 		 * Initialisations
 		 */
         compteurDeSéquenceur = 0;
-		compteurDeMarqueur = 0;
 		
 		#if (WINDOWS)
 		nomDuFichierAESL = Path.GetDirectoryName(nomDuFichierB4T) + @"\temp.aesl";
@@ -380,8 +378,7 @@ public class	Compilateur {
 		 */
         // Déclaration des variables
         if (événementsRacines.Count > 0)
-			codeDéclarationDesVariables +=	"var __sequenceur[" + événementsRacines.Count + "]\n" +
-                                            "var __chrono[" + événementsRacines.Count + "]\n";
+			codeDéclarationDesVariables +=	"var __sequenceur[" + événementsRacines.Count + "]\n";
 		
 
         // Ajoute le code généré pour chaque événement
@@ -403,15 +400,15 @@ public class	Compilateur {
 
 
         // Ajoute le code de fin du séquenceur
-        if ( arrêtDuRobotALaFinDesSéquenceurs )
-        {
+        if ( arrêtDuRobotALaFinDesSéquenceurs ) {
+
             if ( afficherLesCommentaires ) { codeSéquenceur += "\n# Code exécuté à la fin de tous les séquenceurs\n"; }
             codeSéquenceur += "if ";
             for (int séquenceur = 0; séquenceur < événementsRacines.Count; séquenceur++) {
                 codeSéquenceur += "__sequenceur[" + séquenceur + "]==0 ";
                 if (séquenceur < (événementsRacines.Count - 1)) { codeSéquenceur += "and "; }
             }
-            codeSéquenceur += "then\n" +
+            codeSéquenceur += 	"then\n" +
                                 "  __etat = ETAT_ARRET\n" +
                                 "end\n";
         }
@@ -540,17 +537,7 @@ public class	Compilateur {
 
 	}
 
-
-	/// <summary>
-	/// Créer un marqueur qui peu être inséré dans le code.
-	/// Ces marqueurs sont modifiés selon les besoins.
-	/// </summary>
-	/// <returns></returns>
-	public	static	String	NouveauMarqueur() {
-		compteurDeMarqueur++;
-		return "%%%MARQUEUR_" + compteurDeMarqueur + "%%%";
-	}
-    
+	   
 
     /// <summary>
     /// Optimise le code du séquenceur, en supprimant les instructions "Saute mouton"

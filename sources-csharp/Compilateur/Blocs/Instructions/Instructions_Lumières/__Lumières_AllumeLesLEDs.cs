@@ -82,6 +82,7 @@ knowledge of the CeCILL license and that you accept its terms.
 
 
 using 	System;
+using 	System.Collections.ObjectModel;
 using 	System.Xml;
 
 
@@ -98,47 +99,51 @@ public class 	__Lumières_AllumeLesLEDs : __Bloc {
 
 
 	/*
+	 * Propriétés
+	 */
+	public	override	String	codePourLeSéquenceur {
+	get {
+		String	code = "";
+
+		if (Compilateur.afficherLesCommentaires)
+			code += __nomDansBlockly;
+
+		code += __Séquence_1 () + "\n";
+
+		return code;
+	}
+	}
+
+
+
+	/*
 	 * Constructeur
 	 */
 	public	__Lumières_AllumeLesLEDs( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, int _led, int _couleur ) : base( _UID, _XMLDuBloc, _blocPrécédent ) {
 
 		// Initialisation des membres
 		// --------------------------
+		__nombreDeSéquence = 1;
 
 		__couleur = _couleur;
 		__led = _led;
 
 
-		// Taille de l'instruction
-		// -----------------------
-
-		// Par défaut : 1
-
-
-		// Code d'initialisation
-		// ---------------------
-
-		// Aucun
-
-
-		// Code de traitement
-		// ------------------
-
-		// Surchargé dans la classe		
-
-
-		// Code de fin
-		// -----------
-
-		// Aucun
+	}
 
 
 
-		// Condition de passage à l'instruction suivante
-		// ---------------------------------------------
+	/*
+	 * Séquences
+	 */
+	private	String	__Séquence_1() {
 
-		// Aucune
-
+		// Séquence 1 - Allume les LEDs
+		return	"if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then \n" +
+				"  " + __LED.code (__led, __couleur) + "\n" +
+				"  __sequenceur[" + UIDDuSéquenceur + "]=" + UIDDuBlocSuivant + "\n" +
+				"end";
+		
 	}
 
 

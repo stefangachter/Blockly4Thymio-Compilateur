@@ -175,7 +175,6 @@ sub __ExecuteLeProgramme
 sub __ArreteLeProgramme
   # Arrête les moteurs
   callsub __ArreteLesMoteurs
-  
   # Eteins toutes les LEDs
   call leds.buttons(0,0,0,0)
   call leds.circle( 0, 0, 0, 0, 0, 0, 0, 0 ) 

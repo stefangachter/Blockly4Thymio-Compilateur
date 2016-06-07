@@ -167,18 +167,7 @@ public 		class 	__LED {
 				code += "call leds.bottom.right(" + CalculLaCouleur(_couleur, (int)COMPOSANTE_BLEUE) + "," + CalculLaCouleur(_couleur, (int)COMPOSANTE_VERTE) + "," + CalculLaCouleur(_couleur, (int)COMPOSANTE_ROUGE) + ")";
 				break;
 			}
-		/*
-		if ((_led == (int)LED_DU_DESSUS) || (_led == (int)TOUTE_LES_LEDS))
-			code += "call leds.top(" + CalculLaCouleur(_couleur, (int)COMPOSANTE_BLEUE) + "," + CalculLaCouleur(_couleur, (int)COMPOSANTE_VERTE) + "," + CalculLaCouleur(_couleur, (int)COMPOSANTE_ROUGE) + ") ";
 
-		if ((_led == (int)LED_DE_GAUCHE) || (_led == (int)TOUTE_LES_LEDS))
-			code += "call leds.bottom.left(" + CalculLaCouleur(_couleur, (int)COMPOSANTE_BLEUE) + "," + CalculLaCouleur(_couleur, (int)COMPOSANTE_VERTE) + "," + CalculLaCouleur(_couleur, (int)COMPOSANTE_ROUGE) + ") ";
-
-		if ((_led == (int)LED_DE_DROITE) || (_led == (int)TOUTE_LES_LEDS))
-			code += "call leds.bottom.right(" + CalculLaCouleur(_couleur, (int)COMPOSANTE_BLEUE) + "," + CalculLaCouleur(_couleur, (int)COMPOSANTE_VERTE) + "," + CalculLaCouleur(_couleur, (int)COMPOSANTE_ROUGE) + ") ";
-
-		code = code.Trim();
-		*/
 
 		// Fin
 		// ---

@@ -1,29 +1,12 @@
 ﻿<Properties StartupItem="Compilateur Blockly4Thymio.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="WINDOWS-Debug|x86" />
-  <MonoDevelop.Ide.Workbench>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State name="__root__">
-          <Node name="Compilateur Blockly4Thymio" expanded="True">
-            <Node name="Compilateur Blockly4Thymio" expanded="True">
-              <Node name="Compilateur" expanded="True">
-                <Node name="Blocs" expanded="True">
-                  <Node name="Evénements" expanded="True" />
-                  <Node name="Instructions" expanded="True" selected="True">
-                    <Node name="Instructions_Lumières" expanded="True" />
-                  </Node>
-                </Node>
-              </Node>
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-      <Pad Id="ClassPad">
-        <State name="__root__">
-          <Node name="Compilateur Blockly4Thymio" expanded="True" selected="True" />
-        </State>
-      </Pad>
-    </Pads>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Compilateur\Blocs\Instructions\Instructions_Lumières\__Lumières_AllumeLesLEDs.cs">
+    <Files>
+      <File FileName="Compilateur\Blocs\Instructions\Instructions_Lumières\__Lumières_AllumeLesLEDs.cs" Line="109" Column="29" />
+      <File FileName="Compilateur\Blocs\Instructions\Instructions_Lumières\Lumières_AllumeToutesLesLEDs_SELCouleur.cs" Line="21" Column="1" />
+      <File FileName="Compilateur\Compilateur.cs" Line="465" Column="21" />
+      <File FileName="Compilateur\__Bloc.cs" Line="81" Column="1" />
+    </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
