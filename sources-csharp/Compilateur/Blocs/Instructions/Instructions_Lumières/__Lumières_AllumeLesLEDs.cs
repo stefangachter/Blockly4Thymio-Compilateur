@@ -106,7 +106,7 @@ public class 	__Lumières_AllumeLesLEDs : __Bloc {
 		String	code = "";
 
 		if (Compilateur.afficherLesCommentaires)
-			code += __nomDansBlockly;
+			code += "\n# Instruction Blockly (UID " + __UID + ") = " + __nomDansBlockly + "\n";
 
 		code += __Séquence_1 () + "\n";
 
@@ -149,4 +149,5 @@ public class 	__Lumières_AllumeLesLEDs : __Bloc {
 
 }
 }
+
 
