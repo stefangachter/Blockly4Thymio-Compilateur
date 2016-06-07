@@ -93,7 +93,6 @@ public	class	__Bloc {
 	protected	__Bloc		__blocSuivant;
 
 
-
     /*
      * Propriétés publiques
      */

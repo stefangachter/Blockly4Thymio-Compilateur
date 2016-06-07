@@ -82,7 +82,8 @@ knowledge of the CeCILL license and that you accept its terms.
 
 
 using 	System;
-using 	System.Collections.ObjectModel;
+using 	System.IO;
+using 	System.Collections.Generic;
 using 	System.Xml;
 
 
@@ -93,8 +94,12 @@ public class 	__Lumières_AllumeLesLEDs : __Bloc {
 	/*
 	 * Membres
 	 */
-	protected	int __couleur;
-	protected	int __led;
+	protected	int				__couleur;
+	protected	int				__led;
+
+	private		List<Séquence>	Séquences;
+
+	private		Func<String>	séquence;
 
 
 
@@ -128,6 +133,12 @@ public class 	__Lumières_AllumeLesLEDs : __Bloc {
 		__couleur = _couleur;
 		__led = _led;
 
+		Séquences = new List<Séquence>();
+
+		// Pourtant : http://stackoverflow.com/questions/4297453/list-of-delegates-and-invoking
+
+		Séquence  = __Séquence_1;
+		Séquences.Add( Séquence );
 
 	}
 
@@ -136,7 +147,7 @@ public class 	__Lumières_AllumeLesLEDs : __Bloc {
 	/*
 	 * Séquences
 	 */
-	private	String	__Séquence_1() {
+	public	String	__Séquence_1() {
 
 		// Séquence 1 - Allume les LEDs
 		return	"if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then \n" +
