@@ -88,8 +88,6 @@ public	class 	__Séquence {
      */
 	private	String	__code;
 
-	private	__Bloc	__blocParent;
-
 
 
 	/*
@@ -105,9 +103,8 @@ public	class 	__Séquence {
 	/*
 	 * Constructeur
 	 */
-	public	__Séquence( __Bloc _blocParent, String _code ) {
+	public	__Séquence( String _code ) {
 		__code = _code;
-		__blocParent = _blocParent;
 	}
 
 

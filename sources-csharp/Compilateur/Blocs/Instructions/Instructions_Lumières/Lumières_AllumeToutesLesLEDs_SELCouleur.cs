@@ -78,8 +78,6 @@ knowledge of the CeCILL license and that you accept its terms.
  * Allume toutes les LEDs de Thymio,
  * avec la couleur choisie.
  * 
- * Niveau de l'instruction : Facile
- * 
  */
 
 
@@ -95,12 +93,19 @@ public	class	Lumières_AllumeToutesLesLEDs_SELCouleur : __Lumières_AllumeLesLED
 	/*
 	 * Constructeur
 	 */
-	public	Lumières_AllumeToutesLesLEDs_SELCouleur( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDInstructions _groupe ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupe, __LED.TOUTE_LES_LEDS, 0 ) {
+	public	Lumières_AllumeToutesLesLEDs_SELCouleur( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent ) : base( _UID, _XMLDuBloc, _blocPrécédent, 0, 0 ) {
 
 		// Déclarations
 		// ------------
 
 		String	nomDeLAttribut;
+
+
+
+		// Initialisations
+        // ---------------
+
+		__led = __LED.TOUTE_LES_LEDS;
 
 
 
@@ -125,35 +130,6 @@ public	class	Lumières_AllumeToutesLesLEDs_SELCouleur : __Lumières_AllumeLesLED
 
 		}
 
-
-		// Taille de l'instruction
-		// -----------------------
-
-		// Dans la classe mère
-
-
-		// Code d'initialisation
-		// ---------------------
-
-		// Aucun
-
-
-		// Code de traitement
-		// ------------------
-
-		// Dans la classe mère
-
-
-		// Code de fin
-		// -----------
-
-		// Aucun
-
-
-		// Condition de passage à l'instruction suivante
-		// ---------------------------------------------
-
-		// Aucune
 	
 	}
 	

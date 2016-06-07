@@ -112,63 +112,12 @@ Transforme un fichiers .b4t en fichier .aesl puis le transmet à Thymio.</Descri
     <Compile Include="Compilateur\Compilateur.cs" />
     <Compile Include="Compilateur\Blocs\Evénements\__Evénement.cs" />
     <Compile Include="Compilateur\Blocs\Evénements\Evénement_QuandLeProgrammeCommence.cs" />
-    <Compile Include="Compilateur\Blocs\Evénements\Evénement_QuandUnBoutonFlècheEstAppuyé.cs" />
-    <Compile Include="Compilateur\Blocs\Evénements\Evénement_QuandUnOrdreArriveDeLaTélécommandeIR.cs" />
     <Compile Include="Compilateur\__Bloc.cs" />
-    <Compile Include="Compilateur\Blocs\Groupe d%27instructions\__GroupeDInstructions.cs" />
-    <Compile Include="Compilateur\Blocs\Groupe d%27instructions\__GroupeDInstructions_Boucle.cs" />
-    <Compile Include="Compilateur\Blocs\Groupe d%27instructions\__GroupeDInstructions_Boucle_Répète_AvecNombre.cs" />
-    <Compile Include="Compilateur\Blocs\Groupe d%27instructions\GroupeDInstructions_Boucle_Répète_SAINombre.cs" />
-    <Compile Include="Compilateur\Blocs\Groupe d%27instructions\GroupeDInstructions_Boucle_RépèteToutLeTemps.cs" />
-    <Compile Include="Compilateur\Blocs\Groupe d%27instructions\__GroupeDInstructions_Condition.cs" />
-    <Compile Include="Compilateur\Blocs\Groupe d%27instructions\__GroupeDInstructions_Si_Avec_cCondition.cs" />
-    <Compile Include="Compilateur\Blocs\Instructions\__Instruction.cs" />
-    <Compile Include="Compilateur\Blocs\Instructions\Instructions_Contrôles\Contrôle_Attends_ENTDurée.cs" />
-    <Compile Include="Compilateur\Blocs\Instructions\Instructions_Contrôles\Contrôle_Attends_SAIDurée.cs" />
-    <Compile Include="Compilateur\Blocs\Instructions\Instructions_Contrôles\__Contrôle_Attends_Avec_cDurée.cs" />
-    <Compile Include="Compilateur\Blocs\Instructions\Instructions_Contrôles\__Contrôle_Attends_Avec_eDurée.cs" />
     <Compile Include="Compilateur\Blocs\Instructions\Instructions_Lumières\__LED.cs" />
     <Compile Include="Compilateur\Blocs\Instructions\Instructions_Lumières\__Lumières_AllumeLesLEDs.cs" />
-    <Compile Include="Compilateur\Blocs\Instructions\Instructions_Lumières\Lumières_AllumeLesLEDs_SELLED_SELCouleur.cs" />
-    <Compile Include="Compilateur\Blocs\Instructions\Instructions_Lumières\Lumières_AllumeLesLEDs_SELLED_SELCouleur_SAIDurée.cs" />
-    <Compile Include="Compilateur\Blocs\Instructions\Instructions_Lumières\Lumières_AllumeToutesLesLEDsPendant1Seconde_SELCouleur.cs" />
     <Compile Include="Compilateur\Blocs\Instructions\Instructions_Lumières\Lumières_AllumeToutesLesLEDs_SELCouleur.cs" />
-    <Compile Include="Compilateur\Blocs\Instructions\Instructions_Mouvements\Mouvement_Déplacement_SELVitesse_SAIDistance.cs" />
-    <Compile Include="Compilateur\Blocs\Instructions\Instructions_Mouvements\Mouvement_Tourne_SAIAngle.cs" />
-    <Compile Include="Compilateur\Blocs\Instructions\Instructions_Mouvements\Mouvement_Tourne_SELSens_SAIAngle.cs" />
-    <Compile Include="Compilateur\Blocs\Instructions\Instructions_Mouvements\__MOTEUR.cs" />
-    <Compile Include="Compilateur\Blocs\Instructions\Instructions_Mouvements\__Mouvement_Arrêt.cs" />
-    <Compile Include="Compilateur\Blocs\Instructions\Instructions_Mouvements\__Mouvement_Déplacement.cs" />
-    <Compile Include="Compilateur\Blocs\Instructions\Instructions_Mouvements\__Mouvement_Déplacement_AvecDistance.cs" />
-    <Compile Include="Compilateur\Blocs\Instructions\Instructions_Mouvements\__Mouvement_Tourne_AvecAngle.cs" />
-    <Compile Include="Compilateur\Blocs\Instructions\Instructions_Sons\Sons_JoueUneNote.cs" />
-    <Compile Include="Compilateur\Blocs\Instructions\Instructions_Sons\Sons_JoueUneNote_SELNote.cs" />
-    <Compile Include="Compilateur\Blocs\Instructions\Instructions_Sons\__SONS.cs" />
-    <Compile Include="Compilateur\Blocs\Instructions\Instructions_Sons\__Sons_JoueUnSon_SELSon.cs" />
-    <Compile Include="Compilateur\Blocs\Instructions\Instructions_Sons\__Sons_JoueUneFréquence_AvecDurée.cs" />
-    <Compile Include="Compilateur\Blocs\Valeurs\__BOUTONS.cs" />
-    <Compile Include="Compilateur\Blocs\Valeurs\__CAPTEURS.cs" />
-    <Compile Include="Compilateur\Blocs\Valeurs\__Valeur_Boutons.cs" />
-    <Compile Include="Compilateur\Blocs\Valeurs\__Valeur_Capteurs.cs" />
     <Compile Include="Compilateur\FrameworkASEBA.cs" />
-    <Compile Include="Compilateur\Blocs\Paramètres\__Paramètre.cs" />
-    <Compile Include="Compilateur\Blocs\Paramètres\Paramètre_CalibreLesMoteurs_SAIValeur.cs" />
-    <Compile Include="Compilateur\Blocs\Valeurs\__Valeur.cs" />
-    <Compile Include="Compilateur\Blocs\Instructions\Instructions_Sons\__Sons_EnregistreUnSon_AvecDurée.cs" />
-    <Compile Include="Compilateur\Blocs\Instructions\Instructions_Sons\Sons_RejoueLeSonEnregistré.cs" />
-    <Compile Include="Compilateur\Blocs\Valeurs\Valeur_CapteurIR_SELBouton.cs" />
-    <Compile Include="Compilateur\Blocs\Valeurs\Valeur_CapteurIR_SELTouche.cs" />
-    <Compile Include="Compilateur\Blocs\Paramètres\Paramètre_LAdresseDeLaTélécommandeEst_SAIValeur.cs" />
-    <Compile Include="Compilateur\Blocs\Evénements\Evénement_QuandUnCapteurAvantVoitUnObstacle.cs" />
-    <Compile Include="Compilateur\Blocs\Evénements\Evénement_QuandUnCapteurArrièreVoitUnObstacle.cs" />
-    <Compile Include="Compilateur\Blocs\Instructions\Instructions_Lumières\__Lumières_AllumeLesLEDs_AvecDurée.cs" />
     <Compile Include="Compilateur\Messages.cs" />
-    <Compile Include="Compilateur\Blocs\Instructions\Instructions_Contrôles\Contrôle_ArrêteLeProgramme.cs" />
-    <Compile Include="Compilateur\Blocs\Groupe d%27instructions\GroupeDInstructions_Boucle_Faire_TantQue_ENTCondition.cs" />
-    <Compile Include="Compilateur\Blocs\Valeurs\__OPÉRATIONS_LOGIQUES.cs" />
-    <Compile Include="Compilateur\Blocs\Valeurs\Valeur_OpérateurLogique.cs" />
-    <Compile Include="Compilateur\Blocs\Instructions\Instructions_Mouvements\Mouvement_VitesseDesRoues_SAIVitesseAGauche_SAIVitesseADroite.cs" />
-    <Compile Include="Compilateur\Blocs\Instructions\Instructions_Contrôles\Contrôle_SortDeLaBoucleFaire.cs" />
     <Compile Include="Compilateur\__Séquence.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -196,8 +145,5 @@ Transforme un fichiers .b4t en fichier .aesl puis le transmet à Thymio.</Descri
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Compilateur\Blocs\Paramètres\" />
   </ItemGroup>
 </Project>

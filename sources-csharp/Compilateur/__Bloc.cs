@@ -85,31 +85,14 @@ public	class	__Bloc {
      */
     protected	int						__UID;
 	protected	int						__UIDDuSéquenceur;
-	protected	int						__nombreDeSéquenceInitiale;
 
 	protected	String					__nomDansBlockly;
 
-    protected	__GroupeDInstructions	__groupe;				// Si un bloc appartient un groupe de blocs (boucles, conditions)
-    
-	protected	__Bloc					__blocPrécédent;		// Bloc précédent
-	protected	__Bloc					__blocSuivant;			// Bloc suivant
-	/*
-     * Membres en version 0.7
-     */
+	protected	__Bloc					__blocPrécédent;
+	protected	__Bloc					__blocSuivant;
+
     protected	List<__Séquence>		__Séquences;			// Séquences qui composent le bloc
 
-
-
-	/*
-	 * Propriétés vituelles.
-	 * Déclarées pour êre traitées en Override dans les classes filles
-	 */
-	virtual	public	int		nombreDeSéquence { get { return __nombreDeSéquenceInitiale; } }
-	
-	virtual	public	int		nombreDeSéquenceInitiale { get { return __nombreDeSéquenceInitiale; } }
-
-	virtual	public	String	codePourLeSéquenceur { get { return ""; } }
-	
 
 
     /*
@@ -119,23 +102,29 @@ public	class	__Bloc {
 
 	public	int		UIDDuSéquenceur { get { return __UIDDuSéquenceur; } }
 
-	/// <summary>
-	/// blocSuivant représente le bloc qui suit
-	/// le bloc en cours
-	/// </summary>
-	public	__Bloc	blocSuivant {
-	get { return __blocSuivant; }
-	set { __blocSuivant = value ; }
+	public	int		nombreDeSéquence { get { return __Séquences.Count; } }
+
+	public	String	codePourLeSéquenceur {
+	get {
+		String		code = "";
+		foreach (__Séquence séquence in __Séquences) {
+			code += séquence.code + "\n";
+		}
+		return code;
+	}
 	}
 
-	public	__GroupeDInstructions	groupe { get { return __groupe; } }
+	public	__Bloc	blocSuivant {
+	get{ return __blocSuivant; }
+	set{ __blocSuivant = value; }
+	}
 
 
 
 	/*
 	 * Constructeur
 	 */
-	public	__Bloc( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDInstructions _groupe ) {
+	public	__Bloc( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent ) {
 
 		__UID = _UID;
 
@@ -143,31 +132,11 @@ public	class	__Bloc {
 
         __blocPrécédent = _blocPrécédent;
 
-        __groupe = _groupe;
-
 		if ( __blocPrécédent != null )
 			__UIDDuSéquenceur = __blocPrécédent.__UIDDuSéquenceur;
-		if ( __groupe != null )
-			__UIDDuSéquenceur = __groupe.UIDDuSéquenceur;
-		
 		
     }
 
-
-
-	/*
-	 * Méthodes
-	 */
-	/// <summary>
-	/// Sur une suite de blocs, trouve le dernier bloc
-	/// </summary>
-	/// <returns></returns>
-	public	__Bloc	DernierBlocsSuivant() {
-		if ( __blocSuivant == null )
-			return this;
-		else
-			return __blocSuivant.DernierBlocsSuivant();
-	}
 
 
 }

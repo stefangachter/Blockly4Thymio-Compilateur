@@ -77,8 +77,6 @@ knowledge of the CeCILL license and that you accept its terms.
  *
  * Allume les LEDs de Thymio,
  * avec le choix des LEDs et la couleur choisie.
- *
- * Niveau de l'instruction : Découverte
  * 
  */
 
@@ -88,8 +86,8 @@ using 	System.Xml;
 
 
 
-namespace 	Blockly4Thymio {
-public class __Lumières_AllumeLesLEDs : __Instruction {
+namespace 		Blockly4Thymio {
+public class 	__Lumières_AllumeLesLEDs : __Bloc {
 
 	/*
 	 * Membres
@@ -100,18 +98,9 @@ public class __Lumières_AllumeLesLEDs : __Instruction {
 
 
 	/*
-	 * Propriétés surchargeant la classe mère Instruction.
-     */
-	public	override	int		nombreDeSéquence { get { return 1; } }
-
-	public	override	String	codeDeTraitement{ get { return __LED.code( __led, __couleur ); } }
-
-
-
-	/*
 	 * Constructeur
 	 */
-	public	__Lumières_AllumeLesLEDs( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDInstructions _groupe, int _led, int _couleur ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupe ) {
+	public	__Lumières_AllumeLesLEDs( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, int _led, int _couleur ) : base( _UID, _XMLDuBloc, _blocPrécédent ) {
 
 		// Initialisation des membres
 		// --------------------------

@@ -167,7 +167,7 @@ public class	Compilateur {
     /// <summary>
     /// Analyse un noeud de code xml.
     /// </summary>
-    public	static	__Bloc	AnalyseUnNoeudDInstruction( int _UIDPourLeBloc, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDInstructions _groupe ) {
+    public	static	__Bloc	AnalyseUnNoeudDInstruction( int _UIDPourLeBloc, XmlNode _XMLDuBloc, __Bloc _blocPrécédent ) {
 
         /*
          * Déclarations
@@ -176,7 +176,6 @@ public class	Compilateur {
 		String					instruction;		
 
         __Bloc					bloc;
-		__GroupeDInstructions	groupe;
 			
 		XmlNode					XmlDuBlocSuivant;
 
@@ -206,12 +205,6 @@ public class	Compilateur {
             break;
 
 
-		/*
-		 * Blocs d'instruction de la version 0.1b
-		 * --------------------------------------
-		 */
-
-
 		// Evénements - Version 0.1b
 		// -------------------------
 		case "0_1b_Evénement_QuandLeProgrammeCommence":
@@ -219,215 +212,19 @@ public class	Compilateur {
 			bloc = new Evénement_QuandLeProgrammeCommence( _XMLDuBloc );
 			break;
 
-		// Evénements - Version 0.2
-		// ------------------------
-		case "0_2_Evénement_QuandUnOrdreArriveDeLaTélécommandeIR":
-			// Note : L'UID d'un événement est 1
-			bloc = new Evénement_QuandUnOrdreArriveDeLaTélécommandeIR( _XMLDuBloc );
-			break;
-		case "0_2_Evénement_QuandUnBoutonFlècheEstAppuyé":
-			// Note : L'UID d'un événement est 1
-			bloc = new Evénement_QuandUnBoutonFlècheEstAppuyé( _XMLDuBloc );
-			break;
-
-		// Evénements - Version 0.5
-		// ------------------------
-		case "0_5_Evénement_QuandUnCapteurAvantVoitUnObstacle":
-			// Note : L'UID d'un événement est 1
-			bloc = new Evénement_QuandUnCapteurAvantVoitUnObstacle( _XMLDuBloc );
-			break;
-		case "0_5_Evénement_QuandUnCapteurArrièreVoitUnObstacle":
-			// Note : L'UID d'un événement est 1
-			bloc = new Evénement_QuandUnCapteurArrièreVoitUnObstacle( _XMLDuBloc );
-			break;
-
-
-
-		// Mouvements - version 0.1b
-		// -------------------------
-		case "0_1b_Mouvement_Arrête":
-			bloc = new __Mouvement_Arrêt( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
-			break;
-		case "0_1b_Mouvement_Avance":
-			bloc = new __Mouvement_Déplacement( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe, (int)__MOTEUR.SENS_EN_AVANT, (int)__MOTEUR.VITESSE_NORMALE );
-			break;
-		case "0_1b_Mouvement_Avance_De5Centimètres":
-			bloc = new __Mouvement_Déplacement_AvecDistance( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe, (int)__MOTEUR.SENS_EN_AVANT, (int)__MOTEUR.VITESSE_NORMALE, 5 );
-			break;
-		case "0_1b_Mouvement_Avance_SELVitesse_SAIDistance":
-			bloc = new Mouvement_Déplacement_SELVitesse_SAIDistance( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe, (int)__MOTEUR.SENS_EN_AVANT );
-			break;
-		case "0_1b_Mouvement_Recule":
-			bloc = new __Mouvement_Déplacement( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe, (int)__MOTEUR.SENS_EN_ARRIERE, (int)__MOTEUR.VITESSE_NORMALE );
-			break;
-		case "0_1b_Mouvement_Recule_SELVitesse_SAIDistance":
-			bloc = new Mouvement_Déplacement_SELVitesse_SAIDistance( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe, (int)__MOTEUR.SENS_EN_ARRIERE );
-			break;
-		case "0_1b_Mouvement_TourneADroite_SAIAngle":
-			bloc = new Mouvement_Tourne_SAIAngle( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe, __MOTEUR.TOURNE_A_DROITE );
-			break;
-		case "0_1b_Mouvement_TourneAGauche_SAIAngle":
-			bloc = new Mouvement_Tourne_SAIAngle( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe, __MOTEUR.TOURNE_A_GAUCHE );
-			break;
-
-		// Mouvements - version 0.2
-		// ------------------------
-		case "0_2_Mouvement_Tourne_SELSens_SAIAngle":
-			bloc = new Mouvement_Tourne_SELSens_SAIAngle( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
-			break;
-
-		// Mouvements - version 0.5
-		// ------------------------
-		case "0_5_Mouvement_TourneADroite":
-			bloc = new __Mouvement_Tourne_AvecAngle( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe, (int)__MOTEUR.TOURNE_A_DROITE, 90 );
-			break;
-		case "0_5_Mouvement_TourneAGauche":
-			bloc = new __Mouvement_Tourne_AvecAngle( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe, (int)__MOTEUR.TOURNE_A_GAUCHE, 90 );
-			break;
-
-		// Mouvements - version 0.6
-		// ------------------------
-		case "0_6_Mouvement_VitesseDesRoues_SAIVitesseAGauche_SAIVitesseADroite":
-			bloc = new Mouvement_VitesseDesRoues_SAIVitesseAGauche_SAIVitesseADroite( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
-			break;
-
 
 		// Lumières - version 0.1b
 		// -----------------------
-		case "0_1b_Lumières_AllumeLesLEDs_SELLED_SELCouleur" :
-			bloc = new Lumières_AllumeLesLEDs_SELLED_SELCouleur( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
-			break;
 		case "0_1b_Lumières_AllumeToutesLesLEDs_SELCouleur":
-			bloc = new Lumières_AllumeToutesLesLEDs_SELCouleur( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
-			break;
-		case "0_1b_Lumières_AllumeToutesLesLEDsPendant1Seconde_SELCouleur":
-			bloc = new Lumières_AllumeToutesLesLEDsPendant1Seconde_SELCouleur( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
-			break;
-		case "0_1b_Lumières_EteinsToutesLesLEDsPendant1Seconde":
-			bloc = new __Lumières_AllumeLesLEDs_AvecDurée( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe, (int)__LED.TOUTE_LES_LEDS, 0, 1.0f );
-			break;
-			
-		// Lumières - version 0.2
-		// ----------------------
-		case "0_2_Lumières_AllumeLesLEDs_SELLED_SELCouleur_SAIDurée" :
-			bloc = new Lumières_AllumeLesLEDs_SELLED_SELCouleur_SAIDurée( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
-			break;
-
-		// Lumières - version 0.6
-		// ----------------------
-		case "0_6_Lumières_EteinsToutesLesLEDs" :
-			bloc = new __Lumières_AllumeLesLEDs( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe, __LED.TOUTE_LES_LEDS, 0 );
-			break;
-
-
-		// Sons - version 0.1b
-		// -------------------
-		case "0_1b_Sons_JoueLaNote_DO_Pendant05Seconde" :
-			bloc = new Sons_JoueUneNote( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe, (int)__SONS.NOTES.DO_3, 0.5f );
-			break;
-		case "0_1b_Sons_JoueLaNote_RE_Pendant05Seconde" :
-			bloc = new Sons_JoueUneNote( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe, (int)__SONS.NOTES.RÉ_3, 0.5f );
-			break;
-		case "0_1b_Sons_JoueLaNote_MI_Pendant05Seconde" :
-			bloc = new Sons_JoueUneNote( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe, (int)__SONS.NOTES.MI_3, 0.5f );
-			break;
-		case "0_1b_Sons_JoueLaNote_FA_Pendant05Seconde" :
-			bloc = new Sons_JoueUneNote( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe, (int)__SONS.NOTES.FA_3, 0.5f );
-			break;
-		case "0_1b_Sons_JoueLaNote_SOL_Pendant05Seconde" :
-			bloc = new Sons_JoueUneNote( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe, (int)__SONS.NOTES.SOL_3, 0.5f );
-			break;
-		case "0_1b_Sons_JoueLaNote_LA_Pendant05Seconde" :
-			bloc = new Sons_JoueUneNote( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe, (int)__SONS.NOTES.LA_3, 0.5f );
-			break;
-		case "0_1b_Sons_JoueLaNote_SI_Pendant05Seconde" :
-			bloc = new Sons_JoueUneNote( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe, (int)__SONS.NOTES.SI_3, 0.5f );
-			break;
-		case "0_1b_Sons_JoueUnSon_SELSon" :
-			bloc = new __Sons_JoueUnSon_SELSon( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
-			break;
-		
-		// Sons - version 0.2
-		// ------------------
-        case "0_2_Sons_JoueUneNoteCroche_SELNote" :
-            bloc = new Sons_JoueUneNote_SELNote( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe, (int)__SONS.DUREE.CROCHE );
-            break;
-		case "0_2_Sons_JoueUneNoteNoire_SELNote" :
-			bloc = new Sons_JoueUneNote_SELNote( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe, (int)__SONS.DUREE.NOIRE );
-			break;
-		case "0_2_Sons_JoueUneNoteBlanche_SELNote" :
-			bloc = new Sons_JoueUneNote_SELNote( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe, (int)__SONS.DUREE.BLANCHE );
-			break;
-		case "0_2_Sons_JoueUnSon_SELSon" :
-			bloc = new __Sons_JoueUnSon_SELSon( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
-			break;
-
-		// Sons - version 0.4
-		// ------------------
-		case "0_4_Sons_JoueUnSonPersonnel_SELSon" :
-			bloc = new __Sons_JoueUnSon_SELSon( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
-			break;
-		case "0_4_Sons_EnregistreUnSon_Pendant04Seconde" :
-			bloc = new __Sons_EnregistreUnSon_AvecDurée( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe, 4.0f );
-			break;
-		case "0_4_Sons_RelireLeSonEnregistré" :
-			bloc = new Sons_RejoueLeSonEnregistré( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
+			bloc = new Lumières_AllumeToutesLesLEDs_SELCouleur( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent );
 			break;
 
 
 
-		// Contrôles - version 0.1b
-		// ------------------------
-		case "0_1b_Contrôles_Attends1Seconde" :
-			bloc = new __Contrôle_Attends_Avec_eDurée( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe, 1 );
-			break;
-		case "0_1b_Contrôles_Répète_SAIBoucle" :
-			bloc = new GroupeDInstructions_Boucle_Répète_SAINombre( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
-			break;
-		case "0_1b_Contrôles_RépèteToutLeTemps" :
-			bloc = new GroupeDInstructions_Boucle_RépèteToutLeTemps( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
-			break;
-
-		// Contrôles - version 0.2
-		// -----------------------
-		case "0_2_Contrôles_Attends_SAIDurée" :
-			bloc = new Contrôle_Attends_SAIDurée( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
-			break;
-		case "0_2_Contrôles_Attends_ENTDurée" :
-			bloc = new Contrôle_Attends_ENTDurée( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
-			break;
-		case "0_2_Contrôles_Si_IlYAUnObstacleDevant_Alors" :
-			bloc = new __GroupeDInstructions_Si_Avec_cCondition( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe, __CAPTEURS.code( (int)__CAPTEURS.NOM.AVANT, (int)__CAPTEURS.PARAMÈTRE.DISTANCE_PRÈS ) );
-			break;
-		case "0_2_Contrôles_Si_ENTCondition_Alors" :
-			bloc = new __GroupeDInstructions_Si_Avec_cCondition( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe, "" );
-			break;
-
-		// Contrôles - version 0.6
-		// -----------------------
-		case "0_6_Contrôles_ArrêteLeProgramme" :
-			bloc = new Contrôle_ArrêteLeProgramme( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
-			break;
-		case "0_6_Contrôles_Faire_TantQue_ENTCondition" :
-			bloc = new GroupeDInstructions_Boucle_Faire_TantQue_ENTCondition( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
-			break;
-		case "0_6_Contrôles_SortDeLaBoucleFaire" :
-			bloc = new Contrôle_SortDeLaBoucleFaire( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
-			break;
 
 
+	
 
-		// Paramètres - version 0.4
-		// ------------------------
-		case "0_4_Paramètre_CalibreLesMoteurs_SAIValeur" :
-			bloc = new Paramètre_CalibreLesMoteurs_SAIValeur( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
-			break;
-
-		// Paramètres - version 0.5
-		// ------------------------
-		case "0_5_Paramètre_LAdresseDeLaTélécommandeEst_SAIAdresse" :
-			bloc = new Paramètre_LAdresseDeLaTélécommandeEst_SAIValeur( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
-			break;
 
 
 
@@ -453,14 +250,9 @@ public class	Compilateur {
         // -----------------------
         XmlDuBlocSuivant = _XMLDuBloc.SelectSingleNode( "./next/block" );
 		if ( bloc is __Evénement )
-			bloc.blocSuivant = Compilateur.AnalyseUnNoeudDInstruction( bloc.UID+bloc.nombreDeSéquence, XmlDuBlocSuivant, bloc, _groupe );
-		else if ( bloc is __Instruction )
-			bloc.blocSuivant = Compilateur.AnalyseUnNoeudDInstruction( bloc.UID+bloc.nombreDeSéquence, XmlDuBlocSuivant, bloc, _groupe );
-		else if ( bloc is __GroupeDInstructions ) {
-			groupe = (__GroupeDInstructions)bloc;
-			bloc.blocSuivant = Compilateur.AnalyseUnNoeudDInstruction( groupe.UID + groupe.nombreDeSéquence, XmlDuBlocSuivant, bloc, _groupe );
-		} else if ( bloc is __Paramètre )
-			bloc.blocSuivant = Compilateur.AnalyseUnNoeudDInstruction( bloc.UID+bloc.nombreDeSéquence, XmlDuBlocSuivant, bloc, _groupe );
+			bloc.blocSuivant = Compilateur.AnalyseUnNoeudDInstruction( bloc.UID+bloc.nombreDeSéquence, XmlDuBlocSuivant, bloc );
+		else if ( bloc is __Bloc )
+			bloc.blocSuivant = Compilateur.AnalyseUnNoeudDInstruction( bloc.UID+bloc.nombreDeSéquence, XmlDuBlocSuivant, bloc );
 		
 		
 		// Fin
@@ -469,185 +261,6 @@ public class	Compilateur {
 
     }
 
-
-    /// <summary>
-    /// Analyse un noeud d'expression et retourne la chaine équivalente de cette expression.
-    /// </summary>
-	public	static	String	AnalyseUnNoeudDExpression( int _UIDPourLeBloc, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDInstructions _groupe ) {
-
-		// Déclarations
-		// ------------
-		String		code;
-		String		erreur;
-		String		instruction;		
-		
-		__Valeur	expression;
-
-
-
-        /*
-         * Initialisations
-         */
-        code = "";
-
-
-
-        /*
-         * Contrôles
-         */
-        if ( _XMLDuBloc == null ) { return code; }
-
-
-
-        /*
-		 * Traitements
-		 */
-        instruction = _XMLDuBloc.Attributes["type"].Value;
-        switch( instruction ) {
-
-        case "":
-            break;
-
-
-		/*
-		 * Valeurs booléenes
-		 * -----------------
-		 */
-
-		// Boutons fléches
-		// ---------------
-		case "0_2_Valeur_Booléen_Bouton_FlècheAvant" :
-			code = __BOUTONS.code( (int)__BOUTONS.NOM.FLÈCHE_VERS_L_AVANT );
-			break;
-		case "0_2_Valeur_Booléen_Bouton_FlècheArrière" :
-			code = __BOUTONS.code( (int)__BOUTONS.NOM.FLÈCHE_VERS_L_ARRIÈRE );
-			break;
-		case "0_2_Valeur_Booléen_Bouton_FlècheADroite" :
-			code = __BOUTONS.code( (int)__BOUTONS.NOM.FLÈCHE_VERS_LA_DROITE );
-			break;
-		case "0_2_Valeur_Booléen_Bouton_FlècheAGauche" :
-			code = __BOUTONS.code( (int)__BOUTONS.NOM.FLÈCHE_VERS_LA_GAUCHE );
-			break;
-		case "0_6_Valeur_Booléen_Bouton_AucuneFlèche" :
-			code = __BOUTONS.code( (int)__BOUTONS.NOM.FLÈCHE_AUCUNE );
-			break;
-
-		// Capteurs de proximité avant
-		// ---------------------------
-		case "0_2_Valeur_Booléen_Capteur_AvantDroite" :
-			code = __CAPTEURS.code( (int)__CAPTEURS.NOM.AVANT_DROITE, (int)__CAPTEURS.PARAMÈTRE.DISTANCE_PRÈS );
-			break;
-		case "0_2_Valeur_Booléen_Capteur_AvantGauche" :
-			code = __CAPTEURS.code( (int)__CAPTEURS.NOM.AVANT_GAUCHE, (int)__CAPTEURS.PARAMÈTRE.DISTANCE_PRÈS );
-			break;
-		case "0_2_Valeur_Booléen_Capteur_AvantMilieu" :
-			code = __CAPTEURS.code( (int)__CAPTEURS.NOM.AVANT_MILIEU, (int)__CAPTEURS.PARAMÈTRE.DISTANCE_PRÈS );
-			break;
-		case "0_2_Valeur_Booléen_Capteur_AvantMilieuDroite" :
-			code = __CAPTEURS.code( (int)__CAPTEURS.NOM.AVANT_MILIEU_DROITE, (int)__CAPTEURS.PARAMÈTRE.DISTANCE_PRÈS );
-			break;
-		case "0_2_Valeur_Booléen_Capteur_AvantMilieuGauche" :
-			code = __CAPTEURS.code( (int)__CAPTEURS.NOM.AVANT_MILIEU_GAUCHE, (int)__CAPTEURS.PARAMÈTRE.DISTANCE_PRÈS );
-			break;
-
-		// Capteurs de proximité arrière
-		// -----------------------------
-		case "0_2_Valeur_Booléen_Capteur_ArrièreDroite" :
-			code = __CAPTEURS.code( (int)__CAPTEURS.NOM.ARRIÈRE_DROITE, (int)__CAPTEURS.PARAMÈTRE.DISTANCE_PRÈS );
-			break;
-		case "0_2_Valeur_Booléen_Capteur_ArrièreGauche" :
-			code = __CAPTEURS.code( (int)__CAPTEURS.NOM.ARRIÈRE_GAUCHE, (int)__CAPTEURS.PARAMÈTRE.DISTANCE_PRÈS );
-			break;
-
-		// Capteur de teinte du dessous
-		// ----------------------------
-		case "0_2_Valeur_Booléen_Capteur_DessousGauche_Noir" :
-			code = __CAPTEURS.code( (int)__CAPTEURS.NOM.DESSOUS_GAUCHE, (int)__CAPTEURS.PARAMÈTRE.COULEUR_SOL_NOIR );
-			break;
-		case "0_2_Valeur_Booléen_Capteur_DessousGauche_Blanc" :
-			code = __CAPTEURS.code( (int)__CAPTEURS.NOM.DESSOUS_GAUCHE, (int)__CAPTEURS.PARAMÈTRE.COULEUR_SOL_BLANC );
-			break;
-		case "0_2_Valeur_Booléen_Capteur_DessousDroite_Noir" :
-			code = __CAPTEURS.code( (int)__CAPTEURS.NOM.DESSOUS_DROITE, (int)__CAPTEURS.PARAMÈTRE.COULEUR_SOL_NOIR );
-			break;
-		case "0_2_Valeur_Booléen_Capteur_DessousDroite_Blanc" :
-			code = __CAPTEURS.code( (int)__CAPTEURS.NOM.DESSOUS_DROITE, (int)__CAPTEURS.PARAMÈTRE.COULEUR_SOL_BLANC );
-			break;
-
-		// Télécommande infra-rouge
-		// ------------------------
-		case "0_2_Valeur_Booléen_ToucheDeLaTélécommandeEst_SELTouche" :
-			expression = new Valeur_CapteurIR_SELTouche( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
-			code = expression.codePourLeSéquenceur;
-			break;
-		case "0_5_Valeur_Booléen_BoutonDeLaTélécommandeEst_SELTouche" :
-			expression = new Valeur_CapteurIR_SELBouton( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
-			code = expression.codePourLeSéquenceur;
-			break;
-
-
-
-		/*
-		 * Valeurs entières
-		 * -----------------
-		 */
-
-		// Valeur 1
-		// --------
-		case "0_2_Valeur_Entier_1" :
-			code = "1";
-			break;
-
-		// Valeur au hasard
-		// ----------------
-		case "0_6_Valeur_Aléatoire_Entre0et7":
-			code = "__valeurAleatoire &amp; 0x7";
-			break;
-
-		 // Opérateurs logiques
-		 // -------------------
-		case "0_6_Valeur_Booléen_OULogique_ENTBooleen_ENTBooleen" :
-			expression = new Valeur_OpérateurLogique( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe, (int)__OPÉRATIONS_LOGIQUES.NOM.OU );
-			code = expression.codePourLeSéquenceur;
-			break;
-		case "0_6_Valeur_Booléen_ETLogique_ENTBooleen_ENTBooleen" :
-			expression = new Valeur_OpérateurLogique( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe, (int)__OPÉRATIONS_LOGIQUES.NOM.ET );
-			code = expression.codePourLeSéquenceur;
-			break;
-		case "0_6_Valeur_Booléen_NONLogique_ENTBooleen":
-			expression = new Valeur_OpérateurLogique( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe, (int)__OPÉRATIONS_LOGIQUES.NOM.NON );
-			code = expression.codePourLeSéquenceur;
-			break;
-
-
-
-		/*
-		 * Sinon, une erreur est déclenchée
-		 * --------------------------------
-		 */
-		default:
-			int		pos;	
-			String	ver;
-
-			erreur = "Erreur ! Le bloc " + instruction + " n'est pas traité dans cette version du compilateur.";
-			pos = instruction.IndexOf( "_", 2 );
-			if ( pos != -1 ) {
-				ver = instruction.Substring( 0, pos );
-				ver = ver.Replace( "_", "." );
-				erreur += "\n\nLa version du compilateur la plus appropiée pour ce bloc est la version " + ver;
-			}
-			throw new Exception( erreur );
-
-        }
-
-
-
-		// Fin
-		// ---
-
-		return code;
-
-	}
 
 
     /// <summary>
@@ -686,8 +299,6 @@ public class	Compilateur {
 		#endif
 
         événementsRacines = new List<__Evénement>();
-
-        __GroupeDInstructions_Boucle_Répère_AvecNombre.__compteurDeBoucle = 0;
 
 
 
@@ -768,16 +379,10 @@ public class	Compilateur {
 		 * Traitements
 		 */
         // Déclaration des variables
-        if (événementsRacines.Count > 0) {
-            
+        if (événementsRacines.Count > 0)
 			codeDéclarationDesVariables +=	"var __sequenceur[" + événementsRacines.Count + "]\n" +
                                             "var __chrono[" + événementsRacines.Count + "]\n";
-			
-            if ( __GroupeDInstructions_Boucle_Répère_AvecNombre.__compteurDeBoucle > 0 )
-                codeDéclarationDesVariables += "var __boucles[" + __GroupeDInstructions_Boucle_Répère_AvecNombre.__compteurDeBoucle + "]\n";
-            
-        }
-
+		
 
         // Ajoute le code généré pour chaque événement
         foreach ( __Evénement événementRacine in événementsRacines ) {
@@ -792,47 +397,7 @@ public class	Compilateur {
                     codeSéquenceur += événementRacine.blocSuivant.codePourLeSéquenceur + "\n";
                 }
 
-			} else if 	( événementRacine is Evénement_QuandUnOrdreArriveDeLaTélécommandeIR ) {
-
-				// Evénement : Quand un ordre arrive de la télécommande IR
-                if ( événementRacine.blocSuivant != null ) {
-                    // Exécute l'instruction qui suit l'événement
-					if ( codeEvénementCommandeIR != "" ) { codeEvénementCommandeIR += "  "; }
-                    codeEvénementCommandeIR += "  __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + événementRacine.blocSuivant.UID;
-                    codeSéquenceur += événementRacine.blocSuivant.codePourLeSéquenceur + "\n";
-                }
-
-            } else if	( événementRacine is Evénement_QuandUnBoutonFlècheEstAppuyé ) {
-
-				// Evénement : Quand un bouton flèche est appuyé
-                if ( événementRacine.blocSuivant != null ) {
-                    // Exécute l'instruction qui suit l'événement
-					if ( codeEvénementBoutonFlèche != "" ) { codeEvénementBoutonFlèche += "  "; }
-                    codeEvénementBoutonFlèche += "  __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + événementRacine.blocSuivant.UID;
-                    codeSéquenceur += événementRacine.blocSuivant.codePourLeSéquenceur + "\n";
-                }
-
-			} else if	( événementRacine is Evénement_QuandUnCapteurAvantVoitUnObstacle ) {
-
-				// Evénement : Quand un capteur avant voit un obstacle
-                if ( événementRacine.blocSuivant != null ) {
-                    // Exécute l'instruction qui suit l'événement
-					if ( codeEvénementCapteurAvant != "" ) { codeEvénementCapteurAvant += "  "; }
-					codeEvénementCapteurAvant += "  __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + événementRacine.blocSuivant.UID;
-                    codeSéquenceur += événementRacine.blocSuivant.codePourLeSéquenceur + "\n";
-                }
-
-			} else if	( événementRacine is Evénement_QuandUnCapteurAvantVoitUnObstacle ) {
-
-				// Evénement : Quand un capteur arrière voit un obstacle
-                if ( événementRacine.blocSuivant != null ) {
-                    // Exécute l'instruction qui suit l'événement
-					if ( codeEvénementCapteurArrière != "" ) { codeEvénementCapteurArrière += "  "; }
-					codeEvénementCapteurArrière += "  __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + événementRacine.blocSuivant.UID;
-                    codeSéquenceur += événementRacine.blocSuivant.codePourLeSéquenceur + "\n";
-                }
-
-            }
+			}
 
         }
 
@@ -953,26 +518,10 @@ public class	Compilateur {
 
         // Décompose le xml en codes Blockly4Thymio et liste les événements
         foreach ( XmlNode noeudRacine in XMLDoc.DocumentElement.ChildNodes ) {
-            bloc = AnalyseUnNoeudDInstruction( 0, noeudRacine, null, null );
+            bloc = AnalyseUnNoeudDInstruction( 0, noeudRacine, null );
             if ( bloc != null ) {
 				if ( bloc is Evénement_QuandLeProgrammeCommence ) {
 					événementRacine = (Evénement_QuandLeProgrammeCommence)bloc;
-					événementsRacines.Add( événementRacine );
-				}
-				if ( bloc is Evénement_QuandUnOrdreArriveDeLaTélécommandeIR ) {
-					événementRacine = (Evénement_QuandUnOrdreArriveDeLaTélécommandeIR)bloc;
-					événementsRacines.Add( événementRacine );
-				}
-				if ( bloc is Evénement_QuandUnBoutonFlècheEstAppuyé ) {
-					événementRacine = (Evénement_QuandUnBoutonFlècheEstAppuyé)bloc;
-					événementsRacines.Add( événementRacine );
-				}
-				if ( bloc is Evénement_QuandUnCapteurAvantVoitUnObstacle ) {
-					événementRacine = (Evénement_QuandUnCapteurAvantVoitUnObstacle)bloc;
-					événementsRacines.Add( événementRacine );
-				}
-				if ( bloc is Evénement_QuandUnCapteurArrièreVoitUnObstacle ) {
-					événementRacine = (Evénement_QuandUnCapteurArrièreVoitUnObstacle)bloc;
 					événementsRacines.Add( événementRacine );
 				}
 			}

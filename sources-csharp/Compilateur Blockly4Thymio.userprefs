@@ -1,18 +1,18 @@
 ﻿<Properties StartupItem="Compilateur Blockly4Thymio.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="WINDOWS-Release|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Compilateur\__Bloc.cs">
-    <Files>
-      <File FileName="Compilateur\__Bloc.cs" Line="99" Column="82" />
-      <File FileName="Compilateur\__Séquence.cs" Line="90" Column="2" />
-    </Files>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="WINDOWS-Debug|x86" />
+  <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Compilateur Blockly4Thymio" expanded="True">
             <Node name="Compilateur Blockly4Thymio" expanded="True">
               <Node name="Compilateur" expanded="True">
-                <Node name="Blocs" expanded="True" />
-                <Node name="__Bloc.cs" selected="True" />
+                <Node name="Blocs" expanded="True">
+                  <Node name="Evénements" expanded="True" />
+                  <Node name="Instructions" expanded="True" selected="True">
+                    <Node name="Instructions_Lumières" expanded="True" />
+                  </Node>
+                </Node>
               </Node>
             </Node>
           </Node>
