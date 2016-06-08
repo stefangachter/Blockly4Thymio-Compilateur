@@ -123,7 +123,7 @@ static	class 	ProgrammePrincipal {
 		// Nom du fichier programme.b4t à tester
 		#if (DEBUG && WINDOWS)
 		Compilateur.nomDuFichierB4T = @"C:\Users\Okimi\Downloads\programme.b4t";
-		Compilateur.nomDuFichierB4T = @"C:\Users\fort\Downloads\programme.b4t";
+		//Compilateur.nomDuFichierB4T = @"C:\Users\fort\Downloads\programme.b4t";
 		#endif
 		#if (DEBUG && LINUX)
 		Compilateur.nomDuFichierB4T = @"/home/okimi/Téléchargements/programme.b4t";

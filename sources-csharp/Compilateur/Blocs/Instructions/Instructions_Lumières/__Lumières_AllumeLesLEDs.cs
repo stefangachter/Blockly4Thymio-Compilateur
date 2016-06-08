@@ -94,30 +94,8 @@ public class 	__Lumières_AllumeLesLEDs : __Bloc {
 	/*
 	 * Membres
 	 */
-	protected	int				__couleur;
-	protected	int				__led;
-
-	private		List<Séquence>	Séquences;
-
-	private		Func<String>	séquence;
-
-
-
-	/*
-	 * Propriétés
-	 */
-	public	override	String	codePourLeSéquenceur {
-	get {
-		String	code = "";
-
-		if (Compilateur.afficherLesCommentaires)
-			code += "\n# Instruction Blockly (UID " + __UID + ") = " + __nomDansBlockly + "\n";
-
-		code += __Séquence_1 () + "\n";
-
-		return code;
-	}
-	}
+	protected	int	__couleur;
+	protected	int	__led;
 
 
 
@@ -128,17 +106,14 @@ public class 	__Lumières_AllumeLesLEDs : __Bloc {
 
 		// Initialisation des membres
 		// --------------------------
-		__nombreDeSéquence = 1;
 
 		__couleur = _couleur;
 		__led = _led;
 
-		Séquences = new List<Séquence>();
 
-		// Pourtant : http://stackoverflow.com/questions/4297453/list-of-delegates-and-invoking
-
-		Séquence  = __Séquence_1;
-		Séquences.Add( Séquence );
+		// Liste les séquences du bloc
+		// ---------------------------
+		__séquences.Add( (Séquence)Séquence_1 );
 
 	}
 
@@ -147,7 +122,7 @@ public class 	__Lumières_AllumeLesLEDs : __Bloc {
 	/*
 	 * Séquences
 	 */
-	public	String	__Séquence_1() {
+	public	String	Séquence_1() {
 
 		// Séquence 1 - Allume les LEDs
 		return	"if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then \n" +
@@ -156,7 +131,6 @@ public class 	__Lumières_AllumeLesLEDs : __Bloc {
 				"end";
 		
 	}
-
 
 }
 }

@@ -83,14 +83,19 @@ public	class	__Bloc {
     /*
      * Membres
      */
-    protected	int 		__nombreDeSéquence;
-    protected	int			__UID;
-	protected	int			__UIDDuSéquenceur;
+    protected		int				__UID;
+	protected		int				__UIDDuSéquenceur;
 
-	protected	String		__nomDansBlockly;
+	protected		String			__nomDansBlockly;
 
-	protected	__Bloc		__blocPrécédent;
-	protected	__Bloc		__blocSuivant;
+	protected		__Bloc			__blocPrécédent;
+	protected		__Bloc			__blocSuivant;
+
+	protected		List<Séquence>	__séquences;
+
+	public delegate	String			Séquence();
+
+
 
 
     /*
@@ -108,9 +113,24 @@ public	class	__Bloc {
 	}
 	}
 
-	public	int		nombreDeSéquence { get { return __nombreDeSéquence; } }
+	public	int		nombreDeSéquence { get { return __séquences.Count; } }
 
-	public	virtual	String	codePourLeSéquenceur { get { return ""; } }
+	public	virtual	String	codePourLeSéquenceur { 
+	get {
+		String	code = "";
+
+		if (Compilateur.afficherLesCommentaires)
+			code += "# Instruction Blockly (UID " + __UID + ") = " + __nomDansBlockly + "\n";
+
+		foreach ( Séquence séquence in __séquences )
+			code += séquence () + "\n";
+
+		if ( __blocSuivant != null )
+			code += "\n" + __blocSuivant.codePourLeSéquenceur;
+			
+		return code;
+	}
+	}
 
 	public	__Bloc	blocSuivant {
 	get{ return __blocSuivant; }
@@ -132,7 +152,9 @@ public	class	__Bloc {
 
 		if ( __blocPrécédent != null )
 			__UIDDuSéquenceur = __blocPrécédent.__UIDDuSéquenceur;
-		
+
+		__séquences = new List<Séquence>();
+
     }
 
 
