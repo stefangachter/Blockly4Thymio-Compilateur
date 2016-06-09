@@ -93,7 +93,7 @@ public	class	Lumières_AllumeToutesLesLEDs_SELCouleur : __Lumières_AllumeLesLED
 	/*
 	 * Constructeur
 	 */
-	public	Lumières_AllumeToutesLesLEDs_SELCouleur( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent ) : base( _UID, _XMLDuBloc, _blocPrécédent, 0, 0 ) {
+	public	Lumières_AllumeToutesLesLEDs_SELCouleur( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, 0, 0 ) {
 
 		// Déclarations
 		// ------------

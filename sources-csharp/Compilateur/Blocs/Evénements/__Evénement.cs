@@ -83,7 +83,7 @@ public	class	__Evénement : __Bloc {
 	 * Constructeur
 	 */
 	// Note : Un événement à toujours l'UID 1
-	public __Evénement( XmlNode _XMLDuBloc ) : base( 1, _XMLDuBloc, null ) {
+	public __Evénement( XmlNode _XMLDuBloc ) : base( 1, _XMLDuBloc, null, null ) {
 
 		__UIDDuSéquenceur = Compilateur.compteurDeSéquenceur++;
 

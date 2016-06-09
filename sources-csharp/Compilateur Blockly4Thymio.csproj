@@ -112,7 +112,6 @@ Transforme un fichiers .b4t en fichier .aesl puis le transmet à Thymio.</Descri
     <Compile Include="Compilateur\Compilateur.cs" />
     <Compile Include="Compilateur\Blocs\Evénements\__Evénement.cs" />
     <Compile Include="Compilateur\Blocs\Evénements\Evénement_QuandLeProgrammeCommence.cs" />
-    <Compile Include="Compilateur\__Bloc.cs" />
     <Compile Include="Compilateur\Blocs\Instructions\Instructions_Lumières\__LED.cs" />
     <Compile Include="Compilateur\Blocs\Instructions\Instructions_Lumières\__Lumières_AllumeLesLEDs.cs" />
     <Compile Include="Compilateur\Blocs\Instructions\Instructions_Lumières\Lumières_AllumeToutesLesLEDs_SELCouleur.cs" />
@@ -120,6 +119,11 @@ Transforme un fichiers .b4t en fichier .aesl puis le transmet à Thymio.</Descri
     <Compile Include="Compilateur\Messages.cs" />
     <Compile Include="Compilateur\Blocs\Instructions\Instructions_Lumières\__Lumières_AllumeLesLEDs_AvecDurée.cs" />
     <Compile Include="Compilateur\Blocs\Instructions\Instructions_Lumières\Lumières_AllumeToutesLesLEDsPendant1Seconde_SELCouleur.cs" />
+    <Compile Include="Compilateur\Blocs\Groupe d%27instructions\GroupeDInstructions_Boucle_RépèteToutLeTemps.cs" />
+    <Compile Include="Compilateur\Blocs\Groupe d%27instructions\__GroupeDeBlocs.cs" />
+    <Compile Include="Compilateur\Blocs\__Bloc.cs" />
+    <Compile Include="Compilateur\Blocs\Instructions\__Instruction.cs" />
+    <Compile Include="Compilateur\Blocs\Groupe d%27instructions\__BlocsInternes.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -146,5 +150,8 @@ Transforme un fichiers .b4t en fichier .aesl puis le transmet à Thymio.</Descri
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Compilateur\Blocs\Groupe d%27instructions\" />
   </ItemGroup>
 </Project>

@@ -125,7 +125,7 @@ public class 	__Lumières_AllumeLesLEDs_AvecDurée : __Bloc {
 	/*
 	 * Constructeur
 	 */
-	public	__Lumières_AllumeLesLEDs_AvecDurée( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, int _led, int _couleur, float _durée ) : base( _UID, _XMLDuBloc, _blocPrécédent ) {
+	public	__Lumières_AllumeLesLEDs_AvecDurée( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs, int _led, int _couleur, float _durée ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs ) {
 
 		// Initialisation des membres
 		// --------------------------

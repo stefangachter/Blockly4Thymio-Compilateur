@@ -166,7 +166,7 @@ public class	Compilateur {
     /// <summary>
     /// Analyse un noeud de code xml.
     /// </summary>
-    public	static	__Bloc	AnalyseUnNoeudDInstruction( int _UIDPourLeBloc, XmlNode _XMLDuBloc, __Bloc _blocPrécédent ) {
+	public	static	__Bloc	AnalyseUnNoeudDInstruction( int _UIDPourLeBloc, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs ) {
 
         /*
          * Déclarations
@@ -206,7 +206,7 @@ public class	Compilateur {
 
 		// Evénements - Version 0.1b
 		// -------------------------
-		case "0_1b_Evénement_QuandLeProgrammeCommence":
+		case "0_1b_Evénement_QuandLeProgrammeCommence" :
 			// Note : L'UID d'un événement est 1
 			bloc = new Evénement_QuandLeProgrammeCommence( _XMLDuBloc );
 			break;
@@ -214,17 +214,20 @@ public class	Compilateur {
 
 		// Lumières
 		// --------
-		case "0_1b_Lumières_AllumeToutesLesLEDs_SELCouleur":
-			bloc = new Lumières_AllumeToutesLesLEDs_SELCouleur( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent );
+		case "0_1b_Lumières_AllumeToutesLesLEDs_SELCouleur" :
+			bloc = new Lumières_AllumeToutesLesLEDs_SELCouleur( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
 			break;
 
-		case "0_1b_Lumières_AllumeToutesLesLEDsPendant1Seconde_SELCouleur":
-			bloc = new Lumières_AllumeToutesLesLEDsPendant1Seconde_SELCouleur( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent );
+		case "0_1b_Lumières_AllumeToutesLesLEDsPendant1Seconde_SELCouleur" :
+			bloc = new Lumières_AllumeToutesLesLEDsPendant1Seconde_SELCouleur ( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
 			break;
 
 
-
-	
+		// Contrôles
+		// ---------
+		case "0_1b_Contrôles_RépèteToutLeTemps":
+			bloc = new GroupeDInstructions_Boucle_RépèteToutLeTemps ( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
+			break;
 
 
 
@@ -251,9 +254,9 @@ public class	Compilateur {
         // -----------------------
         XmlDuBlocSuivant = _XMLDuBloc.SelectSingleNode( "./next/block" );
 		if ( bloc is __Evénement )
-			bloc.blocSuivant = Compilateur.AnalyseUnNoeudDInstruction( bloc.UID+bloc.nombreDeSéquence, XmlDuBlocSuivant, bloc );
+			bloc.blocSuivant = Compilateur.AnalyseUnNoeudDInstruction( bloc.UID+bloc.nombreDeSéquence, XmlDuBlocSuivant, bloc, _groupeDeBlocs );
 		else if ( bloc is __Bloc )
-			bloc.blocSuivant = Compilateur.AnalyseUnNoeudDInstruction( bloc.UID+bloc.nombreDeSéquence, XmlDuBlocSuivant, bloc );
+			bloc.blocSuivant = Compilateur.AnalyseUnNoeudDInstruction( bloc.UID+bloc.nombreDeSéquence, XmlDuBlocSuivant, bloc, _groupeDeBlocs );
 		
 		
 		// Fin
@@ -518,7 +521,7 @@ public class	Compilateur {
 
         // Décompose le xml en codes Blockly4Thymio et liste les événements
         foreach ( XmlNode noeudRacine in XMLDoc.DocumentElement.ChildNodes ) {
-            bloc = AnalyseUnNoeudDInstruction( 0, noeudRacine, null );
+            bloc = AnalyseUnNoeudDInstruction( 0, noeudRacine, null, null );
             if ( bloc != null ) {
 				if ( bloc is Evénement_QuandLeProgrammeCommence ) {
 					événementRacine = (Evénement_QuandLeProgrammeCommence)bloc;

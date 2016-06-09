@@ -1,4 +1,4 @@
-﻿
+
 /*
 Copyright Okimi 2015-2016 (contact at okimi dot net)
 
@@ -71,70 +71,46 @@ knowledge of the CeCILL license and that you accept its terms.
 
 
 
-/*
- * __Lumières_AllumeLesLEDs
- * ------------------------
- *
- * Allume les LEDs de Thymio,
- * avec le choix des LEDs et la couleur choisie.
- * 
- */
-
-
 using 	System;
-using 	System.IO;
 using 	System.Collections.Generic;
 using 	System.Xml;
 
 
 
-namespace 		Blockly4Thymio {
-public class 	__Lumières_AllumeLesLEDs : __Bloc {
+namespace		Blockly4Thymio {
+public	class	__GroupeDeBlocs : __Bloc {
+	
+    /*
+     * Membres
+     */
+	protected	__BlocsInternes	__blocsInternes;
+
+
 
 	/*
-	 * Membres
+	 * Propriétés
 	 */
-	protected	int	__couleur;
-	protected	int	__led;
+	new public	int	nombreDeSéquence {
+	get { 
+		return __séquences.Count + __blocsInternes.nombreDeSéquence;
+	}
+	}
 
+	public	int	nombreDeSéquenceDesBlocsInternes {
+	get {
+		return __séquences.Count + __blocsInternes.nombreDeSéquence;
+	}
+	}
 
 
 	/*
 	 * Constructeur
 	 */
-	public	__Lumières_AllumeLesLEDs( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs, int _led, int _couleur ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs ) {
+	public	__GroupeDeBlocs( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs ) {
 
-		// Initialisation des membres
-		// --------------------------
-
-		__couleur = _couleur;
-		__led = _led;
-
-
-		// Liste les séquences du bloc
-		// ---------------------------
-		__séquences.Add( (Séquence)Séquence_1 );
-
-	}
-
-
-
-	/*
-	 * Séquences
-	 */
-
-	// Séquence 1
-	// - Allume les LEDs
-	// - Passe au bloc suivant
-	public	String	Séquence_1() {
-
-		return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n" +
-				"    " + __LED.code (__led, __couleur) + "\n" +
-				"    __sequenceur[" + UIDDuSéquenceur + "]=" + UIDDuBlocSuivant + "\n" +
-				"  end";
-		
-	}
-
+    }
+	
+	
 }
 }
 

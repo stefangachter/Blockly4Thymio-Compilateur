@@ -1,4 +1,4 @@
-﻿
+
 /*
 Copyright Okimi 2015-2016 (contact at okimi dot net)
 
@@ -71,71 +71,98 @@ knowledge of the CeCILL license and that you accept its terms.
 
 
 
-/*
- * __Lumières_AllumeLesLEDs
- * ------------------------
- *
- * Allume les LEDs de Thymio,
- * avec le choix des LEDs et la couleur choisie.
- * 
- */
-
-
 using 	System;
-using 	System.IO;
 using 	System.Collections.Generic;
 using 	System.Xml;
 
 
 
-namespace 		Blockly4Thymio {
-public class 	__Lumières_AllumeLesLEDs : __Bloc {
+namespace		Blockly4Thymio {
+public	class	__Bloc {
+	
+    /*
+     * Membres
+     */
+    protected		int				__UID;
+	protected		int				__UIDDuSéquenceur;
 
-	/*
-	 * Membres
-	 */
-	protected	int	__couleur;
-	protected	int	__led;
+	protected		String			__nomDansBlockly;
+
+	protected		__Bloc			__blocPrécédent;
+	protected		__Bloc			__blocSuivant;
+
+	protected		__GroupeDeBlocs	__groupeDeBlocs;
+
+	protected		List<Séquence>	__séquences;
+
+	public delegate	String			Séquence();
+
+
+
+
+    /*
+     * Propriétés publiques
+     */
+	public	int		nombreDeSéquence { get { return __séquences.Count; } }
+
+	public	int		UID { get { return __UID; } }
+
+	public	int		UIDDuSéquenceur { get { return __UIDDuSéquenceur; } }
+
+	public	int		UIDDuBlocSuivant {
+	get {
+		if (__blocSuivant==null)
+			return 0;
+		return __blocSuivant.UID;
+	}
+	}
+
+	public	String	codePourLeSéquenceur { 
+	get {
+		String	code = "";
+
+		if (Compilateur.afficherLesCommentaires)
+			code += "\n  # Instruction Blockly (UID " + __UID + ") = " + __nomDansBlockly + "\n";
+
+		foreach ( Séquence séquence in __séquences )
+			code += séquence () + "\n";
+
+		if ( __blocSuivant != null )
+			code += "\n" + __blocSuivant.codePourLeSéquenceur;
+			
+		return code;
+	}
+	}
+
+	public	__Bloc	blocSuivant {
+	get{ return __blocSuivant; }
+	set{ __blocSuivant = value; }
+	}
 
 
 
 	/*
 	 * Constructeur
 	 */
-	public	__Lumières_AllumeLesLEDs( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs, int _led, int _couleur ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs ) {
+	public	__Bloc( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs ) {
 
-		// Initialisation des membres
-		// --------------------------
+		__UID = _UID;
 
-		__couleur = _couleur;
-		__led = _led;
+        __nomDansBlockly = _XMLDuBloc.Attributes["type"].Value;
+
+        __blocPrécédent = _blocPrécédent;
+
+		__groupeDeBlocs = _groupeDeBlocs;
+
+		if ( __blocPrécédent != null )
+			__UIDDuSéquenceur = __blocPrécédent.__UIDDuSéquenceur;
+
+		__séquences = new List<Séquence>();
+
+    }
 
 
-		// Liste les séquences du bloc
-		// ---------------------------
-		__séquences.Add( (Séquence)Séquence_1 );
-
-	}
-
-
-
-	/*
-	 * Séquences
-	 */
-
-	// Séquence 1
-	// - Allume les LEDs
-	// - Passe au bloc suivant
-	public	String	Séquence_1() {
-
-		return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n" +
-				"    " + __LED.code (__led, __couleur) + "\n" +
-				"    __sequenceur[" + UIDDuSéquenceur + "]=" + UIDDuBlocSuivant + "\n" +
-				"  end";
-		
-	}
 
 }
 }
-
 
