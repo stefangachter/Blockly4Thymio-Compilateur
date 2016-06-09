@@ -120,7 +120,7 @@ public	class	__Bloc {
 		String	code = "";
 
 		if (Compilateur.afficherLesCommentaires)
-			code += "# Instruction Blockly (UID " + __UID + ") = " + __nomDansBlockly + "\n";
+			code += "\n  # Instruction Blockly (UID " + __UID + ") = " + __nomDansBlockly + "\n";
 
 		foreach ( Séquence séquence in __séquences )
 			code += séquence () + "\n";

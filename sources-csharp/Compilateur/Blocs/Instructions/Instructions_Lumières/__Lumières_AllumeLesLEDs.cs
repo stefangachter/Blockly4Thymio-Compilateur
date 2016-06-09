@@ -124,8 +124,10 @@ public class 	__Lumières_AllumeLesLEDs : __Bloc {
 	 */
 	public	String	Séquence_1() {
 
-		// Séquence 1 - Allume les LEDs
-		return	"if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then \n" +
+		// Séquence 1
+		// - Allume les LEDs
+		// - Passe au bloc suivant
+		return	"if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n" +
 				"  " + __LED.code (__led, __couleur) + "\n" +
 				"  __sequenceur[" + UIDDuSéquenceur + "]=" + UIDDuBlocSuivant + "\n" +
 				"end";

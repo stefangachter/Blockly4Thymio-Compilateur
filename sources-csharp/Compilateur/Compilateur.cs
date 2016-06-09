@@ -212,13 +212,15 @@ public class	Compilateur {
 			break;
 
 
-		// Lumières - version 0.1b
-		// -----------------------
+		// Lumières
+		// --------
 		case "0_1b_Lumières_AllumeToutesLesLEDs_SELCouleur":
 			bloc = new Lumières_AllumeToutesLesLEDs_SELCouleur( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent );
 			break;
 
-
+		case "0_1b_Lumières_AllumeToutesLesLEDsPendant1Seconde_SELCouleur":
+			bloc = new Lumières_AllumeToutesLesLEDsPendant1Seconde_SELCouleur( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent );
+			break;
 
 
 
@@ -378,7 +380,8 @@ public class	Compilateur {
 		 */
         // Déclaration des variables
         if (événementsRacines.Count > 0)
-			codeDéclarationDesVariables +=	"var __sequenceur[" + événementsRacines.Count + "]\n";
+			codeDéclarationDesVariables +=	"var __sequenceur[" + événementsRacines.Count + "]\n" + 
+											"var __chrono[" + événementsRacines.Count + "]\n";
 		
 
         // Ajoute le code généré pour chaque événement
@@ -402,15 +405,15 @@ public class	Compilateur {
         // Ajoute le code de fin du séquenceur
         if ( arrêtDuRobotALaFinDesSéquenceurs ) {
 
-            if ( afficherLesCommentaires ) { codeSéquenceur += "\n# Code exécuté à la fin de tous les séquenceurs\n"; }
-            codeSéquenceur += "if ";
+            if ( afficherLesCommentaires ) { codeSéquenceur += "  # Code exécuté à la fin de tous les séquenceurs\n"; }
+            codeSéquenceur += "  if ";
             for (int séquenceur = 0; séquenceur < événementsRacines.Count; séquenceur++) {
                 codeSéquenceur += "__sequenceur[" + séquenceur + "]==0 ";
                 if (séquenceur < (événementsRacines.Count - 1)) { codeSéquenceur += "and "; }
             }
             codeSéquenceur += 	"then\n" +
-                                "  __etat = ETAT_ARRET\n" +
-                                "end\n";
+                                "    __etat = ETAT_ARRET\n" +
+                                "  end\n";
         }
         // Nettoie le fichier du séquenceur des <
         codeSéquenceur = codeSéquenceur.Replace("<", "&lt;");
