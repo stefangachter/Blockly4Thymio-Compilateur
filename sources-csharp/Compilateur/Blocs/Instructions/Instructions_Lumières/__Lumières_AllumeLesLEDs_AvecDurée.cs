@@ -72,12 +72,13 @@ knowledge of the CeCILL license and that you accept its terms.
 
 
 /*
- * __Lumières_AllumeLesLEDs
- * ------------------------
+ * __Lumières_AllumeLesLED_AvecDurée
+ * ---------------------------------
  *
- * Allume les LEDs de Thymio,
- * avec le choix des LEDs et la couleur choisie.
- * 
+ * Allume une ou toute les LEDs,
+ * à la couleur demandée (entier long),
+ * pendant un temps donné (en seconde)
+ *
  */
 
 
@@ -89,20 +90,42 @@ using 	System.Xml;
 
 
 namespace 		Blockly4Thymio {
-public class 	__Lumières_AllumeLesLEDs : __Bloc {
+public class 	__Lumières_AllumeLesLEDs_AvecDurée : __Bloc {
 
 	/*
 	 * Membres
 	 */
-	protected	int	__couleur;
-	protected	int	__led;
+	protected	int		__couleur;
+	protected	int		__led;
+
+	protected	float	__durée;
+
+
+
+	/*
+	 * Propriétés
+     */
+	public	float	durée{
+	get { return __durée; }
+	set {
+		__durée = value;
+		if ( __durée < 0 ) {			
+			__durée = 0;
+			Compilateur.AfficheUnMessageDInformation( Messages.Message((int)Messages.TYPE.DURÉE_INFÉRIEURE_A_0) );
+		}
+		if ( __durée > 60 ) {			
+			__durée = 60;
+			Compilateur.AfficheUnMessageDInformation( Messages.Message((int)Messages.TYPE.DURÉE_SUPÉRIEURE_A_60) );
+		}
+	}
+	}
 
 
 
 	/*
 	 * Constructeur
 	 */
-	public	__Lumières_AllumeLesLEDs( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, int _led, int _couleur ) : base( _UID, _XMLDuBloc, _blocPrécédent ) {
+	public	__Lumières_AllumeLesLEDs_AvecDurée( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, int _led, int _couleur, float _durée ) : base( _UID, _XMLDuBloc, _blocPrécédent ) {
 
 		// Initialisation des membres
 		// --------------------------
@@ -110,10 +133,13 @@ public class 	__Lumières_AllumeLesLEDs : __Bloc {
 		__couleur = _couleur;
 		__led = _led;
 
+		durée = _durée;
+
 
 		// Liste les séquences du bloc
 		// ---------------------------
 		__séquences.Add( (Séquence)Séquence_1 );
+		__séquences.Add( (Séquence)Séquence_2 );
 
 	}
 
@@ -122,15 +148,37 @@ public class 	__Lumières_AllumeLesLEDs : __Bloc {
 	/*
 	 * Séquences
 	 */
+
+	// Séquence 1
+	// - Initialise le chrono à 0
+	// - Allume les lumières
 	public	String	Séquence_1() {
 
-		// Séquence 1 - Allume les LEDs
-		return	"if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then \n" +
-				"  " + __LED.code (__led, __couleur) + "\n" +
-				"  __sequenceur[" + UIDDuSéquenceur + "]=" + UIDDuBlocSuivant + "\n" +
-				"end";
+		return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n" +
+				"    __chrono[" + UIDDuSéquenceur + "]=0\n" +
+				"    " + __LED.code (__led, __couleur) + "\n" +
+				"    __sequenceur[" + UIDDuSéquenceur + "]=" + (UID + 1) + "\n" +
+				"  end";
 		
 	}
+
+
+	// Séquence 2
+	// - Incrémente le chrono
+	// - Test la fin du chrono
+	//     - Si le chrono est écoulé, éteins les lumières et passe au bloc suivant
+	public	String	Séquence_2() {
+
+		return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + (UID + 1) + " then\n" +
+				"    __chrono[" + UIDDuSéquenceur + "]++\n" +
+				"    if __chrono[" + UIDDuSéquenceur + "]>=" + (int)(__durée * 100) + " then\n" +
+				"      " + __LED.code( __led, 0 ) + "\n" +
+				"      __sequenceur[" + UIDDuSéquenceur + "]=" + UIDDuBlocSuivant + "\n" +
+				"    end\n" +
+				"  end";
+		
+	}
+
 
 }
 }
