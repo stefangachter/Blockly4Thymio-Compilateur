@@ -220,12 +220,29 @@ public class	Compilateur {
 
 		// Lumières
 		// --------
+
 		case "0_1b_Lumières_AllumeToutesLesLEDs_SELCouleur" :
 			bloc = new Lumières_AllumeToutesLesLEDs_SELCouleur( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
 			break;
 
+		case "0_1b_Lumières_AllumeLesLEDs_SELLED_SELCouleur":
+			bloc = new Lumières_AllumeLesLEDs_SELLED_SELCouleur( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
+			break;
+
 		case "0_1b_Lumières_AllumeToutesLesLEDsPendant1Seconde_SELCouleur" :
-			bloc = new Lumières_AllumeToutesLesLEDsPendant1Seconde_SELCouleur ( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
+			bloc = new Lumières_AllumeToutesLesLEDsPendant1Seconde_SELCouleur( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
+			break;
+
+		case "0_1b_Lumières_EteinsToutesLesLEDsPendant1Seconde" :
+			bloc = new __Lumières_AllumeLesLEDs_AvecDurée( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, __LED.TOUTE_LES_LEDS, 0, 1.0f );
+			break;
+
+		case "0_2_Lumières_AllumeLesLEDs_SELLED_SELCouleur_SAIDurée":
+			bloc = new Lumières_AllumeLesLEDs_SELLED_SELCouleur_SAIDurée( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
+			break;
+
+		case "0_6_Lumières_EteinsToutesLesLEDs":
+			bloc = new __Lumières_AllumeLesLEDs( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, __LED.TOUTE_LES_LEDS, 0 );
 			break;
 
 
