@@ -234,7 +234,7 @@ public class	Compilateur {
 			break;
 
 		case "0_1b_Lumières_EteinsToutesLesLEDsPendant1Seconde" :
-			bloc = new __Lumières_AllumeLesLEDs_AvecDurée( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, __LED.TOUTE_LES_LEDS, 0, 1.0f );
+			bloc = new __Lumières_AllumeLesLEDs_AvecDurée( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__LED.LED.TOUTES, 0, 1.0f );
 			break;
 
 		case "0_2_Lumières_AllumeLesLEDs_SELLED_SELCouleur_SAIDurée":
@@ -242,7 +242,7 @@ public class	Compilateur {
 			break;
 
 		case "0_6_Lumières_EteinsToutesLesLEDs":
-			bloc = new __Lumières_AllumeLesLEDs( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, __LED.TOUTE_LES_LEDS, 0 );
+			bloc = new __Lumières_AllumeLesLEDs( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__LED.LED.TOUTES, 0 );
 			break;
 
 

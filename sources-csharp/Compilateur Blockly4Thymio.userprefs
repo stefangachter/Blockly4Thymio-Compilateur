@@ -1,9 +1,13 @@
 ﻿<Properties StartupItem="Compilateur Blockly4Thymio.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="WINDOWS-Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Compilateur\Blocs\Instructions\Instructions_Lumières\Lumières_AllumeLesLEDs_SELLED_SELCouleur_SAIDurée.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Compilateur\Blocs\Instructions\Instructions - Lumières\__LED.cs">
     <Files>
-      <File FileName="Compilateur\Compilateur.cs" Line="241" Column="45" />
-      <File FileName="Compilateur\Blocs\Instructions\Instructions_Lumières\Lumières_AllumeLesLEDs_SELLED_SELCouleur_SAIDurée.cs" Line="96" Column="1" />
+      <File FileName="Compilateur\Compilateur.cs" Line="245" Column="121" />
+      <File FileName="Compilateur\Blocs\Instructions\Instructions - Lumières\Lumières_AllumeLesLEDs_SELLED_SELCouleur_SAIDurée.cs" Line="136" Column="29" />
+      <File FileName="Compilateur\Blocs\Instructions\Instructions - Lumières\__LED.cs" Line="168" Column="18" />
+      <File FileName="Compilateur\Blocs\Instructions\Instructions - Lumières\Lumières_AllumeLesLEDs_SELLED_SELCouleur.cs" Line="128" Column="29" />
+      <File FileName="Compilateur\Blocs\Instructions\Instructions - Lumières\Lumières_AllumeToutesLesLEDsPendant1Seconde_SELCouleur.cs" Line="108" Column="16" />
+      <File FileName="Compilateur\Blocs\Instructions\Instructions - Lumières\Lumières_AllumeToutesLesLEDs_SELCouleur.cs" Line="108" Column="16" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

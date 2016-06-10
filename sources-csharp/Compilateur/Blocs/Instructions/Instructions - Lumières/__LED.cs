@@ -72,68 +72,110 @@ knowledge of the CeCILL license and that you accept its terms.
 
 
 /*
- * Lumières_AllumeToutesLesLEDs_SELCouleur
- * ---------------------------------------
+ * Classe LED
+ * ----------
  *
- * Allume toutes les LEDs de Thymio,
- * avec la couleur choisie.
- * 
+ * Pour la déclaration des constantes
+ * et des fonctions des LEDs
+ *
  */
 
 
 using 	System;
-using 	System.Globalization;
-using 	System.Xml;
 
 
-
-namespace		Blockly4Thymio {
-public	class	Lumières_AllumeToutesLesLEDsPendant1Seconde_SELCouleur : __Lumières_AllumeLesLEDs_AvecDurée {
+namespace	Blockly4Thymio {
+public 		class 	__LED {
 
 	/*
-	 * Constructeur
+	 * Constantes
 	 */
-	public	Lumières_AllumeToutesLesLEDsPendant1Seconde_SELCouleur( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, 0, 0, 0.0f ) {
+
+	public enum LED {
+		AUCUNE = 0,
+		DE_GAUCHE,
+		DE_DROITE,
+		DU_DESSUS,
+		TOUTES
+	}
+
+	public enum COMPOSANTE {
+		ROUGE = 1,
+		VERTE,
+		BLEUE
+	}
+
+
+
+	/*
+	 * Méthodes statiques
+	 */
+	public	static	int	CalculLaCouleur( int _couleur, int _composante ) {
+
+		// Déclarations
+		int	valeur;
+
+
+		// Initialisations
+		valeur = 0;
+
+
+		// Traitements
+		switch ( _composante) {
+		case (int)COMPOSANTE.ROUGE :
+			valeur = (_couleur & 0x0000ff)>>3;
+			break;
+		case (int)COMPOSANTE.VERTE :
+			valeur = (_couleur & 0x00ff00)>>(8+3);
+			break;
+		case (int)COMPOSANTE.BLEUE :
+			valeur = (_couleur & 0xff0000)>>(16+3);
+			break;
+		}
+
+
+		// Fin
+		return valeur;
+
+	}
+
+
+	public	static	String	code (int _led, int _couleur) {
 
 		// Déclarations
 		// ------------
 
-		String	nomDeLAttribut;
-
+		String code;
 
 
 		// Initialisations
-        // ---------------
-
-		__led = __LED.TOUTE_LES_LEDS;
-		__durée = 1.0f;
+		// ---------------
+		code = "";
 
 
-
-        // Traitements
-        // -----------
-
-        // Analyse du Bloc d'instruction
-        foreach ( XmlNode XMLDUnNoeudFils in _XMLDuBloc.ChildNodes ) {
-
-            nomDeLAttribut = "";
-            if (XMLDUnNoeudFils.Attributes["name"] != null)
-                nomDeLAttribut = XMLDUnNoeudFils.Attributes["name"].Value;
-
-            switch( nomDeLAttribut ) {
-
-            case "Couleur" :
-				// Convertie la couleur en notation html, en entier
-				__couleur = Int32.Parse( XMLDUnNoeudFils.InnerText.TrimStart('#'), NumberStyles.HexNumber );
+		// Traitements
+		// -----------
+		if ((_led == (int)LED.TOUTES))
+			code += "__led.rouge=" + CalculLaCouleur (_couleur, (int)COMPOSANTE.ROUGE) + " __led.vert=" + CalculLaCouleur (_couleur, (int)COMPOSANTE.VERTE) + " __led.bleu=" + CalculLaCouleur (_couleur, (int)COMPOSANTE.BLEUE) + " callsub __AllumeLesLEDs";
+		else
+			switch (_led) {
+			case (int)LED.DU_DESSUS:
+				code += "call leds.top(" + CalculLaCouleur(_couleur, (int)COMPOSANTE.BLEUE) + "," + CalculLaCouleur(_couleur, (int)COMPOSANTE.VERTE) + "," + CalculLaCouleur(_couleur, (int)COMPOSANTE.ROUGE) + ")";
 				break;
-			
+			case (int)LED.DE_GAUCHE:
+				code += "call leds.bottom.left(" + CalculLaCouleur(_couleur, (int)COMPOSANTE.BLEUE) + "," + CalculLaCouleur(_couleur, (int)COMPOSANTE.VERTE) + "," + CalculLaCouleur(_couleur, (int)COMPOSANTE.ROUGE) + ")";
+				break;
+			case (int)LED.DE_DROITE:
+				code += "call leds.bottom.right(" + CalculLaCouleur(_couleur, (int)COMPOSANTE.BLEUE) + "," + CalculLaCouleur(_couleur, (int)COMPOSANTE.VERTE) + "," + CalculLaCouleur(_couleur, (int)COMPOSANTE.ROUGE) + ")";
+				break;
 			}
 
-		}
 
-	
+		// Fin
+		// ---
+		return code;
+
 	}
-	
 
 }
 }

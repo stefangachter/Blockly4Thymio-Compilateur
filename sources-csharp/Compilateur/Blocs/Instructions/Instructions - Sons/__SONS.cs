@@ -72,77 +72,131 @@ knowledge of the CeCILL license and that you accept its terms.
 
 
 /*
- * Lumières_AllumeLesLEDs_SELLED_SELCouleur
- * ----------------------------------------
+ * Classe __SONS
+ * -------------
  *
- * Allume les LEDs de Thymio,
- * avec le choix des LEDs et la couleur choisie.
- * 
+ * Pour la déclaration des constantes
+ * et des fonctions des sons
+ *
  */
 
 
 using 	System;
-using 	System.Globalization;
-using 	System.Xml;
 
 
 
-namespace		Blockly4Thymio {
-public	class	Lumières_AllumeLesLEDs_SELLED_SELCouleur : __Lumières_AllumeLesLEDs {
+public 		class 	__SONS {
 
 	/*
-	 * Constructeur
+	 * Constantes
 	 */
-	public	Lumières_AllumeLesLEDs_SELLED_SELCouleur( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, 0, 0 ) {
+
+	public enum DUREE {
+		CROCHE = 0,
+		NOIRE,
+		BLANCHE
+	}
+
+	public enum NOTES {
+		AUCUNE	= 0,
+		DO_3, RÉ_3, MI_3, FA_3, SOL_3, LA_3, SI_3,
+		DO_4, RÉ_4, MI_4, FA_4, SOL_4, LA_4, SI_4
+	}
+
+    public enum SON {
+        PAS_DE_SON			=  -1,
+        BONJOUR				=   0,
+        HO					=   1,
+        QUOI				=   2,
+        JE_SUIS_PAS_CONTENT	=   3,
+
+        SIRÈNE_DES_POMPIERS	= 100,
+
+		PERSONNEL_01		= 1001,
+		PERSONNEL_02		= 1002,
+		PERSONNEL_03		= 1003,
+		PERSONNEL_04		= 1004,
+		PERSONNEL_05		= 1005,
+        PERSONNEL_06		= 1006,
+		PERSONNEL_07		= 1007,
+		PERSONNEL_08		= 1008,
+		PERSONNEL_09		= 1009,
+		PERSONNEL_10		= 1010,
+
+		DEPUIS_LE_MICROPHONE= 9999
+
+    }
+
+
+	/*
+	 * Méthodes statiques
+	 */
+	/// <summary>
+	/// Calcul la fréquence (en hertz) d'une note.
+	/// </summary>
+	/// <param name="_note"></param>
+	/// <returns></returns>
+	public	static	int	CalculLaFréquenceDUneNote( int _note ) {
 
 		// Déclarations
-		// ------------
-
-		String	nomDeLAttribut;
+		int	fréquence;
 
 
-        // Traitements
-        // -----------
+		// Initialisations
+		fréquence = 0;
 
-		// Analyse du Bloc d'instruction
-        foreach (XmlNode XMLDUnNoeudFils in _XMLDuBloc.ChildNodes) {
 
-            nomDeLAttribut = "";
-            if (XMLDUnNoeudFils.Attributes["name"] != null)
-                nomDeLAttribut = XMLDUnNoeudFils.Attributes["name"].Value;
-
-            switch(nomDeLAttribut) {
-
-            case "LED":
-                switch( XMLDUnNoeudFils.InnerText ) {
-				case "TOUTES_LES_LEDS" :
-					__led = (int)__LED.TOUTE_LES_LEDS;
-					break;
-				case "LED_DU_DESSUS" :
-					__led = (int)__LED.LED_DU_DESSUS;	
-					break;
-				case "LED_DE_GAUCHE" :
-					__led = (int)__LED.LED_DE_GAUCHE;	
-					break;
-				case "LED_DE_DROITE" :
-					__led = (int)__LED.LED_DE_DROITE;	
-					break;
-				}
-                break;
-
-            case "Couleur" :
-				// Convertie la couleur en notation html, en entier
-				__couleur = Int32.Parse(XMLDUnNoeudFils.InnerText.TrimStart('#'), NumberStyles.HexNumber);
-				break;
-			
-			}
-
+		// Traitements
+		switch( _note ) {
+		case (int)NOTES.DO_3 :	fréquence = 261; break;
+		case (int)NOTES.RÉ_3 :	fréquence = 294; break;
+		case (int)NOTES.MI_3 :	fréquence = 330; break;
+		case (int)NOTES.FA_3 :	fréquence = 349; break;
+		case (int)NOTES.SOL_3 :	fréquence = 392; break;
+		case (int)NOTES.LA_3 :	fréquence = 440; break;
+		case (int)NOTES.SI_3 :	fréquence = 494; break;
+		case (int)NOTES.DO_4 :	fréquence = 522; break;		// 523->522, note corrigée le 08.02.16
+		case (int)NOTES.RÉ_4 :	fréquence = 586; break;		// 587->586, note corrigée le 08.02.16 
+		case (int)NOTES.MI_4 :	fréquence = 659; break;
+		case (int)NOTES.FA_4 :	fréquence = 698; break;		// 699->698, note corrigée le 08.02.16
+		case (int)NOTES.SOL_4 :	fréquence = 784; break;
+		case (int)NOTES.LA_4 :	fréquence = 880; break;
+		case (int)NOTES.SI_4 :	fréquence = 988; break;
 		}
 
-	
-	}
-	
 
-}
+		// Fin
+		return fréquence;
+
+	}
+
+	/// <summary>
+	/// Calcul la durée (en seconde) d'une note
+	/// </summary>
+	/// <param name="_note"></param>
+	/// <returns></returns>
+	public	static	float	CalculLaDuréeDUneNote( int _note )
+	{
+
+		// Déclarations
+		float durée;
+
+
+		// Initialisations
+		durée = 0;
+
+
+		// Traitements
+		switch( _note ) {
+		case (int)DUREE.CROCHE :	durée = 0.25f; break;
+		case (int)DUREE.NOIRE :		durée = 0.50f; break;
+		case (int)DUREE.BLANCHE :	durée = 1.00f; break;
+		}
+
+
+		// Fin
+		return durée;
+
+	}
 }
 

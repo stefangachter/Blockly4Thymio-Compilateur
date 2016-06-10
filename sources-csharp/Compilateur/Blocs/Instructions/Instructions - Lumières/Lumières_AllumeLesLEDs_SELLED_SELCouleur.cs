@@ -72,108 +72,76 @@ knowledge of the CeCILL license and that you accept its terms.
 
 
 /*
- * Classe LED
- * ----------
+ * Lumières_AllumeLesLEDs_SELLED_SELCouleur
+ * ----------------------------------------
  *
- * Pour la déclaration des constantes
- * et des fonctions des LEDs
- *
+ * Allume les LEDs de Thymio,
+ * avec le choix des LEDs et la couleur choisie.
+ * 
  */
 
 
 using 	System;
+using 	System.Globalization;
+using 	System.Xml;
 
 
-namespace	Blockly4Thymio {
-public 		class 	__LED {
 
-	/*
-	 * Constantes
-	 */
-
-	// LEDs
-	public	const	int	AUCUNE			= 0;
-	public	const	int	LED_DE_GAUCHE	= 1;
-	public	const	int	LED_DE_DROITE	= 2;
-	public	const	int	LED_DU_DESSUS	= 3;
-	public	const	int	TOUTE_LES_LEDS	= 4;
-
-	// Composantes des couleurs
-	public	const	int	COMPOSANTE_ROUGE	= 1;
-	public	const	int	COMPOSANTE_VERTE	= 2;
-	public	const	int	COMPOSANTE_BLEUE	= 3;
-
-
+namespace		Blockly4Thymio {
+public	class	Lumières_AllumeLesLEDs_SELLED_SELCouleur : __Lumières_AllumeLesLEDs {
 
 	/*
-	 * Méthodes statiques
+	 * Constructeur
 	 */
-	public	static	int	CalculLaCouleur( int _couleur, int _composante ) {
-
-		// Déclarations
-		int	valeur;
-
-
-		// Initialisations
-		valeur = 0;
-
-
-		// Traitements
-		switch ( _composante) {
-		case (int)COMPOSANTE_ROUGE :
-			valeur = (_couleur & 0x0000ff)>>3;
-			break;
-		case (int)COMPOSANTE_VERTE :
-			valeur = (_couleur & 0x00ff00)>>(8+3);
-			break;
-		case (int)COMPOSANTE_BLEUE :
-			valeur = (_couleur & 0xff0000)>>(16+3);
-			break;
-		}
-
-
-		// Fin
-		return valeur;
-
-	}
-
-
-	public	static	String	code (int _led, int _couleur) {
+	public	Lumières_AllumeLesLEDs_SELLED_SELCouleur( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, 0, 0 ) {
 
 		// Déclarations
 		// ------------
 
-		String code;
+		String	nomDeLAttribut;
 
 
-		// Initialisations
-		// ---------------
-		code = "";
+        // Traitements
+        // -----------
 
+		// Analyse du Bloc d'instruction
+        foreach (XmlNode XMLDUnNoeudFils in _XMLDuBloc.ChildNodes) {
 
-		// Traitements
-		// -----------
-		if ((_led == (int)TOUTE_LES_LEDS))
-			code += "__led.rouge=" + CalculLaCouleur (_couleur, (int)COMPOSANTE_ROUGE) + " __led.vert=" + CalculLaCouleur (_couleur, (int)COMPOSANTE_VERTE) + " __led.bleu=" + CalculLaCouleur (_couleur, (int)COMPOSANTE_BLEUE) + " callsub __AllumeLesLEDs";
-		else
-			switch (_led) {
-			case (int)LED_DU_DESSUS:
-				code += "call leds.top(" + CalculLaCouleur(_couleur, (int)COMPOSANTE_BLEUE) + "," + CalculLaCouleur(_couleur, (int)COMPOSANTE_VERTE) + "," + CalculLaCouleur(_couleur, (int)COMPOSANTE_ROUGE) + ")";
+            nomDeLAttribut = "";
+            if (XMLDUnNoeudFils.Attributes["name"] != null)
+                nomDeLAttribut = XMLDUnNoeudFils.Attributes["name"].Value;
+
+            switch(nomDeLAttribut) {
+
+            case "LED":
+                switch( XMLDUnNoeudFils.InnerText ) {
+				case "TOUTES_LES_LEDS" :
+					__led = (int)__LED.LED.TOUTES;
+					break;
+				case "LED_DU_DESSUS" :
+					__led = (int)__LED.LED.DU_DESSUS;	
+					break;
+				case "LED_DE_GAUCHE" :
+					__led = (int)__LED.LED.DE_GAUCHE;	
+					break;
+				case "LED_DE_DROITE" :
+					__led = (int)__LED.LED.DE_DROITE;	
+					break;
+				}
+                break;
+
+            case "Couleur" :
+				// Convertie la couleur en notation html, en entier
+				__couleur = Int32.Parse(XMLDUnNoeudFils.InnerText.TrimStart('#'), NumberStyles.HexNumber);
 				break;
-			case (int)LED_DE_GAUCHE:
-				code += "call leds.bottom.left(" + CalculLaCouleur(_couleur, (int)COMPOSANTE_BLEUE) + "," + CalculLaCouleur(_couleur, (int)COMPOSANTE_VERTE) + "," + CalculLaCouleur(_couleur, (int)COMPOSANTE_ROUGE) + ")";
-				break;
-			case (int)LED_DE_DROITE:
-				code += "call leds.bottom.right(" + CalculLaCouleur(_couleur, (int)COMPOSANTE_BLEUE) + "," + CalculLaCouleur(_couleur, (int)COMPOSANTE_VERTE) + "," + CalculLaCouleur(_couleur, (int)COMPOSANTE_ROUGE) + ")";
-				break;
+			
 			}
 
+		}
 
-		// Fin
-		// ---
-		return code;
-
+	
 	}
+	
 
 }
 }
