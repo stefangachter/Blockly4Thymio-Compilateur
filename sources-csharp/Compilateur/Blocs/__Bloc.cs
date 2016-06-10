@@ -111,8 +111,11 @@ public	class	__Bloc {
 
 	public	int		UIDDuBlocSuivant {
 	get {
-		if (__blocSuivant==null)
-			return 0;
+		if (__blocSuivant == null)
+			if (__groupeDeBlocs == null)
+				return 0;
+			else
+				return (__groupeDeBlocs.UID-1) + __groupeDeBlocs.nombreDeSéquenceAvecLesBlocsInternes;
 		return __blocSuivant.UID;
 	}
 	}

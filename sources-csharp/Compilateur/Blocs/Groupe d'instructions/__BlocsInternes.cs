@@ -90,6 +90,10 @@ public	class	__BlocsInternes {
 	/*
      * Propriétés publiques
      */
+	public	String	codePourLeSéquenceur { 
+	get { return __premierBloc.codePourLeSéquenceur; }
+	}
+
 	public	int		nombreDeSéquence {
 	get { 
 		int		nombre = 0;
@@ -104,9 +108,7 @@ public	class	__BlocsInternes {
 	}
 	}
 
-	public	String	codePourLeSéquenceur { 
-	get { return __premierBloc.codePourLeSéquenceur; }
-	}
+	public	__Bloc	premierBloc { get { return __premierBloc; } 	}
 
 
 

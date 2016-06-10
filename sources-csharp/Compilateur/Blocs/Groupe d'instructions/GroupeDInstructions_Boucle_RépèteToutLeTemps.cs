@@ -96,7 +96,7 @@ public	class	GroupeDInstructions_Boucle_RépèteToutLeTemps : __GroupeDeBlocs {
 
 		XMLInterne = _XMLDuBloc.SelectSingleNode( "./statement" );
 		if ( XMLInterne != null )
-			__blocsInternes = new __BlocsInternes( UID+1, XMLInterne.FirstChild, null, _groupeDeBlocs );
+			__blocsInternes = new __BlocsInternes( UID+1, XMLInterne.FirstChild, null, this );
 
 
 		// Liste les séquences du bloc
@@ -115,34 +115,34 @@ public	class	GroupeDInstructions_Boucle_RépèteToutLeTemps : __GroupeDeBlocs {
 	// Séquence 1
 	// - Passe au premier bloc interne
 	public	String	Séquence_1() {
-
-		return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n" +			
+		
+		return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + (UID) + " then\n" +
 				"    __sequenceur[" + UIDDuSéquenceur + "]=" + (UID+1) + "\n" +
 				"  end";
 		
 	}
 
+
 	// Séquence 2
 	// - Séquences du bloc interne
 	public	String	Séquence_2() {
 
-		//if ( __blocsInternes!=null )
 		return	__blocsInternes.codePourLeSéquenceur;
 
-		/*return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + (UID+1) + " then\n" +			
-				"    __sequenceur[" + UIDDuSéquenceur + "]=" + (UID+2) + "\n" +
-				"  end";*/
-		
 	}
+
 
 	// Séquence 3
 	// - Passe au premier bloc du groupe
 	public	String	Séquence_3() {
+		String	code="";
 
-		return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + (UID+__blocsInternes.nombreDeSéquence) + " then\n" +			
-				"    __sequenceur[" + UIDDuSéquenceur + "]=" + (UID+__blocsInternes.nombreDeSéquence+1) + "\n" +
+		if (Compilateur.afficherLesCommentaires)
+			code += "  # Instruction Blockly (UID " + __UID + ") = " + __nomDansBlockly + "\n";
+		code +=	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + (__blocsInternes.premierBloc.UID + __blocsInternes.nombreDeSéquence) + " then\n" +			
+				"    __sequenceur[" + UIDDuSéquenceur + "]=" + (UID) + "\n" +
 				"  end";
-		
+		return code;
 	}
 
 

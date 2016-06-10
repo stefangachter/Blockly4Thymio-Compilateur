@@ -91,16 +91,19 @@ public	class	__GroupeDeBlocs : __Bloc {
 	 * Propriétés
 	 */
 	new public	int	nombreDeSéquence {
-	get { 
-		return __séquences.Count + __blocsInternes.nombreDeSéquence;
-	}
-	}
-
-	public	int	nombreDeSéquenceDesBlocsInternes {
 	get {
-		return __séquences.Count + __blocsInternes.nombreDeSéquence;
-	}
-	}
+		int	nombre = 0;
+		nombre += __séquences.Count - 1;		// -1 pour enlever la séquence propre aux blocs internes
+		if ( __blocsInternes != null )
+			nombre += __blocsInternes.nombreDeSéquence;
+		return nombre;
+	} }
+
+
+	public	int	nombreDeSéquenceAvecLesBlocsInternes {
+	get {
+		return __séquences.Count + __blocsInternes.nombreDeSéquence - 1;
+	} }
 
 
 	/*

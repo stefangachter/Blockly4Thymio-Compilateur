@@ -102,11 +102,15 @@ public class	Compilateur {
     /// </summary>
     public	static	bool				arrêtDuRobotALaFinDesSéquenceurs;
 
+    public	static	bool				fermetureDeLaFenêtreALaFin;
+
     /// <summary>
     /// <c>true</c> Le code est éxécuté automatiquement après avoir été téléchargé dans le Thymio.
     /// <c>false</c> Le code est éxécuté lorsque l'utilisateur apppuis sur le bouton rond central du Thymio.
     /// </summary>
-    public	static	bool				lancementAutomatique;
+	public	static	bool				lancementAutomatique;
+
+    public	static	bool				transfertDuFichierAESL;
 
 	public	static	int					compteurDeSéquenceur;
 
@@ -117,7 +121,7 @@ public class	Compilateur {
 	public	static	String				version;
 
 	public	static	List<__Evénement>	événementsRacines;
-
+	
 	private	static	bool				__transfertEnCours;
 
 	private	static	FEN_Principale		__fenêtrePrincipal;
@@ -171,13 +175,15 @@ public class	Compilateur {
         /*
          * Déclarations
          */
-		String					erreur;
-		String					instruction;		
+		int		position;
 
-        __Bloc					bloc;
+		String	erreur;
+		String	instruction;		
+		String	version;
+
+        __Bloc	bloc;
 			
-		XmlNode					XmlDuBlocSuivant;
-
+		XmlNode	XmlDuBlocSuivant;
 
 
         /*
@@ -230,20 +236,15 @@ public class	Compilateur {
 			break;
 
 
-
-
 		// Sinon, une erreur est déclenchée
 		// --------------------------------
 		default:
-			int		pos;	
-			String	ver;
-
 			erreur = "Erreur ! Le bloc " + instruction + " n'est pas traité dans cette version du compilateur.";
-			pos = instruction.IndexOf( "_", 2 );
-			if ( pos != -1 ) {
-				ver = instruction.Substring( 0, pos );
-				ver = ver.Replace( "_", "." );
-				erreur += "\n\nLa version du compilateur la plus appropiée pour ce bloc est la version " + ver;
+			position = instruction.IndexOf( "_", 2 );
+			if ( position != -1 ) {
+				version = instruction.Substring( 0, position );
+				version = version.Replace( "_", "." );
+				erreur += "\n\nLa version du compilateur la plus appropiée pour ce bloc est la version " + version;
 			}
 			throw new Exception( erreur );
 
@@ -327,9 +328,11 @@ public class	Compilateur {
          * 3ème passe.
          * Le programme est transmis au robot Thymio
          */
-		AjouteUnMessage( Messages.Message((int)Messages.TYPE.TRANSFERT_DU_FICHIER_ASEBA) + "\n" );
-        if ( !TransmissionDuFichierAESL( _fenêtrePrincipal ) )
-        	return false;
+        if (Compilateur.transfertDuFichierAESL) {
+			AjouteUnMessage( Messages.Message((int)Messages.TYPE.TRANSFERT_DU_FICHIER_ASEBA) + "\n" );
+        	if ( !TransmissionDuFichierAESL( _fenêtrePrincipal ) )
+        		return false;
+        }
         
 
 

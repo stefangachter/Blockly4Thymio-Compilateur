@@ -115,18 +115,24 @@ public		partial	class	FEN_Principale : Form {
 		this.Refresh();
 	}
 	
-	
+	/// <summary>
+	/// Evénement déclenché à l'initialisation de la fenêtre principale
+	/// </summary>
 	private	void FEN_Principale_Load( object sender, EventArgs e ) {
 
-		// Lance la compilation dans un autre thread
+		// Astucce pas très propre pour lancer la compilation dans un autre thread
 		temporisationDeCompilation = new Timer();
-		temporisationDeCompilation.Interval = 1000;
-		temporisationDeCompilation.Tick+= new EventHandler( Evénement_TemporisationDeCompilation );
+		temporisationDeCompilation.Interval = 500;
+		temporisationDeCompilation.Tick+= new EventHandler( ThreadDeCompilation );
 		temporisationDeCompilation.Start();
 
 	}
 
-	private	void	Evénement_TemporisationDeCompilation( object _sender, EventArgs _e ) {
+
+	/// <summary>
+	/// Thread séparé pour la compilation
+	/// </summary>
+	private	void	ThreadDeCompilation( object _sender, EventArgs _e ) {
 
 		temporisationDeCompilation.Stop();
 
@@ -147,9 +153,13 @@ public		partial	class	FEN_Principale : Form {
 		// Si la compilation s'est bien déroulée, le programme se ferme automatiquement
 		try {
 			if (Compilateur.Compile(this)) {
-				#if !DEBUG
-				FermeLaFenêtreAprès2Secondes();            
-				#endif
+				if (Compilateur.fermetureDeLaFenêtreALaFin) {
+					#if (DEBUG)
+					Application.Exit();
+					#else
+					FermeLaFenêtreAprès2Secondes();
+					#endif
+				}
 			}
 			// Message : Transfert terminé
 			AjouteUnMessage( "\n\n" + Messages.Message( (int)Messages.TYPE.COMPILATION_ET_TRANSFERT_TERMINÉ ) );
@@ -159,16 +169,20 @@ public		partial	class	FEN_Principale : Form {
 
 	}
 
+
 	private	void	FermeLaFenêtreAprès2Secondes() {
 		temporisationDAttente = new Timer();
 		temporisationDAttente.Interval = 2000;
-		temporisationDAttente.Tick+= new EventHandler( Evénement_FinDeLaTemporisation );
+		temporisationDAttente.Tick+= new EventHandler( Evénement_FermeLaFenêtreAprès2Secondes );
 		temporisationDAttente.Start();
 	}
-	private	void	Evénement_FinDeLaTemporisation( object sender, EventArgs e  ) {
+
+
+	private	void	Evénement_FermeLaFenêtreAprès2Secondes( object sender, EventArgs e  ) {
 		temporisationDAttente.Stop();
 		Application.Exit();
 	}
+
 
 	public	void	AfficheUnMessageDErreur( String _message ) {
 		EffaceLesMessages();
@@ -183,6 +197,7 @@ public		partial	class	FEN_Principale : Form {
 		this.TEXT_Messages.BackColor = Color.DarkOrange;
 		AjouteUnMessage( "\n" + _message + "\n\n" );
 	}
+
 
 }
 }

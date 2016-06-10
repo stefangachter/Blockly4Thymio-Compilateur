@@ -89,38 +89,11 @@ static	class 	ProgrammePrincipal {
 		// Initialisations
 		// ---------------
 
-		Compilateur.version = "0.6";
+		Compilateur.version = "0.7";
 
-
-		// Affichage des commentaires dans le fichier .aesl
-		#if (DEBUG)
-		Compilateur.afficherLesCommentaires = true;
-		#else
-		Compilateur.afficherLesCommentaires = false;
-		#endif
-		
-		
-		// Arrête le robot si tous les séquenceurs sont terminés
-		Compilateur.arrêtDuRobotALaFinDesSéquenceurs = true;
-		
-		
-		// Lance automatiquement le programme sur le Thymio à la fin du transfert
-		Compilateur.lancementAutomatique = true;
-
-		// Emplacement de programme de transfert AsebaMassloader
-		#if (DEBUG && WINDOWS)
-		Compilateur.nomDuFichierASEBAMASSLOADER = @"C:\Blockly4Thymio.v0.5\asebamassloader\asebamassloader.exe";
-		//Compilateur.nomDuFichierASEBAMASSLOADER = @"C:\Users\fort\Downloads\compilateur\setup-win\fichiers\asebamassloader\asebamassloader.exe";
-		#endif
-		#if (!DEBUG && WINDOWS)
-		Compilateur.nomDuFichierASEBAMASSLOADER =  Path.GetDirectoryName(Application.ExecutablePath) + @"\asebamassloader\asebamassloader.exe";
-		#endif
-		#if (LINUX)
-		Compilateur.nomDuFichierASEBAMASSLOADER = @"/usr/bin/asebamassloader";
-		#endif
-		
 
 		// Nom du fichier programme.b4t à tester
+		// -------------------------------------
 		#if (DEBUG && WINDOWS)
 		Compilateur.nomDuFichierB4T = @"C:\Users\Okimi\Downloads\programme.b4t";
 		Compilateur.nomDuFichierB4T = @"C:\Users\fort\Downloads\programme.b4t";
@@ -134,10 +107,14 @@ static	class 	ProgrammePrincipal {
 			if ( _args.Length != 0 )
 				Compilateur.nomDuFichierB4T = _args[0];
 		#endif
-		
-		
-		// Affichage des messages d'erreur
-		Compilateur.afficheLesMessagesDErreur = true;
+
+
+		// Affichage des commentaires dans le fichier .aesl
+		#if (DEBUG)
+		Compilateur.afficherLesCommentaires = true;
+		#else
+		Compilateur.afficherLesCommentaires = false;
+		#endif
 		
 		
 		// Affiche les messages d'information
@@ -145,6 +122,56 @@ static	class 	ProgrammePrincipal {
 		Compilateur.afficheLesMessagesDInformation = true;
 		#else
 		Compilateur.afficheLesMessagesDInformation = false;
+		#endif
+
+
+		// Affichage des messages d'erreur
+		Compilateur.afficheLesMessagesDErreur = true;
+
+
+		// Arrête le robot si tous les séquenceurs sont terminés
+		// -----------------------------------------------------
+		Compilateur.arrêtDuRobotALaFinDesSéquenceurs = true;
+		
+		
+		// Transfert le fichier .aesl via asebamassloader.exe
+		// --------------------------------------------------
+		#if (DEBUG)
+		//Compilateur.transfertDuFichierAESL = true;
+		Compilateur.transfertDuFichierAESL = false;
+		#endif
+		#if (!DEBUG)
+		Compilateur.transfertDuFichierAESL = true;
+		#endif
+
+
+		// Emplacement de programme de transfert AsebaMassloader
+		// -----------------------------------------------------
+		#if (DEBUG && WINDOWS)
+		Compilateur.nomDuFichierASEBAMASSLOADER = @"C:\Blockly4Thymio.v0.5\asebamassloader\asebamassloader.exe";
+		//Compilateur.nomDuFichierASEBAMASSLOADER = @"C:\Users\fort\Downloads\compilateur\setup-win\fichiers\asebamassloader\asebamassloader.exe";
+		#endif
+		#if (!DEBUG && WINDOWS)
+		Compilateur.nomDuFichierASEBAMASSLOADER =  Path.GetDirectoryName(Application.ExecutablePath) + @"\asebamassloader\asebamassloader.exe";
+		#endif
+		#if (LINUX)
+		Compilateur.nomDuFichierASEBAMASSLOADER = @"/usr/bin/asebamassloader";
+		#endif
+		
+
+		// Lance automatiquement le programme sur le Thymio à la fin du transfert
+		// ----------------------------------------------------------------------
+		Compilateur.lancementAutomatique = true;
+
+
+		// Fermeture automatique de la fenêtre à la fin des traitements
+		// ------------------------------------------------------------
+		#if (DEBUG)
+		//Compilateur.fermetureDeLaFenêtreALaFin = false;
+		Compilateur.fermetureDeLaFenêtreALaFin = true;
+		#endif
+		#if (!DEBUG)
+		Compilateur.fermetureDeLaFenêtreALaFin = true;
 		#endif
 
 

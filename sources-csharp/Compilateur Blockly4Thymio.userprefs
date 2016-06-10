@@ -1,8 +1,9 @@
 ﻿<Properties StartupItem="Compilateur Blockly4Thymio.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="WINDOWS-Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Compilateur\Blocs\Instructions\Instructions_Lumières\__Lumières_AllumeLesLEDs.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Compilateur\Blocs\Instructions\Instructions_Lumières\__Lumières_AllumeLesLEDs_AvecDurée.cs">
     <Files>
-      <File FileName="Compilateur\Blocs\Instructions\Instructions_Lumières\__Lumières_AllumeLesLEDs.cs" Line="132" Column="52" />
+      <File FileName="Compilateur\Blocs\Groupe d'instructions\GroupeDInstructions_Boucle_RépèteToutLeTemps.cs" Line="136" Column="12" />
+      <File FileName="Compilateur\Blocs\Instructions\Instructions_Lumières\__Lumières_AllumeLesLEDs_AvecDurée.cs" Line="148" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
