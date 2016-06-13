@@ -171,9 +171,7 @@ public	class	__Bloc {
      */
 	public	String	codeSauteSéquence( int _séquenceDeDépart, int _séquenceDArrivée ) {
 
-		return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + (_séquenceDeDépart) + " then\n" +			
-				"    __sequenceur[" + UIDDuSéquenceur + "]=" + (_séquenceDArrivée) + "\n" +
-				"  end";
+		return	"if __sequenceur[" + UIDDuSéquenceur + "]==" + _séquenceDeDépart + " then __sequenceur[" + UIDDuSéquenceur + "]=" + _séquenceDArrivée + " end";
 		
 	}
 

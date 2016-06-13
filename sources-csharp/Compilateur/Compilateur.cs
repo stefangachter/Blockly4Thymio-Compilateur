@@ -75,6 +75,7 @@ using 	System;
 using 	System.Collections.Generic;
 using 	System.Diagnostics;
 using	System.IO;
+using	System.Text.RegularExpressions;
 using   System.Windows.Forms;
 using 	System.Xml;
 
@@ -111,6 +112,8 @@ public class	Compilateur {
 	public	static	bool				lancementAutomatique;
 
     public	static	bool				transfertDuFichierAESL;
+
+    public	static	bool				optimisationDuSéquenceur;
 
 	public	static	int					compteurDeSéquenceur;
 
@@ -430,6 +433,7 @@ public class	Compilateur {
 		String			codeEvénementBoutonFlèche;
         String			codeEvénementCommandeIR;
 		String			codeEvénementLancementDuProgramme;        
+        String			codePourLeSéquenceur;
         String			codeSéquenceur;
         String			framework;
 
@@ -468,7 +472,10 @@ public class	Compilateur {
                     // Exécute l'instruction qui suit l'événement
                     if ( codeEvénementLancementDuProgramme != "" ) { codeEvénementLancementDuProgramme += " "; }
                     codeEvénementLancementDuProgramme += "  __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + événementRacine.blocSuivant.UID;
-                    codeSéquenceur += événementRacine.blocSuivant.codePourLeSéquenceur + "\n";
+					codePourLeSéquenceur = événementRacine.blocSuivant.codePourLeSéquenceur + "\n";
+					if ( optimisationDuSéquenceur )
+						codePourLeSéquenceur = OptimiseLeSéquenceur( codePourLeSéquenceur );
+                    codeSéquenceur += codePourLeSéquenceur;
                 }
 
 			}
@@ -619,7 +626,13 @@ public class	Compilateur {
     /// <summary>
     /// Optimise le code du séquenceur, en supprimant les instructions "Saute mouton"
     /// </summary>
-    public	static	void Optimisation() {
+	public	static	String	OptimiseLeSéquenceur( String _code ) {
+
+		Regex	expressionRegulière;
+
+		expressionRegulière = new Regex( @"\s*if\s*sequenceur\[[0-9]+\]==[0-9]+\s*then\s*sequenceur\[[0-9]+\]=[0-9]+\s*end ");
+		expressionRegulière.Matches( _code );
+
 		/* Recherche une séquence de saute monton à l'aide d'une expession régulière
 		Aide sur les sites :
 			http://www.regexlib.com/RETester.aspx
@@ -635,6 +648,7 @@ public class	Compilateur {
 			  sequenceur[0]=2
 			end
 		*/
+		return _code;
     }
 
 

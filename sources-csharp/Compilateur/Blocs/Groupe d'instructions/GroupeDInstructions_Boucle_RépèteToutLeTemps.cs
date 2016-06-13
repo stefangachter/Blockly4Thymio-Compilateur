@@ -116,9 +116,7 @@ public	class	GroupeDInstructions_Boucle_RépèteToutLeTemps : __GroupeDeBlocs {
 	// - Passe au premier bloc interne
 	public	String	Séquence_1() {
 		
-		return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + (UID) + " then\n" +
-				"    __sequenceur[" + UIDDuSéquenceur + "]=" + (UID+1) + "\n" +
-				"  end";
+		return	codeSauteSéquence( UID, UID+1 );
 		
 	}
 

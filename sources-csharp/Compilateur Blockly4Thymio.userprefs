@@ -1,9 +1,8 @@
 ﻿<Properties StartupItem="Compilateur Blockly4Thymio.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="WINDOWS-Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Compilateur\Blocs\Instructions\Instructions - Sons\Sons_JoueUneNote_SELNote.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Compilateur\Compilateur.cs">
     <Files>
-      <File FileName="Compilateur\Compilateur.cs" Line="277" Column="39" />
-      <File FileName="Compilateur\Blocs\Instructions\Instructions - Sons\Sons_JoueUneNote_SELNote.cs" Line="104" Column="3" />
+      <File FileName="Compilateur\Compilateur.cs" Line="634" Column="30" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -133,7 +133,15 @@ static	class 	ProgrammePrincipal {
 		// -----------------------------------------------------
 		Compilateur.arrêtDuRobotALaFinDesSéquenceurs = true;
 		
+
+		#if (DEBUG)
+		Compilateur.optimisationDuSéquenceur = true;
+		//Compilateur.optimisationDuSéquenceur = false;
+		#else
+		Compilateur.optimisationDuSéquenceur = true;
+		#endif
 		
+
 		// Transfert le fichier .aesl via asebamassloader.exe
 		// --------------------------------------------------
 		#if (DEBUG)
