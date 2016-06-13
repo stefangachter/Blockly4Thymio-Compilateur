@@ -123,11 +123,19 @@ public class 	__Sons_JoueUnSon : __Bloc {
 	// - Passe à la séquence suivante
 	public	String	Séquence_1() {
 
-		return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n" +
-			"    lectureDUnSon=1\n" +
-			"    call sound.play(" + __son + ")\n" +
-			"    __sequenceur[" + UIDDuSéquenceur + "]=" + (UID + 1) + "\n" +
-			"  end";
+		String	code;
+
+		code =		"  if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n" +
+					"    __lectureDUnSon=1\n";
+		if ( __son == (int)__SONS.SON.DEPUIS_LE_MICROPHONE )
+			code +=	"    call sound.replay(" + __son + ")\n";
+		else
+			code +=	"    call sound.play(" + __son + ")\n";
+
+		code +=		"    __sequenceur[" + UIDDuSéquenceur + "]=" + (UID + 1) + "\n" +
+					"  end";
+
+		return code;
 
 	}
 

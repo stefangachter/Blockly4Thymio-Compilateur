@@ -96,7 +96,7 @@ static	class 	ProgrammePrincipal {
 		// -------------------------------------
 		#if (DEBUG && WINDOWS)
 		Compilateur.nomDuFichierB4T = @"C:\Users\Okimi\Downloads\programme.b4t";
-		Compilateur.nomDuFichierB4T = @"C:\Users\fort\Downloads\programme.b4t";
+		//Compilateur.nomDuFichierB4T = @"C:\Users\fort\Downloads\programme.b4t";
 		#endif
 		#if (DEBUG && LINUX)
 		Compilateur.nomDuFichierB4T = @"/home/okimi/Téléchargements/programme.b4t";
@@ -136,7 +136,7 @@ static	class 	ProgrammePrincipal {
 
 		#if (DEBUG)
 		Compilateur.optimisationDuSéquenceur = true;
-		//Compilateur.optimisationDuSéquenceur = false;
+		Compilateur.optimisationDuSéquenceur = false;
 		#else
 		Compilateur.optimisationDuSéquenceur = true;
 		#endif
@@ -145,8 +145,8 @@ static	class 	ProgrammePrincipal {
 		// Transfert le fichier .aesl via asebamassloader.exe
 		// --------------------------------------------------
 		#if (DEBUG)
-		//Compilateur.transfertDuFichierAESL = true;
-		Compilateur.transfertDuFichierAESL = false;
+		Compilateur.transfertDuFichierAESL = true;
+		//Compilateur.transfertDuFichierAESL = false;
 		#endif
 		#if (!DEBUG)
 		Compilateur.transfertDuFichierAESL = true;
@@ -156,7 +156,7 @@ static	class 	ProgrammePrincipal {
 		// Emplacement de programme de transfert AsebaMassloader
 		// -----------------------------------------------------
 		#if (DEBUG && WINDOWS)
-		Compilateur.nomDuFichierASEBAMASSLOADER = @"C:\Blockly4Thymio.v0.5\asebamassloader\asebamassloader.exe";
+		Compilateur.nomDuFichierASEBAMASSLOADER = @"C:\Blockly4Thymio.v0.6\asebamassloader\asebamassloader.exe";
 		//Compilateur.nomDuFichierASEBAMASSLOADER = @"C:\Users\fort\Downloads\compilateur\setup-win\fichiers\asebamassloader\asebamassloader.exe";
 		#endif
 		#if (!DEBUG && WINDOWS)

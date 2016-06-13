@@ -1,8 +1,11 @@
 ﻿<Properties StartupItem="Compilateur Blockly4Thymio.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="WINDOWS-Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Compilateur\Compilateur.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Compilateur\Blocs\Instructions\Instructions - Sons\__SONS.cs">
     <Files>
-      <File FileName="Compilateur\Compilateur.cs" Line="634" Column="30" />
+      <File FileName="Compilateur\Compilateur.cs" Line="280" Column="122" />
+      <File FileName="ProgrammePrincipal.cs" Line="159" Column="69" />
+      <File FileName="Compilateur\Blocs\Instructions\Instructions - Sons\__Sons_JoueUnSon.cs" Line="130" Column="22" />
+      <File FileName="Compilateur\Blocs\Instructions\Instructions - Sons\__SONS.cs" Line="95" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
