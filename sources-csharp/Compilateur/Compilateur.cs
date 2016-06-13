@@ -246,6 +246,57 @@ public class	Compilateur {
 			break;
 
 
+		// Sons - version 0.1b
+		// -------------------
+		case "0_1b_Sons_JoueLaNote_DO_Pendant05Seconde" :
+			bloc = new __Sons_JoueUneNote_AvecDurée( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__SONS.NOTES.DO_3, 0.5f );
+			break;
+		case "0_1b_Sons_JoueLaNote_RE_Pendant05Seconde" :
+			bloc = new __Sons_JoueUneNote_AvecDurée( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__SONS.NOTES.RÉ_3, 0.5f );
+			break;
+		case "0_1b_Sons_JoueLaNote_MI_Pendant05Seconde" :
+			bloc = new __Sons_JoueUneNote_AvecDurée( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__SONS.NOTES.MI_3, 0.5f );
+			break;
+		case "0_1b_Sons_JoueLaNote_FA_Pendant05Seconde" :
+			bloc = new __Sons_JoueUneNote_AvecDurée( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__SONS.NOTES.FA_3, 0.5f );
+			break;
+		case "0_1b_Sons_JoueLaNote_SOL_Pendant05Seconde" :
+			bloc = new __Sons_JoueUneNote_AvecDurée( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__SONS.NOTES.SOL_3, 0.5f );
+			break;
+		case "0_1b_Sons_JoueLaNote_LA_Pendant05Seconde" :
+			bloc = new __Sons_JoueUneNote_AvecDurée( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__SONS.NOTES.LA_3, 0.5f );
+			break;
+		case "0_1b_Sons_JoueLaNote_SI_Pendant05Seconde" :
+			bloc = new __Sons_JoueUneNote_AvecDurée( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__SONS.NOTES.SI_3, 0.5f );
+			break;
+		case "0_1b_Sons_JoueUnSon_SELSon" :
+			bloc = new Sons_JoueUnSon_SELSon( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
+			break;
+
+		case "0_2_Sons_JoueUneNoteCroche_SELNote" :
+			bloc = new Sons_JoueUneNote_SELNote( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__SONS.DUREE.CROCHE );
+			break;
+		case "0_2_Sons_JoueUneNoteNoire_SELNote" :
+			bloc = new Sons_JoueUneNote_SELNote( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__SONS.DUREE.NOIRE );
+			break;
+		case "0_2_Sons_JoueUneNoteBlanche_SELNote" :
+			bloc = new Sons_JoueUneNote_SELNote( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__SONS.DUREE.BLANCHE );
+			break;
+		case "0_2_Sons_JoueUnSon_SELSon" :
+			bloc = new Sons_JoueUnSon_SELSon( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
+			break;
+
+		case "0_4_Sons_JoueUnSonPersonnel_SELSon" :
+			bloc = new Sons_JoueUnSon_SELSon( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
+			break;
+		case "0_4_Sons_EnregistreUnSon_Pendant04Seconde" :
+			bloc = new __Sons_EnregistreUnSon_AvecDurée( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, 4.0f );
+			break;
+		case "0_4_Sons_RelireLeSonEnregistré" :
+			bloc = new __Sons_JoueUnSon( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__SONS.SON.DEPUIS_LE_MICROPHONE );
+			break;
+
+
 		// Contrôles
 		// ---------
 		case "0_1b_Contrôles_RépèteToutLeTemps":

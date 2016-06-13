@@ -139,9 +139,9 @@ public	class	GroupeDInstructions_Boucle_RépèteToutLeTemps : __GroupeDeBlocs {
 
 		if (Compilateur.afficherLesCommentaires)
 			code += "  # Instruction Blockly (UID " + __UID + ") = " + __nomDansBlockly + "\n";
-		code +=	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + (__blocsInternes.premierBloc.UID + __blocsInternes.nombreDeSéquence) + " then\n" +			
-				"    __sequenceur[" + UIDDuSéquenceur + "]=" + (UID) + "\n" +
-				"  end";
+
+		code +=	codeSauteSéquence( __blocsInternes.premierBloc.UID+__blocsInternes.nombreDeSéquence, UID );
+
 		return code;
 	}
 

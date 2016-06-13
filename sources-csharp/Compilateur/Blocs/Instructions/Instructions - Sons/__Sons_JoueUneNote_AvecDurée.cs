@@ -1,4 +1,4 @@
-
+﻿
 /*
 Copyright Okimi 2015-2016 (contact at okimi dot net)
 
@@ -71,111 +71,46 @@ knowledge of the CeCILL license and that you accept its terms.
 
 
 
+/*
+ * Sons_JoueUneNote
+ * ----------------
+ *
+ * Joue une note (DO, RE, MI, FA, SOL, LA, SI)
+ * pendant un temps donné (en seconde)
+ *
+ */
+
+
+
 using 	System;
+using 	System.IO;
 using 	System.Collections.Generic;
 using 	System.Xml;
 
 
 
-namespace		Blockly4Thymio {
-public	class	__Bloc {
-	
-    /*
-     * Membres
-     */
-    protected		int				__UID;
-	protected		int				__UIDDuSéquenceur;
+namespace 		Blockly4Thymio {
+public class 	__Sons_JoueUneNote_AvecDurée : __Sons_JoueUneFréquence_AvecDurée {
 
-	protected		String			__nomDansBlockly;
-
-	protected		__Bloc			__blocPrécédent;
-	protected		__Bloc			__blocSuivant;
-
-	protected		__GroupeDeBlocs	__groupeDeBlocs;
-
-	protected		List<Séquence>	__séquences;
-
-	public delegate	String			Séquence();
-
-
-
-
-    /*
-     * Propriétés publiques
-     */
-	public	int		nombreDeSéquence { get { return __séquences.Count; } }
-
-	public	int		UID { get { return __UID; } }
-
-	public	int		UIDDuSéquenceur { get { return __UIDDuSéquenceur; } }
-
-	public	int		UIDDuBlocSuivant {
-	get {
-		if (__blocSuivant == null)
-			if (__groupeDeBlocs == null)
-				return 0;
-			else
-				return (__groupeDeBlocs.UID-1) + __groupeDeBlocs.nombreDeSéquenceAvecLesBlocsInternes;
-		return __blocSuivant.UID;
-	}
-	}
-
-	public	String	codePourLeSéquenceur { 
-	get {
-		String	code = "";
-
-		if (Compilateur.afficherLesCommentaires)
-			code += "\n  # Instruction Blockly (UID " + __UID + ") = " + __nomDansBlockly + "\n";
-
-		foreach ( Séquence séquence in __séquences )
-			code += séquence () + "\n";
-
-		if ( __blocSuivant != null )
-			code += "\n" + __blocSuivant.codePourLeSéquenceur;
-			
-		return code;
-	}
-	}
-
-	public	__Bloc	blocSuivant {
-	get{ return __blocSuivant; }
-	set{ __blocSuivant = value; }
-	}
+	/*
+	 * Membres
+	 */
+	protected	int	__son;
 
 
 
 	/*
 	 * Constructeur
 	 */
-	public	__Bloc( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs ) {
+	public	__Sons_JoueUneNote_AvecDurée( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs, int _note, float _durée ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, 0, _durée ) {
 
-		__UID = _UID;
+        // Traitements
+        // -----------
 
-        __nomDansBlockly = _XMLDuBloc.Attributes["type"].Value;
-
-        __blocPrécédent = _blocPrécédent;
-
-		__groupeDeBlocs = _groupeDeBlocs;
-
-		if ( __blocPrécédent != null )
-			__UIDDuSéquenceur = __blocPrécédent.__UIDDuSéquenceur;
-
-		__séquences = new List<Séquence>();
-
-    }
-
-
-
-	/*
-     * Méthodes publiques
-     */
-	public	String	codeSauteSéquence( int _séquenceDeDépart, int _séquenceDArrivée ) {
-
-		return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + (_séquenceDeDépart) + " then\n" +			
-				"    __sequenceur[" + UIDDuSéquenceur + "]=" + (_séquenceDArrivée) + "\n" +
-				"  end";
+        __fréquence = __SONS.CalculLaFréquenceDUneNote( _note );
 		
 	}
+
 
 
 }

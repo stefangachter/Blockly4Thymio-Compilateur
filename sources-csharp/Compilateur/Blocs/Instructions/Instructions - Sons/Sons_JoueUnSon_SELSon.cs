@@ -1,4 +1,4 @@
-
+﻿
 /*
 Copyright Okimi 2015-2016 (contact at okimi dot net)
 
@@ -71,111 +71,106 @@ knowledge of the CeCILL license and that you accept its terms.
 
 
 
+/*
+ * __Sons_JoueUnSon_SELSon
+ * -----------------------
+ *
+ * Joue un des fichier son de la carte micro SD.
+ *
+ */
+
+
+
 using 	System;
+using 	System.IO;
 using 	System.Collections.Generic;
 using 	System.Xml;
 
 
 
-namespace		Blockly4Thymio {
-public	class	__Bloc {
-	
-    /*
-     * Membres
-     */
-    protected		int				__UID;
-	protected		int				__UIDDuSéquenceur;
-
-	protected		String			__nomDansBlockly;
-
-	protected		__Bloc			__blocPrécédent;
-	protected		__Bloc			__blocSuivant;
-
-	protected		__GroupeDeBlocs	__groupeDeBlocs;
-
-	protected		List<Séquence>	__séquences;
-
-	public delegate	String			Séquence();
-
-
-
-
-    /*
-     * Propriétés publiques
-     */
-	public	int		nombreDeSéquence { get { return __séquences.Count; } }
-
-	public	int		UID { get { return __UID; } }
-
-	public	int		UIDDuSéquenceur { get { return __UIDDuSéquenceur; } }
-
-	public	int		UIDDuBlocSuivant {
-	get {
-		if (__blocSuivant == null)
-			if (__groupeDeBlocs == null)
-				return 0;
-			else
-				return (__groupeDeBlocs.UID-1) + __groupeDeBlocs.nombreDeSéquenceAvecLesBlocsInternes;
-		return __blocSuivant.UID;
-	}
-	}
-
-	public	String	codePourLeSéquenceur { 
-	get {
-		String	code = "";
-
-		if (Compilateur.afficherLesCommentaires)
-			code += "\n  # Instruction Blockly (UID " + __UID + ") = " + __nomDansBlockly + "\n";
-
-		foreach ( Séquence séquence in __séquences )
-			code += séquence () + "\n";
-
-		if ( __blocSuivant != null )
-			code += "\n" + __blocSuivant.codePourLeSéquenceur;
-			
-		return code;
-	}
-	}
-
-	public	__Bloc	blocSuivant {
-	get{ return __blocSuivant; }
-	set{ __blocSuivant = value; }
-	}
-
+namespace 		Blockly4Thymio {
+public class 	Sons_JoueUnSon_SELSon : __Sons_JoueUnSon {
 
 
 	/*
 	 * Constructeur
 	 */
-	public	__Bloc( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs ) {
+	public	Sons_JoueUnSon_SELSon( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__SONS.SON.PAS_DE_SON ) {
 
-		__UID = _UID;
-
-        __nomDansBlockly = _XMLDuBloc.Attributes["type"].Value;
-
-        __blocPrécédent = _blocPrécédent;
-
-		__groupeDeBlocs = _groupeDeBlocs;
-
-		if ( __blocPrécédent != null )
-			__UIDDuSéquenceur = __blocPrécédent.__UIDDuSéquenceur;
-
-		__séquences = new List<Séquence>();
-
-    }
-
-
-
-	/*
-     * Méthodes publiques
-     */
-	public	String	codeSauteSéquence( int _séquenceDeDépart, int _séquenceDArrivée ) {
-
-		return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + (_séquenceDeDépart) + " then\n" +			
-				"    __sequenceur[" + UIDDuSéquenceur + "]=" + (_séquenceDArrivée) + "\n" +
-				"  end";
+        String nomDeLAttribut;
 		
+		
+
+        // Traitements
+        // -----------
+
+        // Analyse du Block d'instruction
+        foreach (XmlNode XMLDUnNoeudFils in _XMLDuBloc.ChildNodes) {
+
+            nomDeLAttribut = "";
+            if (XMLDUnNoeudFils.Attributes["name"] != null)
+                nomDeLAttribut = XMLDUnNoeudFils.Attributes["name"].Value;
+
+            switch (nomDeLAttribut) {
+			case "Son" :
+            case "SelectSound" :
+
+                switch (XMLDUnNoeudFils.InnerText) {
+                case "SON_BONJOUR":
+					__son = (int)__SONS.SON.BONJOUR;
+                    break;
+                case "SON_HO":
+					__son = (int)__SONS.SON.HO;
+                    break;
+                case "SON_QUOI":
+					__son = (int)__SONS.SON.QUOI;
+                    break;
+                case "SON_JE_SUIS_PAS_CONTENT":
+					__son = (int)__SONS.SON.JE_SUIS_PAS_CONTENT;
+                    break;
+				case "SON_SIRENE_DES_POMPIERS":
+					__son = (int)__SONS.SON.SIRÈNE_DES_POMPIERS;
+                    break;
+				case "SON_PERSONNEL_01":
+					__son = (int)__SONS.SON.PERSONNEL_01;
+                    break;
+				case "SON_PERSONNEL_02":
+					__son = (int)__SONS.SON.PERSONNEL_02;
+                    break;
+				case "SON_PERSONNEL_03":
+					__son = (int)__SONS.SON.PERSONNEL_03;
+                    break;
+				case "SON_PERSONNEL_04":
+					__son = (int)__SONS.SON.PERSONNEL_04;
+                    break;
+				case "SON_PERSONNEL_05":
+					__son = (int)__SONS.SON.PERSONNEL_05;
+                    break;
+				case "SON_PERSONNEL_06":
+					__son = (int)__SONS.SON.PERSONNEL_06;
+                    break;
+				case "SON_PERSONNEL_07":
+					__son = (int)__SONS.SON.PERSONNEL_07;
+                    break;
+				case "SON_PERSONNEL_08":
+					__son = (int)__SONS.SON.PERSONNEL_08;
+                    break;
+				case "SON_PERSONNEL_09":
+					__son = (int)__SONS.SON.PERSONNEL_09;
+                    break;
+				case "SON_PERSONNEL_10":
+					__son = (int)__SONS.SON.PERSONNEL_10;
+                    break;
+				}
+                break;
+
+            }
+
+        }
+		
+
 	}
+
 
 
 }

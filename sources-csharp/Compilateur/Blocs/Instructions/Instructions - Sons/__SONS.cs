@@ -124,7 +124,6 @@ public 		class 	__SONS {
 		PERSONNEL_10		= 1010,
 
 		DEPUIS_LE_MICROPHONE= 9999
-
     }
 
 

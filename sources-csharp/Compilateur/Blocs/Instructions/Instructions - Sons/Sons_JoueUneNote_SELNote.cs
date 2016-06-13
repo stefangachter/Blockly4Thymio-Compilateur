@@ -1,4 +1,4 @@
-
+﻿
 /*
 Copyright Okimi 2015-2016 (contact at okimi dot net)
 
@@ -71,111 +71,103 @@ knowledge of the CeCILL license and that you accept its terms.
 
 
 
+/*
+ * __Sons_JoueUnSon_SELSon
+ * -----------------------
+ *
+ * Joue un des fichier son de la carte micro SD.
+ *
+ */
+
+
+
 using 	System;
+using 	System.IO;
 using 	System.Collections.Generic;
 using 	System.Xml;
 
 
 
-namespace		Blockly4Thymio {
-public	class	__Bloc {
-	
-    /*
-     * Membres
-     */
-    protected		int				__UID;
-	protected		int				__UIDDuSéquenceur;
-
-	protected		String			__nomDansBlockly;
-
-	protected		__Bloc			__blocPrécédent;
-	protected		__Bloc			__blocSuivant;
-
-	protected		__GroupeDeBlocs	__groupeDeBlocs;
-
-	protected		List<Séquence>	__séquences;
-
-	public delegate	String			Séquence();
-
-
-
-
-    /*
-     * Propriétés publiques
-     */
-	public	int		nombreDeSéquence { get { return __séquences.Count; } }
-
-	public	int		UID { get { return __UID; } }
-
-	public	int		UIDDuSéquenceur { get { return __UIDDuSéquenceur; } }
-
-	public	int		UIDDuBlocSuivant {
-	get {
-		if (__blocSuivant == null)
-			if (__groupeDeBlocs == null)
-				return 0;
-			else
-				return (__groupeDeBlocs.UID-1) + __groupeDeBlocs.nombreDeSéquenceAvecLesBlocsInternes;
-		return __blocSuivant.UID;
-	}
-	}
-
-	public	String	codePourLeSéquenceur { 
-	get {
-		String	code = "";
-
-		if (Compilateur.afficherLesCommentaires)
-			code += "\n  # Instruction Blockly (UID " + __UID + ") = " + __nomDansBlockly + "\n";
-
-		foreach ( Séquence séquence in __séquences )
-			code += séquence () + "\n";
-
-		if ( __blocSuivant != null )
-			code += "\n" + __blocSuivant.codePourLeSéquenceur;
-			
-		return code;
-	}
-	}
-
-	public	__Bloc	blocSuivant {
-	get{ return __blocSuivant; }
-	set{ __blocSuivant = value; }
-	}
-
+namespace 		Blockly4Thymio {
+public class 	Sons_JoueUneNote_SELNote : __Sons_JoueUneNote_AvecDurée {
 
 
 	/*
 	 * Constructeur
 	 */
-	public	__Bloc( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs ) {
-
-		__UID = _UID;
-
-        __nomDansBlockly = _XMLDuBloc.Attributes["type"].Value;
-
-        __blocPrécédent = _blocPrécédent;
-
-		__groupeDeBlocs = _groupeDeBlocs;
-
-		if ( __blocPrécédent != null )
-			__UIDDuSéquenceur = __blocPrécédent.__UIDDuSéquenceur;
-
-		__séquences = new List<Séquence>();
-
-    }
-
-
-
-	/*
-     * Méthodes publiques
-     */
-	public	String	codeSauteSéquence( int _séquenceDeDépart, int _séquenceDArrivée ) {
-
-		return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + (_séquenceDeDépart) + " then\n" +			
-				"    __sequenceur[" + UIDDuSéquenceur + "]=" + (_séquenceDArrivée) + "\n" +
-				"  end";
+	public	Sons_JoueUneNote_SELNote( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs, float _durée ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__SONS.NOTES.AUCUNE, _durée ) {
+    
+		// Déclarations
+		// ------------
+        String nomDeLAttribut;
 		
+		
+        // Traitements
+        // -----------
+
+        // Analyse du Block d'instruction
+        foreach (XmlNode XMLDUnNoeudFils in _XMLDuBloc.ChildNodes) {
+
+            nomDeLAttribut = "";
+            if (XMLDUnNoeudFils.Attributes["name"] != null)
+                nomDeLAttribut = XMLDUnNoeudFils.Attributes["name"].Value;
+
+            switch (nomDeLAttribut) {
+            case "Note":
+
+                switch (XMLDUnNoeudFils.InnerText) {
+                case "DO3":
+					__fréquence = __SONS.CalculLaFréquenceDUneNote( (int)__SONS.NOTES.DO_3 );
+                    break;
+                case "RE3":
+					__fréquence = __SONS.CalculLaFréquenceDUneNote( (int)__SONS.NOTES.RÉ_3 );
+                    break;
+                case "MI3":
+					__fréquence = __SONS.CalculLaFréquenceDUneNote( (int)__SONS.NOTES.MI_3 );
+                    break;
+                case "FA3":
+					__fréquence = __SONS.CalculLaFréquenceDUneNote( (int)__SONS.NOTES.FA_3 );
+                    break;
+                case "SOL3":
+					__fréquence = __SONS.CalculLaFréquenceDUneNote( (int)__SONS.NOTES.SOL_3 );
+                    break;
+                case "LA3":
+					__fréquence = __SONS.CalculLaFréquenceDUneNote( (int)__SONS.NOTES.LA_3 );
+                    break;
+                case "SI3":
+					__fréquence = __SONS.CalculLaFréquenceDUneNote( (int)__SONS.NOTES.SI_3 );
+                    break;
+                case "DO4":
+					__fréquence = __SONS.CalculLaFréquenceDUneNote( (int)__SONS.NOTES.DO_4 );
+                    break;
+                case "RE4":
+					__fréquence = __SONS.CalculLaFréquenceDUneNote( (int)__SONS.NOTES.RÉ_4 );
+                    break;
+                case "MI4":
+					__fréquence = __SONS.CalculLaFréquenceDUneNote( (int)__SONS.NOTES.MI_4 );
+                    break;
+                case "FA4":
+					__fréquence = __SONS.CalculLaFréquenceDUneNote( (int)__SONS.NOTES.FA_4 );
+                    break;
+                case "SOL4":
+					__fréquence = __SONS.CalculLaFréquenceDUneNote( (int)__SONS.NOTES.SOL_4 );
+                    break;
+                case "LA4":
+					__fréquence = __SONS.CalculLaFréquenceDUneNote( (int)__SONS.NOTES.LA_4 );
+                    break;
+                case "SI4":
+					__fréquence = __SONS.CalculLaFréquenceDUneNote( (int)__SONS.NOTES.SI_4 );
+                    break;				
+				}
+                break;
+
+            }
+
+        }
+		
+
 	}
+
 
 
 }
