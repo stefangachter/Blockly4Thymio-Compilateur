@@ -277,13 +277,13 @@ public class	Compilateur {
 			break;
 
 		case "0_2_Sons_JoueUneNoteCroche_SELNote" :
-			bloc = new Sons_JoueUneNote_SELNote( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__SONS.DUREE.CROCHE );
+			bloc = new Sons_JoueUneNote_SELNote( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, __SONS.CalculLaDuréeDUneNote((int)__SONS.DUREE.CROCHE) );
 			break;
 		case "0_2_Sons_JoueUneNoteNoire_SELNote" :
-			bloc = new Sons_JoueUneNote_SELNote( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__SONS.DUREE.NOIRE );
+			bloc = new Sons_JoueUneNote_SELNote( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, __SONS.CalculLaDuréeDUneNote((int)__SONS.DUREE.NOIRE) );
 			break;
 		case "0_2_Sons_JoueUneNoteBlanche_SELNote" :
-			bloc = new Sons_JoueUneNote_SELNote( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__SONS.DUREE.BLANCHE );
+			bloc = new Sons_JoueUneNote_SELNote( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, __SONS.CalculLaDuréeDUneNote((int)__SONS.DUREE.BLANCHE) );
 			break;
 		case "0_2_Sons_JoueUnSon_SELSon" :
 			bloc = new Sons_JoueUnSon_SELSon( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
