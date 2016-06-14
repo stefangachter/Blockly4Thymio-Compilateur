@@ -88,7 +88,7 @@ using 	System.Xml;
 
 
 namespace 		Blockly4Thymio {
-public class 	Lumières_AllumeLesLEDs_SELLED_SELCouleur_SAIDurée : __Lumières_AllumeLesLEDs_AvecDurée {
+public class 	Lumières_AllumeLesLEDs_SELLED_SELCouleur_SAIDurée : __Lumières_AllumeLesLEDs_AvecLEDCouleurDurée {
 
 	/*
 	 * Constructeur

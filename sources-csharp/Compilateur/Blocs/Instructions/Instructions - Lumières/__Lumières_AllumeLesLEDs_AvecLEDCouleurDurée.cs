@@ -72,10 +72,11 @@ knowledge of the CeCILL license and that you accept its terms.
 
 
 /*
- * __Sons_JoueUneFréquence
- * -----------------------
+ * __Lumières_AllumeLesLED_AvecDurée
+ * ---------------------------------
  *
- * Joue une fréquence (en hertz)
+ * Allume une ou toute les LEDs,
+ * à la couleur demandée (entier long),
  * pendant un temps donné (en seconde)
  *
  */
@@ -89,14 +90,15 @@ using 	System.Xml;
 
 
 namespace 		Blockly4Thymio {
-public class 	__Sons_JoueUneFréquence_AvecDurée : __Bloc {
+public class 	__Lumières_AllumeLesLEDs_AvecLEDCouleurDurée : __Bloc {
 
 	/*
 	 * Membres
 	 */
-	protected	float	__fréquence;
+	protected	int		__couleur;
+	protected	int		__led;
 
-    protected	float	__durée;
+	protected	float	__durée;
 
 
 
@@ -123,13 +125,15 @@ public class 	__Sons_JoueUneFréquence_AvecDurée : __Bloc {
 	/*
 	 * Constructeur
 	 */
-	public	__Sons_JoueUneFréquence_AvecDurée( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs, float _fréquence, float _durée ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs ) {
+	public	__Lumières_AllumeLesLEDs_AvecLEDCouleurDurée( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs, int _led, int _couleur, float _durée ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs ) {
 
 		// Initialisation des membres
 		// --------------------------
 
+		__couleur = _couleur;
+		__led = _led;
+
 		durée = _durée;
-		__fréquence = _fréquence;
 
 
 		// Liste les séquences du bloc
@@ -147,12 +151,13 @@ public class 	__Sons_JoueUneFréquence_AvecDurée : __Bloc {
 
 	// Séquence 1
 	// - Initialise le chrono à 0
-	// - Joue la fréquence demandée
+	// - Allume les lumières demandées à la couleur demandée
+	// - Passe au bloc suivant
 	public	String	Séquence_1() {
 
 		return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n" +
 				"    __chrono[" + UIDDuSéquenceur + "]=0\n" +
-                "    call sound.freq(" + __fréquence + ", " + (int)(__durée * 60) + ")\n" +
+				"    " + __LED.code (__led, __couleur) + "\n" +
 				"    __sequenceur[" + UIDDuSéquenceur + "]=" + (UID + 1) + "\n" +
 				"  end";
 		
@@ -162,12 +167,13 @@ public class 	__Sons_JoueUneFréquence_AvecDurée : __Bloc {
 	// Séquence 2
 	// - Incrémente le chrono
 	// - Test la fin du chrono
-	//     - Si le chrono est écoulé, passe au bloc suivant
+	//     - Si le chrono est écoulé, éteins les lumières et passe au bloc suivant
 	public	String	Séquence_2() {
 
 		return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + (UID + 1) + " then\n" +
 				"    __chrono[" + UIDDuSéquenceur + "]++\n" +
 				"    if __chrono[" + UIDDuSéquenceur + "]>=" + (int)(__durée * 100) + " then\n" +
+				"      " + __LED.code( __led, 0 ) + "\n" +
 				"      __sequenceur[" + UIDDuSéquenceur + "]=" + UIDDuBlocSuivant + "\n" +
 				"    end\n" +
 				"  end";

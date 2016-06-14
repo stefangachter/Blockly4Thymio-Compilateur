@@ -89,7 +89,7 @@ using 	System.Xml;
 
 
 namespace 		Blockly4Thymio {
-public class 	Sons_JoueUnSon_SELSon : __Sons_JoueUnSon {
+public class 	Sons_JoueUnSon_SELSon : __Sons_JoueUnSon_AvecSon {
 
 
 	/*

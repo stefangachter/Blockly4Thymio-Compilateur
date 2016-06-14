@@ -72,70 +72,112 @@ knowledge of the CeCILL license and that you accept its terms.
 
 
 /*
- * __Lumières_AllumeLesLEDs
- * ------------------------
+ * Classe __MOTEUR
+ * ---------------
  *
- * Allume les LEDs de Thymio,
- * avec le choix des LEDs et la couleur choisie.
- * 
+ * Pour la déclaration des constantes.
+ *
  */
 
 
 using 	System;
-using 	System.IO;
-using 	System.Collections.Generic;
-using 	System.Xml;
 
 
 
-namespace 		Blockly4Thymio {
-public class 	__Lumières_AllumeLesLEDs : __Bloc {
+public 		class 	__MOTEUR {
 
-	/*
-	 * Membres
+    /*
+	 * Constantes
 	 */
-	protected	int	__couleur;
-	protected	int	__led;
 
+    // Côté
+	public enum TOURNE {
+    	PAS = 0,
+		A_GAUCHE,
+		A_DROITE
+	}
 
+    // Sens
+	public enum SENS {
+    	AUCUN = 0,
+		ARRÊT,
+		EN_AVANT,
+		EN_ARRIERE,
+		LIBRE
+	}
 
-	/*
-	 * Constructeur
-	 */
-	public	__Lumières_AllumeLesLEDs( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs, int _led, int _couleur ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs ) {
-
-		// Initialisation des membres
-		// --------------------------
-
-		__couleur = _couleur;
-		__led = _led;
-
-
-		// Liste les séquences du bloc
-		// ---------------------------
-		__séquences.Add( (Séquence)Séquence_1 );
-
+	// Vitesses
+	public enum VITESSE {
+		NULLE	=   0,
+		LENTE	=  50,
+		NORMALE	= 250,
+		RAPIDE	= 350
 	}
 
 
 
 	/*
-	 * Séquences
+	 * Propriétés statiques
 	 */
+	// Valeur de calibration pour le parcours d'une distance. Sur le Thymio d'Okimi, les valeurs relevée
+	// 59 en vitesse normale (soit target=250)
+    // 52 en vitesse lente (soit target=50)
+    // 59 en vitesse rapide (soit target=350)
+	public	static	int	calibration = 50;
 
-	// Séquence 1
-	// - Allume les LEDs
-	// - Passe au bloc suivant
-	public	String	Séquence_1() {
 
-		return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n" +
-				"    " + __LED.code (__led, __couleur) + "\n" +
-				"    __sequenceur[" + UIDDuSéquenceur + "]=" + UIDDuBlocSuivant + "\n" +
-				"  end";
-		
+
+	/*
+	 * Méthodes statiques
+	 */
+	
+	public	static	String	code( int _sens, int _vitesseAGauche = 0, int _vitesseADroite = 0 ) {
+
+		// Déclarations
+		// ------------
+		String	code;
+
+
+		// Initialisations
+		// ---------------
+		code = "";
+
+
+		// Contrôles
+		// ---------
+		_vitesseADroite = contrôleDeLaVitesse( _vitesseADroite );
+		_vitesseAGauche = contrôleDeLaVitesse( _vitesseAGauche );
+
+
+		// Traitements
+		// -----------
+		switch( _sens ) {
+		case (int)SENS.EN_AVANT :
+			code = "motor.left.target=" + _vitesseAGauche + " motor.right.target=" + _vitesseAGauche;
+			break;
+		case (int)SENS.EN_ARRIERE :
+			code = "motor.left.target=-" + _vitesseAGauche + " motor.right.target=-" + _vitesseAGauche;
+			break;
+		case (int)SENS.LIBRE :
+			code = "motor.left.target=" + _vitesseAGauche + " motor.right.target=" + _vitesseADroite;
+			break;
+		case (int)SENS.ARRÊT :
+			code = "motor.left.target=0 motor.right.target=0";
+			break;
+		}
+
+
+		// Fin
+		// ---
+		return code;
+
+	}
+
+	public	static	int		contrôleDeLaVitesse( int _vitesse ) {
+		if ( _vitesse < -500 ) _vitesse = -500;
+		if ( _vitesse >  500 ) _vitesse =  500;
+		return _vitesse;
 	}
 
 }
-}
-
 

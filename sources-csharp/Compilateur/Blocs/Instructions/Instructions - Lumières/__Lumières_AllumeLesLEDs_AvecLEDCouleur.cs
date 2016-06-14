@@ -72,68 +72,70 @@ knowledge of the CeCILL license and that you accept its terms.
 
 
 /*
- * Lumières_AllumeToutesLesLEDs_SELCouleur
- * ---------------------------------------
+ * __Lumières_AllumeLesLEDs
+ * ------------------------
  *
- * Allume toutes les LEDs de Thymio,
- * avec la couleur choisie.
+ * Allume les LEDs de Thymio,
+ * avec le choix des LEDs et la couleur choisie.
  * 
  */
 
 
 using 	System;
-using 	System.Globalization;
+using 	System.IO;
+using 	System.Collections.Generic;
 using 	System.Xml;
 
 
 
-namespace		Blockly4Thymio {
-public	class	Lumières_AllumeToutesLesLEDs_SELCouleur : __Lumières_AllumeLesLEDs_AvecLEDCouleur {
+namespace 		Blockly4Thymio {
+public class 	__Lumières_AllumeLesLEDs_AvecLEDCouleur : __Bloc {
+
+	/*
+	 * Membres
+	 */
+	protected	int	__couleur;
+	protected	int	__led;
+
+
 
 	/*
 	 * Constructeur
 	 */
-	public	Lumières_AllumeToutesLesLEDs_SELCouleur( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, 0, 0 ) {
+	public	__Lumières_AllumeLesLEDs_AvecLEDCouleur( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs, int _led, int _couleur ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs ) {
 
-		// Déclarations
-		// ------------
+		// Initialisation des membres
+		// --------------------------
 
-		String	nomDeLAttribut;
-
-
-
-		// Initialisations
-        // ---------------
-
-		__led = (int)__LED.LED.TOUTES;
+		__couleur = _couleur;
+		__led = _led;
 
 
+		// Liste les séquences du bloc
+		// ---------------------------
+		__séquences.Add( (Séquence)Séquence_1 );
 
-        // Traitements
-        // -----------
-
-        // Analyse du Bloc d'instruction
-        foreach ( XmlNode XMLDUnNoeudFils in _XMLDuBloc.ChildNodes ) {
-
-            nomDeLAttribut = "";
-            if (XMLDUnNoeudFils.Attributes["name"] != null)
-                nomDeLAttribut = XMLDUnNoeudFils.Attributes["name"].Value;
-
-            switch( nomDeLAttribut ) {
-
-            case "Couleur" :
-				// Convertie la couleur en notation html, en entier
-				__couleur = Int32.Parse( XMLDUnNoeudFils.InnerText.TrimStart('#'), NumberStyles.HexNumber );
-				break;
-			
-			}
-
-		}
-
-	
 	}
-	
+
+
+
+	/*
+	 * Séquences
+	 */
+
+	// Séquence 1
+	// - Allume les LEDs
+	// - Passe au bloc suivant
+	public	String	Séquence_1() {
+
+		return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n" +
+				"    " + __LED.code (__led, __couleur) + "\n" +
+				"    __sequenceur[" + UIDDuSéquenceur + "]=" + UIDDuBlocSuivant + "\n" +
+				"  end";
+		
+	}
 
 }
 }
+
 

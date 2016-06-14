@@ -72,13 +72,13 @@ knowledge of the CeCILL license and that you accept its terms.
 
 
 /*
- * __Sons_JoueUnSon_SELSon
+ * __Sons_JoueUneFréquence
  * -----------------------
  *
- * Joue un des fichier son de la carte micro SD.
+ * Joue une fréquence (en hertz)
+ * pendant un temps donné (en seconde)
  *
  */
-
 
 
 using 	System;
@@ -89,22 +89,49 @@ using 	System.Xml;
 
 
 namespace 		Blockly4Thymio {
-public class 	__Sons_JoueUnSon : __Bloc {
+public class 	__Sons_JoueUneFréquence_AvecFréquenceDurée : __Bloc {
 
 	/*
 	 * Membres
 	 */
-	protected	int	__son;
+	protected	float	__fréquence;
+
+    protected	float	__durée;
+
+
+
+	/*
+	 * Propriétés
+     */
+	public	float	durée{
+	get { return __durée; }
+	set {
+		__durée = value;
+		if ( __durée < 0 ) {			
+			__durée = 0;
+			Compilateur.AfficheUnMessageDInformation( Messages.Message((int)Messages.TYPE.DURÉE_INFÉRIEURE_A_0) );
+		}
+		if ( __durée > 60 ) {			
+			__durée = 60;
+			Compilateur.AfficheUnMessageDInformation( Messages.Message((int)Messages.TYPE.DURÉE_SUPÉRIEURE_A_60) );
+		}
+	}
+	}
 
 
 
 	/*
 	 * Constructeur
 	 */
-	public	__Sons_JoueUnSon( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs, int _son ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs ) {
-		
-        __son = _son;
-		
+	public	__Sons_JoueUneFréquence_AvecFréquenceDurée( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs, float _fréquence, float _durée ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs ) {
+
+		// Initialisation des membres
+		// --------------------------
+
+		durée = _durée;
+		__fréquence = _fréquence;
+
+
 		// Liste les séquences du bloc
 		// ---------------------------
 		__séquences.Add( (Séquence)Séquence_1 );
@@ -119,38 +146,32 @@ public class 	__Sons_JoueUnSon : __Bloc {
 	 */
 
 	// Séquence 1
-	// - Joue le son demandé
-	// - Passe à la séquence suivante
+	// - Initialise le chrono à 0
+	// - Joue la fréquence demandée
 	public	String	Séquence_1() {
 
-		String	code;
-
-		code =		"  if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n" +
-					"    __lectureDUnSon=1\n";
-		if ( __son == (int)__SONS.SON.DEPUIS_LE_MICROPHONE )
-			code +=	"    call sound.replay(" + __son + ")\n";
-		else
-			code +=	"    call sound.play(" + __son + ")\n";
-
-		code +=		"    __sequenceur[" + UIDDuSéquenceur + "]=" + (UID + 1) + "\n" +
-					"  end";
-
-		return code;
-
+		return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n" +
+				"    __chrono[" + UIDDuSéquenceur + "]=0\n" +
+                "    call sound.freq(" + __fréquence + ", " + (int)(__durée * 60) + ")\n" +
+				"    __sequenceur[" + UIDDuSéquenceur + "]=" + (UID + 1) + "\n" +
+				"  end";
+		
 	}
 
 
 	// Séquence 2
-	// - Test la fin de la leccture du son
-	//     - Si la lecture du son est terminée, passe au bloc suivant
+	// - Incrémente le chrono
+	// - Test la fin du chrono
+	//     - Si le chrono est écoulé, passe au bloc suivant
 	public	String	Séquence_2() {
 
 		return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + (UID + 1) + " then\n" +
-			"    if __lectureDUnSon==0 then\n" +
-			"      __sequenceur[" + UIDDuSéquenceur + "]=" + UIDDuBlocSuivant + "\n" +
-			"    end\n" +
-			"  end";
-
+				"    __chrono[" + UIDDuSéquenceur + "]++\n" +
+				"    if __chrono[" + UIDDuSéquenceur + "]>=" + (int)(__durée * 100) + " then\n" +
+				"      __sequenceur[" + UIDDuSéquenceur + "]=" + UIDDuBlocSuivant + "\n" +
+				"    end\n" +
+				"  end";
+		
 	}
 
 

@@ -213,8 +213,9 @@ public class	Compilateur {
             break;
 
 
-		// Evénements - Version 0.1b
-		// -------------------------
+		// Evénements
+		// ----------
+		
 		case "0_1b_Evénement_QuandLeProgrammeCommence" :
 			// Note : L'UID d'un événement est 1
 			bloc = new Evénement_QuandLeProgrammeCommence( _XMLDuBloc );
@@ -223,6 +224,8 @@ public class	Compilateur {
 
 		// Lumières
 		// --------
+
+		#region Instructions - Lumières
 
 		case "0_1b_Lumières_AllumeToutesLesLEDs_SELCouleur" :
 			bloc = new Lumières_AllumeToutesLesLEDs_SELCouleur( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
@@ -237,7 +240,7 @@ public class	Compilateur {
 			break;
 
 		case "0_1b_Lumières_EteinsToutesLesLEDsPendant1Seconde" :
-			bloc = new __Lumières_AllumeLesLEDs_AvecDurée( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__LED.LED.TOUTES, 0, 1.0f );
+			bloc = new __Lumières_AllumeLesLEDs_AvecLEDCouleurDurée( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__LED.LED.TOUTES, 0, 1.0f );
 			break;
 
 		case "0_2_Lumières_AllumeLesLEDs_SELLED_SELCouleur_SAIDurée":
@@ -245,32 +248,36 @@ public class	Compilateur {
 			break;
 
 		case "0_6_Lumières_EteinsToutesLesLEDs":
-			bloc = new __Lumières_AllumeLesLEDs( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__LED.LED.TOUTES, 0 );
+			bloc = new __Lumières_AllumeLesLEDs_AvecLEDCouleur( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__LED.LED.TOUTES, 0 );
 			break;
 
+		#endregion
 
 		// Sons - version 0.1b
 		// -------------------
+
+		#region Instructions - Sons
+
 		case "0_1b_Sons_JoueLaNote_DO_Pendant05Seconde" :
-			bloc = new __Sons_JoueUneNote_AvecDurée( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__SONS.NOTES.DO_3, 0.5f );
+			bloc = new __Sons_JoueUneNote_AvecNoteDurée( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__SONS.NOTES.DO_3, 0.5f );
 			break;
 		case "0_1b_Sons_JoueLaNote_RE_Pendant05Seconde" :
-			bloc = new __Sons_JoueUneNote_AvecDurée( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__SONS.NOTES.RÉ_3, 0.5f );
+			bloc = new __Sons_JoueUneNote_AvecNoteDurée( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__SONS.NOTES.RÉ_3, 0.5f );
 			break;
 		case "0_1b_Sons_JoueLaNote_MI_Pendant05Seconde" :
-			bloc = new __Sons_JoueUneNote_AvecDurée( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__SONS.NOTES.MI_3, 0.5f );
+			bloc = new __Sons_JoueUneNote_AvecNoteDurée( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__SONS.NOTES.MI_3, 0.5f );
 			break;
 		case "0_1b_Sons_JoueLaNote_FA_Pendant05Seconde" :
-			bloc = new __Sons_JoueUneNote_AvecDurée( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__SONS.NOTES.FA_3, 0.5f );
+			bloc = new __Sons_JoueUneNote_AvecNoteDurée( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__SONS.NOTES.FA_3, 0.5f );
 			break;
 		case "0_1b_Sons_JoueLaNote_SOL_Pendant05Seconde" :
-			bloc = new __Sons_JoueUneNote_AvecDurée( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__SONS.NOTES.SOL_3, 0.5f );
+			bloc = new __Sons_JoueUneNote_AvecNoteDurée( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__SONS.NOTES.SOL_3, 0.5f );
 			break;
 		case "0_1b_Sons_JoueLaNote_LA_Pendant05Seconde" :
-			bloc = new __Sons_JoueUneNote_AvecDurée( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__SONS.NOTES.LA_3, 0.5f );
+			bloc = new __Sons_JoueUneNote_AvecNoteDurée( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__SONS.NOTES.LA_3, 0.5f );
 			break;
 		case "0_1b_Sons_JoueLaNote_SI_Pendant05Seconde" :
-			bloc = new __Sons_JoueUneNote_AvecDurée( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__SONS.NOTES.SI_3, 0.5f );
+			bloc = new __Sons_JoueUneNote_AvecNoteDurée( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__SONS.NOTES.SI_3, 0.5f );
 			break;
 		case "0_1b_Sons_JoueUnSon_SELSon" :
 			bloc = new Sons_JoueUnSon_SELSon( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
@@ -296,10 +303,44 @@ public class	Compilateur {
 			bloc = new __Sons_EnregistreUnSon_AvecDurée( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, 4.0f );
 			break;
 		case "0_4_Sons_RelireLeSonEnregistré" :
-			bloc = new __Sons_JoueUnSon( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__SONS.SON.DEPUIS_LE_MICROPHONE );
+			bloc = new __Sons_JoueUnSon_AvecSon( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__SONS.SON.DEPUIS_LE_MICROPHONE );
 			break;
+		
+		#endregion
 
+		// Mouvements
+		// ----------
 
+		#region Mouvements - Déplacements
+		
+		case "0_1b_Mouvement_Arrête":
+			bloc = new __Mouvement_Déplacement_AvecSensVitesses( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__MOTEUR.SENS.ARRÊT );
+			break;
+		case "0_1b_Mouvement_Avance":
+			bloc = new __Mouvement_Déplacement_AvecSensVitesses( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__MOTEUR.SENS.EN_AVANT, (int)__MOTEUR.VITESSE.NORMALE );
+			break;
+		case "0_1b_Mouvement_Avance_De5Centimètres":
+			bloc = new __Mouvement_Déplacement_Avec_Sens_Vitesse_Distance( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__MOTEUR.SENS.EN_AVANT, (int)__MOTEUR.VITESSE.NORMALE, 5 );
+			break;
+		case "0_1b_Mouvement_Avance_SELVitesse_SAIDistance":
+			bloc = new Mouvement_Déplacement_SELVitesse_SAIDistance( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__MOTEUR.SENS.EN_AVANT );
+			break;
+		case "0_1b_Mouvement_Recule":
+			bloc = new __Mouvement_Déplacement_AvecSensVitesses( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__MOTEUR.SENS.EN_ARRIERE, (int)__MOTEUR.VITESSE.NORMALE );
+			break;
+		case "0_1b_Mouvement_Recule_SELVitesse_SAIDistance":
+			bloc = new Mouvement_Déplacement_SELVitesse_SAIDistance( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__MOTEUR.SENS.EN_ARRIERE );
+			break;
+		case "0_1b_Mouvement_TourneADroite_SAIAngle":
+			bloc = new Mouvement_Tourne_AvecSens_SAIAngle( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__MOTEUR.TOURNE.A_DROITE );
+			break;
+		case "0_1b_Mouvement_TourneAGauche_SAIAngle":
+			bloc = new Mouvement_Tourne_AvecSens_SAIAngle( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__MOTEUR.TOURNE.A_GAUCHE );
+			break;
+		
+		#endregion
+		
+		
 		// Contrôles
 		// ---------
 		case "0_1b_Contrôles_RépèteToutLeTemps":

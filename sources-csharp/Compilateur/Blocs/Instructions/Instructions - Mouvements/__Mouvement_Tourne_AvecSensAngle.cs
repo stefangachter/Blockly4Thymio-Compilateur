@@ -72,68 +72,132 @@ knowledge of the CeCILL license and that you accept its terms.
 
 
 /*
- * Lumières_AllumeToutesLesLEDs_SELCouleur
- * ---------------------------------------
+* __Mouvement_Tourne_AvecSensAngle
+ * -------------------------------
  *
- * Allume toutes les LEDs de Thymio,
- * avec la couleur choisie.
+ * Le robot tourne sur lui même,
+ * de l'angle demandé.
  * 
  */
 
 
 using 	System;
-using 	System.Globalization;
+using 	System.IO;
+using 	System.Collections.Generic;
 using 	System.Xml;
 
 
 
-namespace		Blockly4Thymio {
-public	class	Lumières_AllumeToutesLesLEDs_SELCouleur : __Lumières_AllumeLesLEDs_AvecLEDCouleur {
+namespace 		Blockly4Thymio {
+public class 	__Mouvement_Tourne_AvecSensAngle : __Bloc {
+
+	/*
+	 * Membres
+	 */
+    private		int	__angle;      // Distance en centimètres
+
+	protected	int __sens;       // Sens de déplacement
+	
+
+
+	/*
+	 * Propriétés
+     */
+	public	int	angle {
+	get { return __angle; }
+	set {
+		__angle = value;
+		if ( __angle < 0 ) {
+			__angle = 0;
+			Compilateur.AfficheUnMessageDInformation( Messages.Message((int)Messages.TYPE.ANGLE_INFÉRIEURE_A_0) );
+		}
+		if ( __angle > 360 ) {
+			__angle = 360;
+			Compilateur.AfficheUnMessageDInformation( Messages.Message((int)Messages.TYPE.ANGLE_SUPÉRIEURE_A_360) );
+		}
+	}
+	}
+
+
 
 	/*
 	 * Constructeur
 	 */
-	public	Lumières_AllumeToutesLesLEDs_SELCouleur( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, 0, 0 ) {
+	public	__Mouvement_Tourne_AvecSensAngle( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs, int _sens, int _angle ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs ) {
 
-		// Déclarations
-		// ------------
+		// Initialisation des membres
+		// --------------------------
 
-		String	nomDeLAttribut;
+        __sens = _sens;
 
-
-
-		// Initialisations
-        // ---------------
-
-		__led = (int)__LED.LED.TOUTES;
+		angle = _angle;
 
 
+		// Liste les séquences du bloc
+		// ---------------------------
+		__séquences.Add( (Séquence)Séquence_1 );
+		__séquences.Add( (Séquence)Séquence_2 );
 
-        // Traitements
-        // -----------
-
-        // Analyse du Bloc d'instruction
-        foreach ( XmlNode XMLDUnNoeudFils in _XMLDuBloc.ChildNodes ) {
-
-            nomDeLAttribut = "";
-            if (XMLDUnNoeudFils.Attributes["name"] != null)
-                nomDeLAttribut = XMLDUnNoeudFils.Attributes["name"].Value;
-
-            switch( nomDeLAttribut ) {
-
-            case "Couleur" :
-				// Convertie la couleur en notation html, en entier
-				__couleur = Int32.Parse( XMLDUnNoeudFils.InnerText.TrimStart('#'), NumberStyles.HexNumber );
-				break;
-			
-			}
-
-		}
-
-	
 	}
-	
 
+
+
+	/*
+	 * Séquences
+	 */
+
+	// Séquence 1
+	// - Fait tourner les moteurs pour que le robot exécute une rotation
+	// - Passe au bloc suivant
+	public	String	Séquence_1() {
+		
+		String code = "";
+		
+		
+		code +=		"  if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n";
+
+		switch (__sens) {
+        case (int)__MOTEUR.TOURNE.A_DROITE:
+            code +=	"    motor.left.target=" + __MOTEUR.VITESSE.NORMALE + " motor.right.target=-" + __MOTEUR.VITESSE.NORMALE + "\n";
+            break;
+        case (int)__MOTEUR.TOURNE.A_GAUCHE:
+            code +=	"    motor.left.target=-" + __MOTEUR.VITESSE.NORMALE + " motor.right.target=" + __MOTEUR.VITESSE.NORMALE + "\n";
+            break;
+        }
+		code +=		"    __sequenceur[" + UIDDuSéquenceur + "]=" + (UID+1) + "\n" +
+					"  end";
+		
+		return code;
+
+	}
+
+	// Séquence 2
+	// - Test l'angle de rotation
+	//     - Si l'angele de rotation est atteins, arrête les moteurs et passe au bloc suivant
+	public	String	Séquence_2() {
+		
+		String code = "";
+		
+		
+		code +=		"  if __sequenceur[" + UIDDuSéquenceur + "]==" + (UID+1) + " then\n";
+
+		switch (__sens) {
+        case (int)__MOTEUR.TOURNE.A_DROITE:
+			code +=	"    if __odo.degre==-" + __angle + " then\n";
+            break;
+        case (int)__MOTEUR.TOURNE.A_GAUCHE:
+			code +=	"    if __odo.degre==" + __angle + " then\n";
+            break;
+        }
+		code +=		"      callsub __ArreteLesMoteurs\n" + 
+					"      __sequenceur[" + UIDDuSéquenceur + "]=" + UIDDuBlocSuivant + "\n" +
+        			"    end\n" + 
+					"  end";
+		
+		return code;
+
+	}
 }
 }
+
 

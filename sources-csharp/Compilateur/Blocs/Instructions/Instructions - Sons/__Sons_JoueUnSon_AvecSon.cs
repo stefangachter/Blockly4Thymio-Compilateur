@@ -72,68 +72,89 @@ knowledge of the CeCILL license and that you accept its terms.
 
 
 /*
- * Lumières_AllumeToutesLesLEDs_SELCouleur
- * ---------------------------------------
+ * __Sons_JoueUnSon_SELSon
+ * -----------------------
  *
- * Allume toutes les LEDs de Thymio,
- * avec la couleur choisie.
- * 
+ * Joue un des fichier son de la carte micro SD.
+ *
  */
 
 
+
 using 	System;
-using 	System.Globalization;
+using 	System.IO;
+using 	System.Collections.Generic;
 using 	System.Xml;
 
 
 
-namespace		Blockly4Thymio {
-public	class	Lumières_AllumeToutesLesLEDs_SELCouleur : __Lumières_AllumeLesLEDs_AvecLEDCouleur {
+namespace 		Blockly4Thymio {
+public class 	__Sons_JoueUnSon_AvecSon : __Bloc {
+
+	/*
+	 * Membres
+	 */
+	protected	int	__son;
+
+
 
 	/*
 	 * Constructeur
 	 */
-	public	Lumières_AllumeToutesLesLEDs_SELCouleur( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, 0, 0 ) {
+	public	__Sons_JoueUnSon_AvecSon( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs, int _son ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs ) {
+		
+        __son = _son;
+		
+		// Liste les séquences du bloc
+		// ---------------------------
+		__séquences.Add( (Séquence)Séquence_1 );
+		__séquences.Add( (Séquence)Séquence_2 );
 
-		// Déclarations
-		// ------------
-
-		String	nomDeLAttribut;
-
-
-
-		// Initialisations
-        // ---------------
-
-		__led = (int)__LED.LED.TOUTES;
-
-
-
-        // Traitements
-        // -----------
-
-        // Analyse du Bloc d'instruction
-        foreach ( XmlNode XMLDUnNoeudFils in _XMLDuBloc.ChildNodes ) {
-
-            nomDeLAttribut = "";
-            if (XMLDUnNoeudFils.Attributes["name"] != null)
-                nomDeLAttribut = XMLDUnNoeudFils.Attributes["name"].Value;
-
-            switch( nomDeLAttribut ) {
-
-            case "Couleur" :
-				// Convertie la couleur en notation html, en entier
-				__couleur = Int32.Parse( XMLDUnNoeudFils.InnerText.TrimStart('#'), NumberStyles.HexNumber );
-				break;
-			
-			}
-
-		}
-
-	
 	}
-	
+
+
+
+	/*
+	 * Séquences
+	 */
+
+	// Séquence 1
+	// - Joue le son demandé
+	// - Passe à la séquence suivante
+	public	String	Séquence_1() {
+
+		String	code;
+
+		code =		"  if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n" +
+					"    __lectureDUnSon=1\n";
+		if ( __son == (int)__SONS.SON.DEPUIS_LE_MICROPHONE )
+			code +=	"    call sound.replay(" + __son + ")\n";
+		else
+			code +=	"    call sound.play(" + __son + ")\n";
+
+		code +=		"    __sequenceur[" + UIDDuSéquenceur + "]=" + (UID + 1) + "\n" +
+					"  end";
+
+		return code;
+
+	}
+
+
+	// Séquence 2
+	// - Test la fin de la leccture du son
+	//     - Si la lecture du son est terminée, passe au bloc suivant
+	public	String	Séquence_2() {
+
+		return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + (UID + 1) + " then\n" +
+			"    if __lectureDUnSon==0 then\n" +
+			"      __sequenceur[" + UIDDuSéquenceur + "]=" + UIDDuBlocSuivant + "\n" +
+			"    end\n" +
+			"  end";
+
+	}
+
 
 }
 }
+
 

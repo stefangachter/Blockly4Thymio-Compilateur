@@ -72,14 +72,12 @@ knowledge of the CeCILL license and that you accept its terms.
 
 
 /*
- * Sons_JoueUneNote
- * ----------------
+ * __Mouvement_Déplacement
+ * -----------------------
  *
- * Joue une note (DO, RE, MI, FA, SOL, LA, SI)
- * pendant un temps donné (en seconde)
- *
+ * Fait se déplacer le robot.
+ * 
  */
-
 
 
 using 	System;
@@ -90,28 +88,53 @@ using 	System.Xml;
 
 
 namespace 		Blockly4Thymio {
-public class 	__Sons_JoueUneNote_AvecDurée : __Sons_JoueUneFréquence_AvecDurée {
+public class 	__Mouvement_Déplacement_AvecSensVitesses : __Bloc {
 
 	/*
 	 * Membres
 	 */
-	protected	int	__son;
+	protected int __vitesseADroite;		// Vitesse de déplacement pour la roue droite
+    protected int __vitesseAGauche;		// Vitesse de déplacement globale ou pour la roue gauche
+    protected int __sens;				// Sens de déplacememt
 
 
 
 	/*
 	 * Constructeur
 	 */
-	public	__Sons_JoueUneNote_AvecDurée( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs, int _note, float _durée ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, 0, _durée ) {
+	public	__Mouvement_Déplacement_AvecSensVitesses( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs, int _sens, int _vitesseAGauche=0, int _vitesseADroite=0 ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs ) {
 
-        // Traitements
-        // -----------
+		// Initialisation des membres
+		// --------------------------
 
-        __fréquence = __SONS.CalculLaFréquenceDUneNote( _note );
-		
+		__vitesseADroite = _vitesseADroite;
+        __vitesseAGauche = _vitesseAGauche;
+        __sens = _sens;
+
+
+		// Liste les séquences du bloc
+		// ---------------------------
+		__séquences.Add( (Séquence)Séquence_1 );
+
 	}
 
 
+
+	/*
+	 * Séquences
+	 */
+
+	// Séquence 1
+	// - Allume les LEDs
+	// - Passe au bloc suivant
+	public	String	Séquence_1() {
+
+		return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n" +
+				"    " + __MOTEUR.code( __sens, __vitesseAGauche, __vitesseADroite ) + "\n" +
+				"    __sequenceur[" + UIDDuSéquenceur + "]=" + UIDDuBlocSuivant + "\n" +
+				"  end";
+		
+	}
 
 }
 }

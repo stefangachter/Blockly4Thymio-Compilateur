@@ -72,13 +72,12 @@ knowledge of the CeCILL license and that you accept its terms.
 
 
 /*
- * __Lumières_AllumeLesLED_AvecDurée
- * ---------------------------------
+ * __Mouvement_Déplacement_AvecDistance
+ * ------------------------------------
  *
- * Allume une ou toute les LEDs,
- * à la couleur demandée (entier long),
- * pendant un temps donné (en seconde)
- *
+ * Fais se déplacer le robot,
+ * du nombre de centimètre demandé.
+ * 
  */
 
 
@@ -90,31 +89,31 @@ using 	System.Xml;
 
 
 namespace 		Blockly4Thymio {
-public class 	__Lumières_AllumeLesLEDs_AvecDurée : __Bloc {
+public class 	__Mouvement_Déplacement_Avec_Sens_Vitesse_Distance : __Bloc {
 
 	/*
 	 * Membres
 	 */
-	protected	int		__couleur;
-	protected	int		__led;
-
-	protected	float	__durée;
+	private		int	__distance;   		// Distance en centimètres
+    
+	protected	int	__vitesse;    		// Vitesse de déplacement
+    protected	int	__sens;       		// Sens de déplacement
 
 
 
 	/*
 	 * Propriétés
      */
-	public	float	durée{
-	get { return __durée; }
+	public	int		distance {
+	get { return __distance; }
 	set {
-		__durée = value;
-		if ( __durée < 0 ) {			
-			__durée = 0;
-			Compilateur.AfficheUnMessageDInformation( Messages.Message((int)Messages.TYPE.DURÉE_INFÉRIEURE_A_0) );
+		__distance = value;
+		if ( __distance < 1 ) {
+			__distance = 1;
+			Compilateur.AfficheUnMessageDInformation( Messages.Message((int)Messages.TYPE.DISTANCE_INFÉRIEURE_A_1) );
 		}
-		if ( __durée > 60 ) {			
-			__durée = 60;
+		if ( __distance > 100 ) {
+			__distance = 100;
 			Compilateur.AfficheUnMessageDInformation( Messages.Message((int)Messages.TYPE.DURÉE_SUPÉRIEURE_A_60) );
 		}
 	}
@@ -125,15 +124,15 @@ public class 	__Lumières_AllumeLesLEDs_AvecDurée : __Bloc {
 	/*
 	 * Constructeur
 	 */
-	public	__Lumières_AllumeLesLEDs_AvecDurée( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs, int _led, int _couleur, float _durée ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs ) {
+	public	__Mouvement_Déplacement_Avec_Sens_Vitesse_Distance( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs, int _sens, int _vitesse, int _distance ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs ) {
 
 		// Initialisation des membres
 		// --------------------------
 
-		__couleur = _couleur;
-		__led = _led;
+		__sens = _sens;
+		__vitesse = __MOTEUR.contrôleDeLaVitesse( _vitesse );
 
-		durée = _durée;
+		distance = _distance;
 
 
 		// Liste les séquences du bloc
@@ -154,11 +153,24 @@ public class 	__Lumières_AllumeLesLEDs_AvecDurée : __Bloc {
 	// - Allume les lumières
 	public	String	Séquence_1() {
 
-		return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n" +
-				"    __chrono[" + UIDDuSéquenceur + "]=0\n" +
-				"    " + __LED.code (__led, __couleur) + "\n" +
-				"    __sequenceur[" + UIDDuSéquenceur + "]=" + (UID + 1) + "\n" +
-				"  end";
+		String	code = "";
+		
+		
+		code +=		"  if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n";
+		
+        switch ( __sens ) {
+        case (int)__MOTEUR.SENS.EN_AVANT:
+            code +=	"    motor.left.target=" + __vitesse + " motor.right.target=" + __vitesse + "\n";
+            break;
+        case (int)__MOTEUR.SENS.EN_ARRIERE:
+            code +=	"    motor.left.target=-" + __vitesse + " motor.right.target=-" + __vitesse + "\n";
+            break;
+        }
+		
+		code +=		"    __sequenceur[" + UIDDuSéquenceur + "]=" + (UID + 1) + "\n" +
+					"  end";
+		
+		return code;
 		
 	}
 
@@ -168,15 +180,34 @@ public class 	__Lumières_AllumeLesLEDs_AvecDurée : __Bloc {
 	// - Test la fin du chrono
 	//     - Si le chrono est écoulé, éteins les lumières et passe au bloc suivant
 	public	String	Séquence_2() {
-
-		return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + (UID + 1) + " then\n" +
-				"    __chrono[" + UIDDuSéquenceur + "]++\n" +
-				"    if __chrono[" + UIDDuSéquenceur + "]>=" + (int)(__durée * 100) + " then\n" +
-				"      " + __LED.code( __led, 0 ) + "\n" +
-				"      __sequenceur[" + UIDDuSéquenceur + "]=" + UIDDuBlocSuivant + "\n" +
-				"    end\n" +
-				"  end";
 		
+		int		correctionDeCalibration = 0;
+		
+		String	code = "";
+		
+		
+
+	if (__vitesse==(int)__MOTEUR.VITESSE.LENTE)
+			correctionDeCalibration = 7;
+		
+		code +=		"  if __sequenceur[" + UIDDuSéquenceur + "]==" + (UID + 1) + " then\n";
+
+        switch (__sens) {
+        case (int)__MOTEUR.SENS.EN_AVANT :
+			code +=	"    if __odo.x>" + ( __distance * ( __MOTEUR.calibration - correctionDeCalibration) ) + " then\n";
+            break;
+        case (int)__MOTEUR.SENS.EN_ARRIERE :
+			code += "    if __odo.x<-" + ( __distance * ( __MOTEUR.calibration - correctionDeCalibration) ) + " then\n";
+            break;
+		}
+
+		code +=		"      callsub __ArreteLesMoteurs\n" +
+					"      __sequenceur[" + UIDDuSéquenceur + "]=" + UIDDuBlocSuivant + "\n" +
+					"    end\n" +
+					"  end";
+		
+		return code;
+
 	}
 
 

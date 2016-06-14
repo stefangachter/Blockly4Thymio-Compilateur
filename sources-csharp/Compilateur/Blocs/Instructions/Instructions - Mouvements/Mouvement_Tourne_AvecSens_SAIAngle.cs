@@ -72,11 +72,11 @@ knowledge of the CeCILL license and that you accept its terms.
 
 
 /*
- * Lumières_AllumeToutesLesLEDs_SELCouleur
- * ---------------------------------------
+ * Mouvement_Tourne_AvecSens_SAIAngle
+ * ----------------------------------
  *
- * Allume toutes les LEDs de Thymio,
- * avec la couleur choisie.
+ * Allume les LEDs de Thymio,
+ * avec le choix des LEDs et la couleur choisie.
  * 
  */
 
@@ -88,12 +88,12 @@ using 	System.Xml;
 
 
 namespace		Blockly4Thymio {
-public	class	Lumières_AllumeToutesLesLEDs_SELCouleur : __Lumières_AllumeLesLEDs_AvecLEDCouleur {
+public	class	Mouvement_Tourne_AvecSens_SAIAngle : __Mouvement_Tourne_AvecSensAngle {
 
 	/*
 	 * Constructeur
 	 */
-	public	Lumières_AllumeToutesLesLEDs_SELCouleur( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, 0, 0 ) {
+	public	Mouvement_Tourne_AvecSens_SAIAngle( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs, int _sens ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, _sens, 0 ) {
 
 		// Déclarations
 		// ------------
@@ -101,31 +101,20 @@ public	class	Lumières_AllumeToutesLesLEDs_SELCouleur : __Lumières_AllumeLesLED
 		String	nomDeLAttribut;
 
 
-
-		// Initialisations
-        // ---------------
-
-		__led = (int)__LED.LED.TOUTES;
-
-
-
         // Traitements
         // -----------
 
-        // Analyse du Bloc d'instruction
-        foreach ( XmlNode XMLDUnNoeudFils in _XMLDuBloc.ChildNodes ) {
+		// Analyse du Bloc d'instruction
+		foreach (XmlNode XMLDUnNoeudFils in _XMLDuBloc.ChildNodes) {
 
-            nomDeLAttribut = "";
-            if (XMLDUnNoeudFils.Attributes["name"] != null)
-                nomDeLAttribut = XMLDUnNoeudFils.Attributes["name"].Value;
+			nomDeLAttribut = "";
+			if ( XMLDUnNoeudFils.Attributes["name"] != null )
+				nomDeLAttribut = XMLDUnNoeudFils.Attributes["name"].Value;
 
-            switch( nomDeLAttribut ) {
-
-            case "Couleur" :
-				// Convertie la couleur en notation html, en entier
-				__couleur = Int32.Parse( XMLDUnNoeudFils.InnerText.TrimStart('#'), NumberStyles.HexNumber );
+			switch( nomDeLAttribut ) {
+			case "Angle":
+				angle = Int32.Parse( XMLDUnNoeudFils.InnerText );				
 				break;
-			
 			}
 
 		}

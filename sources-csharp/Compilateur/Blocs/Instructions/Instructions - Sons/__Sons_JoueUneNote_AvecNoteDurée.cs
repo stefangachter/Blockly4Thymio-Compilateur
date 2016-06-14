@@ -72,68 +72,48 @@ knowledge of the CeCILL license and that you accept its terms.
 
 
 /*
- * Lumières_AllumeToutesLesLEDs_SELCouleur
- * ---------------------------------------
+ * Sons_JoueUneNote
+ * ----------------
  *
- * Allume toutes les LEDs de Thymio,
- * avec la couleur choisie.
- * 
+ * Joue une note (DO, RE, MI, FA, SOL, LA, SI)
+ * pendant un temps donné (en seconde)
+ *
  */
 
 
+
 using 	System;
-using 	System.Globalization;
+using 	System.IO;
+using 	System.Collections.Generic;
 using 	System.Xml;
 
 
 
-namespace		Blockly4Thymio {
-public	class	Lumières_AllumeToutesLesLEDs_SELCouleur : __Lumières_AllumeLesLEDs_AvecLEDCouleur {
+namespace 		Blockly4Thymio {
+public class 	__Sons_JoueUneNote_AvecNoteDurée : __Sons_JoueUneFréquence_AvecFréquenceDurée {
+
+	/*
+	 * Membres
+	 */
+	protected	int	__son;
+
+
 
 	/*
 	 * Constructeur
 	 */
-	public	Lumières_AllumeToutesLesLEDs_SELCouleur( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, 0, 0 ) {
-
-		// Déclarations
-		// ------------
-
-		String	nomDeLAttribut;
-
-
-
-		// Initialisations
-        // ---------------
-
-		__led = (int)__LED.LED.TOUTES;
-
-
+	public	__Sons_JoueUneNote_AvecNoteDurée( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs, int _note, float _durée ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, 0, _durée ) {
 
         // Traitements
         // -----------
 
-        // Analyse du Bloc d'instruction
-        foreach ( XmlNode XMLDUnNoeudFils in _XMLDuBloc.ChildNodes ) {
-
-            nomDeLAttribut = "";
-            if (XMLDUnNoeudFils.Attributes["name"] != null)
-                nomDeLAttribut = XMLDUnNoeudFils.Attributes["name"].Value;
-
-            switch( nomDeLAttribut ) {
-
-            case "Couleur" :
-				// Convertie la couleur en notation html, en entier
-				__couleur = Int32.Parse( XMLDUnNoeudFils.InnerText.TrimStart('#'), NumberStyles.HexNumber );
-				break;
-			
-			}
-
-		}
-
-	
+        __fréquence = __SONS.CalculLaFréquenceDUneNote( _note );
+		
 	}
-	
+
+
 
 }
 }
+
 
