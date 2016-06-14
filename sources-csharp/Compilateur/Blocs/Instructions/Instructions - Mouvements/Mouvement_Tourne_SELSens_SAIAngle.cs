@@ -72,146 +72,65 @@ knowledge of the CeCILL license and that you accept its terms.
 
 
 /*
- * __Mouvement_Déplacement_AvecDistance
- * ------------------------------------
- *
- * Fais se déplacer le robot,
- * du nombre de centimètre demandé.
- * 
- */
+* Mouvement_Tourne_SELSens_SAIAngle
+* ---------------------------------
+*
+* Le robot tourne sur lui même,
+* de l'angle demandé.
+* 
+*/
 
 
 using 	System;
-using 	System.IO;
-using 	System.Collections.Generic;
+using 	System.Globalization;
 using 	System.Xml;
 
 
 
-namespace 		Blockly4Thymio {
-public class 	__Mouvement_Déplacement_Avec_Sens_Vitesse_Distance : __Bloc {
-
-	/*
-	 * Membres
-	 */
-	private		int	__distance;   		// Distance en centimètres
-    
-	protected	int	__vitesse;    		// Vitesse de déplacement
-    protected	int	__sens;       		// Sens de déplacement
-
-
-
-	/*
-	 * Propriétés
-     */
-	public	int		distance {
-	get { return __distance; }
-	set {
-		__distance = value;
-		if ( __distance < 1 ) {
-			__distance = 1;
-			Compilateur.AfficheUnMessageDInformation( Messages.Message((int)Messages.TYPE.DISTANCE_INFÉRIEURE_A_1) );
-		}
-		if ( __distance > 100 ) {
-			__distance = 100;
-			Compilateur.AfficheUnMessageDInformation( Messages.Message((int)Messages.TYPE.DURÉE_SUPÉRIEURE_A_60) );
-		}
-	}
-	}
-
-
+namespace		Blockly4Thymio {
+public	class	Mouvement_Tourne_SELSens_SAIAngle : __Mouvement_Tourne_AvecSensAngle {
 
 	/*
 	 * Constructeur
 	 */
-	public	__Mouvement_Déplacement_Avec_Sens_Vitesse_Distance( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs, int _sens, int _vitesse, int _distance ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs ) {
+	public	Mouvement_Tourne_SELSens_SAIAngle( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__MOTEUR.TOURNE.PAS, 0 ) {
 
-		// Initialisation des membres
-		// --------------------------
+		// Déclarations
+		// ------------
 
-		__sens = _sens;
-		__vitesse = __MOTEUR.contrôleDeLaVitesse( _vitesse );
-
-		__distance = _distance;
+		String	nomDeLAttribut;
 
 
-		// Liste les séquences du bloc
-		// ---------------------------
-		__séquences.Add( (Séquence)Séquence_1 );
-		__séquences.Add( (Séquence)Séquence_2 );
+        // Traitements
+        // -----------
 
-	}
+		// Analyse du Bloc d'instruction
+		foreach (XmlNode XMLDUnNoeudFils in _XMLDuBloc.ChildNodes) {
 
+			nomDeLAttribut = "";
+			if ( XMLDUnNoeudFils.Attributes["name"] != null )
+				nomDeLAttribut = XMLDUnNoeudFils.Attributes["name"].Value;
 
+			switch( nomDeLAttribut ) {
+			case "Angle" :
+				angle = Int32.Parse( XMLDUnNoeudFils.InnerText );
+				break;
 
-	/*
-	 * Séquences
-	 */
+			case "Sens" :
+				switch ( XMLDUnNoeudFils.InnerText ) {
+				case "A_DROITE" :	__sens = (int)__MOTEUR.TOURNE.A_DROITE;	break;
+				case "A_GAUCHE" :	__sens = (int)__MOTEUR.TOURNE.A_GAUCHE;	break;
+				}
+				break;
 
-	// Séquence 1
-	// - Initialise le chrono à 0
-	// - Allume les lumières
-	public	String	Séquence_1() {
+			}
 
-		String	code = "";
-		
-		
-		code +=		"  if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n";
-		
-        switch ( __sens ) {
-        case (int)__MOTEUR.SENS.EN_AVANT:
-            code +=	"    motor.left.target=" + __vitesse + " motor.right.target=" + __vitesse + "\n";
-            break;
-        case (int)__MOTEUR.SENS.EN_ARRIERE:
-            code +=	"    motor.left.target=-" + __vitesse + " motor.right.target=-" + __vitesse + "\n";
-            break;
-        }
-		
-		code +=		"    __sequenceur[" + UIDDuSéquenceur + "]=" + (UID + 1) + "\n" +
-					"  end";
-		
-		return code;
-		
-	}
-
-
-	// Séquence 2
-	// - Incrémente le chrono
-	// - Test la fin du chrono
-	//     - Si le chrono est écoulé, éteins les lumières et passe au bloc suivant
-	public	String	Séquence_2() {
-		
-		int		correctionDeCalibration = 0;
-		
-		String	code = "";
-		
-		
-
-	if (__vitesse==(int)__MOTEUR.VITESSE.LENTE)
-			correctionDeCalibration = 7;
-		
-		code +=		"  if __sequenceur[" + UIDDuSéquenceur + "]==" + (UID + 1) + " then\n";
-
-        switch (__sens) {
-        case (int)__MOTEUR.SENS.EN_AVANT :
-			code +=	"    if __odo.x>" + ( __distance * ( __MOTEUR.calibration - correctionDeCalibration) ) + " then\n";
-            break;
-        case (int)__MOTEUR.SENS.EN_ARRIERE :
-			code += "    if __odo.x<-" + ( __distance * ( __MOTEUR.calibration - correctionDeCalibration) ) + " then\n";
-            break;
 		}
 
-		code +=		"      callsub __ArreteLesMoteurs\n" +
-					"      __sequenceur[" + UIDDuSéquenceur + "]=" + UIDDuBlocSuivant + "\n" +
-					"    end\n" +
-					"  end";
-		
-		return code;
-
+	
 	}
-
+	
 
 }
 }
-
 

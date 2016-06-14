@@ -136,6 +136,8 @@ Transforme un fichiers .b4t en fichier .aesl puis le transmet à Thymio.</Descri
     <Compile Include="Compilateur\Blocs\Instructions\Instructions - Lumières\__Lumières_AllumeLesLEDs_AvecLEDCouleurDurée.cs" />
     <Compile Include="Compilateur\Blocs\Instructions\Instructions - Mouvements\__Mouvement_Tourne_AvecSensAngle.cs" />
     <Compile Include="Compilateur\Blocs\Instructions\Instructions - Mouvements\Mouvement_Tourne_AvecSens_SAIAngle.cs" />
+    <Compile Include="Compilateur\Blocs\Instructions\Instructions - Mouvements\Mouvement_Tourne_SELSens_SAIAngle.cs" />
+    <Compile Include="Compilateur\Blocs\Instructions\Instructions - Mouvements\Mouvement_VitesseDesRoues_SAIVitesseAGauche_SAIVitesseADroite.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -337,7 +337,22 @@ public class	Compilateur {
 		case "0_1b_Mouvement_TourneAGauche_SAIAngle":
 			bloc = new Mouvement_Tourne_AvecSens_SAIAngle( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__MOTEUR.TOURNE.A_GAUCHE );
 			break;
-		
+
+		case "0_2_Mouvement_Tourne_SELSens_SAIAngle":
+			bloc = new Mouvement_Tourne_SELSens_SAIAngle( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
+			break;
+
+		case "0_5_Mouvement_TourneADroite":
+			bloc = new __Mouvement_Tourne_AvecSensAngle( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__MOTEUR.TOURNE.A_DROITE, 90 );
+			break;
+		case "0_5_Mouvement_TourneAGauche":
+			bloc = new __Mouvement_Tourne_AvecSensAngle( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__MOTEUR.TOURNE.A_GAUCHE, 90 );
+			break;
+
+		case "0_6_Mouvement_VitesseDesRoues_SAIVitesseAGauche_SAIVitesseADroite":
+			bloc = new Mouvement_VitesseDesRoues_SAIVitesseAGauche_SAIVitesseADroite( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
+			break;
+
 		#endregion
 		
 		

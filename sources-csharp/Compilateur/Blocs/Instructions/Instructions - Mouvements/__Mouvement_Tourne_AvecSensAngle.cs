@@ -158,10 +158,10 @@ public class 	__Mouvement_Tourne_AvecSensAngle : __Bloc {
 
 		switch (__sens) {
         case (int)__MOTEUR.TOURNE.A_DROITE:
-            code +=	"    motor.left.target=" + __MOTEUR.VITESSE.NORMALE + " motor.right.target=-" + __MOTEUR.VITESSE.NORMALE + "\n";
+            code +=	"    motor.left.target=" + (int)__MOTEUR.VITESSE.NORMALE + " motor.right.target=-" + (int)__MOTEUR.VITESSE.NORMALE + "\n";
             break;
         case (int)__MOTEUR.TOURNE.A_GAUCHE:
-            code +=	"    motor.left.target=-" + __MOTEUR.VITESSE.NORMALE + " motor.right.target=" + __MOTEUR.VITESSE.NORMALE + "\n";
+            code +=	"    motor.left.target=-" + (int)__MOTEUR.VITESSE.NORMALE + " motor.right.target=" + (int)__MOTEUR.VITESSE.NORMALE + "\n";
             break;
         }
 		code +=		"    __sequenceur[" + UIDDuSéquenceur + "]=" + (UID+1) + "\n" +
