@@ -79,7 +79,12 @@ using 	System.Xml;
 
 namespace		Blockly4Thymio {
 public	class	GroupeDInstructions_Si_ENTCondition_Alors : __GroupeDInstructions_Si_Alors_AvecCondition { 
-
+	
+	/*
+	 * Attributs
+	 */
+	protected	String	__conditionDeSortie;
+	
 
 	/*
      * Constructeur

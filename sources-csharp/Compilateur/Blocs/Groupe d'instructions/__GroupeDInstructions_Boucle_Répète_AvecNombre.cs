@@ -182,7 +182,7 @@ public	class	__GroupeDInstructions_Boucle_Répète_AvecNombre : __GroupeDeBlocs 
 		String	code="";
 
 		if (Compilateur.afficherLesCommentaires)
-			code += "  # Instruction Blockly (UID " + __UID + ") = " + __nomDansBlockly + "\n";
+			code += "  # (UID " + __UID + " FIN) Instruction Blockly : " + __nomDansBlockly + "\n";
 
 		code +=	"  " +codeSauteSéquence( __blocsInternes.premierBloc.UID+__blocsInternes.nombreDeSéquence, UID+1 );
 

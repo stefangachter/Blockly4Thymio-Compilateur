@@ -71,6 +71,15 @@ knowledge of the CeCILL license and that you accept its terms.
 
 
 
+/*
+* Contrôle_SortDeLaBoucleFaire
+* ----------------------------
+*
+* Sort d'un groupe d'instruction du type FAIRE ...
+* 
+*/
+
+
 using 	System;
 using 	System.Globalization;
 using 	System.Xml;
@@ -78,78 +87,37 @@ using 	System.Xml;
 
 
 namespace		Blockly4Thymio {
-public	class	__GroupeDInstructions_Si_Alors_AvecCondition : __GroupeDeBlocs { 
+public	class	Contrôle_SortDeLaBoucleFaire : __Bloc {
 
 	/*
-	 * Attributs
+	 * Constructeur
 	 */
-	protected	String	__conditionDEntré;
-
-
-
-	/*
-     * Constructeur
-     */
-	public __GroupeDInstructions_Si_Alors_AvecCondition( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs, __BlocsInternes _blocsInternes, String _ConditionDEntré ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs ) {
-
-		// Initialisation des membres
-		// --------------------------
-		__blocsInternes = _blocsInternes;
-		__conditionDEntré = _ConditionDEntré;
-
+	public	Contrôle_SortDeLaBoucleFaire( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs ) {
 
 		// Liste les séquences du bloc
 		// ---------------------------
 		__séquences.Add( (Séquence)Séquence_1 );
-		__séquences.Add( (Séquence)Séquence_2 );
-		__séquences.Add( (Séquence)Séquence_3 );
 
+	
 	}
-
+	
 
 	/*
 	 * Séquences
 	 */
 
 	// Séquence 1
-	// - Test la condition
-	//   - Celle-ci est fausse, on passe à la dernière séquence
-	//   - Celle-ci est vrai, on passe au premier bloc interne
 	public	String	Séquence_1() {
 		
-		return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n" +
-				"    if " + __conditionDEntré + " then\n" +
-				"      __sequenceur[" + UIDDuSéquenceur + "]=" + (UID + 1) + "\n" +
-				"    else\n" +
-				"      __sequenceur[" + UIDDuSéquenceur + "]=" + (__blocsInternes.premierBloc.UID+__blocsInternes.nombreDeSéquence) + "\n" +
-				"    end\n" + 
-		  		"  end";
-		
-	}
-
-
-	// Séquence 2
-	// - Séquences des blocs internes
-	public	String	Séquence_2() {
-
-		return	__blocsInternes.codePourLeSéquenceur;
+		if ( __groupeDeBlocs == null ) {
+			// Le bloc n'est pas dans un groupe, on passe au bloc suivant
+			return "  " + codeSauteSéquence( UID, UIDDuBlocSuivant );
+		} else {
+			// Le bloc est dans un groupe, on sort de ce groupe
+			return "  " + codeSauteSéquence( UID, __groupeDeBlocs.UIDDuBlocSuivant );
+		}
 
 	}
-
-
-	// Séquence 3
-	// - Passe au bloc suivant
-	public	String	Séquence_3() {
-		String	code="";
-
-		if (Compilateur.afficherLesCommentaires)
-			code += "  # (UID " + __UID + " FIN) Instruction Blockly : " + __nomDansBlockly + "\n";
-
-		code +=	"  " + codeSauteSéquence( __blocsInternes.premierBloc.UID+__blocsInternes.nombreDeSéquence, UIDDuBlocSuivant );
-
-		return code;
-	}
-
 
 }
 }

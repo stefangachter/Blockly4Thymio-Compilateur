@@ -71,39 +71,71 @@ knowledge of the CeCILL license and that you accept its terms.
 
 
 
+/*
+ * GroupeDInstructions_Boucle_TantQue_ENTCondition
+ * -----------------------------------------------
+ *
+ * Répète tant que la condition est vrai
+ * 
+ */
+
+
 using 	System;
 using 	System.Globalization;
 using 	System.Xml;
 
 
 
-namespace		Blockly4Thymio {
-public	class	__GroupeDInstructions_Si_Alors_AvecCondition : __GroupeDeBlocs { 
-
+namespace 		Blockly4Thymio {
+public class 	GroupeDInstructions_Boucle_TantQue_ENTCondition : __GroupeDeBlocs {
+	
 	/*
 	 * Attributs
 	 */
-	protected	String	__conditionDEntré;
-
-
+	protected	String	__conditionDeBoucle;
+	
 
 	/*
-     * Constructeur
-     */
-	public __GroupeDInstructions_Si_Alors_AvecCondition( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs, __BlocsInternes _blocsInternes, String _ConditionDEntré ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs ) {
+	 * Constructeur
+	 */
+	public	GroupeDInstructions_Boucle_TantQue_ENTCondition( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs ) {
 
-		// Initialisation des membres
-		// --------------------------
-		__blocsInternes = _blocsInternes;
-		__conditionDEntré = _ConditionDEntré;
+        // Déclarations
+        // ------------
+        String	nomDeLAttribut;
 
+		XmlNode	XMLInterne;
+
+
+        // Traitements
+        // -----------
+
+		// Analyse du Bloc d'instruction
+		foreach ( XmlNode XMLDUnNoeudFils in _XMLDuBloc.ChildNodes ) {
+
+			nomDeLAttribut = "";
+			if ( XMLDUnNoeudFils.Attributes["name"] != null )
+				nomDeLAttribut = XMLDUnNoeudFils.Attributes["name"].Value;
+
+			switch( nomDeLAttribut ) {
+			case "Condition" :
+				__conditionDeBoucle = Compilateur.AnalyseUnNoeudDExpression( _UID,  XMLDUnNoeudFils.FirstChild, _blocPrécédent, _groupeDeBlocs );
+				break;
+			}
+
+		}
+
+		XMLInterne = _XMLDuBloc.SelectSingleNode( "./statement" );
+		if ( XMLInterne != null )
+			__blocsInternes = new __BlocsInternes( UID+1, XMLInterne.FirstChild, null, this );
+		
 
 		// Liste les séquences du bloc
 		// ---------------------------
 		__séquences.Add( (Séquence)Séquence_1 );
 		__séquences.Add( (Séquence)Séquence_2 );
 		__séquences.Add( (Séquence)Séquence_3 );
-
+		
 	}
 
 
@@ -112,41 +144,37 @@ public	class	__GroupeDInstructions_Si_Alors_AvecCondition : __GroupeDeBlocs {
 	 */
 
 	// Séquence 1
-	// - Test la condition
-	//   - Celle-ci est fausse, on passe à la dernière séquence
-	//   - Celle-ci est vrai, on passe au premier bloc interne
+	// - Passe au premier bloc interne
 	public	String	Séquence_1() {
-		
-		return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n" +
-				"    if " + __conditionDEntré + " then\n" +
-				"      __sequenceur[" + UIDDuSéquenceur + "]=" + (UID + 1) + "\n" +
-				"    else\n" +
-				"      __sequenceur[" + UIDDuSéquenceur + "]=" + (__blocsInternes.premierBloc.UID+__blocsInternes.nombreDeSéquence) + "\n" +
-				"    end\n" + 
-		  		"  end";
-		
+
+		return	"  " + codeSauteSéquence( UID, UID+1 );
+
 	}
 
-
 	// Séquence 2
-	// - Séquences des blocs internes
+	// - Séquences du bloc interne
 	public	String	Séquence_2() {
 
 		return	__blocsInternes.codePourLeSéquenceur;
 
 	}
 
-
 	// Séquence 3
-	// - Passe au bloc suivant
+	// - Passe au premier bloc du groupe
 	public	String	Séquence_3() {
 		String	code="";
 
 		if (Compilateur.afficherLesCommentaires)
 			code += "  # (UID " + __UID + " FIN) Instruction Blockly : " + __nomDansBlockly + "\n";
 
-		code +=	"  " + codeSauteSéquence( __blocsInternes.premierBloc.UID+__blocsInternes.nombreDeSéquence, UIDDuBlocSuivant );
-
+		code +=	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + (__blocsInternes.premierBloc.UID+__blocsInternes.nombreDeSéquence) + " then\n" +
+				"    if " + __conditionDeBoucle + " then\n" +
+				"      __sequenceur[" + UIDDuSéquenceur + "]=" + (UID) + "\n" +
+				"    else\n" +
+				"      __sequenceur[" + UIDDuSéquenceur + "]=" + (UIDDuBlocSuivant) + "\n" +
+				"    end\n" +
+				"  end";
+		
 		return code;
 	}
 

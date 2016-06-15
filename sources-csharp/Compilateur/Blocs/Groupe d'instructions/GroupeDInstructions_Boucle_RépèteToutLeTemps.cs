@@ -116,7 +116,7 @@ public	class	GroupeDInstructions_Boucle_RépèteToutLeTemps : __GroupeDeBlocs {
 	// - Passe au premier bloc interne
 	public	String	Séquence_1() {
 		
-		return	codeSauteSéquence( UID, UID+1 );
+		return	"  " + codeSauteSéquence( UID, UID+1 );
 		
 	}
 
@@ -136,9 +136,9 @@ public	class	GroupeDInstructions_Boucle_RépèteToutLeTemps : __GroupeDeBlocs {
 		String	code="";
 
 		if (Compilateur.afficherLesCommentaires)
-			code += "  # Instruction Blockly (UID " + __UID + ") = " + __nomDansBlockly + "\n";
+			code += "  # (UID " + __UID + " FIN) Instruction Blockly : " + __nomDansBlockly + "\n";
 
-		code +=	codeSauteSéquence( __blocsInternes.premierBloc.UID+__blocsInternes.nombreDeSéquence, UID );
+		code +=	"  " + codeSauteSéquence( __blocsInternes.premierBloc.UID+__blocsInternes.nombreDeSéquence, UID );
 
 		return code;
 	}

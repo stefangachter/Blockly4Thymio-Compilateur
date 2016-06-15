@@ -89,8 +89,6 @@ public	class	GroupeDInstructions_Si_IlYAUnObstacleDevant_Alors : __GroupeDInstru
 		// Déclarations
 		// ------------
 
-		String	nomDeLAttribut;
-
 		XmlNode	XMLInterne;
 
 
