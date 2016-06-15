@@ -1,17 +1,27 @@
 ﻿<Properties StartupItem="Compilateur Blockly4Thymio.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="WINDOWS-Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Compilateur\Blocs\Groupe d'instructions\GroupeDInstructions_Si_ENTCondition_Alors.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Compilateur\Compilateur.cs">
     <Files>
-      <File FileName="Compilateur\Blocs\Valeurs\Valeur_CapteurIR_SELBouton.cs" Line="1" Column="1" />
-      <File FileName="Compilateur\Blocs\Valeurs\__Valeur_Boutons.cs" Line="1" Column="1" />
-      <File FileName="Compilateur\Blocs\Valeurs\__Valeur.cs" Line="1" Column="1" />
-      <File FileName="Compilateur\Blocs\Valeurs\Valeur_CapteurIR_SELTouche.cs" Line="1" Column="1" />
-      <File FileName="Compilateur\Blocs\Valeurs\Valeur_OpérateurLogique.cs" Line="1" Column="1" />
-      <File FileName="Compilateur\Blocs\Valeurs\__Valeur_Capteurs.cs" Line="1" Column="1" />
-      <File FileName="Compilateur\Compilateur.cs" Line="387" Column="116" />
-      <File FileName="Compilateur\Blocs\Groupe d'instructions\GroupeDInstructions_Si_ENTCondition_Alors.cs" Line="150" Column="39" />
-      <File FileName="Compilateur\Blocs\Groupe d'instructions\GroupeDInstructions_Boucle_RépèteToutLeTemps.cs" Line="97" Column="3" />
+      <File FileName="Compilateur\Compilateur.cs" Line="399" Column="15" />
+      <File FileName="Compilateur\Blocs\Groupe d'instructions\GroupeDInstructions_Si_ENTCondition_Alors.cs" Line="125" Column="1" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Compilateur Blockly4Thymio" expanded="True">
+            <Node name="Compilateur Blockly4Thymio" expanded="True">
+              <Node name="Compilateur" expanded="True">
+                <Node name="Blocs" expanded="True">
+                  <Node name="Groupe d'instructions" expanded="True" />
+                  <Node name="Valeurs" expanded="True" />
+                </Node>
+                <Node name="Compilateur.cs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

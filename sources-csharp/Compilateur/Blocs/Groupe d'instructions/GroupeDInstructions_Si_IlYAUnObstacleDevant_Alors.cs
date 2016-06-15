@@ -72,40 +72,43 @@ knowledge of the CeCILL license and that you accept its terms.
 
 
 using 	System;
+using 	System.Globalization;
 using 	System.Xml;
 
 
 
 namespace		Blockly4Thymio {
-public class	__Valeur : __Bloc {
+public	class	GroupeDInstructions_Si_IlYAUnObstacleDevant_Alors : __GroupeDInstructions_Si_Alors_AvecCondition { 
 
-    /*
-     * Membres
-     */
-    protected   String	__code;
-
-    
 
 	/*
-	 * Propriétés surchargeant la classe mère __Bloc.
-     */
-    public new String codePourLeSéquenceur {
-    get { return __code; }
-    }
-
-    
-    
-    /*
      * Constructeur
      */
-    public	__Valeur( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs ) {
+	public GroupeDInstructions_Si_IlYAUnObstacleDevant_Alors( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, null, "" ) {
 
-		// Initialisations
-        // ---------------
-		__code = "";
+		// Déclarations
+		// ------------
 
-    }
+		String	nomDeLAttribut;
 
+		XmlNode	XMLInterne;
+
+
+		// Initialisation des membres
+		// --------------------------
+
+		__conditionDEntré = __CAPTEURS.code( (int)__CAPTEURS.NOM.AVANT, (int)__CAPTEURS.PARAMÈTRE.DISTANCE_PRÈS );
+
+
+		// Blocs internes au groupe
+		// ------------------------
+	
+		XMLInterne = _XMLDuBloc.SelectSingleNode( "./statement" );
+		if ( XMLInterne != null )
+			__blocsInternes = new __BlocsInternes( UID+1, XMLInterne.FirstChild, null, this );
+		
+
+	}
 
 
 }

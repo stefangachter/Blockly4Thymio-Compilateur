@@ -387,20 +387,20 @@ public class	Compilateur {
 			bloc = new GroupeDInstructions_Si_ENTCondition_Alors( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
 			break;
 
+		case "0_2_Contrôles_Si_IlYAUnObstacleDevant_Alors" :
+			bloc = new GroupeDInstructions_Si_IlYAUnObstacleDevant_Alors( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
+			break;
+
 		case "0_6_Contrôles_ArrêteLeProgramme" :
 			bloc = new Contrôle_ArrêteLeProgramme( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
 			break;
 
-
+		case "0_6_Contrôles_Faire_TantQue_ENTCondition" :
+			bloc = new GroupeDInstructions_Boucle_Faire_TantQue_ENTCondition( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
+			break;
 
 //		case "0_2_Contrôles_Attends_ENTDurée" :
 //			bloc = new Contrôle_Attends_ENTDurée( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
-//			break;
-//		case "0_2_Contrôles_Si_IlYAUnObstacleDevant_Alors" :
-//			bloc = new __GroupeDInstructions_Si_Avec_cCondition( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe, __CAPTEURS.code( (int)__CAPTEURS.NOM.AVANT, (int)__CAPTEURS.PARAMÈTRE.DISTANCE_PRÈS ) );
-//			break;
-//		case "0_6_Contrôles_Faire_TantQue_ENTCondition" :
-//			bloc = new GroupeDInstructions_Boucle_Faire_TantQue_ENTCondition( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
 //			break;
 //		case "0_6_Contrôles_SortDeLaBoucleFaire" :
 //			bloc = new Contrôle_SortDeLaBoucleFaire( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );

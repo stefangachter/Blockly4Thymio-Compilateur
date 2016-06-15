@@ -78,19 +78,13 @@ using 	System.Xml;
 
 
 namespace		Blockly4Thymio {
-public	class	GroupeDInstructions_Si_ENTCondition_Alors : __GroupeDeBlocs { 
-
-	/*
-	 * Attributs
-	 */
-	private	String	__conditionDEntré;
-
+public	class	GroupeDInstructions_Si_ENTCondition_Alors : __GroupeDInstructions_Si_Alors_AvecCondition { 
 
 
 	/*
      * Constructeur
      */
-	public GroupeDInstructions_Si_ENTCondition_Alors( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs ) {
+	public GroupeDInstructions_Si_ENTCondition_Alors( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, null, "" ) {
 
 		// Déclarations
 		// ------------
@@ -125,57 +119,8 @@ public	class	GroupeDInstructions_Si_ENTCondition_Alors : __GroupeDeBlocs {
 		XMLInterne = _XMLDuBloc.SelectSingleNode( "./statement" );
 		if ( XMLInterne != null )
 			__blocsInternes = new __BlocsInternes( UID+1, XMLInterne.FirstChild, null, this );
-
-
-		// Liste les séquences du bloc
-		// ---------------------------
-		__séquences.Add( (Séquence)Séquence_1 );
-		__séquences.Add( (Séquence)Séquence_2 );
-		__séquences.Add( (Séquence)Séquence_3 );
-
-	}
-
-
-	/*
-	 * Séquences
-	 */
-
-	// Séquence 1
-	// - Test la condition
-	//   - Celle-ci est fausse, on passe à la dernière séquence
-	//   - Celle-ci est vrai, on passe au premier bloc interne
-	public	String	Séquence_1() {
 		
-		return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n" +
-				"    if " + __conditionDEntré + " then\n" +
-				"      __sequenceur[" + UIDDuSéquenceur + "]=" + (UID + 1) + "\n" +
-				"    else\n" +
-				"    __sequenceur[" + UIDDuSéquenceur + "]=" + (__blocsInternes.premierBloc.UID+__blocsInternes.nombreDeSéquence) + "\n" +
-		  		"  end";
-		
-	}
 
-
-	// Séquence 2
-	// - Séquences des blocs internes
-	public	String	Séquence_2() {
-
-		return	__blocsInternes.codePourLeSéquenceur;
-
-	}
-
-
-	// Séquence 3
-	// - Passe au bloc suivant
-	public	String	Séquence_3() {
-		String	code="";
-
-		if (Compilateur.afficherLesCommentaires)
-			code += "  # Instruction Blockly (UID " + __UID + ") = " + __nomDansBlockly + "\n";
-
-		code +=	"  " +codeSauteSéquence( __blocsInternes.premierBloc.UID+__blocsInternes.nombreDeSéquence, UIDDuBlocSuivant );
-
-		return code;
 	}
 
 
