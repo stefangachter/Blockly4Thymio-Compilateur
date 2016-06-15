@@ -1,12 +1,16 @@
 ﻿<Properties StartupItem="Compilateur Blockly4Thymio.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="WINDOWS-Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Compilateur\Compilateur.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Compilateur\Blocs\Groupe d'instructions\GroupeDInstructions_Si_ENTCondition_Alors.cs">
     <Files>
-      <File FileName="Compilateur\Blocs\Instructions\Instructions - Contrôles\Contrôle_Attends_SAIDurée.cs" Line="1" Column="1" />
-      <File FileName="Compilateur\Blocs\Instructions\Instructions - Contrôles\__Contrôle_Attends_AvecDurée.cs" Line="1" Column="1" />
-      <File FileName="Compilateur\Blocs\Groupe d'instructions\GroupeDInstructions_Boucle_Répète_SAINombre.cs" Line="1" Column="1" />
-      <File FileName="Compilateur\Blocs\Groupe d'instructions\__GroupeDInstructions_Boucle_Répète_AvecNombre.cs" Line="187" Column="17" />
-      <File FileName="Compilateur\Compilateur.cs" Line="583" Column="6" />
+      <File FileName="Compilateur\Blocs\Valeurs\Valeur_CapteurIR_SELBouton.cs" Line="1" Column="1" />
+      <File FileName="Compilateur\Blocs\Valeurs\__Valeur_Boutons.cs" Line="1" Column="1" />
+      <File FileName="Compilateur\Blocs\Valeurs\__Valeur.cs" Line="1" Column="1" />
+      <File FileName="Compilateur\Blocs\Valeurs\Valeur_CapteurIR_SELTouche.cs" Line="1" Column="1" />
+      <File FileName="Compilateur\Blocs\Valeurs\Valeur_OpérateurLogique.cs" Line="1" Column="1" />
+      <File FileName="Compilateur\Blocs\Valeurs\__Valeur_Capteurs.cs" Line="1" Column="1" />
+      <File FileName="Compilateur\Compilateur.cs" Line="387" Column="116" />
+      <File FileName="Compilateur\Blocs\Groupe d'instructions\GroupeDInstructions_Si_ENTCondition_Alors.cs" Line="150" Column="39" />
+      <File FileName="Compilateur\Blocs\Groupe d'instructions\GroupeDInstructions_Boucle_RépèteToutLeTemps.cs" Line="97" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

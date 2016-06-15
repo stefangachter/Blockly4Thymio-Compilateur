@@ -383,18 +383,21 @@ public class	Compilateur {
 			bloc = new Contrôle_Attends_SAIDurée( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
 			break;
 
+		case "0_2_Contrôles_Si_ENTCondition_Alors" :
+			bloc = new GroupeDInstructions_Si_ENTCondition_Alors( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
+			break;
+
 		case "0_6_Contrôles_ArrêteLeProgramme" :
 			bloc = new Contrôle_ArrêteLeProgramme( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
 			break;
+
+
 
 //		case "0_2_Contrôles_Attends_ENTDurée" :
 //			bloc = new Contrôle_Attends_ENTDurée( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
 //			break;
 //		case "0_2_Contrôles_Si_IlYAUnObstacleDevant_Alors" :
 //			bloc = new __GroupeDInstructions_Si_Avec_cCondition( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe, __CAPTEURS.code( (int)__CAPTEURS.NOM.AVANT, (int)__CAPTEURS.PARAMÈTRE.DISTANCE_PRÈS ) );
-//			break;
-//		case "0_2_Contrôles_Si_ENTCondition_Alors" :
-//			bloc = new __GroupeDInstructions_Si_Avec_cCondition( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe, "" );
 //			break;
 //		case "0_6_Contrôles_Faire_TantQue_ENTCondition" :
 //			bloc = new GroupeDInstructions_Boucle_Faire_TantQue_ENTCondition( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
@@ -437,6 +440,185 @@ public class	Compilateur {
 
     }
 
+
+	/// <summary>
+    /// Analyse un noeud d'expression et retourne la chaine équivalente de cette expression.
+    /// </summary>
+	public	static	String	AnalyseUnNoeudDExpression( int _UIDPourLeBloc, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs ) {
+
+		// Déclarations
+		// ------------
+		String		code;
+		String		erreur;
+		String		instruction;		
+		
+		__Valeur	expression;
+
+
+
+        /*
+         * Initialisations
+         */
+        code = "";
+
+
+
+        /*
+         * Contrôles
+         */
+        if ( _XMLDuBloc == null ) { return code; }
+
+
+
+        /*
+		 * Traitements
+		 */
+        instruction = _XMLDuBloc.Attributes["type"].Value;
+        switch( instruction ) {
+
+        case "":
+            break;
+
+
+		/*
+		 * Valeurs booléenes
+		 * -----------------
+		 */
+
+		// Boutons fléches
+		// ---------------
+		case "0_2_Valeur_Booléen_Bouton_FlècheAvant" :
+			code = __BOUTONS.code( (int)__BOUTONS.NOM.FLÈCHE_VERS_L_AVANT );
+			break;
+		case "0_2_Valeur_Booléen_Bouton_FlècheArrière" :
+			code = __BOUTONS.code( (int)__BOUTONS.NOM.FLÈCHE_VERS_L_ARRIÈRE );
+			break;
+		case "0_2_Valeur_Booléen_Bouton_FlècheADroite" :
+			code = __BOUTONS.code( (int)__BOUTONS.NOM.FLÈCHE_VERS_LA_DROITE );
+			break;
+		case "0_2_Valeur_Booléen_Bouton_FlècheAGauche" :
+			code = __BOUTONS.code( (int)__BOUTONS.NOM.FLÈCHE_VERS_LA_GAUCHE );
+			break;
+		case "0_6_Valeur_Booléen_Bouton_AucuneFlèche" :
+			code = __BOUTONS.code( (int)__BOUTONS.NOM.FLÈCHE_AUCUNE );
+			break;
+
+		// Capteurs de proximité avant
+		// ---------------------------
+		case "0_2_Valeur_Booléen_Capteur_AvantDroite" :
+			code = __CAPTEURS.code( (int)__CAPTEURS.NOM.AVANT_DROITE, (int)__CAPTEURS.PARAMÈTRE.DISTANCE_PRÈS );
+			break;
+		case "0_2_Valeur_Booléen_Capteur_AvantGauche" :
+			code = __CAPTEURS.code( (int)__CAPTEURS.NOM.AVANT_GAUCHE, (int)__CAPTEURS.PARAMÈTRE.DISTANCE_PRÈS );
+			break;
+		case "0_2_Valeur_Booléen_Capteur_AvantMilieu" :
+			code = __CAPTEURS.code( (int)__CAPTEURS.NOM.AVANT_MILIEU, (int)__CAPTEURS.PARAMÈTRE.DISTANCE_PRÈS );
+			break;
+		case "0_2_Valeur_Booléen_Capteur_AvantMilieuDroite" :
+			code = __CAPTEURS.code( (int)__CAPTEURS.NOM.AVANT_MILIEU_DROITE, (int)__CAPTEURS.PARAMÈTRE.DISTANCE_PRÈS );
+			break;
+		case "0_2_Valeur_Booléen_Capteur_AvantMilieuGauche" :
+			code = __CAPTEURS.code( (int)__CAPTEURS.NOM.AVANT_MILIEU_GAUCHE, (int)__CAPTEURS.PARAMÈTRE.DISTANCE_PRÈS );
+			break;
+
+		// Capteurs de proximité arrière
+		// -----------------------------
+		case "0_2_Valeur_Booléen_Capteur_ArrièreDroite" :
+			code = __CAPTEURS.code( (int)__CAPTEURS.NOM.ARRIÈRE_DROITE, (int)__CAPTEURS.PARAMÈTRE.DISTANCE_PRÈS );
+			break;
+		case "0_2_Valeur_Booléen_Capteur_ArrièreGauche" :
+			code = __CAPTEURS.code( (int)__CAPTEURS.NOM.ARRIÈRE_GAUCHE, (int)__CAPTEURS.PARAMÈTRE.DISTANCE_PRÈS );
+			break;
+
+		// Capteur de teinte du dessous
+		// ----------------------------
+		case "0_2_Valeur_Booléen_Capteur_DessousGauche_Noir" :
+			code = __CAPTEURS.code( (int)__CAPTEURS.NOM.DESSOUS_GAUCHE, (int)__CAPTEURS.PARAMÈTRE.COULEUR_SOL_NOIR );
+			break;
+		case "0_2_Valeur_Booléen_Capteur_DessousGauche_Blanc" :
+			code = __CAPTEURS.code( (int)__CAPTEURS.NOM.DESSOUS_GAUCHE, (int)__CAPTEURS.PARAMÈTRE.COULEUR_SOL_BLANC );
+			break;
+		case "0_2_Valeur_Booléen_Capteur_DessousDroite_Noir" :
+			code = __CAPTEURS.code( (int)__CAPTEURS.NOM.DESSOUS_DROITE, (int)__CAPTEURS.PARAMÈTRE.COULEUR_SOL_NOIR );
+			break;
+		case "0_2_Valeur_Booléen_Capteur_DessousDroite_Blanc" :
+			code = __CAPTEURS.code( (int)__CAPTEURS.NOM.DESSOUS_DROITE, (int)__CAPTEURS.PARAMÈTRE.COULEUR_SOL_BLANC );
+			break;
+
+		// Télécommande infra-rouge
+		// ------------------------
+		case "0_2_Valeur_Booléen_ToucheDeLaTélécommandeEst_SELTouche" :
+			expression = new Valeur_CapteurIR_SELTouche( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
+			code = expression.codePourLeSéquenceur;
+			break;
+		case "0_5_Valeur_Booléen_BoutonDeLaTélécommandeEst_SELTouche" :
+			expression = new Valeur_CapteurIR_SELBouton( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
+			code = expression.codePourLeSéquenceur;
+			break;
+
+
+
+		/*
+		 * Valeurs entières
+		 * -----------------
+		 */
+
+		// Valeur 1
+		// --------
+		case "0_2_Valeur_Entier_1" :
+			code = "1";
+			break;
+
+		// Valeur au hasard
+		// ----------------
+		case "0_6_Valeur_Aléatoire_Entre0et7":
+			code = "__valeurAleatoire &amp; 0x7";
+			break;
+
+		 // Opérateurs logiques
+		 // -------------------
+		case "0_6_Valeur_Booléen_OULogique_ENTBooleen_ENTBooleen" :
+			expression = new Valeur_OpérateurLogique( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__OPÉRATIONS_LOGIQUES.NOM.OU );
+			code = expression.codePourLeSéquenceur;
+			break;
+		case "0_6_Valeur_Booléen_ETLogique_ENTBooleen_ENTBooleen" :
+			expression = new Valeur_OpérateurLogique( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__OPÉRATIONS_LOGIQUES.NOM.ET );
+			code = expression.codePourLeSéquenceur;
+			break;
+		case "0_6_Valeur_Booléen_NONLogique_ENTBooleen":
+			expression = new Valeur_OpérateurLogique( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__OPÉRATIONS_LOGIQUES.NOM.NON );
+			code = expression.codePourLeSéquenceur;
+			break;
+
+
+
+		/*
+		 * Sinon, une erreur est déclenchée
+		 * --------------------------------
+		 */
+		default:
+			int		pos;	
+			String	ver;
+
+			erreur = "Erreur ! Le bloc " + instruction + " n'est pas traité dans cette version du compilateur.";
+			pos = instruction.IndexOf( "_", 2 );
+			if ( pos != -1 ) {
+				ver = instruction.Substring( 0, pos );
+				ver = ver.Replace( "_", "." );
+				erreur += "\n\nLa version du compilateur la plus appropiée pour ce bloc est la version " + ver;
+			}
+			throw new Exception( erreur );
+
+        }
+
+
+
+		// Fin
+		// ---
+
+		return code;
+
+	}
 
 
     /// <summary>

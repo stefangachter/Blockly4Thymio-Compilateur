@@ -147,6 +147,19 @@ Transforme un fichiers .b4t en fichier .aesl puis le transmet à Thymio.</Descri
     <Compile Include="Compilateur\Blocs\Evénements\Evénement_QuandUnCapteurArrièreVoitUnObstacle.cs" />
     <Compile Include="Compilateur\Blocs\Evénements\Evénement_QuandUnCapteurAvantVoitUnObstacle.cs" />
     <Compile Include="Compilateur\Blocs\Evénements\Evénement_QuandUnOrdreArriveDeLaTélécommandeIR.cs" />
+    <Compile Include="Compilateur\Blocs\Paramètres\Paramètre_CalibreLesMoteurs_SAIValeur.cs" />
+    <Compile Include="Compilateur\Blocs\Paramètres\Paramètre_LAdresseDeLaTélécommandeEst_SAIValeur.cs" />
+    <Compile Include="Compilateur\Blocs\Paramètres\__Paramètre.cs" />
+    <Compile Include="Compilateur\Blocs\Valeurs\Valeur_CapteurIR_SELBouton.cs" />
+    <Compile Include="Compilateur\Blocs\Valeurs\Valeur_CapteurIR_SELTouche.cs" />
+    <Compile Include="Compilateur\Blocs\Valeurs\Valeur_OpérateurLogique.cs" />
+    <Compile Include="Compilateur\Blocs\Valeurs\__BOUTONS.cs" />
+    <Compile Include="Compilateur\Blocs\Valeurs\__CAPTEURS.cs" />
+    <Compile Include="Compilateur\Blocs\Valeurs\__OPÉRATIONS_LOGIQUES.cs" />
+    <Compile Include="Compilateur\Blocs\Valeurs\__Valeur_Boutons.cs" />
+    <Compile Include="Compilateur\Blocs\Valeurs\__Valeur_Capteurs.cs" />
+    <Compile Include="Compilateur\Blocs\Valeurs\__Valeur.cs" />
+    <Compile Include="Compilateur\Blocs\Groupe d%27instructions\GroupeDInstructions_Si_ENTCondition_Alors.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
