@@ -216,8 +216,23 @@ public class	Compilateur {
 		#region Evénements
 		
 		case "0_1b_Evénement_QuandLeProgrammeCommence" :
-			// Note : L'UID d'un événement est 1
 			bloc = new Evénement_QuandLeProgrammeCommence( _XMLDuBloc );
+			break;
+
+		case "0_2_Evénement_QuandUnBoutonFlècheEstAppuyé":
+			bloc = new Evénement_QuandUnBoutonFlècheEstAppuyé( _XMLDuBloc );
+			break;
+
+		case "0_2_Evénement_QuandUnOrdreArriveDeLaTélécommandeIR":
+			bloc = new Evénement_QuandUnOrdreArriveDeLaTélécommandeIR( _XMLDuBloc );
+			break;
+
+		case "0_5_Evénment_QuandUnCapteurArrièreVoitUnObstacle":
+			bloc = new Evénement_QuandUnCapteurArrièreVoitUnObstacle( _XMLDuBloc );
+			break;
+
+		case "0_5_Evénement_QuandUnCapteurAvantVoitUnObstacle":
+			bloc = new Evénement_QuandUnCapteurAvantVoitUnObstacle( _XMLDuBloc );
 			break;
 
 		#endregion
@@ -371,6 +386,23 @@ public class	Compilateur {
 		case "0_6_Contrôles_ArrêteLeProgramme" :
 			bloc = new Contrôle_ArrêteLeProgramme( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
 			break;
+
+//		case "0_2_Contrôles_Attends_ENTDurée" :
+//			bloc = new Contrôle_Attends_ENTDurée( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
+//			break;
+//		case "0_2_Contrôles_Si_IlYAUnObstacleDevant_Alors" :
+//			bloc = new __GroupeDInstructions_Si_Avec_cCondition( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe, __CAPTEURS.code( (int)__CAPTEURS.NOM.AVANT, (int)__CAPTEURS.PARAMÈTRE.DISTANCE_PRÈS ) );
+//			break;
+//		case "0_2_Contrôles_Si_ENTCondition_Alors" :
+//			bloc = new __GroupeDInstructions_Si_Avec_cCondition( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe, "" );
+//			break;
+//		case "0_6_Contrôles_Faire_TantQue_ENTCondition" :
+//			bloc = new GroupeDInstructions_Boucle_Faire_TantQue_ENTCondition( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
+//			break;
+//		case "0_6_Contrôles_SortDeLaBoucleFaire" :
+//			bloc = new Contrôle_SortDeLaBoucleFaire( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
+//			break;
+
 
 		#endregion
 
@@ -548,7 +580,47 @@ public class	Compilateur {
                     codeSéquenceur += codePourLeSéquenceur;
                 }
 
-			}
+			} else if 	( événementRacine is Evénement_QuandUnOrdreArriveDeLaTélécommandeIR ) {
+
+				// Evénement : Quand un ordre arrive de la télécommande IR
+                if ( événementRacine.blocSuivant != null ) {
+                    // Exécute l'instruction qui suit l'événement
+					if ( codeEvénementCommandeIR != "" ) { codeEvénementCommandeIR += "  "; }
+                    codeEvénementCommandeIR += "  __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + événementRacine.blocSuivant.UID;
+                    codeSéquenceur += événementRacine.blocSuivant.codePourLeSéquenceur + "\n";
+                }
+
+            } else if	( événementRacine is Evénement_QuandUnBoutonFlècheEstAppuyé ) {
+
+				// Evénement : Quand un bouton flèche est appuyé
+                if ( événementRacine.blocSuivant != null ) {
+                    // Exécute l'instruction qui suit l'événement
+					if ( codeEvénementBoutonFlèche != "" ) { codeEvénementBoutonFlèche += "  "; }
+                    codeEvénementBoutonFlèche += "  __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + événementRacine.blocSuivant.UID;
+                    codeSéquenceur += événementRacine.blocSuivant.codePourLeSéquenceur + "\n";
+                }
+
+			} else if	( événementRacine is Evénement_QuandUnCapteurAvantVoitUnObstacle ) {
+
+				// Evénement : Quand un capteur avant voit un obstacle
+                if ( événementRacine.blocSuivant != null ) {
+                    // Exécute l'instruction qui suit l'événement
+					if ( codeEvénementCapteurAvant != "" ) { codeEvénementCapteurAvant += "  "; }
+					codeEvénementCapteurAvant += "  __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + événementRacine.blocSuivant.UID;
+                    codeSéquenceur += événementRacine.blocSuivant.codePourLeSéquenceur + "\n";
+                }
+
+			} else if	( événementRacine is Evénement_QuandUnCapteurAvantVoitUnObstacle ) {
+
+				// Evénement : Quand un capteur arrière voit un obstacle
+                if ( événementRacine.blocSuivant != null ) {
+                    // Exécute l'instruction qui suit l'événement
+					if ( codeEvénementCapteurArrière != "" ) { codeEvénementCapteurArrière += "  "; }
+					codeEvénementCapteurArrière += "  __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + événementRacine.blocSuivant.UID;
+                    codeSéquenceur += événementRacine.blocSuivant.codePourLeSéquenceur + "\n";
+                }
+
+            }
 
         }
 
@@ -673,6 +745,22 @@ public class	Compilateur {
             if ( bloc != null ) {
 				if ( bloc is Evénement_QuandLeProgrammeCommence ) {
 					événementRacine = (Evénement_QuandLeProgrammeCommence)bloc;
+					événementsRacines.Add( événementRacine );
+				}
+				if ( bloc is Evénement_QuandUnOrdreArriveDeLaTélécommandeIR ) {
+					événementRacine = (Evénement_QuandUnOrdreArriveDeLaTélécommandeIR)bloc;
+					événementsRacines.Add( événementRacine );
+				}
+				if ( bloc is Evénement_QuandUnBoutonFlècheEstAppuyé ) {
+					événementRacine = (Evénement_QuandUnBoutonFlècheEstAppuyé)bloc;
+					événementsRacines.Add( événementRacine );
+				}
+				if ( bloc is Evénement_QuandUnCapteurAvantVoitUnObstacle ) {
+					événementRacine = (Evénement_QuandUnCapteurAvantVoitUnObstacle)bloc;
+					événementsRacines.Add( événementRacine );
+				}
+				if ( bloc is Evénement_QuandUnCapteurArrièreVoitUnObstacle ) {
+					événementRacine = (Evénement_QuandUnCapteurArrièreVoitUnObstacle)bloc;
 					événementsRacines.Add( événementRacine );
 				}
 			}

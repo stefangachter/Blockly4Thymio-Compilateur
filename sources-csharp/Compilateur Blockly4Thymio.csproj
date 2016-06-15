@@ -143,6 +143,10 @@ Transforme un fichiers .b4t en fichier .aesl puis le transmet à Thymio.</Descri
     <Compile Include="Compilateur\Blocs\Instructions\Instructions - Contrôles\Contrôle_ArrêteLeProgramme.cs" />
     <Compile Include="Compilateur\Blocs\Groupe d%27instructions\__GroupeDInstructions_Boucle_Répète_AvecNombre.cs" />
     <Compile Include="Compilateur\Blocs\Groupe d%27instructions\GroupeDInstructions_Boucle_Répète_SAINombre.cs" />
+    <Compile Include="Compilateur\Blocs\Evénements\Evénement_QuandUnBoutonFlècheEstAppuyé.cs" />
+    <Compile Include="Compilateur\Blocs\Evénements\Evénement_QuandUnCapteurArrièreVoitUnObstacle.cs" />
+    <Compile Include="Compilateur\Blocs\Evénements\Evénement_QuandUnCapteurAvantVoitUnObstacle.cs" />
+    <Compile Include="Compilateur\Blocs\Evénements\Evénement_QuandUnOrdreArriveDeLaTélécommandeIR.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
