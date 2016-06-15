@@ -138,6 +138,11 @@ Transforme un fichiers .b4t en fichier .aesl puis le transmet à Thymio.</Descri
     <Compile Include="Compilateur\Blocs\Instructions\Instructions - Mouvements\Mouvement_Tourne_AvecSens_SAIAngle.cs" />
     <Compile Include="Compilateur\Blocs\Instructions\Instructions - Mouvements\Mouvement_Tourne_SELSens_SAIAngle.cs" />
     <Compile Include="Compilateur\Blocs\Instructions\Instructions - Mouvements\Mouvement_VitesseDesRoues_SAIVitesseAGauche_SAIVitesseADroite.cs" />
+    <Compile Include="Compilateur\Blocs\Instructions\Instructions - Contrôles\__Contrôle_Attends_AvecDurée.cs" />
+    <Compile Include="Compilateur\Blocs\Instructions\Instructions - Contrôles\Contrôle_Attends_SAIDurée.cs" />
+    <Compile Include="Compilateur\Blocs\Instructions\Instructions - Contrôles\Contrôle_ArrêteLeProgramme.cs" />
+    <Compile Include="Compilateur\Blocs\Groupe d%27instructions\__GroupeDInstructions_Boucle_Répète_AvecNombre.cs" />
+    <Compile Include="Compilateur\Blocs\Groupe d%27instructions\GroupeDInstructions_Boucle_Répète_SAINombre.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -169,5 +174,6 @@ Transforme un fichiers .b4t en fichier .aesl puis le transmet à Thymio.</Descri
     <Folder Include="Compilateur\Blocs\Groupe d%27instructions\" />
     <Folder Include="Compilateur\Blocs\Instructions\Instructions - Sons\" />
     <Folder Include="Compilateur\Blocs\Instructions\Instructions - Mouvements\" />
+    <Folder Include="Compilateur\Blocs\Instructions\Instructions - Contrôles\" />
   </ItemGroup>
 </Project>

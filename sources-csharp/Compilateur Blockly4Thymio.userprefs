@@ -1,11 +1,38 @@
 ﻿<Properties StartupItem="Compilateur Blockly4Thymio.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="WINDOWS-Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Compilateur\Blocs\Instructions\Instructions - Mouvements\Mouvement_VitesseDesRoues_SAIVitesseAGauche_SAIVitesseADroite.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Compilateur\Blocs\Groupe d'instructions\__GroupeDInstructions_Boucle_Répète_AvecNombre.cs">
     <Files>
-      <File FileName="Compilateur\Compilateur.cs" Line="353" Column="2" />
-      <File FileName="Compilateur\Blocs\Instructions\Instructions - Mouvements\Mouvement_Déplacement_SELVitesse_SAIDistance.cs" Line="1" Column="1" />
-      <File FileName="Compilateur\Blocs\Instructions\Instructions - Mouvements\Mouvement_VitesseDesRoues_SAIVitesseAGauche_SAIVitesseADroite.cs" Line="112" Column="239" />
+      <File FileName="Compilateur\Blocs\Instructions\Instructions - Contrôles\Contrôle_Attends_SAIDurée.cs" Line="91" Column="70" />
+      <File FileName="Compilateur\Blocs\Instructions\Instructions - Contrôles\__Contrôle_Attends_AvecDurée.cs" Line="151" Column="1" />
+      <File FileName="Compilateur\Blocs\Groupe d'instructions\GroupeDInstructions_Boucle_Répète_SAINombre.cs" Line="124" Column="48" />
+      <File FileName="Compilateur\Blocs\Groupe d'instructions\__GroupeDInstructions_Boucle_Répète_AvecNombre.cs" Line="187" Column="17" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Compilateur Blockly4Thymio" expanded="True">
+            <Node name="Compilateur Blockly4Thymio" expanded="True">
+              <Node name="Compilateur" expanded="True">
+                <Node name="Blocs" expanded="True">
+                  <Node name="Groupe d'instructions" expanded="True">
+                    <Node name="__GroupeDInstructions_Boucle_Répète_AvecNombre.cs" selected="True" />
+                  </Node>
+                  <Node name="Instructions" expanded="True">
+                    <Node name="Instructions - Contrôles" expanded="True" />
+                    <Node name="Instructions - Lumières" expanded="True" />
+                  </Node>
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="ClassPad">
+        <State name="__root__">
+          <Node name="Compilateur Blockly4Thymio" expanded="True" selected="True" />
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

@@ -1,4 +1,5 @@
-﻿/*
+﻿
+/*
 Copyright Okimi 2015-2016 (contact at okimi dot net)
 
 Ce logiciel est un programme informatique servant à compiler un fichier
@@ -35,7 +36,7 @@ termes.
 
 ===============================================================================
 
-Copyright Okimi 2016 (contact at okimi dot net)
+Copyright Okimi 2015-2016 (contact at okimi dot net)
 
 This software is a computer program whose purpose is to compil Blockly4Thymio
 file (.b4t), to transform it into Aseba file (.aesl) and send it to Thymio
@@ -70,126 +71,50 @@ knowledge of the CeCILL license and that you accept its terms.
 
 
 
-using	System;
-using	System.IO;
-using	System.Reflection;
-using	System.Windows.Forms;
+/*
+* Contrôle_ArrêteLeProgramme
+* --------------------------
+*
+* Arrête tous les séquenceurs
+* 
+*/
+
+
+using 	System;
+using 	System.Globalization;
+using 	System.Xml;
 
 
 
-namespace 		Blockly4Thymio {
-static	class 	ProgrammePrincipal {
+namespace		Blockly4Thymio {
+public	class	Contrôle_ArrêteLeProgramme : __Bloc {
 
-	/// <summary>
-	/// Point d'entrée principal de l'application.
-	/// </summary>
-	[STAThread]
-	static void Main( string[] _args ) {
+	/*
+	 * Constructeur
+	 */
+	public	Contrôle_ArrêteLeProgramme( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs ) {
 
-		// Initialisations
-		// ---------------
+		// Liste les séquences du bloc
+		// ---------------------------
+		__séquences.Add( (Séquence)Séquence_1 );
 
-		Compilateur.version = "0.7";
+	
+	}
+	
 
+	/*
+	 * Séquences
+	 */
 
-		// Nom du fichier programme.b4t à tester
-		// -------------------------------------
-		#if (DEBUG && WINDOWS)
-		Compilateur.nomDuFichierB4T = @"C:\Users\Okimi\Downloads\programme.b4t";
-		Compilateur.nomDuFichierB4T = @"C:\Users\fort\Downloads\programme.b4t";
-		#endif
-		#if (DEBUG && LINUX)
-		Compilateur.nomDuFichierB4T = @"/home/okimi/Téléchargements/programme.b4t";
-		#endif
-		#if (!DEBUG)
-		Compilateur.nomDuFichierB4T = "";
-		if ( _args != null )
-			if ( _args.Length != 0 )
-				Compilateur.nomDuFichierB4T = _args[0];
-		#endif
-
-
-		// Affichage des commentaires dans le fichier .aesl
-		#if (DEBUG)
-		Compilateur.afficherLesCommentaires = true;
-		#else
-		Compilateur.afficherLesCommentaires = false;
-		#endif
+	// Séquence 1
+	// - Initialise le chrono à 0
+	// - Passe au bloc suivant
+	public	String	Séquence_1() {
 		
+		return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n" +
+				"    __sequenceur[" + UIDDuSéquenceur + "]=0\n" +
+				"  end";
 		
-		// Affiche les messages d'information
-		#if (DEBUG)
-		Compilateur.afficheLesMessagesDInformation = true;
-		#else
-		Compilateur.afficheLesMessagesDInformation = false;
-		#endif
-
-
-		// Affichage des messages d'erreur
-		Compilateur.afficheLesMessagesDErreur = true;
-
-
-		// Arrête le robot si tous les séquenceurs sont terminés
-		// -----------------------------------------------------
-		Compilateur.arrêtDuRobotALaFinDesSéquenceurs = true;
-		
-
-		#if (DEBUG)
-		Compilateur.optimisationDuSéquenceur = true;
-		Compilateur.optimisationDuSéquenceur = false;
-		#else
-		Compilateur.optimisationDuSéquenceur = true;
-		#endif
-		
-
-		// Transfert le fichier .aesl via asebamassloader.exe
-		// --------------------------------------------------
-		#if (DEBUG)
-		Compilateur.transfertDuFichierAESL = true;
-		Compilateur.transfertDuFichierAESL = false;
-		#endif
-		#if (!DEBUG)
-		Compilateur.transfertDuFichierAESL = true;
-		#endif
-
-
-		// Emplacement de programme de transfert AsebaMassloader
-		// -----------------------------------------------------
-		#if (DEBUG && WINDOWS)
-		Compilateur.nomDuFichierASEBAMASSLOADER = @"C:\Blockly4Thymio.v0.6\asebamassloader\asebamassloader.exe";
-		//Compilateur.nomDuFichierASEBAMASSLOADER = @"C:\Users\fort\Downloads\compilateur\setup-win\fichiers\asebamassloader\asebamassloader.exe";
-		#endif
-		#if (!DEBUG && WINDOWS)
-		Compilateur.nomDuFichierASEBAMASSLOADER =  Path.GetDirectoryName(Application.ExecutablePath) + @"\asebamassloader\asebamassloader.exe";
-		#endif
-		#if (LINUX)
-		Compilateur.nomDuFichierASEBAMASSLOADER = @"/usr/bin/asebamassloader";
-		#endif
-		
-
-		// Lance automatiquement le programme sur le Thymio à la fin du transfert
-		// ----------------------------------------------------------------------
-		Compilateur.lancementAutomatique = true;
-
-
-		// Fermeture automatique de la fenêtre à la fin des traitements
-		// ------------------------------------------------------------
-		#if (DEBUG)
-		//Compilateur.fermetureDeLaFenêtreALaFin = false;
-		Compilateur.fermetureDeLaFenêtreALaFin = true;
-		#endif
-		#if (!DEBUG)
-		Compilateur.fermetureDeLaFenêtreALaFin = true;
-		#endif
-
-
-		// Traitements
-		// -----------
-
-		Application.EnableVisualStyles();
-		Application.SetCompatibleTextRenderingDefault(false);
-		Application.Run( new FEN_Principale( _args ) );
-
 	}
 
 }

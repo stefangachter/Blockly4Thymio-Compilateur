@@ -213,17 +213,15 @@ public class	Compilateur {
             break;
 
 
-		// Evénements
-		// ----------
+		#region Evénements
 		
 		case "0_1b_Evénement_QuandLeProgrammeCommence" :
 			// Note : L'UID d'un événement est 1
 			bloc = new Evénement_QuandLeProgrammeCommence( _XMLDuBloc );
 			break;
 
+		#endregion
 
-		// Lumières
-		// --------
 
 		#region Instructions - Lumières
 
@@ -253,8 +251,6 @@ public class	Compilateur {
 
 		#endregion
 
-		// Sons - version 0.1b
-		// -------------------
 
 		#region Instructions - Sons
 
@@ -308,10 +304,8 @@ public class	Compilateur {
 		
 		#endregion
 
-		// Mouvements
-		// ----------
 
-		#region Mouvements - Déplacements
+		#region Instructions - Déplacements
 		
 		case "0_1b_Mouvement_Arrête":
 			bloc = new __Mouvement_Déplacement_AvecSensVitesses( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__MOTEUR.SENS.ARRÊT );
@@ -354,13 +348,31 @@ public class	Compilateur {
 			break;
 
 		#endregion
-		
-		
-		// Contrôles
-		// ---------
+
+
+		#region Instructions - Contrôles
+
+		case "0_1b_Contrôles_Attends1Seconde" :
+			bloc = new __Contrôle_Attends_AvecDurée( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, 1 );
+			break;
+
+		case "0_1b_Contrôles_Répète_SAIBoucle" :
+			bloc = new GroupeDInstructions_Boucle_Répète_SAINombre( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
+			break;
+
 		case "0_1b_Contrôles_RépèteToutLeTemps":
 			bloc = new GroupeDInstructions_Boucle_RépèteToutLeTemps ( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
 			break;
+
+		case "0_2_Contrôles_Attends_SAIDurée" :
+			bloc = new Contrôle_Attends_SAIDurée( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
+			break;
+
+		case "0_6_Contrôles_ArrêteLeProgramme" :
+			bloc = new Contrôle_ArrêteLeProgramme( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
+			break;
+
+		#endregion
 
 
 		// Sinon, une erreur est déclenchée
@@ -516,8 +528,10 @@ public class	Compilateur {
         if (événementsRacines.Count > 0)
 			codeDéclarationDesVariables +=	"var __sequenceur[" + événementsRacines.Count + "]\n" + 
 											"var __chrono[" + événementsRacines.Count + "]\n";
-		
+		if ( __GroupeDInstructions_Boucle_Répète_AvecNombre.__compteurDeBoucle > 0 )
+			codeDéclarationDesVariables +=	"var __boucle[" + __GroupeDInstructions_Boucle_Répète_AvecNombre.__compteurDeBoucle + "]\n";
 
+		
         // Ajoute le code généré pour chaque événement
         foreach ( __Evénement événementRacine in événementsRacines ) {
 			
@@ -527,7 +541,7 @@ public class	Compilateur {
                 if ( événementRacine.blocSuivant != null ) {
                     // Exécute l'instruction qui suit l'événement
                     if ( codeEvénementLancementDuProgramme != "" ) { codeEvénementLancementDuProgramme += " "; }
-                    codeEvénementLancementDuProgramme += "  __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + événementRacine.blocSuivant.UID;
+                    codeEvénementLancementDuProgramme += "__sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + événementRacine.blocSuivant.UID;
 					codePourLeSéquenceur = événementRacine.blocSuivant.codePourLeSéquenceur + "\n";
 					if ( optimisationDuSéquenceur )
 						codePourLeSéquenceur = OptimiseLeSéquenceur( codePourLeSéquenceur );
