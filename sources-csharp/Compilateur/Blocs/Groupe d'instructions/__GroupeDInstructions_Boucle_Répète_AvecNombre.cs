@@ -166,7 +166,7 @@ public	class	__GroupeDInstructions_Boucle_Répète_AvecNombre : __GroupeDeBlocs 
 					"    end\n" +
 					"  end";
 		else
-			return	"  " + codeSauteSéquence( UID+1, UIDDuBlocSuivant );
+			return	"  " + Compilateur.codeSauteSéquence( UIDDuSéquenceur, UID+1, UIDDuBlocSuivant );
 					
 	}
 
@@ -191,9 +191,9 @@ public	class	__GroupeDInstructions_Boucle_Répète_AvecNombre : __GroupeDeBlocs 
 			code += "  # (UID " + __UID + " FIN) Instruction Blockly : " + __nomDansBlockly + "\n";
 
 		if ( __blocsInternes != null )
-			code +=	"  " +codeSauteSéquence( __blocsInternes.premierBloc.UID+__blocsInternes.nombreDeSéquence, UID+1 );
+			code +=	"  " + Compilateur.codeSauteSéquence( UIDDuSéquenceur, __blocsInternes.premierBloc.UID+__blocsInternes.nombreDeSéquence, UID+1 );
 		else
-			code +=	"  " +codeSauteSéquence( UID+2, UID+1 );
+			code +=	"  " + Compilateur.codeSauteSéquence( UIDDuSéquenceur, UID+2, UID+1 );
 
 		return code;
 	}

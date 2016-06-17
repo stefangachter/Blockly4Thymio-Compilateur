@@ -147,7 +147,7 @@ public class 	GroupeDInstructions_Boucle_TantQue_ENTCondition : __GroupeDeBlocs 
 	// - Passe au premier bloc interne
 	public	String	Séquence_1() {
 
-		return	"  " + codeSauteSéquence( UID, UID+1 );
+		return	"  " + Compilateur.codeSauteSéquence( UIDDuSéquenceur, UID, UID+1 );
 
 	}
 

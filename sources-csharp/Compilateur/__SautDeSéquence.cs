@@ -1,4 +1,4 @@
-
+﻿
 /*
 Copyright Okimi 2015-2016 (contact at okimi dot net)
 
@@ -71,100 +71,29 @@ knowledge of the CeCILL license and that you accept its terms.
 
 
 
-using 	System;
-using 	System.Collections.Generic;
-using 	System.Xml;
+using System;
 
 
 
-namespace		Blockly4Thymio {
-public	class	__Bloc {
-	
-    /*
-     * Membres
-     */
-    protected		int				__UID;
-	protected		int				__UIDDuSéquenceur;
+namespace 		Blockly4Thymio {
 
-	protected		String			__nomDansBlockly;
+public class 	__SautDeSéquence {
 
-	protected		__Bloc			__blocPrécédent;
-	protected		__Bloc			__blocSuivant;
-
-	protected		__GroupeDeBlocs	__groupeDeBlocs;
-
-	protected		List<Séquence>	__séquences;
-
-	public delegate	String			Séquence();
+	private	int	__séquenceDArrivée;
+	private	int	__séquenceDeDépart;
+	private	int	__UIDDuSéquenceur;
 
 
+	public	int	séquenceDArrivée { get { return __séquenceDArrivée; } }
+	public	int	séquenceDeDépart { get { return __séquenceDeDépart; } }
+	public	int	UIDDuséquenceur { get { return __UIDDuSéquenceur; } }
 
 
-    /*
-     * Propriétés publiques
-     */
-	public	int		nombreDeSéquence { get { return __séquences.Count; } }
-
-	public	int		UID { get { return __UID; } }
-
-	public	int		UIDDuSéquenceur { get { return __UIDDuSéquenceur; } }
-
-	public	int		UIDDuBlocSuivant {
-	get {
-		if (__blocSuivant == null)
-			if (__groupeDeBlocs == null)
-				return 0;
-			else {
-				// Saute à la la dernière séquence du groupe
-				return __groupeDeBlocs.UIDDeLaDernièreSéquence;
-			}
-		return __blocSuivant.UID;
+	public __SautDeSéquence( int _UIDDuSéquenceur, int	_séquenceDeDépart, int _séquenceDArrivée ) {
+		__UIDDuSéquenceur = _UIDDuSéquenceur;
+		__séquenceDeDépart = _séquenceDeDépart;
+		__séquenceDArrivée = _séquenceDArrivée;
 	}
-	}
-
-	public	String	codePourLeSéquenceur { 
-	get {
-		String	code = "";
-
-		if (Compilateur.afficherLesCommentaires)
-			code += "\n  # (UID " + __UID + ") Instruction Blockly : " + __nomDansBlockly + "\n";
-
-		foreach ( Séquence séquence in __séquences )
-			code += séquence () + "\n";
-
-		if ( __blocSuivant != null )
-			code += "\n" + __blocSuivant.codePourLeSéquenceur;
-			
-		return code;
-	}
-	}
-
-	public	__Bloc	blocSuivant {
-	get{ return __blocSuivant; }
-	set{ __blocSuivant = value; }
-	}
-
-
-
-	/*
-	 * Constructeur
-	 */
-	public	__Bloc( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs ) {
-
-		__UID = _UID;
-
-        __nomDansBlockly = _XMLDuBloc.Attributes["type"].Value;
-
-        __blocPrécédent = _blocPrécédent;
-
-		__groupeDeBlocs = _groupeDeBlocs;
-
-		if ( __blocPrécédent != null )
-			__UIDDuSéquenceur = __blocPrécédent.__UIDDuSéquenceur;
-
-		__séquences = new List<Séquence>();
-
-    }
 
 
 }

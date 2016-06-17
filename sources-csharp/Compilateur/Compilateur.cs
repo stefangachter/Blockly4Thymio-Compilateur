@@ -88,46 +88,45 @@ public class	Compilateur {
 	 * Attributs
 	 */
 
-    /// <summary>
-    /// <c>true</c> Affiche les commentaires dans le code ASEBA
-    /// </summary>
-    public	static	bool				afficherLesCommentaires;
+	public	static	bool					afficherLesCommentaires;			// Affiche les commentaires dans le code ASEBA
 
-	public	static	bool				afficheLesMessagesDErreur;
+	public	static	bool					afficheLesMessagesDErreur;
 
-	public	static	bool				afficheLesMessagesDInformation;
+	public	static	bool					afficheLesMessagesDInformation;
 
     /// <summary>
     /// <c>true</c> Arrête le programme, si tous les séquenceurs ont terminés.
     /// <c>false</c> Le programme reste sur la dernière instruction de chaque séquenceur.
     /// </summary>
-    public	static	bool				arrêtDuRobotALaFinDesSéquenceurs;
+    public	static	bool					arrêtDuRobotALaFinDesSéquenceurs;
 
-    public	static	bool				fermetureDeLaFenêtreALaFin;
+    public	static	bool					fermetureDeLaFenêtreALaFin;
 
     /// <summary>
     /// <c>true</c> Le code est éxécuté automatiquement après avoir été téléchargé dans le Thymio.
     /// <c>false</c> Le code est éxécuté lorsque l'utilisateur apppuis sur le bouton rond central du Thymio.
     /// </summary>
-	public	static	bool				lancementAutomatique;
+	public	static	bool					lancementAutomatique;
 
-    public	static	bool				transfertDuFichierAESL;
+    public	static	bool					transfertDuFichierAESL;
 
-    public	static	bool				optimisationDuSéquenceur;
+    public	static	bool					optimisationDuSéquenceur;
 
-	public	static	int					compteurDeSéquenceur;
+	public	static	int						compteurDeSéquenceur;
 
-    public	static	String				nomDuFichierB4T;
-	public	static	String				nomDuFichierAESL;
-    public	static	String				nomDuFichierAESLTemp;
-    public	static	String				nomDuFichierASEBAMASSLOADER;
-	public	static	String				version;
+    public	static	String					nomDuFichierB4T;
+	public	static	String					nomDuFichierAESL;
+    public	static	String					nomDuFichierAESLTemp;
+    public	static	String					nomDuFichierASEBAMASSLOADER;
+	public	static	String					version;
 
-	public	static	List<__Evénement>	événementsRacines;
+	public	static	List<__Evénement>		événementsRacines;
+
+	public	static	List<__SautDeSéquence>	sautsDeSéquence;
 	
-	private	static	bool				__transfertEnCours;
+	private	static	bool					__transfertEnCours;
 
-	private	static	FEN_Principale		__fenêtrePrincipal;
+	private	static	FEN_Principale			__fenêtrePrincipal;
 
 
 
@@ -662,7 +661,7 @@ public class	Compilateur {
 		#endif
 
         événementsRacines = new List<__Evénement>();
-
+        sautsDeSéquence = new List<__SautDeSéquence>();
 
 
         /*
@@ -974,26 +973,27 @@ public class	Compilateur {
     /// </summary>
 	public	static	String	OptimiseLeSéquenceur( String _code ) {
 
-		Regex	expressionRegulière;
+		String	codeAChercher;
 
-		expressionRegulière = new Regex( @"\s*if\s*sequenceur\[[0-9]+\]==[0-9]+\s*then\s*sequenceur\[[0-9]+\]=[0-9]+\s*end ");
-		expressionRegulière.Matches( _code );
+		// Il n'y a pas de saut de séquence, donc il n'y a pas d'optimisation à faire
+		if ( sautsDeSéquence.Count == 0 )
+			return _code;
 
-		/* Recherche une séquence de saute monton à l'aide d'une expession régulière
-		Aide sur les sites :
-			http://www.regexlib.com/RETester.aspx
-			http://lgmorand.developpez.com/dotnet/regex/#L5
-			http://www.expreg.com/symbole.php
+		// Tri les sauts de séquence par ordre décroissant (pour les traiter des derniers aux premiers)
+		sautsDeSéquence.Sort( delegate (__SautDeSéquence _ss1, __SautDeSéquence _ss2) { return _ss2.séquenceDeDépart-_ss1.séquenceDeDépart; } );
 
-		Expression de test
-			\s*if\s*sequenceur\[[0-9]+\]==[0-9]+\s*then\s*sequenceur\[[0-9]+\]=[0-9]+\s*end
-		Retourne le résultat
-			if sequenceur[0]==1 then sequenceur[0]=2 end
-		Pour la séquencce :
-			if sequenceur[0]==1 then
-			  sequenceur[0]=2
-			end
-		*/
+		while ( sautsDeSéquence.Count > 0 ) {
+
+			// Recompose la chaine de la séquence de saut
+			codeAChercher = Compilateur.CréeLeCodeDeSautDeSéquence( sautsDeSéquence[0].UIDDuséquenceur, sautsDeSéquence[0].séquenceDeDépart, sautsDeSéquence[0].séquenceDArrivée );
+
+			_code = _code.Replace( codeAChercher, "TOTO" );
+
+			sautsDeSéquence.Remove( sautsDeSéquence[0] );
+
+		}
+
+
 		return _code;
     }
 
@@ -1089,6 +1089,22 @@ public class	Compilateur {
         	if ( _e.Data.IndexOf("loaded to target") != -1 )
 				__transfertEnCours = false;
     }
+
+
+	public	static	String	codeSauteSéquence( int _UIDDuSéquenceur, int _séquenceDeDépart, int _séquenceDArrivée ) {
+
+		Compilateur.sautsDeSéquence.Add( new __SautDeSéquence( _UIDDuSéquenceur, _séquenceDeDépart, _séquenceDArrivée ) );
+
+		return	CréeLeCodeDeSautDeSéquence( _UIDDuSéquenceur, _séquenceDeDépart, _séquenceDArrivée );
+		
+	}
+
+
+	public	static	String	CréeLeCodeDeSautDeSéquence( int _UIDDuSéquenceur, int _séquenceDeDépart, int _séquenceDArrivée ) {
+		
+		return "if __sequenceur[" + _UIDDuSéquenceur + "]==" + _séquenceDeDépart + " then __sequenceur[" + _UIDDuSéquenceur + "]=" + _séquenceDArrivée + " end";
+
+	}
 
 
 }
