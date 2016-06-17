@@ -102,7 +102,16 @@ public	class	__GroupeDeBlocs : __Bloc {
 
 	public	int	nombreDeSéquenceAvecLesBlocsInternes {
 	get {
-		return __séquences.Count + __blocsInternes.nombreDeSéquence - 1;
+		if ( __blocsInternes != null )
+			return __séquences.Count + __blocsInternes.nombreDeSéquence -1;		// -1 pour déduire la séquence comprenant les séquences internes
+		else
+			return __séquences.Count -1;
+	} }
+
+
+	public	int	UIDDeLaDernièreSéquence {
+	get {
+		return __UID-1 + __séquences.Count + __blocsInternes.nombreDeSéquence-1;
 	} }
 
 

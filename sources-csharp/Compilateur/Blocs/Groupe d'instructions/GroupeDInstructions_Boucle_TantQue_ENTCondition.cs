@@ -155,7 +155,10 @@ public class 	GroupeDInstructions_Boucle_TantQue_ENTCondition : __GroupeDeBlocs 
 	// - Séquences du bloc interne
 	public	String	Séquence_2() {
 
-		return	__blocsInternes.codePourLeSéquenceur;
+		if ( __blocsInternes != null )
+			return	__blocsInternes.codePourLeSéquenceur;
+		else
+			return "";
 
 	}
 
@@ -167,13 +170,23 @@ public class 	GroupeDInstructions_Boucle_TantQue_ENTCondition : __GroupeDeBlocs 
 		if (Compilateur.afficherLesCommentaires)
 			code += "  # (UID " + __UID + " FIN) Instruction Blockly : " + __nomDansBlockly + "\n";
 
-		code +=	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + (__blocsInternes.premierBloc.UID+__blocsInternes.nombreDeSéquence) + " then\n" +
-				"    if " + __conditionDeBoucle + " then\n" +
-				"      __sequenceur[" + UIDDuSéquenceur + "]=" + (UID) + "\n" +
-				"    else\n" +
-				"      __sequenceur[" + UIDDuSéquenceur + "]=" + (UIDDuBlocSuivant) + "\n" +
-				"    end\n" +
-				"  end";
+		if ( __blocsInternes != null )
+			code +=	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + (__blocsInternes.premierBloc.UID+__blocsInternes.nombreDeSéquence) + " then\n" +
+					"    if " + __conditionDeBoucle + " then\n" +
+					"      __sequenceur[" + UIDDuSéquenceur + "]=" + (UID) + "\n" +
+					"    else\n" +
+					"      __sequenceur[" + UIDDuSéquenceur + "]=" + (UIDDuBlocSuivant) + "\n" +
+					"    end\n" +
+					"  end";
+		else
+			code +=	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + (UID+1) + " then\n" +
+					"    if " + __conditionDeBoucle + " then\n" +
+					"      __sequenceur[" + UIDDuSéquenceur + "]=" + (UID) + "\n" +
+					"    else\n" +
+					"      __sequenceur[" + UIDDuSéquenceur + "]=" + (UIDDuBlocSuivant) + "\n" +
+					"    end\n" +
+					"  end";
+
 		
 		return code;
 	}

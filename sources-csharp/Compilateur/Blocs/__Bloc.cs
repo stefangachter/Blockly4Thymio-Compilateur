@@ -114,8 +114,10 @@ public	class	__Bloc {
 		if (__blocSuivant == null)
 			if (__groupeDeBlocs == null)
 				return 0;
-			else
-				return (__groupeDeBlocs.UID-1) + __groupeDeBlocs.nombreDeSéquenceAvecLesBlocsInternes;
+			else {
+				// Saute à la la dernière séquence du groupe
+				return __groupeDeBlocs.UIDDeLaDernièreSéquence;
+			}
 		return __blocSuivant.UID;
 	}
 	}

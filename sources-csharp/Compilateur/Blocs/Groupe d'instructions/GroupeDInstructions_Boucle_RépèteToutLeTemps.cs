@@ -115,9 +115,11 @@ public	class	GroupeDInstructions_Boucle_RépèteToutLeTemps : __GroupeDeBlocs {
 	// Séquence 1
 	// - Passe au premier bloc interne
 	public	String	Séquence_1() {
-		
-		return	"  " + codeSauteSéquence( UID, UID+1 );
-		
+
+		if ( __blocsInternes != null )
+			return	"  " + codeSauteSéquence( UID, __blocsInternes.premierBloc.UID );
+		else
+			return	"  " + codeSauteSéquence( UID, UID+2 );
 	}
 
 
@@ -125,7 +127,10 @@ public	class	GroupeDInstructions_Boucle_RépèteToutLeTemps : __GroupeDeBlocs {
 	// - Séquences du bloc interne
 	public	String	Séquence_2() {
 
-		return	__blocsInternes.codePourLeSéquenceur;
+		if ( __blocsInternes != null )
+			return	__blocsInternes.codePourLeSéquenceur;
+		else
+			return "";
 
 	}
 
@@ -138,7 +143,10 @@ public	class	GroupeDInstructions_Boucle_RépèteToutLeTemps : __GroupeDeBlocs {
 		if (Compilateur.afficherLesCommentaires)
 			code += "  # (UID " + __UID + " FIN) Instruction Blockly : " + __nomDansBlockly + "\n";
 
-		code +=	"  " + codeSauteSéquence( __blocsInternes.premierBloc.UID+__blocsInternes.nombreDeSéquence, UID );
+		if ( __blocsInternes != null )
+			code +=	"  " + codeSauteSéquence( __blocsInternes.premierBloc.UID+__blocsInternes.nombreDeSéquence, UID );
+		else
+			code +=	"  " +codeSauteSéquence( UID+2, UID );
 
 		return code;
 	}

@@ -178,15 +178,17 @@ public class	Compilateur {
         /*
          * Déclarations
          */
-		int		position;
+		int				position;
 
-		String	erreur;
-		String	instruction;		
-		String	version;
+		String			erreur;
+		String			instruction;		
+		String			version;
 
-        __Bloc	bloc;
+        __Bloc			bloc;
+
+        __GroupeDeBlocs	groupeDeBlocs;
 			
-		XmlNode	XmlDuBlocSuivant;
+		XmlNode			XmlDuBlocSuivant;
 
 
         /*
@@ -428,9 +430,13 @@ public class	Compilateur {
         // Lecture du bloc suivant
         // -----------------------
         XmlDuBlocSuivant = _XMLDuBloc.SelectSingleNode( "./next/block" );
+		//UIDSuivant = bloc.UID + bloc.nombreDeSéquence;
 		if ( bloc is __Evénement )
 			bloc.blocSuivant = Compilateur.AnalyseUnNoeudDInstruction( bloc.UID+bloc.nombreDeSéquence, XmlDuBlocSuivant, bloc, _groupeDeBlocs );
-		else if ( bloc is __Bloc )
+		else if ( bloc is __GroupeDeBlocs ) {
+			groupeDeBlocs = (__GroupeDeBlocs)bloc;
+			bloc.blocSuivant = Compilateur.AnalyseUnNoeudDInstruction( bloc.UID+groupeDeBlocs.nombreDeSéquenceAvecLesBlocsInternes, XmlDuBlocSuivant, bloc, _groupeDeBlocs );
+		} else if ( bloc is __Bloc )
 			bloc.blocSuivant = Compilateur.AnalyseUnNoeudDInstruction( bloc.UID+bloc.nombreDeSéquence, XmlDuBlocSuivant, bloc, _groupeDeBlocs );
 		
 		

@@ -151,7 +151,7 @@ public		partial	class	FEN_Principale : Form {
 	
 		// Lance la compilation.
 		// Si la compilation s'est bien déroulée, le programme se ferme automatiquement
-		try {
+//		try {
 			if (Compilateur.Compile(this)) {
 				if (Compilateur.fermetureDeLaFenêtreALaFin) {
 					#if (DEBUG)
@@ -163,9 +163,9 @@ public		partial	class	FEN_Principale : Form {
 			}
 			// Message : Transfert terminé
 			AjouteUnMessage( "\n\n" + Messages.Message( (int)Messages.TYPE.COMPILATION_ET_TRANSFERT_TERMINÉ ) );
-		} catch ( Exception ex ) {
-			AfficheUnMessageDErreur( ex.Message );
-		}
+//		} catch ( Exception ex ) {
+//			AfficheUnMessageDErreur( ex.Message );
+//		}
 
 	}
 

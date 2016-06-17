@@ -155,23 +155,29 @@ public	class	__GroupeDInstructions_Boucle_Répète_AvecNombre : __GroupeDeBlocs 
 	//   - Si le nombre de boucle est >0, passe au premier bloc interne
 	//   - Si le nombre de boucle est =0, passe au bloc de fin
 	public	String	Séquence_2() {
-		
-		return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + (UID + 1) + " then\n" +
-				"    __boucle[" + (__UIDDeBoucle-1) + "]--\n" +
-				"    if __boucle[" + (__UIDDeBoucle-1) + "]>0 then\n" +
-				"      __sequenceur[" + UIDDuSéquenceur + "]=" + (__blocsInternes.premierBloc.UID) + " then \n" + 
-				"    else\n" +
-				"      __sequenceur[" + UIDDuSéquenceur + "]=" + UIDDuBlocSuivant + " then \n" + 
-				"    end\n" +
-				"  end";
-		
+
+		if ( __blocsInternes != null )
+			return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + (UID + 1) + " then\n" +
+					"    __boucle[" + (__UIDDeBoucle-1) + "]--\n" +
+					"    if __boucle[" + (__UIDDeBoucle-1) + "]>0 then\n" +
+					"      __sequenceur[" + UIDDuSéquenceur + "]=" + (__blocsInternes.premierBloc.UID) + "\n" + 
+					"    else\n" +
+					"      __sequenceur[" + UIDDuSéquenceur + "]=" + UIDDuBlocSuivant + "\n" + 
+					"    end\n" +
+					"  end";
+		else
+			return	"  " + codeSauteSéquence( UID+1, UIDDuBlocSuivant );
+					
 	}
 
 	// Séquence 3
 	// - Séquences du bloc interne
 	public	String	Séquence_3() {
 
-		return	__blocsInternes.codePourLeSéquenceur;
+		if ( __blocsInternes != null )
+			return	__blocsInternes.codePourLeSéquenceur;
+		else
+			return "";
 
 	}
 
@@ -184,7 +190,10 @@ public	class	__GroupeDInstructions_Boucle_Répète_AvecNombre : __GroupeDeBlocs 
 		if (Compilateur.afficherLesCommentaires)
 			code += "  # (UID " + __UID + " FIN) Instruction Blockly : " + __nomDansBlockly + "\n";
 
-		code +=	"  " +codeSauteSéquence( __blocsInternes.premierBloc.UID+__blocsInternes.nombreDeSéquence, UID+1 );
+		if ( __blocsInternes != null )
+			code +=	"  " +codeSauteSéquence( __blocsInternes.premierBloc.UID+__blocsInternes.nombreDeSéquence, UID+1 );
+		else
+			code +=	"  " +codeSauteSéquence( UID+2, UID+1 );
 
 		return code;
 	}

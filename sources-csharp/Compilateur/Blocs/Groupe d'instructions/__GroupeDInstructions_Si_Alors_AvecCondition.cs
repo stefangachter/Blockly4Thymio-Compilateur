@@ -116,14 +116,17 @@ public	class	__GroupeDInstructions_Si_Alors_AvecCondition : __GroupeDeBlocs {
 	//   - Celle-ci est fausse, on passe à la dernière séquence
 	//   - Celle-ci est vrai, on passe au premier bloc interne
 	public	String	Séquence_1() {
-		
-		return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n" +
-				"    if " + __conditionDEntré + " then\n" +
-				"      __sequenceur[" + UIDDuSéquenceur + "]=" + (UID + 1) + "\n" +
-				"    else\n" +
-				"      __sequenceur[" + UIDDuSéquenceur + "]=" + (__blocsInternes.premierBloc.UID+__blocsInternes.nombreDeSéquence) + "\n" +
-				"    end\n" + 
-		  		"  end";
+
+		if ( __blocsInternes != null )
+			return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n" +
+					"    if " + __conditionDEntré + " then\n" +
+					"      __sequenceur[" + UIDDuSéquenceur + "]=" + (UID + 1) + "\n" +
+					"    else\n" +
+					"      __sequenceur[" + UIDDuSéquenceur + "]=" + (__blocsInternes.premierBloc.UID+__blocsInternes.nombreDeSéquence) + "\n" +
+					"    end\n" + 
+			  		"  end";
+		else
+			return	"  " + codeSauteSéquence( UID, UID+2 );
 		
 	}
 
@@ -132,8 +135,11 @@ public	class	__GroupeDInstructions_Si_Alors_AvecCondition : __GroupeDeBlocs {
 	// - Séquences des blocs internes
 	public	String	Séquence_2() {
 
-		return	__blocsInternes.codePourLeSéquenceur;
-
+		if ( __blocsInternes != null )
+			return	__blocsInternes.codePourLeSéquenceur;
+		else
+			return "";
+		
 	}
 
 
@@ -145,7 +151,10 @@ public	class	__GroupeDInstructions_Si_Alors_AvecCondition : __GroupeDeBlocs {
 		if (Compilateur.afficherLesCommentaires)
 			code += "  # (UID " + __UID + " FIN) Instruction Blockly : " + __nomDansBlockly + "\n";
 
-		code +=	"  " + codeSauteSéquence( __blocsInternes.premierBloc.UID+__blocsInternes.nombreDeSéquence, UIDDuBlocSuivant );
+		if ( __blocsInternes != null )
+			code +=	"  " + codeSauteSéquence( __blocsInternes.premierBloc.UID+__blocsInternes.nombreDeSéquence, UIDDuBlocSuivant );
+		else
+			code +=	"  " + codeSauteSéquence( UID+2, UIDDuBlocSuivant );
 
 		return code;
 	}
