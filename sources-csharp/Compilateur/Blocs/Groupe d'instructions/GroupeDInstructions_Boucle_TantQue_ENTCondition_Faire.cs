@@ -72,8 +72,8 @@ knowledge of the CeCILL license and that you accept its terms.
 
 
 /*
- * GroupeDInstructions_Boucle_TantQue_ENTCondition
- * -----------------------------------------------
+ * GroupeDInstructions_Boucle_TantQue_ENTCondition_Faire
+ * -----------------------------------------------------
  *
  * Répète tant que la condition est vrai
  * 
@@ -87,7 +87,7 @@ using 	System.Xml;
 
 
 namespace 		Blockly4Thymio {
-public class 	GroupeDInstructions_Boucle_TantQue_ENTCondition : __GroupeDeBlocs {
+public class 	GroupeDInstructions_Boucle_TantQue_ENTCondition_Faire : __GroupeDeBlocs {
 	
 	/*
 	 * Attributs
@@ -98,7 +98,7 @@ public class 	GroupeDInstructions_Boucle_TantQue_ENTCondition : __GroupeDeBlocs 
 	/*
 	 * Constructeur
 	 */
-	public	GroupeDInstructions_Boucle_TantQue_ENTCondition( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs ) {
+	public	GroupeDInstructions_Boucle_TantQue_ENTCondition_Faire( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs ) {
 
         // Déclarations
         // ------------
@@ -144,12 +144,35 @@ public class 	GroupeDInstructions_Boucle_TantQue_ENTCondition : __GroupeDeBlocs 
 	 */
 
 	// Séquence 1
-	// - Passe au premier bloc interne
+	// - Test la condition
+	//     - Si celle-ci est vrai, passe au premier bloc interne
+	//     - Si celle-ci est fausse, passe au bloc suivant
 	public	String	Séquence_1() {
 
-		return	"  " + Compilateur.codeSauteSéquence( UIDDuSéquenceur, UID, UID+1 );
+		String	code="";
+
+
+		if ( __blocsInternes != null )
+			code +=	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + (UID) + " then\n" +
+					"    if " + __conditionDeBoucle + " then\n" +
+					"      __sequenceur[" + UIDDuSéquenceur + "]=" + (__blocsInternes.premierBloc.UID) + "\n" +
+					"    else\n" +
+					"      __sequenceur[" + UIDDuSéquenceur + "]=" + (UIDDuBlocSuivant) + "\n" +
+					"    end\n" +
+					"  end";
+		else
+			code +=	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + (UID) + " then\n" +
+					"    if " + __conditionDeBoucle + " then\n" +
+					"      __sequenceur[" + UIDDuSéquenceur + "]=" + (UID+1) + "\n" +
+					"    else\n" +
+					"      __sequenceur[" + UIDDuSéquenceur + "]=" + (UIDDuBlocSuivant) + "\n" +
+					"    end\n" +
+					"  end";
+
+		return code;
 
 	}
+
 
 	// Séquence 2
 	// - Séquences du bloc interne
@@ -165,30 +188,20 @@ public class 	GroupeDInstructions_Boucle_TantQue_ENTCondition : __GroupeDeBlocs 
 	// Séquence 3
 	// - Passe au premier bloc du groupe
 	public	String	Séquence_3() {
+
 		String	code="";
+
 
 		if (Compilateur.afficherLesCommentaires)
 			code += "  # (UID " + __UID + " FIN) Instruction Blockly : " + __nomDansBlockly + "\n";
 
 		if ( __blocsInternes != null )
-			code +=	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + (__blocsInternes.premierBloc.UID+__blocsInternes.nombreDeSéquence) + " then\n" +
-					"    if " + __conditionDeBoucle + " then\n" +
-					"      __sequenceur[" + UIDDuSéquenceur + "]=" + (UID) + "\n" +
-					"    else\n" +
-					"      __sequenceur[" + UIDDuSéquenceur + "]=" + (UIDDuBlocSuivant) + "\n" +
-					"    end\n" +
-					"  end";
+			code += "  " + Compilateur.codeSauteSéquence( UIDDuSéquenceur, (__blocsInternes.premierBloc.UID+__blocsInternes.nombreDeSéquence), UID );
 		else
-			code +=	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + (UID+1) + " then\n" +
-					"    if " + __conditionDeBoucle + " then\n" +
-					"      __sequenceur[" + UIDDuSéquenceur + "]=" + (UID) + "\n" +
-					"    else\n" +
-					"      __sequenceur[" + UIDDuSéquenceur + "]=" + (UIDDuBlocSuivant) + "\n" +
-					"    end\n" +
-					"  end";
-
+			code += "  " + Compilateur.codeSauteSéquence( UIDDuSéquenceur, UID+1, UID );
 		
 		return code;
+
 	}
 
 

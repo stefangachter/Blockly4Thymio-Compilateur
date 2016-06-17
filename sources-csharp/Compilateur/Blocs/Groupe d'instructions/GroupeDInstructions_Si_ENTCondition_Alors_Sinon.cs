@@ -1,4 +1,4 @@
-
+﻿
 /*
 Copyright Okimi 2015-2016 (contact at okimi dot net)
 
@@ -72,58 +72,63 @@ knowledge of the CeCILL license and that you accept its terms.
 
 
 using 	System;
-using 	System.Collections.Generic;
+using 	System.Globalization;
 using 	System.Xml;
 
 
 
 namespace		Blockly4Thymio {
-public	class	__GroupeDeBlocs : __Bloc {
+public	class	GroupeDInstructions_Si_ENTCondition_Alors_Sinon : __GroupeDInstructions_Si_Alors_AvecCondition { 
 	
-    /*
-     * Membres
+	/*
+	 * Attributs
+	 */
+	protected	String	__conditionDeSortie;
+	
+
+	/*
+     * Constructeur
      */
-	protected	__BlocsInternes	__blocsInternes;
-	protected	__BlocsInternes	__blocsInternesSupplémentaires;
+	public GroupeDInstructions_Si_ENTCondition_Alors_Sinon( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, null, "" ) {
+
+		// Déclarations
+		// ------------
+
+		String	nomDeLAttribut;
+
+		XmlNode	XMLInterne;
 
 
+		// Traitements
+        // -----------
 
-	/*
-	 * Propriétés
-	 */
-	new public	int	nombreDeSéquence {
-	get {
-		int	nombre = 0;
-		nombre += __séquences.Count - 1;		// -1 pour enlever la séquence propre aux blocs internes
-		if ( __blocsInternes != null )
-			nombre += __blocsInternes.nombreDeSéquence;
-		return nombre;
-	} }
+		// Analyse du Bloc d'instruction
+        foreach ( XmlNode XMLDUnNoeudFils in _XMLDuBloc.ChildNodes ) {
 
+            nomDeLAttribut = "";
+            if ( XMLDUnNoeudFils.Attributes["name"] != null )
+                nomDeLAttribut = XMLDUnNoeudFils.Attributes["name"].Value;
 
-	public	int	nombreDeSéquenceAvecLesBlocsInternes {
-	get {
-		if ( __blocsInternes != null )
-			return __séquences.Count + __blocsInternes.nombreDeSéquence -1;		// -1 pour déduire la séquence comprenant les séquences internes
-		else
-			return __séquences.Count -1;
-	} }
+            switch( nomDeLAttribut ) {
+            case "Condition" :
+				__conditionDEntré = Compilateur.AnalyseUnNoeudDExpression( _UID,  XMLDUnNoeudFils.FirstChild, _blocPrécédent, _groupeDeBlocs );
+				break;
+			}
+
+		}
 
 
-	public	int	UIDDeLaDernièreSéquence {
-	get {
-		return __UID-1 + __séquences.Count + __blocsInternes.nombreDeSéquence-1;
-	} }
-
-
-	/*
-	 * Constructeur
-	 */
-	public	__GroupeDeBlocs( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs ) {
-
-    }
+		// Blocs internes au groupe
+		// ------------------------
 	
-	
+		XMLInterne = _XMLDuBloc.SelectSingleNode( "./statement" );
+		if ( XMLInterne != null )
+			__blocsInternes = new __BlocsInternes( UID+1, XMLInterne.FirstChild, null, this );
+		
+
+	}
+
+
 }
 }
 

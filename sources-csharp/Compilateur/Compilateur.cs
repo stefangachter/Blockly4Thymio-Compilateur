@@ -397,16 +397,38 @@ public class	Compilateur {
 			break;
 
 		case "0_6_Contrôles_Faire_TantQue_ENTCondition" :
-			bloc = new GroupeDInstructions_Boucle_TantQue_ENTCondition( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
+			bloc = new GroupeDInstructions_Boucle_Faire_TantQue_ENTCondition( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
 			break;
 			
 		case "0_6_Contrôles_SortDeLaBoucleFaire" :
 			bloc = new Contrôle_SortDeLaBoucleFaire( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
 			break;
 
+		case "0_7_Contrôles_Si_ENTCondition_Faire_SinonFaire" :
+			break;
+
+		case "0_7_Contrôles_TantQue_ENTCondition_Faire" :
+			bloc = new GroupeDInstructions_Boucle_TantQue_ENTCondition_Faire( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
+			break;
+
 //		case "0_2_Contrôles_Attends_ENTDurée" :
 //			bloc = new Contrôle_Attends_ENTDurée( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
 //			break;
+
+		#endregion
+
+
+		#region Instructions - Paramètres
+
+		case "0_4_Paramètre_CalibreLesMoteurs_SAIValeur" :
+			bloc = new Paramètre_CalibreLesMoteurs_SAIValeur( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
+			break;
+
+		// Paramètres - version 0.5
+		// ------------------------
+		case "0_5_Paramètre_LAdresseDeLaTélécommandeEst_SAIAdresse" :
+			bloc = new Paramètre_LAdresseDeLaTélécommandeEst_SAIValeur( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
+			break;
 
 		#endregion
 

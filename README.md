@@ -24,6 +24,12 @@ Ces sources sont distribuées sous licence libre CeCILL-C V2.
 Suivi des versions
 ------------------
 
+###Version 0.7
+* Simplification du séquenceur
+* Nouvelle instruction : SI ... FAIRE ... SINON ...
+* Nouvelle boucle : TANTQUE ... FAIRE ...
+
+
 ###Version 0.6
 * Nouvelles instructions : ARRETER LE PROGRAMME, SORT DE LA BOUCLE, VITESSE DES ROUES
 * Nouvelle boucle : FAIRE ... TANTQUE ...

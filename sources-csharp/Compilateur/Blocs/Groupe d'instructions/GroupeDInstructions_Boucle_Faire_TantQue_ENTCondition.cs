@@ -1,4 +1,4 @@
-
+﻿
 /*
 Copyright Okimi 2015-2016 (contact at okimi dot net)
 
@@ -71,59 +71,127 @@ knowledge of the CeCILL license and that you accept its terms.
 
 
 
+/*
+ * GroupeDInstructions_Boucle_Faire_TantQue_ENTCondition
+ * -----------------------------------------------------
+ *
+ * Répète tant que la condition est vrai
+ * 
+ */
+
+
 using 	System;
-using 	System.Collections.Generic;
+using 	System.Globalization;
 using 	System.Xml;
 
 
 
-namespace		Blockly4Thymio {
-public	class	__GroupeDeBlocs : __Bloc {
+namespace 		Blockly4Thymio {
+public class 	GroupeDInstructions_Boucle_Faire_TantQue_ENTCondition : __GroupeDeBlocs {
 	
-    /*
-     * Membres
-     */
-	protected	__BlocsInternes	__blocsInternes;
-	protected	__BlocsInternes	__blocsInternesSupplémentaires;
-
-
-
 	/*
-	 * Propriétés
+	 * Attributs
 	 */
-	new public	int	nombreDeSéquence {
-	get {
-		int	nombre = 0;
-		nombre += __séquences.Count - 1;		// -1 pour enlever la séquence propre aux blocs internes
-		if ( __blocsInternes != null )
-			nombre += __blocsInternes.nombreDeSéquence;
-		return nombre;
-	} }
-
-
-	public	int	nombreDeSéquenceAvecLesBlocsInternes {
-	get {
-		if ( __blocsInternes != null )
-			return __séquences.Count + __blocsInternes.nombreDeSéquence -1;		// -1 pour déduire la séquence comprenant les séquences internes
-		else
-			return __séquences.Count -1;
-	} }
-
-
-	public	int	UIDDeLaDernièreSéquence {
-	get {
-		return __UID-1 + __séquences.Count + __blocsInternes.nombreDeSéquence-1;
-	} }
-
+	protected	String	__conditionDeBoucle;
+	
 
 	/*
 	 * Constructeur
 	 */
-	public	__GroupeDeBlocs( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs ) {
+	public	GroupeDInstructions_Boucle_Faire_TantQue_ENTCondition( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs ) {
 
-    }
-	
-	
+        // Déclarations
+        // ------------
+        String	nomDeLAttribut;
+
+		XmlNode	XMLInterne;
+
+
+        // Traitements
+        // -----------
+
+		// Analyse du Bloc d'instruction
+		foreach ( XmlNode XMLDUnNoeudFils in _XMLDuBloc.ChildNodes ) {
+
+			nomDeLAttribut = "";
+			if ( XMLDUnNoeudFils.Attributes["name"] != null )
+				nomDeLAttribut = XMLDUnNoeudFils.Attributes["name"].Value;
+
+			switch( nomDeLAttribut ) {
+			case "Condition" :
+				__conditionDeBoucle = Compilateur.AnalyseUnNoeudDExpression( _UID,  XMLDUnNoeudFils.FirstChild, _blocPrécédent, _groupeDeBlocs );
+				break;
+			}
+
+		}
+
+		XMLInterne = _XMLDuBloc.SelectSingleNode( "./statement" );
+		if ( XMLInterne != null )
+			__blocsInternes = new __BlocsInternes( UID+1, XMLInterne.FirstChild, null, this );
+		
+
+		// Liste les séquences du bloc
+		// ---------------------------
+		__séquences.Add( (Séquence)Séquence_1 );
+		__séquences.Add( (Séquence)Séquence_2 );
+		__séquences.Add( (Séquence)Séquence_3 );
+		
+	}
+
+
+	/*
+	 * Séquences
+	 */
+
+	// Séquence 1
+	// - Passe au premier bloc interne
+	public	String	Séquence_1() {
+
+		return	"  " + Compilateur.codeSauteSéquence( UIDDuSéquenceur, UID, UID+1 );
+
+	}
+
+	// Séquence 2
+	// - Séquences du bloc interne
+	public	String	Séquence_2() {
+
+		if ( __blocsInternes != null )
+			return	__blocsInternes.codePourLeSéquenceur;
+		else
+			return "";
+
+	}
+
+	// Séquence 3
+	// - Passe au premier bloc du groupe
+	public	String	Séquence_3() {
+		String	code="";
+
+		if (Compilateur.afficherLesCommentaires)
+			code += "  # (UID " + __UID + " FIN) Instruction Blockly : " + __nomDansBlockly + "\n";
+
+		if ( __blocsInternes != null )
+			code +=	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + (__blocsInternes.premierBloc.UID+__blocsInternes.nombreDeSéquence) + " then\n" +
+					"    if " + __conditionDeBoucle + " then\n" +
+					"      __sequenceur[" + UIDDuSéquenceur + "]=" + (UID) + "\n" +
+					"    else\n" +
+					"      __sequenceur[" + UIDDuSéquenceur + "]=" + (UIDDuBlocSuivant) + "\n" +
+					"    end\n" +
+					"  end";
+		else
+			code +=	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + (UID+1) + " then\n" +
+					"    if " + __conditionDeBoucle + " then\n" +
+					"      __sequenceur[" + UIDDuSéquenceur + "]=" + (UID) + "\n" +
+					"    else\n" +
+					"      __sequenceur[" + UIDDuSéquenceur + "]=" + (UIDDuBlocSuivant) + "\n" +
+					"    end\n" +
+					"  end";
+
+		
+		return code;
+	}
+
+
 }
 }
 

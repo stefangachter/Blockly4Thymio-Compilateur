@@ -1,6 +1,15 @@
 ﻿<Properties StartupItem="Compilateur Blockly4Thymio.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="WINDOWS-Debug|x86" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Compilateur\Blocs\Groupe d'instructions\__GroupeDInstructions_Si_Alors_Sinon_AvecCondition.cs">
+    <Files>
+      <File FileName="Compilateur\Compilateur.cs" Line="388" Column="56" />
+      <File FileName="Compilateur\Blocs\Groupe d'instructions\__GroupeDInstructions_Si_Alors_AvecCondition.cs" Line="93" Column="2" />
+      <File FileName="Compilateur\Blocs\Groupe d'instructions\GroupeDInstructions_Si_ENTCondition_Alors_Sinon.cs" Line="92" Column="202" />
+      <File FileName="Compilateur\Blocs\Groupe d'instructions\GroupeDInstructions_Si_ENTCondition_Alors.cs" Line="92" Column="196" />
+      <File FileName="Compilateur\Blocs\Groupe d'instructions\GroupeDInstructions_Si_IlYAUnObstacleDevant_Alors.cs" Line="87" Column="204" />
+      <File FileName="Compilateur\Blocs\Groupe d'instructions\__GroupeDInstructions_Si_Alors_Sinon_AvecCondition.cs" Line="188" Column="3" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

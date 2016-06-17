@@ -146,6 +146,7 @@ public	class	__GroupeDInstructions_Si_Alors_AvecCondition : __GroupeDeBlocs {
 	// Séquence 3
 	// - Passe au bloc suivant
 	public	String	Séquence_3() {
+
 		String	code="";
 
 		if (Compilateur.afficherLesCommentaires)
@@ -157,6 +158,7 @@ public	class	__GroupeDInstructions_Si_Alors_AvecCondition : __GroupeDeBlocs {
 			code +=	"  " + Compilateur.codeSauteSéquence( UIDDuSéquenceur, UID+2, UIDDuBlocSuivant );
 
 		return code;
+
 	}
 
 

@@ -1,4 +1,4 @@
-
+﻿
 /*
 Copyright Okimi 2015-2016 (contact at okimi dot net)
 
@@ -72,58 +72,133 @@ knowledge of the CeCILL license and that you accept its terms.
 
 
 using 	System;
-using 	System.Collections.Generic;
+using 	System.Globalization;
 using 	System.Xml;
 
 
 
 namespace		Blockly4Thymio {
-public	class	__GroupeDeBlocs : __Bloc {
-	
-    /*
-     * Membres
+public	class	__GroupeDInstructions_Si_Alors_Sinon_AvecCondition : __GroupeDeBlocs { 
+
+	/*
+	 * Attributs
+	 */
+	protected	String	__conditionDEntré;
+
+
+
+	/*
+     * Constructeur
      */
-	protected	__BlocsInternes	__blocsInternes;
-	protected	__BlocsInternes	__blocsInternesSupplémentaires;
+public __GroupeDInstructions_Si_Alors_Sinon_AvecCondition( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs, __BlocsInternes _blocsInternesSi, __BlocsInternes _blocsInternesSinon, String _ConditionDEntré ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs ) {
 
+		// Initialisation des membres
+		// --------------------------
+		__blocsInternes = _blocsInternesSi;
+		__blocsInternesSupplémentaires = _blocsInternesSinon;
+		__conditionDEntré = _ConditionDEntré;
+
+
+		// Liste les séquences du bloc
+		// ---------------------------
+		__séquences.Add( (Séquence)Séquence_1 );
+		__séquences.Add( (Séquence)Séquence_2 );
+		__séquences.Add( (Séquence)Séquence_3 );
+		__séquences.Add( (Séquence)Séquence_4 );
+		__séquences.Add( (Séquence)Séquence_5 );
+
+	}
 
 
 	/*
-	 * Propriétés
+	 * Séquences
 	 */
-	new public	int	nombreDeSéquence {
-	get {
-		int	nombre = 0;
-		nombre += __séquences.Count - 1;		// -1 pour enlever la séquence propre aux blocs internes
-		if ( __blocsInternes != null )
-			nombre += __blocsInternes.nombreDeSéquence;
-		return nombre;
-	} }
+
+	// Séquence 1
+	// - Test la condition
+	//   - Celle-ci est fausse, on passe à la dernière séquence
+	//   - Celle-ci est vrai, on passe au premier bloc interne
+	public	String	Séquence_1() {
+		return "";
+//		if ( __blocsInternes != null )
+//			return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n" +
+//					"    if " + __conditionDEntré + " then\n" +
+//					"      __sequenceur[" + UIDDuSéquenceur + "]=" + (UID + 1) + "\n" +
+//					"    else\n" +
+//					"      __sequenceur[" + UIDDuSéquenceur + "]=" + (__blocsInternes.premierBloc.UID+__blocsInternes.nombreDeSéquence) + "\n" +
+//					"    end\n" + 
+//			  		"  end";
+//		else
+//			return	"  " + Compilateur.codeSauteSéquence( UIDDuSéquenceur, UID, UID+2 );
+		
+	}
 
 
-	public	int	nombreDeSéquenceAvecLesBlocsInternes {
-	get {
+	// Séquence 2
+	// - Séquences des blocs internes
+	public	String	Séquence_2() {
+
 		if ( __blocsInternes != null )
-			return __séquences.Count + __blocsInternes.nombreDeSéquence -1;		// -1 pour déduire la séquence comprenant les séquences internes
+			return	__blocsInternes.codePourLeSéquenceur;
 		else
-			return __séquences.Count -1;
-	} }
+			return "";
+		
+	}
 
 
-	public	int	UIDDeLaDernièreSéquence {
-	get {
-		return __UID-1 + __séquences.Count + __blocsInternes.nombreDeSéquence-1;
-	} }
+	// Séquence 3
+	// - Passe au bloc suivant
+	public	String	Séquence_3() {
+
+		String	code="";
+
+//		if (Compilateur.afficherLesCommentaires)
+//			code += "  # (UID " + __UID + " FIN) Instruction Blockly : " + __nomDansBlockly + "\n";
+//
+//		if ( __blocsInternes != null )
+//			code +=	"  " + Compilateur.codeSauteSéquence( UIDDuSéquenceur, __blocsInternes.premierBloc.UID+__blocsInternes.nombreDeSéquence, UIDDuBlocSuivant );
+//		else
+//			code +=	"  " + Compilateur.codeSauteSéquence( UIDDuSéquenceur, UID+2, UIDDuBlocSuivant );
+//
+		return code;
+
+	}
 
 
-	/*
-	 * Constructeur
-	 */
-	public	__GroupeDeBlocs( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs ) {
+	// Séquence 4
+	// - Séquences des blocs internes
+	public	String	Séquence_4() {
 
-    }
-	
-	
+	if ( __blocsInternesSupplémentaires != null )
+			return	__blocsInternesSupplémentaires.codePourLeSéquenceur;
+		else
+			return "";
+
+	}
+
+
+	// Séquence 5
+	// - Passe au bloc suivant
+	public	String	Séquence_5() {
+
+		int		séquence;
+
+		String	code="";
+
+
+		if (Compilateur.afficherLesCommentaires)
+			code += "  # (UID " + __UID + " FIN) Instruction Blockly : " + __nomDansBlockly + "\n";
+
+//		if ( __blocsInternes != null )
+//			code +=	"  " + Compilateur.codeSauteSéquence( UIDDuSéquenceur, __blocsInternes.premierBloc.UID+__blocsInternes.nombreDeSéquence, UIDDuBlocSuivant );
+//		else
+//			code +=	"  " + Compilateur.codeSauteSéquence( UIDDuSéquenceur, UID+2, UIDDuBlocSuivant );
+//
+		return code;
+
+	}
+
+
 }
 }
 
