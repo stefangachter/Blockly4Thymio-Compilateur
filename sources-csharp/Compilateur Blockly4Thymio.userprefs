@@ -1,34 +1,6 @@
 ﻿<Properties StartupItem="Compilateur Blockly4Thymio.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="WINDOWS-Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Compilateur\Compilateur.cs">
-    <Files>
-      <File FileName="Compilateur\Compilateur.cs" Line="990" Column="13" />
-      <File FileName="Compilateur\Blocs\Instructions\Instructions - Contrôles\Contrôle_SortDeLaBoucleFaire.cs" Line="114" Column="18" />
-      <File FileName="Compilateur\Blocs\Groupe d'instructions\GroupeDInstructions_Boucle_RépèteToutLeTemps.cs" Line="149" Column="4" />
-      <File FileName="Compilateur\Blocs\Groupe d'instructions\GroupeDInstructions_Boucle_TantQue_ENTCondition.cs" Line="150" Column="3" />
-      <File FileName="Compilateur\Blocs\Groupe d'instructions\__GroupeDInstructions_Si_Alors_AvecCondition.cs" Line="157" Column="67" />
-      <File FileName="Compilateur\Blocs\Groupe d'instructions\__GroupeDInstructions_Boucle_Répète_AvecNombre.cs" Line="196" Column="4" />
-    </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State name="__root__">
-          <Node name="Compilateur Blockly4Thymio" expanded="True">
-            <Node name="Compilateur Blockly4Thymio" expanded="True">
-              <Node name="Compilateur" expanded="True">
-                <Node name="Blocs" expanded="True">
-                  <Node name="Groupe d'instructions" expanded="True" />
-                  <Node name="Instructions" expanded="True">
-                    <Node name="Instructions - Contrôles" expanded="True" />
-                  </Node>
-                </Node>
-                <Node name="Compilateur.cs" selected="True" />
-              </Node>
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

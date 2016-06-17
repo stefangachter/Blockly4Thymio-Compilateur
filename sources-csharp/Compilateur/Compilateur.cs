@@ -982,17 +982,22 @@ public class	Compilateur {
 		// Tri les sauts de séquence par ordre décroissant (pour les traiter des derniers aux premiers)
 		sautsDeSéquence.Sort( delegate (__SautDeSéquence _ss1, __SautDeSéquence _ss2) { return _ss2.séquenceDeDépart-_ss1.séquenceDeDépart; } );
 
-		while ( sautsDeSéquence.Count > 0 ) {
+		foreach ( __SautDeSéquence sautDeSéquence in sautsDeSéquence ) {
+			
+			if ( sautDeSéquence.séquenceDeDépart != 1) {
+				// Recompose la chaine de la séquence de saut
+				codeAChercher = Compilateur.CréeLeCodeDeSautDeSéquence( sautDeSéquence.UIDDuséquenceur, sautDeSéquence.séquenceDeDépart, sautDeSéquence.séquenceDArrivée );
 
-			// Recompose la chaine de la séquence de saut
-			codeAChercher = Compilateur.CréeLeCodeDeSautDeSéquence( sautsDeSéquence[0].UIDDuséquenceur, sautsDeSéquence[0].séquenceDeDépart, sautsDeSéquence[0].séquenceDArrivée );
+				// Efface cette séquence de saut
+				//_code = _code.Replace( codeAChercher, "# " + codeAChercher );
+				_code = _code.Replace( codeAChercher, "" );
 
-			_code = _code.Replace( codeAChercher, "TOTO" );
-
-			sautsDeSéquence.Remove( sautsDeSéquence[0] );
+				// Remplace la séquence d'arrivée de ce saut dans le reste du code
+				codeAChercher = "__sequenceur[" + sautDeSéquence.UIDDuséquenceur + "]=" + sautDeSéquence.séquenceDeDépart;
+				_code = _code.Replace( codeAChercher, "__sequenceur[" + sautDeSéquence.UIDDuséquenceur + "]=" + sautDeSéquence.séquenceDArrivée );
+			}
 
 		}
-
 
 		return _code;
     }
