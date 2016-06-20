@@ -132,6 +132,8 @@ public	class	__GroupeDInstructions_Boucle_Répète_AvecNombre : __GroupeDeBlocs 
 		__séquences.Add( (Séquence)Séquence_3 );
 		__séquences.Add( (Séquence)Séquence_4 );
 
+		__nombreDeBlocsInternes = 1;
+
 	}
 
 

@@ -107,6 +107,8 @@ public __GroupeDInstructions_Si_Alors_Sinon_AvecCondition( int _UID, XmlNode _XM
 		__séquences.Add( (Séquence)Séquence_4 );
 		__séquences.Add( (Séquence)Séquence_5 );
 
+		__nombreDeBlocsInternes = 2;
+
 	}
 
 

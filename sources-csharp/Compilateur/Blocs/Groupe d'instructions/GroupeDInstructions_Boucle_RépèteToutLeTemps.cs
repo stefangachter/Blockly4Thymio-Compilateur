@@ -105,6 +105,8 @@ public	class	GroupeDInstructions_Boucle_RépèteToutLeTemps : __GroupeDeBlocs {
 		__séquences.Add( (Séquence)Séquence_2 );
 		__séquences.Add( (Séquence)Séquence_3 );
 
+		__nombreDeBlocsInternes = 1;
+
 	}
 
 

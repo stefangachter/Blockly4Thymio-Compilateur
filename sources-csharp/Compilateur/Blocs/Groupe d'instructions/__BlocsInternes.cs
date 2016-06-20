@@ -97,10 +97,16 @@ public	class	__BlocsInternes {
 	public	int		nombreDeSéquence {
 	get { 
 		int		nombre = 0;
-		__Bloc	blocSuivant = __premierBloc;
+		__Bloc			blocSuivant = __premierBloc;
+		__GroupeDeBlocs	groupeSuivant;
 
 		while ( blocSuivant != null ) {
-			nombre += blocSuivant.nombreDeSéquence;
+			if ( blocSuivant is __GroupeDeBlocs ) {
+				groupeSuivant = (__GroupeDeBlocs)blocSuivant;
+				nombre += groupeSuivant.nombreDeSéquenceAvecLesBlocsInternes;
+			}
+			if ( blocSuivant is __Bloc )
+				nombre += blocSuivant.nombreDeSéquence;
 			blocSuivant = blocSuivant.blocSuivant;
 		}
 

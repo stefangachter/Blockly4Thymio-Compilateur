@@ -104,6 +104,8 @@ public	class	__GroupeDInstructions_Si_Alors_AvecCondition : __GroupeDeBlocs {
 		__séquences.Add( (Séquence)Séquence_2 );
 		__séquences.Add( (Séquence)Séquence_3 );
 
+		__nombreDeBlocsInternes = 1;
+
 	}
 
 

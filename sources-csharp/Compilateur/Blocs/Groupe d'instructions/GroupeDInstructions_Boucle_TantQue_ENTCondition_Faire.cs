@@ -135,7 +135,9 @@ public class 	GroupeDInstructions_Boucle_TantQue_ENTCondition_Faire : __GroupeDe
 		__séquences.Add( (Séquence)Séquence_1 );
 		__séquences.Add( (Séquence)Séquence_2 );
 		__séquences.Add( (Séquence)Séquence_3 );
-		
+
+		__nombreDeBlocsInternes = 1;
+
 	}
 
 

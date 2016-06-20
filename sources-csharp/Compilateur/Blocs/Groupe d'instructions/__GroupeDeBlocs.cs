@@ -83,6 +83,8 @@ public	class	__GroupeDeBlocs : __Bloc {
     /*
      * Membres
      */
+    protected	int				__nombreDeBlocsInternes;			// Déduction du nombre de blocs internes
+
 	protected	__BlocsInternes	__blocsInternes;
 	protected	__BlocsInternes	__blocsInternesSupplémentaires;
 
@@ -93,26 +95,22 @@ public	class	__GroupeDeBlocs : __Bloc {
 	 */
 	new public	int	nombreDeSéquence {
 	get {
-		int	nombre = 0;
-		nombre += __séquences.Count - 1;		// -1 pour enlever la séquence propre aux blocs internes
-		if ( __blocsInternes != null )
-			nombre += __blocsInternes.nombreDeSéquence;
-		return nombre;
+		return __séquences.Count - __nombreDeBlocsInternes;
 	} }
 
 
 	public	int	nombreDeSéquenceAvecLesBlocsInternes {
 	get {
 		if ( __blocsInternes != null )
-			return __séquences.Count + __blocsInternes.nombreDeSéquence -1;		// -1 pour déduire la séquence comprenant les séquences internes
+			return nombreDeSéquence + __blocsInternes.nombreDeSéquence;
 		else
-			return __séquences.Count -1;
+			return nombreDeSéquence;
 	} }
 
 
 	public	int	UIDDeLaDernièreSéquence {
 	get {
-		return __UID-1 + __séquences.Count + __blocsInternes.nombreDeSéquence-1;
+		return ( __UID + nombreDeSéquenceAvecLesBlocsInternes ) -1;
 	} }
 
 
