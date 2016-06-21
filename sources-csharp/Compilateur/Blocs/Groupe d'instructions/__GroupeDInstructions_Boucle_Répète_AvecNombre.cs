@@ -102,10 +102,10 @@ public	class	__GroupeDInstructions_Boucle_Répète_AvecNombre : __GroupeDeBlocs 
 			__nombreDeBoucle = 1;
 			Compilateur.AfficheUnMessageDInformation( Messages.Message((int)Messages.TYPE.BOUCLE_INFÉRIEURE_A_1) );
 		}
-		if ( __nombreDeBoucle > 100 ) {
-			__nombreDeBoucle = 100;
-			Compilateur.AfficheUnMessageDInformation( Messages.Message((int)Messages.TYPE.BOUCLE_SUPÉRIEURE_A_100) );
-		}
+//		if ( __nombreDeBoucle > 100 ) {
+//			__nombreDeBoucle = 100;
+//			Compilateur.AfficheUnMessageDInformation( Messages.Message((int)Messages.TYPE.BOUCLE_SUPÉRIEURE_A_100) );
+//		}
 	}
 	}
 

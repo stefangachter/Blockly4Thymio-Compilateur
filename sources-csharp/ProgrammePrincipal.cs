@@ -96,7 +96,7 @@ static	class 	ProgrammePrincipal {
 		// -------------------------------------
 		#if (DEBUG && WINDOWS)
 		Compilateur.nomDuFichierB4T = @"C:\Users\Okimi\Downloads\programme.b4t";
-		Compilateur.nomDuFichierB4T = @"C:\Users\fort\Downloads\programme.b4t";
+		//Compilateur.nomDuFichierB4T = @"C:\Users\fort\Downloads\programme.b4t";
 		#endif
 		#if (DEBUG && LINUX)
 		Compilateur.nomDuFichierB4T = @"/home/okimi/Téléchargements/programme.b4t";
@@ -136,7 +136,7 @@ static	class 	ProgrammePrincipal {
 
 		#if (DEBUG)
 		Compilateur.optimisationDuSéquenceur = true;
-		Compilateur.optimisationDuSéquenceur = false;
+		//Compilateur.optimisationDuSéquenceur = false;
 		#else
 		Compilateur.optimisationDuSéquenceur = true;
 		#endif
@@ -146,7 +146,7 @@ static	class 	ProgrammePrincipal {
 		// --------------------------------------------------
 		#if (DEBUG)
 		Compilateur.transfertDuFichierAESL = true;
-		Compilateur.transfertDuFichierAESL = false;
+		//Compilateur.transfertDuFichierAESL = false;
 		#endif
 		#if (!DEBUG)
 		Compilateur.transfertDuFichierAESL = true;
