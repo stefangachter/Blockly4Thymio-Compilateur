@@ -405,15 +405,16 @@ public class	Compilateur {
 			break;
 
 		case "0_7_Contrôles_Si_ENTCondition_Faire_SinonFaire" :
+			bloc = new GroupeDInstructions_Si_ENTCondition_Alors_Sinon( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
 			break;
 
 		case "0_7_Contrôles_TantQue_ENTCondition_Faire" :
 			bloc = new GroupeDInstructions_Boucle_TantQue_ENTCondition_Faire( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
 			break;
 
-//		case "0_2_Contrôles_Attends_ENTDurée" :
-//			bloc = new Contrôle_Attends_ENTDurée( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupe );
-//			break;
+		case "0_7_Contrôles_Attends_ENTDurée" :
+			bloc = new Contrôle_Attends_ENTDurée( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
+			break;
 
 		#endregion
 
@@ -592,13 +593,13 @@ public class	Compilateur {
 
 		// Valeur 1
 		// --------
-		case "0_2_Valeur_Entier_1" :
+		case "0_7_Valeur_Entier_1" :
 			code = "1";
 			break;
 
 		// Valeur au hasard
 		// ----------------
-		case "0_6_Valeur_Aléatoire_Entre0et7":
+		case "0_7_Valeur_Aléatoire_Entre0et7":
 			code = "__valeurAleatoire &amp; 0x7";
 			break;
 

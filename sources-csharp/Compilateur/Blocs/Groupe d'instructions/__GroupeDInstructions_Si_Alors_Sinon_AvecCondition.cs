@@ -86,11 +86,26 @@ public	class	__GroupeDInstructions_Si_Alors_Sinon_AvecCondition : __GroupeDeBloc
 	protected	String	__conditionDEntré;
 
 
+				
+	/*
+	 * Propriétés privées
+	 */
+	public	override	int	UIDDeLaDernièreSéquence {
+	get {
+		int	uid = __UID + nombreDeSéquence;
+		if ( __blocsInternes != null )
+			uid += __blocsInternes.nombreDeSéquence;
+		if ( __blocsInternesSupplémentaires != null )
+			uid += __blocsInternesSupplémentaires.nombreDeSéquence;
+		return uid;
+	} }
+
+
 
 	/*
      * Constructeur
      */
-public __GroupeDInstructions_Si_Alors_Sinon_AvecCondition( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs, __BlocsInternes _blocsInternesSi, __BlocsInternes _blocsInternesSinon, String _ConditionDEntré ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs ) {
+	public __GroupeDInstructions_Si_Alors_Sinon_AvecCondition( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs, __BlocsInternes _blocsInternesSi, __BlocsInternes _blocsInternesSinon, String _ConditionDEntré ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs ) {
 
 		// Initialisation des membres
 		// --------------------------
@@ -105,7 +120,6 @@ public __GroupeDInstructions_Si_Alors_Sinon_AvecCondition( int _UID, XmlNode _XM
 		__séquences.Add( (Séquence)Séquence_2 );
 		__séquences.Add( (Séquence)Séquence_3 );
 		__séquences.Add( (Séquence)Séquence_4 );
-		__séquences.Add( (Séquence)Séquence_5 );
 
 		__nombreDeBlocsInternes = 2;
 
@@ -121,18 +135,22 @@ public __GroupeDInstructions_Si_Alors_Sinon_AvecCondition( int _UID, XmlNode _XM
 	//   - Celle-ci est fausse, on passe à la dernière séquence
 	//   - Celle-ci est vrai, on passe au premier bloc interne
 	public	String	Séquence_1() {
-		return "";
-//		if ( __blocsInternes != null )
-//			return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n" +
-//					"    if " + __conditionDEntré + " then\n" +
-//					"      __sequenceur[" + UIDDuSéquenceur + "]=" + (UID + 1) + "\n" +
-//					"    else\n" +
-//					"      __sequenceur[" + UIDDuSéquenceur + "]=" + (__blocsInternes.premierBloc.UID+__blocsInternes.nombreDeSéquence) + "\n" +
-//					"    end\n" + 
-//			  		"  end";
-//		else
-//			return	"  " + Compilateur.codeSauteSéquence( UIDDuSéquenceur, UID, UID+2 );
-		
+		String	code;
+
+		code =		"  if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n" +
+					"    if " + __conditionDEntré + " then\n";
+		if ( __blocsInternes == null )
+			code += "      __sequenceur[" + UIDDuSéquenceur + "]=" + (UIDDeLaDernièreSéquence) + "\n";
+		else
+			code +=	"      __sequenceur[" + UIDDuSéquenceur + "]=" + (__blocsInternes.premierBloc.UID) + "\n";
+		code +=		"    else\n";
+		if ( __blocsInternesSupplémentaires == null )
+			code += "      __sequenceur[" + UIDDuSéquenceur + "]=" + (UIDDeLaDernièreSéquence) + "\n";
+		else
+			code +=	"      __sequenceur[" + UIDDuSéquenceur + "]=" + (__blocsInternesSupplémentaires.premierBloc.UID) + "\n";
+		code +=		"    end\n" + 
+			  		"  end";
+		return code;
 	}
 
 
@@ -148,28 +166,9 @@ public __GroupeDInstructions_Si_Alors_Sinon_AvecCondition( int _UID, XmlNode _XM
 	}
 
 
-	// Séquence 3
-	// - Passe au bloc suivant
-	public	String	Séquence_3() {
-
-		String	code="";
-
-//		if (Compilateur.afficherLesCommentaires)
-//			code += "  # (UID " + __UID + " FIN) Instruction Blockly : " + __nomDansBlockly + "\n";
-//
-//		if ( __blocsInternes != null )
-//			code +=	"  " + Compilateur.codeSauteSéquence( UIDDuSéquenceur, __blocsInternes.premierBloc.UID+__blocsInternes.nombreDeSéquence, UIDDuBlocSuivant );
-//		else
-//			code +=	"  " + Compilateur.codeSauteSéquence( UIDDuSéquenceur, UID+2, UIDDuBlocSuivant );
-//
-		return code;
-
-	}
-
-
 	// Séquence 4
 	// - Séquences des blocs internes
-	public	String	Séquence_4() {
+	public	String	Séquence_3() {
 
 	if ( __blocsInternesSupplémentaires != null )
 			return	__blocsInternesSupplémentaires.codePourLeSéquenceur;
@@ -181,9 +180,7 @@ public __GroupeDInstructions_Si_Alors_Sinon_AvecCondition( int _UID, XmlNode _XM
 
 	// Séquence 5
 	// - Passe au bloc suivant
-	public	String	Séquence_5() {
-
-		int		séquence;
+	public	String	Séquence_4() {
 
 		String	code="";
 
@@ -191,11 +188,8 @@ public __GroupeDInstructions_Si_Alors_Sinon_AvecCondition( int _UID, XmlNode _XM
 		if (Compilateur.afficherLesCommentaires)
 			code += "  # (UID " + __UID + " FIN) Instruction Blockly : " + __nomDansBlockly + "\n";
 
-//		if ( __blocsInternes != null )
-//			code +=	"  " + Compilateur.codeSauteSéquence( UIDDuSéquenceur, __blocsInternes.premierBloc.UID+__blocsInternes.nombreDeSéquence, UIDDuBlocSuivant );
-//		else
-//			code +=	"  " + Compilateur.codeSauteSéquence( UIDDuSéquenceur, UID+2, UIDDuBlocSuivant );
-//
+		code +=	"  " + Compilateur.codeSauteSéquence( UIDDuSéquenceur, UIDDeLaDernièreSéquence, UIDDuBlocSuivant );
+
 		return code;
 
 	}

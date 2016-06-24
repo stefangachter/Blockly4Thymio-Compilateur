@@ -1,4 +1,5 @@
-﻿/*
+﻿
+/*
 Copyright Okimi 2015-2016 (contact at okimi dot net)
 
 Ce logiciel est un programme informatique servant à compiler un fichier
@@ -70,136 +71,90 @@ knowledge of the CeCILL license and that you accept its terms.
 
 
 
-// Désactive les messages sur les variables unitilisées
-#pragma warning disable 0414
+/*
+ * __Contrôle_Attends_AvecDurée
+ * ----------------------------
+ *
+ * Fait une pause dans le programme,
+ * pendant un temps saisi (en seconde)
+ *
+ */
+
+
+using 	System;
+using 	System.Globalization;
+using 	System.Xml;
 
 
 
-using	System;
-using	System.Drawing;
-using	System.Reflection;
-using	System.Windows.Forms;
+namespace		Blockly4Thymio {
+public	class	Contrôle_Attends_ENTDurée : __Contrôle_Attends_AvecDurée {
+
+	/*
+	 * Constructeur
+	 */
+	public	Contrôle_Attends_ENTDurée( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupe ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupe, 0.0f ) {
+
+		// Déclarations
+		// ------------
+
+		String	nomDeLAttribut;
 
 
 
-namespace	Blockly4Thymio {
-public		partial	class	FEN_Principale : Form {
+        // Traitements
+        // -----------
 
-	// Déclarations
-	// ------------
+        // Analyse du Bloc d'instruction
+        foreach ( XmlNode XMLDUnNoeudFils in _XMLDuBloc.ChildNodes ) {
 
-	static	Timer	temporisationDAttente;
-	static	Timer	temporisationDeCompilation;
+            nomDeLAttribut = "";
+            if (XMLDUnNoeudFils.Attributes["name"] != null)
+                nomDeLAttribut = XMLDUnNoeudFils.Attributes["name"].Value;
 
-	string[] args;
+            switch( nomDeLAttribut ) {
 
-	
-	
-	// Constructeur de la fenêtre
-    // --------------------------
-	public FEN_Principale( string[] _args ) {
-		args = _args;
-		InitializeComponent();
-		this.Text = this.Text.Replace( "<VERSION>", Compilateur.version );	
-	}
-	
-	
-	public	void	AjouteUnMessage( String _texte ) {
-		TEXT_Messages.Text += _texte + "\r\n";
-		this.Refresh();
-	}
-	
-	
-	public	void	EffaceLesMessages() {
-		TEXT_Messages.Text = "";
-		this.Refresh();
-	}
-	
-	/// <summary>
-	/// Evénement déclenché à l'initialisation de la fenêtre principale
-	/// </summary>
-	private	void FEN_Principale_Load( object sender, EventArgs e ) {
+            case "Durée" :				
+				__durée = float.Parse( Compilateur.AnalyseUnNoeudDExpression( _UID, XMLDUnNoeudFils.FirstChild, _blocPrécédent, _groupe ) );
+				break;
+			
+			}
 
-		// Astucce pas très propre pour lancer la compilation dans un autre thread
-		temporisationDeCompilation = new Timer();
-		temporisationDeCompilation.Interval = 500;
-		temporisationDeCompilation.Tick+= new EventHandler( ThreadDeCompilation );
-		temporisationDeCompilation.Start();
-
-	}
-
-
-	/// <summary>
-	/// Thread séparé pour la compilation
-	/// </summary>
-	private	void	ThreadDeCompilation( object _sender, EventArgs _e ) {
-
-		temporisationDeCompilation.Stop();
-
-		// Affiche l'aide si aucun fichier .b4t n'est envoyé
-		if ( Compilateur.nomDuFichierB4T == "" ) {
-			Compilateur.AfficheLAide(this.TEXT_Messages);
-			return;
 		}
 
-		// Affiche le texte d'entête
-		Compilateur.AfficheLEntête(this.TEXT_Messages);
 
-		// Affiche le nom du fichier
-		AjouteUnMessage( "\n" + String.Format( Messages.Message( (int)Messages.TYPE.FICHIER ), Compilateur.nomDuFichierB4T  ) + "\n\n" );
+		// Taille de l'instruction
+		// -----------------------
 
+		// Dans la classe mère
+
+
+		// Code d'initialisation
+		// ---------------------
+
+		// Aucun
+
+
+		// Code de traitement
+		// ------------------
+
+		// Dans la classe mère
+
+
+		// Code de fin
+		// -----------
+
+		// Aucun
+
+
+		// Condition de passage à l'instruction suivante
+		// ---------------------------------------------
+
+		// Dans la classe mère
 	
-		// Lance la compilation.
-		// Si la compilation s'est bien déroulée, le programme se ferme automatiquement
-//		try {
-			if (Compilateur.Compile(this)) {
-				if (Compilateur.fermetureDeLaFenêtreALaFin) {
-					#if (DEBUG)
-					Application.Exit();
-					#else
-					FermeLaFenêtreAprès2Secondes();
-					#endif
-				}
-			}
-			// Message : Transfert terminé
-			AjouteUnMessage( "\n\n" + Messages.Message( (int)Messages.TYPE.COMPILATION_ET_TRANSFERT_TERMINÉ ) );
-//		} catch ( Exception ex ) {
-//			AfficheUnMessageDErreur( ex.Message );
-//		}
-
 	}
-
-
-	private	void	FermeLaFenêtreAprès2Secondes() {
-		temporisationDAttente = new Timer();
-		temporisationDAttente.Interval = 2000;
-		temporisationDAttente.Tick+= new EventHandler( Evénement_FermeLaFenêtreAprès2Secondes );
-		temporisationDAttente.Start();
-	}
-
-
-	private	void	Evénement_FermeLaFenêtreAprès2Secondes( object sender, EventArgs e  ) {
-		temporisationDAttente.Stop();
-		Application.Exit();
-	}
-
-
-	public	void	AfficheUnMessageDErreur( String _message ) {
-		EffaceLesMessages();
-		this.BackColor = Color.Red;
-		this.TEXT_Messages.BackColor = Color.Red;
-		AjouteUnMessage( "\n" + _message + "\n\n" );		
-	}
-
-	public	void	AfficheUnMessageDInformation( String _message ) {
-		EffaceLesMessages();
-		this.BackColor = Color.DarkOrange;
-		this.TEXT_Messages.BackColor = Color.DarkOrange;
-		AjouteUnMessage( "\n" + _message + "\n\n" );
-	}
-
+	
 
 }
 }
-
 

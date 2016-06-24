@@ -108,7 +108,7 @@ public	class	__GroupeDeBlocs : __Bloc {
 	} }
 
 
-	public	int	UIDDeLaDernièreSéquence {
+	public	virtual	int	UIDDeLaDernièreSéquence {
 	get {
 		return ( __UID + nombreDeSéquenceAvecLesBlocsInternes ) -1;
 	} }

@@ -78,18 +78,19 @@ using 	System.Xml;
 
 
 namespace		Blockly4Thymio {
-public	class	GroupeDInstructions_Si_ENTCondition_Alors_Sinon : __GroupeDInstructions_Si_Alors_AvecCondition { 
+public	class	GroupeDInstructions_Si_ENTCondition_Alors_Sinon : __GroupeDInstructions_Si_Alors_Sinon_AvecCondition { 
 	
 	/*
 	 * Attributs
 	 */
 	protected	String	__conditionDeSortie;
-	
+
+
 
 	/*
      * Constructeur
      */
-	public GroupeDInstructions_Si_ENTCondition_Alors_Sinon( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, null, "" ) {
+	public GroupeDInstructions_Si_ENTCondition_Alors_Sinon( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, null, null, "" ) {
 
 		// Déclarations
 		// ------------
@@ -121,10 +122,16 @@ public	class	GroupeDInstructions_Si_ENTCondition_Alors_Sinon : __GroupeDInstruct
 		// Blocs internes au groupe
 		// ------------------------
 	
-		XMLInterne = _XMLDuBloc.SelectSingleNode( "./statement" );
+		XMLInterne = _XMLDuBloc.SelectSingleNode( "./statement[@name=\"BlocsInternes\"]" );
 		if ( XMLInterne != null )
 			__blocsInternes = new __BlocsInternes( UID+1, XMLInterne.FirstChild, null, this );
-		
+
+		XMLInterne = _XMLDuBloc.SelectSingleNode( "./statement[@name=\"BlocsInternes_Sinon\"]" );
+		if ( XMLInterne != null )
+			if ( __blocsInternes != null )
+				__blocsInternesSupplémentaires = new __BlocsInternes( UID+1+__blocsInternes.nombreDeSéquence, XMLInterne.FirstChild, null, this );
+			else
+				__blocsInternesSupplémentaires = new __BlocsInternes( UID+1, XMLInterne.FirstChild, null, this );
 
 	}
 

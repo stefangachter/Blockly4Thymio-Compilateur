@@ -1,10 +1,29 @@
 ﻿<Properties StartupItem="Compilateur Blockly4Thymio.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="WINDOWS-Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="ProgrammePrincipal.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="c:\Users\Okimi\Mes projets\2016\Blockly4Thymio-Compilateur\sources-csharp\Compilateur\Compilateur.cs">
     <Files>
-      <File FileName="ProgrammePrincipal.cs" Line="122" Column="53" />
-      <File FileName="Compilateur\Compilateur.cs" Line="1026" Column="5" />
+      <File FileName="c:\Users\Okimi\Mes projets\2016\Blockly4Thymio-Compilateur\sources-csharp\Compilateur\Compilateur.cs" Line="647" Column="1" />
+      <File FileName="Compilateur\Blocs\Instructions\Instructions - Contrôles\Contrôle_Attends_ENTDurée.cs" Line="103" Column="3" />
+      <File FileName="Compilateur\Blocs\Instructions\Instructions - Contrôles\__Contrôle_Attends_AvecDurée.cs" Line="125" Column="107" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Compilateur Blockly4Thymio" expanded="True">
+            <Node name="Compilateur Blockly4Thymio" expanded="True">
+              <Node name="Compilateur" expanded="True">
+                <Node name="Blocs" expanded="True">
+                  <Node name="Instructions" expanded="True">
+                    <Node name="Instructions - Contrôles" expanded="True" />
+                  </Node>
+                </Node>
+                <Node name="Compilateur.cs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

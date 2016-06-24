@@ -28,6 +28,7 @@ Suivi des versions
 * Simplification du séquenceur
 * Nouvelle instruction : SI ... FAIRE ... SINON ...
 * Nouvelle boucle : TANTQUE ... FAIRE ...
+* Ajout des variables et des calculs
 
 
 ###Version 0.6
