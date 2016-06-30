@@ -548,7 +548,9 @@ public class	Compilateur {
 		case "0_2_Valeur_Booléen_Capteur_AvantMilieuGauche" :
 			code = __CAPTEURS.code( (int)__CAPTEURS.NOM.AVANT_MILIEU_GAUCHE, (int)__CAPTEURS.PARAMÈTRE.DISTANCE_PRÈS );
 			break;
-
+		case "0_7_Valeur_Booléen_Capteur_AvantAucun" :
+			code = __CAPTEURS.code( (int)__CAPTEURS.NOM.AVANT_AUCUN, (int)__CAPTEURS.PARAMÈTRE.DISTANCE_PRÈS );
+			break;
 		// Capteurs de proximité arrière
 		// -----------------------------
 		case "0_2_Valeur_Booléen_Capteur_ArrièreDroite" :

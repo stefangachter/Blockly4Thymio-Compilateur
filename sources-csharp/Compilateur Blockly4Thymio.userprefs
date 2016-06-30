@@ -1,29 +1,14 @@
 ﻿<Properties StartupItem="Compilateur Blockly4Thymio.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="WINDOWS-Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="c:\Users\Okimi\Mes projets\2016\Blockly4Thymio-Compilateur\sources-csharp\Compilateur\Compilateur.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Compilateur\Blocs\Valeurs\__CAPTEURS.cs">
     <Files>
-      <File FileName="c:\Users\Okimi\Mes projets\2016\Blockly4Thymio-Compilateur\sources-csharp\Compilateur\Compilateur.cs" Line="647" Column="1" />
-      <File FileName="Compilateur\Blocs\Instructions\Instructions - Contrôles\Contrôle_Attends_ENTDurée.cs" Line="103" Column="3" />
-      <File FileName="Compilateur\Blocs\Instructions\Instructions - Contrôles\__Contrôle_Attends_AvecDurée.cs" Line="125" Column="107" />
+      <File FileName="c:\Users\Okimi\Mes projets\2016\Blockly4Thymio-Compilateur\sources-csharp\Compilateur\Compilateur.cs" Line="552" Column="26" />
+      <File FileName="Compilateur\Blocs\Instructions\Instructions - Contrôles\Contrôle_Attends_ENTDurée.cs" Line="1" Column="1" />
+      <File FileName="Compilateur\Blocs\Instructions\Instructions - Contrôles\__Contrôle_Attends_AvecDurée.cs" Line="1" Column="1" />
+      <File FileName="ProgrammePrincipal.cs" Line="139" Column="5" />
+      <File FileName="Compilateur\Blocs\Valeurs\__CAPTEURS.cs" Line="178" Column="1" />
+      <File FileName="Compilateur\Blocs\Groupe d'instructions\GroupeDInstructions_Si_IlYAUnObstacleDevant_Alors.cs" Line="98" Column="70" />
     </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State name="__root__">
-          <Node name="Compilateur Blockly4Thymio" expanded="True">
-            <Node name="Compilateur Blockly4Thymio" expanded="True">
-              <Node name="Compilateur" expanded="True">
-                <Node name="Blocs" expanded="True">
-                  <Node name="Instructions" expanded="True">
-                    <Node name="Instructions - Contrôles" expanded="True" />
-                  </Node>
-                </Node>
-                <Node name="Compilateur.cs" selected="True" />
-              </Node>
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
