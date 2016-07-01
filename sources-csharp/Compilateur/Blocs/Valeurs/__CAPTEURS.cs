@@ -114,16 +114,17 @@ public 		class 	__CAPTEURS {
 	// Capteurs de luminosité du sol
 	// Capteur infra-rouge de la télécommande
 	public	enum NOM {
-		AVANT_AUCUN,			// .....
-		AVANT_GAUCHE,			// *....
-		AVANT_MILIEU_GAUCHE,	// .*...
-		AVANT_MILIEU,			// ..*..
-		AVANT_MILIEU_DROITE,	// ...*.
-		AVANT_DROITE,			// ....*
-		AVANT_TOUS,				// *****
-		ARRIÈRE,
-		ARRIÈRE_GAUCHE,
-		ARRIÈRE_DROITE,
+		AVANT_AUCUN,			//  .....
+		AVANT_GAUCHE,			//  *....
+		AVANT_MILIEU_GAUCHE,	//  .*...
+		AVANT_MILIEU,			//  ..*..
+		AVANT_MILIEU_DROITE,	//  ...*.
+		AVANT_DROITE,			//  ....*
+		AVANT_AU_MOINS_UN,		// [*****]
+		ARRIÈRE_AUCUN,			//    ..
+		ARRIÈRE_GAUCHE,			//    *.
+		ARRIÈRE_DROITE,			//    .*
+		ARRIÈRE_AU_MOINS_UN,	//   [**]
 		DESSOUS_GAUCHE,
 		DESSOUS_DROITE,
 		TEMPERATURE,
@@ -175,7 +176,7 @@ public 		class 	__CAPTEURS {
 		// Capteurs de proximité
 		// ---------------------
 		case (int)NOM.AVANT_AUCUN :
-			code = "not(prox.horizontal[0]" + condition + " or prox.horizontal[1]" + condition + " or prox.horizontal[2]" + condition + " or prox.horizontal[3]" + condition + " or prox.horizontal[4]" + condition + ")";
+			code = "not (prox.horizontal[0]" + condition + " and prox.horizontal[1]" + condition + " and prox.horizontal[2]" + condition + " and prox.horizontal[3]" + condition + " and prox.horizontal[4]" + condition + ")";
 			break;
 		case (int)NOM.AVANT_GAUCHE :
 			code = "prox.horizontal[0]" + condition;
@@ -192,11 +193,11 @@ public 		class 	__CAPTEURS {
 		case (int)NOM.AVANT_DROITE :
 			code = "prox.horizontal[4]" + condition;
 			break;
-		case (int)NOM.AVANT_TOUS :
+		case (int)NOM.AVANT_AU_MOINS_UN :
 			code = "prox.horizontal[0]" + condition + " or prox.horizontal[1]" + condition + " or prox.horizontal[2]" + condition + " or prox.horizontal[3]" + condition + " or prox.horizontal[4]" + condition;
 			break;
-		case (int)NOM.ARRIÈRE :
-			code = "prox.horizontal[5]" + condition + " or prox.horizontal[6]" + condition;
+		case (int)NOM.ARRIÈRE_AUCUN :
+			code = "not (prox.horizontal[5]" + condition + " and prox.horizontal[6]" + condition + ")";
 			break;
 		case (int)NOM.ARRIÈRE_GAUCHE :
 			code = "prox.horizontal[5]" + condition;
@@ -204,7 +205,10 @@ public 		class 	__CAPTEURS {
 		case (int)NOM.ARRIÈRE_DROITE :
 			code = "prox.horizontal[6]" + condition;
 			break;
-		
+		case (int)NOM.ARRIÈRE_AU_MOINS_UN :
+			code = "prox.horizontal[5]" + condition + " or prox.horizontal[6]" + condition;
+			break;
+					
 		// Capteurs de couleur du sol
 		// --------------------------
 		case (int)NOM.DESSOUS_GAUCHE :

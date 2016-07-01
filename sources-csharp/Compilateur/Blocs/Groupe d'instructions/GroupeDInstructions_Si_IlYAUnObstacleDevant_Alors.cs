@@ -95,7 +95,7 @@ public	class	GroupeDInstructions_Si_IlYAUnObstacleDevant_Alors : __GroupeDInstru
 		// Initialisation des membres
 		// --------------------------
 
-		__conditionDEntré = __CAPTEURS.code( (int)__CAPTEURS.NOM.AVANT_TOUS, (int)__CAPTEURS.PARAMÈTRE.DISTANCE_PRÈS );
+		__conditionDEntré = __CAPTEURS.code( (int)__CAPTEURS.NOM.AVANT_AU_MOINS_UN, (int)__CAPTEURS.PARAMÈTRE.DISTANCE_PRÈS );
 
 
 		// Blocs internes au groupe
