@@ -136,7 +136,7 @@ static	class 	ProgrammePrincipal {
 
 		#if (DEBUG)
 		Compilateur.optimisationDuSéquenceur = true;
-		//Compilateur.optimisationDuSéquenceur = false;
+		Compilateur.optimisationDuSéquenceur = false;
 		#else
 		Compilateur.optimisationDuSéquenceur = true;
 		#endif

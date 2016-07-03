@@ -434,6 +434,7 @@ public class	Compilateur {
 		#endregion
 
 
+
 		// Sinon, une erreur est déclenchée
 		// --------------------------------
 		default:
@@ -585,9 +586,7 @@ public class	Compilateur {
 			expression = new Valeur_CapteurIR_SELBouton( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
 			code = expression.codePourLeSéquenceur;
 			break;
-
-
-
+		
 		/*
 		 * Valeurs entières
 		 * -----------------
@@ -619,8 +618,7 @@ public class	Compilateur {
 			expression = new Valeur_OpérateurLogique( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__OPÉRATIONS_LOGIQUES.NOM.NON );
 			code = expression.codePourLeSéquenceur;
 			break;
-
-
+		
 
 		/*
 		 * Sinon, une erreur est déclenchée

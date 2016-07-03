@@ -122,13 +122,13 @@ public 		class 	__LED {
 
 		// Traitements
 		switch ( _composante) {
-		case (int)COMPOSANTE.ROUGE :
+		case (int)COMPOSANTE.BLEUE :
 			valeur = (_couleur & 0x0000ff)>>3;
 			break;
 		case (int)COMPOSANTE.VERTE :
 			valeur = (_couleur & 0x00ff00)>>(8+3);
 			break;
-		case (int)COMPOSANTE.BLEUE :
+		case (int)COMPOSANTE.ROUGE :
 			valeur = (_couleur & 0xff0000)>>(16+3);
 			break;
 		}

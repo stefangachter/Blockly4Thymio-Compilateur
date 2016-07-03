@@ -96,7 +96,7 @@ public	class	__GroupeDInstructions_Boucle_Répète_AvecNombre : __GroupeDeBlocs 
 	public	int	nombreDeBoucle {
 	get { return __nombreDeBoucle; }
 	set {
-		__nombreDeBoucle = value;
+		__nombreDeBoucle = value+1;
 		// Limite le nombre de boucles
 		if ( __nombreDeBoucle <= 0 ) {
 			__nombreDeBoucle = 1;
@@ -122,7 +122,7 @@ public	class	__GroupeDInstructions_Boucle_Répète_AvecNombre : __GroupeDeBlocs 
 		__UIDDeBoucle = __compteurDeBoucle;	
 
 		__blocsInternes = _blocsInternes;
-		__nombreDeBoucle = _nombreDeBoucle;
+		__nombreDeBoucle = _nombreDeBoucle+1;
 
 
 		// Liste les séquences du bloc
