@@ -91,6 +91,15 @@ public	class	GroupeDInstructions_Boucle_RépèteToutLeTemps : __GroupeDeBlocs {
 		XmlNode	XMLInterne;
 
 
+
+		// Initialisation des membres
+		// --------------------------
+
+		// Il est possible de sortir de ce groupe, à l'aide du bloc SortDeLaBoucleFaire
+		__bloc_SortDeLaBoucleFaire_Possible = true;
+
+
+
 		// Traitements
         // -----------
 

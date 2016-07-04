@@ -83,6 +83,8 @@ public	class	__GroupeDeBlocs : __Bloc {
     /*
      * Membres
      */
+    protected	Boolean			__bloc_SortDeLaBoucleFaire_Possible;
+
     protected	int				__nombreDeBlocsInternes;			// Déduction du nombre de blocs internes
 
 	protected	__BlocsInternes	__blocsInternes;
@@ -93,13 +95,13 @@ public	class	__GroupeDeBlocs : __Bloc {
 	/*
 	 * Propriétés
 	 */
-	new public	int	nombreDeSéquence {
+	new public	int			nombreDeSéquence {
 	get {
 		return __séquences.Count - __nombreDeBlocsInternes;
 	} }
 
 
-	public	int	nombreDeSéquenceAvecLesBlocsInternes {
+	public	int				nombreDeSéquenceAvecLesBlocsInternes {
 	get {
 		if ( __blocsInternes != null )
 			return nombreDeSéquence + __blocsInternes.nombreDeSéquence;
@@ -108,10 +110,11 @@ public	class	__GroupeDeBlocs : __Bloc {
 	} }
 
 
-	public	virtual	int	UIDDeLaDernièreSéquence {
+	public	virtual	int		UIDDeLaDernièreSéquence {
 	get {
 		return ( __UID + nombreDeSéquenceAvecLesBlocsInternes ) -1;
 	} }
+
 
 
 	/*
@@ -119,9 +122,27 @@ public	class	__GroupeDeBlocs : __Bloc {
 	 */
 	public	__GroupeDeBlocs( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs ) {
 
+		__bloc_SortDeLaBoucleFaire_Possible = false;
+
     }
-	
-	
+
+
+
+	/*
+	 * Méthodes statiques
+	 */
+	public	static	__GroupeDeBlocs	groupeDInstructions_Faire_AuDessus( __GroupeDeBlocs groupeDeBlocs ) {
+
+		if ( groupeDeBlocs == null )
+			return null;
+
+		if ( groupeDeBlocs.__bloc_SortDeLaBoucleFaire_Possible )
+			return groupeDeBlocs;
+
+		return __GroupeDeBlocs.groupeDInstructions_Faire_AuDessus( groupeDeBlocs.__groupeDeBlocs );
+
+	}
+
 }
 }
 

@@ -124,6 +124,9 @@ public	class	__GroupeDInstructions_Boucle_Répète_AvecNombre : __GroupeDeBlocs 
 		__blocsInternes = _blocsInternes;
 		__nombreDeBoucle = _nombreDeBoucle+1;
 
+		// Il est possible de sortir de ce groupe, à l'aide du bloc SortDeLaBoucleFaire
+		__bloc_SortDeLaBoucleFaire_Possible = true;
+
 
 		// Liste les séquences du bloc
 		// ---------------------------

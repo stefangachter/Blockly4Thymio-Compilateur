@@ -108,13 +108,16 @@ public	class	Contrôle_SortDeLaBoucleFaire : __Bloc {
 
 	// Séquence 1
 	public	String	Séquence_1() {
-		
+
+		__GroupeDeBlocs	groupeDeBlocs;
+
 		if ( __groupeDeBlocs == null ) {
 			// Le bloc n'est pas dans un groupe, on passe au bloc suivant
 			return "  " + Compilateur.codeSauteSéquence( UIDDuSéquenceur, UID, UIDDuBlocSuivant );
 		} else {
-			// Le bloc est dans un groupe, on sort de ce groupe
-			return "  " + Compilateur.codeSauteSéquence( UIDDuSéquenceur, UID, __groupeDeBlocs.UIDDuBlocSuivant );
+			// Le bloc est dans un groupe FAIRE, on sort de ce groupe
+			groupeDeBlocs = __GroupeDeBlocs.groupeDInstructions_Faire_AuDessus( __groupeDeBlocs );
+			return "  " + Compilateur.codeSauteSéquence( UIDDuSéquenceur, UID, groupeDeBlocs.UIDDuBlocSuivant );
 		}
 
 	}
