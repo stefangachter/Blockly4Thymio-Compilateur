@@ -25,10 +25,11 @@ Suivi des versions
 ------------------
 
 ###Version 0.7
-* Simplification du séquenceur
+* Simplification et optimisation du séquenceur
 * Nouvelle instruction : SI ... FAIRE ... SINON ...
 * Nouvelle boucle : TANTQUE ... FAIRE ...
-* Ajout des variables et des calculs
+* Nouvelles valeurs de test des capteurs
+* Amélioration du chargement des pages d'exercices
 
 
 ###Version 0.6
