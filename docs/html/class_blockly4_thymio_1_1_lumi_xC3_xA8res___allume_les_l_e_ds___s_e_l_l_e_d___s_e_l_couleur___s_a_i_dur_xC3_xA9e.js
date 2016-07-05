@@ -1,4 +1,0 @@
-var class_blockly4_thymio_1_1_lumi_xC3_xA8res___allume_les_l_e_ds___s_e_l_l_e_d___s_e_l_couleur___s_a_i_dur_xC3_xA9e =
-[
-    [ "Lumières_AllumeLesLEDs_SELLED_SELCouleur_SAIDurée", "class_blockly4_thymio_1_1_lumi_xC3_xA8res___allume_les_l_e_ds___s_e_l_l_e_d___s_e_l_couleur___s_a_i_dur_xC3_xA9e.html#ad61646e426dd8e13e519f633813675fd", null ]
-];
