@@ -1,23 +1,10 @@
 ﻿<Properties StartupItem="Compilateur Blockly4Thymio.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="WINDOWS-Debug|x86" />
-  <MonoDevelop.Ide.Workbench>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State name="__root__">
-          <Node name="Compilateur Blockly4Thymio" expanded="True">
-            <Node name="Compilateur Blockly4Thymio" expanded="True">
-              <Node name="Compilateur" expanded="True">
-                <Node name="Blocs" expanded="True">
-                  <Node name="Groupe d'instructions" expanded="True">
-                    <Node name="__GroupeDInstructions_Boucle_Répète_AvecNombre.cs" selected="True" />
-                  </Node>
-                </Node>
-              </Node>
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="WINDOWS-Release|x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="c:\Users\Okimi\Mes projets\2016\Blockly4Thymio-Compilateur\sources-csharp\Compilateur\Compilateur.cs">
+    <Files>
+      <File FileName="ProgrammePrincipal.cs" Line="149" Column="5" />
+      <File FileName="c:\Users\Okimi\Mes projets\2016\Blockly4Thymio-Compilateur\sources-csharp\Compilateur\Compilateur.cs" Line="1098" Column="1" />
+    </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
