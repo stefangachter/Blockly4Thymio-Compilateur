@@ -1,4 +1,0 @@
-var class_blockly4_thymio_1_1_groupe_d_instructions___si___il_y_a_un_obstacle_devant___alors =
-[
-    [ "GroupeDInstructions_Si_IlYAUnObstacleDevant_Alors", "class_blockly4_thymio_1_1_groupe_d_instructions___si___il_y_a_un_obstacle_devant___alors.html#a175454e9d6f78e72b2e64275976f7249", null ]
-];

@@ -24,6 +24,10 @@ Ces sources sont distribuées sous licence libre CeCILL-C V2.
 Suivi des versions
 ------------------
 
+###Version 0.8
+
+
+
 ###Version 0.7
 * Simplification et optimisation du séquenceur
 * Nouvelle instruction : SI ... FAIRE ... SINON ...

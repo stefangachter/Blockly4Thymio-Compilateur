@@ -1,4 +1,0 @@
-var class_blockly4_thymio_1_1_mouvement___vitesse_des_roues___s_a_i_vitesse_a_gauche___s_a_i_vitesse_a_droite =
-[
-    [ "Mouvement_VitesseDesRoues_SAIVitesseAGauche_SAIVitesseADroite", "class_blockly4_thymio_1_1_mouvement___vitesse_des_roues___s_a_i_vitesse_a_gauche___s_a_i_vitesse_a_droite.html#aa4dd3072cdeae4f0d5eb94de6d93f52b", null ]
-];
