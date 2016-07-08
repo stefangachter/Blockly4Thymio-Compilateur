@@ -348,19 +348,23 @@ public class	Compilateur {
 			bloc = new Mouvement_Tourne_AvecSens_SAIAngle( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__MOTEUR.TOURNE.A_GAUCHE );
 			break;
 
-		case "0_2_Mouvement_Tourne_SELSens_SAIAngle":
+		case "0_2_Mouvement_Tourne_SELSens_SAIAngle" :
 			bloc = new Mouvement_Tourne_SELSens_SAIAngle( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
 			break;
 
-		case "0_5_Mouvement_TourneADroite":
+		case "0_5_Mouvement_TourneADroite" :
 			bloc = new __Mouvement_Tourne_AvecSensAngle( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__MOTEUR.TOURNE.A_DROITE, 90 );
 			break;
-		case "0_5_Mouvement_TourneAGauche":
+		case "0_5_Mouvement_TourneAGauche" :
 			bloc = new __Mouvement_Tourne_AvecSensAngle( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__MOTEUR.TOURNE.A_GAUCHE, 90 );
 			break;
 
-		case "0_6_Mouvement_VitesseDesRoues_SAIVitesseAGauche_SAIVitesseADroite":
+		case "0_6_Mouvement_VitesseDesRoues_SAIVitesseAGauche_SAIVitesseADroite" :
 			bloc = new Mouvement_VitesseDesRoues_SAIVitesseAGauche_SAIVitesseADroite( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
+			break;
+
+		case "0_8_Mouvement_Avance_SELVitesse_ENTDistance" :
+			bloc = new Mouvement_Déplacement_SELVitesse_ENTDistance( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__MOTEUR.SENS.EN_AVANT );
 			break;
 
 		#endregion
@@ -771,7 +775,7 @@ public class	Compilateur {
 			codeDéclarationDesVariables +=	"var __sequenceur[" + événementsRacines.Count + "]\n" + 
 											"var __chrono[" + événementsRacines.Count + "]\n";
 		if ( __GroupeDInstructions_Boucle_Répète_AvecNombre.__compteurDeBoucle > 0 )
-			codeDéclarationDesVariables +=	"var __boucle[" + __GroupeDInstructions_Boucle_Répète_AvecNombre.__compteurDeBoucle + "]\n";
+			codeDéclarationDesVariables +=	"var __variable[" + __GroupeDInstructions_Boucle_Répète_AvecNombre.__compteurDeBoucle + "]\n";
 
 		
         // Ajoute le code généré pour chaque événement

@@ -1,9 +1,12 @@
 ﻿<Properties StartupItem="Compilateur Blockly4Thymio.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="WINDOWS-Release|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="c:\Users\Okimi\Mes projets\2016\Blockly4Thymio-Compilateur\sources-csharp\Compilateur\Compilateur.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="WINDOWS-Debug|x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Compilateur\Blocs\Instructions\Instructions - Mouvements\__MOTEUR.cs">
     <Files>
-      <File FileName="ProgrammePrincipal.cs" Line="149" Column="5" />
-      <File FileName="c:\Users\Okimi\Mes projets\2016\Blockly4Thymio-Compilateur\sources-csharp\Compilateur\Compilateur.cs" Line="1098" Column="1" />
+      <File FileName="Compilateur\Compilateur.cs" Line="367" Column="51" />
+      <File FileName="Compilateur\Blocs\Instructions\Instructions - Mouvements\Mouvement_Déplacement_SELVitesse_ENTDistance.cs" Line="123" Column="13" />
+      <File FileName="ProgrammePrincipal.cs" Line="149" Column="3" />
+      <File FileName="Compilateur\Blocs\Instructions\Instructions - Mouvements\__Mouvement_Déplacement_AvecSensVitesseDistance.cs" Line="197" Column="69" />
+      <File FileName="Compilateur\Blocs\Instructions\Instructions - Mouvements\__MOTEUR.cs" Line="126" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
