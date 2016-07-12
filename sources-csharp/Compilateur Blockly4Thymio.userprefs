@@ -1,12 +1,13 @@
 ﻿<Properties StartupItem="Compilateur Blockly4Thymio.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="WINDOWS-Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Compilateur\Blocs\Instructions\Instructions - Mouvements\__MOTEUR.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Compilateur\Blocs\Instructions\Instructions - Mouvements\Mouvement_VitesseDesRoues_ENTVitesseAGauche_ENTVitesseADroite.cs">
     <Files>
-      <File FileName="Compilateur\Compilateur.cs" Line="367" Column="51" />
-      <File FileName="Compilateur\Blocs\Instructions\Instructions - Mouvements\Mouvement_Déplacement_SELVitesse_ENTDistance.cs" Line="123" Column="13" />
-      <File FileName="ProgrammePrincipal.cs" Line="149" Column="3" />
-      <File FileName="Compilateur\Blocs\Instructions\Instructions - Mouvements\__Mouvement_Déplacement_AvecSensVitesseDistance.cs" Line="197" Column="69" />
-      <File FileName="Compilateur\Blocs\Instructions\Instructions - Mouvements\__MOTEUR.cs" Line="126" Column="2" />
+      <File FileName="Compilateur\Compilateur.cs" Line="1" Column="1" />
+      <File FileName="Compilateur\Blocs\Instructions\Instructions - Mouvements\Mouvement_Déplacement_SELVitesse_ENTDistance.cs" Line="1" Column="1" />
+      <File FileName="ProgrammePrincipal.cs" Line="1" Column="1" />
+      <File FileName="Compilateur\Blocs\Instructions\Instructions - Mouvements\__Mouvement_Déplacement_AvecSensVitesseDistance.cs" Line="1" Column="1" />
+      <File FileName="Compilateur\Blocs\Instructions\Instructions - Mouvements\__MOTEUR.cs" Line="1" Column="1" />
+      <File FileName="Compilateur\Blocs\Instructions\Instructions - Mouvements\Mouvement_VitesseDesRoues_ENTVitesseAGauche_ENTVitesseADroite.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
