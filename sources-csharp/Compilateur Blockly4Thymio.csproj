@@ -176,6 +176,7 @@ Transforme un fichiers .b4t en fichier .aesl puis le transmet à Thymio.</Descri
     <Compile Include="Compilateur\Blocs\Valeurs\Valeur_Entier_SAIValeur.cs" />
     <Compile Include="Compilateur\Blocs\Variables\Variable_DéfinirUneVariable.cs" />
     <Compile Include="Compilateur\Blocs\Variables\__Variable.cs" />
+    <Compile Include="Compilateur\Blocs\Variables\Variable_RécupérerUneVariable.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

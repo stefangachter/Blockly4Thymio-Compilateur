@@ -494,6 +494,7 @@ public class	Compilateur {
 		String		instruction;		
 		
 		__Valeur	expression;
+		__Variable	variable;
 
 
 
@@ -567,8 +568,12 @@ public class	Compilateur {
 		case "0_7_Valeur_Booléen_Capteur_AvantAucun" :
 			code = __CAPTEURS.code( (int)__CAPTEURS.NOM.AVANT_AUCUN, (int)__CAPTEURS.PARAMÈTRE.DISTANCE_PRÈS );
 			break;
-		// Capteurs de proximité arrière
-		// -----------------------------
+
+		#endregion
+
+
+		#region Capteur - Proximité arrière
+
 		case "0_2_Valeur_Booléen_Capteur_ArrièreDroite" :
 			code = __CAPTEURS.code( (int)__CAPTEURS.NOM.ARRIÈRE_DROITE, (int)__CAPTEURS.PARAMÈTRE.DISTANCE_PRÈS );
 			break;
@@ -576,8 +581,11 @@ public class	Compilateur {
 			code = __CAPTEURS.code( (int)__CAPTEURS.NOM.ARRIÈRE_GAUCHE, (int)__CAPTEURS.PARAMÈTRE.DISTANCE_PRÈS );
 			break;
 
-		// Capteur de teinte du dessous
-		// ----------------------------
+		#endregion
+
+
+		#region Capteur - Teinte du dessous
+
 		case "0_2_Valeur_Booléen_Capteur_DessousGauche_Noir" :
 			code = __CAPTEURS.code( (int)__CAPTEURS.NOM.DESSOUS_GAUCHE, (int)__CAPTEURS.PARAMÈTRE.COULEUR_SOL_NOIR );
 			break;
@@ -591,8 +599,11 @@ public class	Compilateur {
 			code = __CAPTEURS.code( (int)__CAPTEURS.NOM.DESSOUS_DROITE, (int)__CAPTEURS.PARAMÈTRE.COULEUR_SOL_BLANC );
 			break;
 
-		// Télécommande infra-rouge
-		// ------------------------
+		#endregion
+
+
+		#region Télécommande infra-rouge
+
 		case "0_2_Valeur_Booléen_ToucheDeLaTélécommandeEst_SELTouche" :
 			expression = new Valeur_CapteurIR_SELTouche( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
 			code = expression.codePourLeSéquenceur;
@@ -602,8 +613,11 @@ public class	Compilateur {
 			code = expression.codePourLeSéquenceur;
 			break;
 
-		// Opérateurs logiques
-		 // -------------------
+		#endregion
+
+
+		#region Opérateurs logiques
+		
 		case "0_6_Valeur_Booléen_OULogique_ENTBooleen_ENTBooleen" :
 			expression = new Valeur_OpérateurLogique( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__OPÉRATIONS_LOGIQUES.NOM.OU );
 			code = expression.codePourLeSéquenceur;
@@ -617,13 +631,19 @@ public class	Compilateur {
 			code = expression.codePourLeSéquenceur;
 			break;
 
-		// Comparaions numériques
-		// ----------------------
+		#endregion
+
+
+		#region Comparaions numériques
+
 		case "0_8_Valeur_Booléen_Comparaison_ENTNumérique_Egual_ENTNumérique" :
 			expression = new Valeur_ComparaisonsNumériques( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__COMPARAISON_NUMÉRIQUES.NOM.EGUAL );
 			code = expression.codePourLeSéquenceur;
 			break;
-		
+
+		#endregion
+
+
 		/*
 		 * Valeurs entières
 		 * -----------------
@@ -646,6 +666,12 @@ public class	Compilateur {
 			code = expression.codePourLeSéquenceur;
 			break;
 
+		case "variables_get" :
+			expression = new Variable_RécupérerUneVariable( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
+			code = expression.codePourLeSéquenceur;
+			break;
+
+		
 		/*
 		 * Sinon, une erreur est déclenchée
 		 * --------------------------------

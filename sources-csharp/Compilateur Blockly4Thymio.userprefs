@@ -1,13 +1,6 @@
 ﻿<Properties StartupItem="Compilateur Blockly4Thymio.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="WINDOWS-Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Compilateur\Compilateur.cs">
-    <Files>
-      <File FileName="Compilateur\Compilateur.cs" Line="550" Column="3" />
-      <File FileName="Compilateur\Blocs\Variables\Variable_DéfinirUneVariable.cs" Line="126" Column="31" />
-      <File FileName="Compilateur\Blocs\Variables\__Variable.cs" Line="125" Column="2" />
-      <File FileName="Compilateur\Blocs\Instructions\Instructions - Lumières\__Lumières_AllumeLesLEDs_AvecLEDCouleur.cs" Line="114" Column="1" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
