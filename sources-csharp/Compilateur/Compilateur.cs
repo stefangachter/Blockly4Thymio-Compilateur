@@ -590,6 +590,28 @@ public class	Compilateur {
 			expression = new Valeur_CapteurIR_SELBouton( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
 			code = expression.codePourLeSéquenceur;
 			break;
+
+		// Opérateurs logiques
+		 // -------------------
+		case "0_6_Valeur_Booléen_OULogique_ENTBooleen_ENTBooleen" :
+			expression = new Valeur_OpérateurLogique( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__OPÉRATIONS_LOGIQUES.NOM.OU );
+			code = expression.codePourLeSéquenceur;
+			break;
+		case "0_6_Valeur_Booléen_ETLogique_ENTBooleen_ENTBooleen" :
+			expression = new Valeur_OpérateurLogique( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__OPÉRATIONS_LOGIQUES.NOM.ET );
+			code = expression.codePourLeSéquenceur;
+			break;
+		case "0_6_Valeur_Booléen_NONLogique_ENTBooleen":
+			expression = new Valeur_OpérateurLogique( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__OPÉRATIONS_LOGIQUES.NOM.NON );
+			code = expression.codePourLeSéquenceur;
+			break;
+
+		// Comparaions numériques
+		// ----------------------
+		case "0_8_Valeur_Booléen_Comparaison_ENTNumérique_Egual_ENTNumérique" :
+			expression = new Valeur_ComparaisonsNumériques( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__COMPARAISON_NUMÉRIQUES.NOM.EGUAL );
+			code = expression.codePourLeSéquenceur;
+			break;
 		
 		/*
 		 * Valeurs entières
@@ -604,25 +626,14 @@ public class	Compilateur {
 
 		// Valeur au hasard
 		// ----------------
-		case "0_7_Valeur_Aléatoire_Entre0et7":
-			code = "__valeurAleatoire &amp; 0x7";
+		case "0_7_Valeur_Aléatoire_Entre0et7" :
+			code = "(__valeurAleatoire &amp; 0x7)";
 			break;
 
-		 // Opérateurs logiques
-		 // -------------------
-		case "0_6_Valeur_Booléen_OULogique_ENTBooleen_ENTBooleen" :
-			expression = new Valeur_OpérateurLogique( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__OPÉRATIONS_LOGIQUES.NOM.OU );
+		case "0_8_Valeurs_Entier_SAIValeur" :
+			expression = new Valeur_Entier_SAIValeur( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
 			code = expression.codePourLeSéquenceur;
 			break;
-		case "0_6_Valeur_Booléen_ETLogique_ENTBooleen_ENTBooleen" :
-			expression = new Valeur_OpérateurLogique( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__OPÉRATIONS_LOGIQUES.NOM.ET );
-			code = expression.codePourLeSéquenceur;
-			break;
-		case "0_6_Valeur_Booléen_NONLogique_ENTBooleen":
-			expression = new Valeur_OpérateurLogique( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__OPÉRATIONS_LOGIQUES.NOM.NON );
-			code = expression.codePourLeSéquenceur;
-			break;
-		
 
 		/*
 		 * Sinon, une erreur est déclenchée

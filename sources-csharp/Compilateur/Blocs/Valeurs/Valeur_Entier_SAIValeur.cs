@@ -72,28 +72,25 @@ knowledge of the CeCILL license and that you accept its terms.
 
 
 /*
- * Lumières_AllumeLesLEDs_SELLED_SELCouleur
- * ----------------------------------------
- *
- * Allume les LEDs de Thymio,
- * avec le choix des LEDs et la couleur choisie.
- * 
+ * Valeur_Entier_SAIValeur
+ * -----------------------
  */
 
 
 using 	System;
-using 	System.Globalization;
 using 	System.Xml;
 
 
 
-namespace		Blockly4Thymio {
-public	class	Mouvement_Déplacement_SELVitesse_ENTDistance : __Mouvement_Déplacement_Avec_Sens_Vitesse_Distance {
+namespace 		Blockly4Thymio {
+public 	class 	Valeur_Entier_SAIValeur : __Valeur {
+
+
 
 	/*
 	 * Constructeur
 	 */
-	public	Mouvement_Déplacement_SELVitesse_ENTDistance( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs, int _sens ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, _sens, 0, 0 ) {
+	public	Valeur_Entier_SAIValeur( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs ) {
 
 		// Déclarations
 		// ------------
@@ -101,45 +98,30 @@ public	class	Mouvement_Déplacement_SELVitesse_ENTDistance : __Mouvement_Déplac
 		String	nomDeLAttribut;
 
 
-        // Initialisations
-        // ---------------
-        __sens = _sens;
-		
 
         // Traitements
         // -----------
 
-		// Analyse du Bloc d'instruction
-        foreach ( XmlNode XMLDUnNoeudFils in _XMLDuBloc.ChildNodes ) {
+        // Analyse du Bloc d'instruction
+        foreach  (XmlNode XMLDUnNoeudFils in _XMLDuBloc ) {
 
             nomDeLAttribut = "";
-            if ( XMLDUnNoeudFils.Attributes["name"] != null )
+            if (XMLDUnNoeudFils.Attributes["name"] != null)
                 nomDeLAttribut = XMLDUnNoeudFils.Attributes["name"].Value;
+			
+            switch(nomDeLAttribut) {
+			case "Valeur":
+				__code = XMLDUnNoeudFils.FirstChild.InnerText;
+				break;
 
-            switch ( nomDeLAttribut ) {
+			}
 
-            case "Distance":
-				//distance = Int32.Parse( XMLDUnNoeudFils.InnerText );
-				//distance = Compilateur.AnalyseUnNoeudDExpression( _UID, XMLDUnNoeudFils, _blocPrécédent, _groupeDeBlocs );
-                break;
+		}
 
-            case "Vitesse":
-
-                switch ( XMLDUnNoeudFils.InnerText ) {
-                case "LENTEMENT":	__vitesse = (int)__MOTEUR.VITESSE.LENTE;	break;
-                case "NORMALEMENT":	__vitesse = (int)__MOTEUR.VITESSE.NORMALE;	break;
-                case "RAPIDEMENT":	__vitesse = (int)__MOTEUR.VITESSE.RAPIDE;	break;
-                }
-                break;
-
-            }
-
-        }
-
-	
 	}
-	
+
 
 }
 }
+
 

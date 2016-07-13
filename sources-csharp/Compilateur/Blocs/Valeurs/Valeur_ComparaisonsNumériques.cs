@@ -72,28 +72,28 @@ knowledge of the CeCILL license and that you accept its terms.
 
 
 /*
- * Lumières_AllumeLesLEDs_SELLED_SELCouleur
- * ----------------------------------------
- *
- * Allume les LEDs de Thymio,
- * avec le choix des LEDs et la couleur choisie.
- * 
+ * Valeur_ComparaionNumériques
+ * ---------------------------
  */
 
 
 using 	System;
-using 	System.Globalization;
 using 	System.Xml;
 
 
 
-namespace		Blockly4Thymio {
-public	class	Mouvement_Déplacement_SELVitesse_ENTDistance : __Mouvement_Déplacement_Avec_Sens_Vitesse_Distance {
+namespace 		Blockly4Thymio {
+public 	class 	Valeur_ComparaisonsNumériques : __Valeur {
+
+	String	valeur1;
+	String	valeur2;
+
+
 
 	/*
 	 * Constructeur
 	 */
-	public	Mouvement_Déplacement_SELVitesse_ENTDistance( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs, int _sens ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, _sens, 0, 0 ) {
+	public	Valeur_ComparaisonsNumériques( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs, int _comparaion) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs ) {
 
 		// Déclarations
 		// ------------
@@ -101,44 +101,37 @@ public	class	Mouvement_Déplacement_SELVitesse_ENTDistance : __Mouvement_Déplac
 		String	nomDeLAttribut;
 
 
-        // Initialisations
-        // ---------------
-        __sens = _sens;
-		
 
         // Traitements
         // -----------
 
-		// Analyse du Bloc d'instruction
-        foreach ( XmlNode XMLDUnNoeudFils in _XMLDuBloc.ChildNodes ) {
+        // Analyse du Bloc d'instruction
+        foreach  (XmlNode XMLDUnNoeudFils in _XMLDuBloc ) {
 
             nomDeLAttribut = "";
-            if ( XMLDUnNoeudFils.Attributes["name"] != null )
+            if (XMLDUnNoeudFils.Attributes["name"] != null)
                 nomDeLAttribut = XMLDUnNoeudFils.Attributes["name"].Value;
+			
+            switch(nomDeLAttribut) {
+			case "Valeur1":
+				valeur1 = Compilateur.AnalyseUnNoeudDExpression( _UID, XMLDUnNoeudFils.FirstChild, _blocPrécédent, _groupeDeBlocs );
+				break;
+			case "Valeur2":
+				valeur2 = Compilateur.AnalyseUnNoeudDExpression( _UID, XMLDUnNoeudFils.FirstChild, _blocPrécédent, _groupeDeBlocs );
+				break;
+			}
 
-            switch ( nomDeLAttribut ) {
+		}
 
-            case "Distance":
-				//distance = Int32.Parse( XMLDUnNoeudFils.InnerText );
-				//distance = Compilateur.AnalyseUnNoeudDExpression( _UID, XMLDUnNoeudFils, _blocPrécédent, _groupeDeBlocs );
-                break;
 
-            case "Vitesse":
+		switch( _comparaion ) {
+		case (int)__COMPARAISON_NUMÉRIQUES.NOM.EGUAL:
+			__code = "(" + valeur1 + " == " + valeur2 + ")";
+			break;
+		}
 
-                switch ( XMLDUnNoeudFils.InnerText ) {
-                case "LENTEMENT":	__vitesse = (int)__MOTEUR.VITESSE.LENTE;	break;
-                case "NORMALEMENT":	__vitesse = (int)__MOTEUR.VITESSE.NORMALE;	break;
-                case "RAPIDEMENT":	__vitesse = (int)__MOTEUR.VITESSE.RAPIDE;	break;
-                }
-                break;
-
-            }
-
-        }
-
-	
 	}
-	
+
 
 }
 }

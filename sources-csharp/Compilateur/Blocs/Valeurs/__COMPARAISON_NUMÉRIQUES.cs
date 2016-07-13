@@ -72,73 +72,31 @@ knowledge of the CeCILL license and that you accept its terms.
 
 
 /*
- * Lumières_AllumeLesLEDs_SELLED_SELCouleur
- * ----------------------------------------
+ * Classe __COMPARAISON_NUMÉRIQUES
+ * -------------------------------
  *
- * Allume les LEDs de Thymio,
- * avec le choix des LEDs et la couleur choisie.
- * 
+ * Pour la déclaration des constantes
+ * et des fonctions des comparaions numériques
+ *
  */
 
 
 using 	System;
-using 	System.Globalization;
-using 	System.Xml;
 
 
-
-namespace		Blockly4Thymio {
-public	class	Mouvement_Déplacement_SELVitesse_ENTDistance : __Mouvement_Déplacement_Avec_Sens_Vitesse_Distance {
+namespace			Blockly4Thymio {
+public 		class 	__COMPARAISON_NUMÉRIQUES {
 
 	/*
-	 * Constructeur
+	 * Constantes
 	 */
-	public	Mouvement_Déplacement_SELVitesse_ENTDistance( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs, int _sens ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, _sens, 0, 0 ) {
 
-		// Déclarations
-		// ------------
-
-		String	nomDeLAttribut;
-
-
-        // Initialisations
-        // ---------------
-        __sens = _sens;
-		
-
-        // Traitements
-        // -----------
-
-		// Analyse du Bloc d'instruction
-        foreach ( XmlNode XMLDUnNoeudFils in _XMLDuBloc.ChildNodes ) {
-
-            nomDeLAttribut = "";
-            if ( XMLDUnNoeudFils.Attributes["name"] != null )
-                nomDeLAttribut = XMLDUnNoeudFils.Attributes["name"].Value;
-
-            switch ( nomDeLAttribut ) {
-
-            case "Distance":
-				//distance = Int32.Parse( XMLDUnNoeudFils.InnerText );
-				//distance = Compilateur.AnalyseUnNoeudDExpression( _UID, XMLDUnNoeudFils, _blocPrécédent, _groupeDeBlocs );
-                break;
-
-            case "Vitesse":
-
-                switch ( XMLDUnNoeudFils.InnerText ) {
-                case "LENTEMENT":	__vitesse = (int)__MOTEUR.VITESSE.LENTE;	break;
-                case "NORMALEMENT":	__vitesse = (int)__MOTEUR.VITESSE.NORMALE;	break;
-                case "RAPIDEMENT":	__vitesse = (int)__MOTEUR.VITESSE.RAPIDE;	break;
-                }
-                break;
-
-            }
-
-        }
-
-	
+	public	enum NOM {
+		// Enumération des comparaions numériques
+		EGUAL
 	}
-	
+
+
 
 }
 }
