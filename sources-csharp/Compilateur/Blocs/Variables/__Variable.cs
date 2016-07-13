@@ -1,4 +1,4 @@
-﻿
+
 /*
 Copyright Okimi 2015-2016 (contact at okimi dot net)
 
@@ -72,137 +72,63 @@ knowledge of the CeCILL license and that you accept its terms.
 
 
 using 	System;
-using 	System.Globalization;
+using 	System.Collections.Generic;
 using 	System.Xml;
 
 
 
 namespace		Blockly4Thymio {
-public	class	__GroupeDInstructions_Boucle_Répète_AvecNombre : __GroupeDeBlocs { 
-
-	/*
+public	class	__Variable : __Bloc {
+	
+    /*
      * Membres
      */
-    public	static	int	__compteurDeBoucle;				// Nombre de groupe d'instructions de type Boucle_Répète_AvecNombre
-    
-	public			int	__UIDDeBoucle;					// Identifiant du compteur de boucle dans Aseba
 
-	private			int	__nombreDeBoucle;
+	private	static	Dictionary< String, int >	__variables;
+
 
 
 	/*
 	 * Propriétés
-     */
-	public	int	nombreDeBoucle {
-	get { return __nombreDeBoucle; }
-	set {
-		__nombreDeBoucle = value+1;
-		// Limite le nombre de boucles
-		if ( __nombreDeBoucle <= 0 ) {
-			__nombreDeBoucle = 1;
-			Compilateur.AfficheUnMessageDInformation( Messages.Message((int)Messages.TYPE.BOUCLE_INFÉRIEURE_A_1) );
-		}
-//		if ( __nombreDeBoucle > 100 ) {
-//			__nombreDeBoucle = 100;
-//			Compilateur.AfficheUnMessageDInformation( Messages.Message((int)Messages.TYPE.BOUCLE_SUPÉRIEURE_A_100) );
-//		}
-	}
-	}
-
-
-	/*
-     * Constructeur
-     */
-	public __GroupeDInstructions_Boucle_Répète_AvecNombre( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs, __BlocsInternes _blocsInternes, int _nombreDeBoucle ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs ) {
-
-		// Initialisation des membres
-		// --------------------------
-
-		__compteurDeBoucle++;
-		__UIDDeBoucle = __compteurDeBoucle;	
-
-		__blocsInternes = _blocsInternes;
-		__nombreDeBoucle = _nombreDeBoucle+1;
-
-		// Il est possible de sortir de ce groupe, à l'aide du bloc SortDeLaBoucleFaire
-		__bloc_SortDeLaBoucleFaire_Possible = true;
-
-
-		// Liste les séquences du bloc
-		// ---------------------------
-		__séquences.Add( (Séquence)Séquence_1 );
-		__séquences.Add( (Séquence)Séquence_2 );
-		__séquences.Add( (Séquence)Séquence_3 );
-		__séquences.Add( (Séquence)Séquence_4 );
-
-		__nombreDeBlocsInternes = 1;
-
-	}
-
-
-	/*
-	 * Séquences
 	 */
+	public	static	int	nombreDeVariable {
+	get {
+		if ( __variables == null )
+			return 0;
+		return __variables.Count;
+	}
+	}
 
-	// Séquence 1
-	// - Initialise le nombre de boucle, passe au bloc suivant
-	public	String	Séquence_1() {
+
+	/*
+	 * Constructeur
+	 */
+	public	__Variable( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs ) {
+
+		if ( __variables == null )
+			__variables = new Dictionary<string, int>();
 		
-		return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n" +
-				"    __boucle[" + (__UIDDeBoucle-1) + "]=" + __nombreDeBoucle + "\n" +
-				"    __sequenceur[" + UIDDuSéquenceur + "]=" + (UID + 1) + "\n" +
-				"  end";
+    }
+
+
+
+	/*
+	 * Méthodes statiques
+	 */
+	public	static	String	code( String _nom ) {
 		
-	}
-
-	// Séquence 2
-	// - Décrémente le nombre de boucle
-	//   - Si le nombre de boucle est >0, passe au premier bloc interne
-	//   - Si le nombre de boucle est =0, passe au bloc de fin
-	public	String	Séquence_2() {
-
-		if ( __blocsInternes != null )
-			return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + (UID + 1) + " then\n" +
-					"    __boucle[" + (__UIDDeBoucle-1) + "]--\n" +
-					"    if __boucle[" + (__UIDDeBoucle-1) + "]>0 then\n" +
-					"      __sequenceur[" + UIDDuSéquenceur + "]=" + (__blocsInternes.premierBloc.UID) + "\n" + 
-					"    else\n" +
-					"      __sequenceur[" + UIDDuSéquenceur + "]=" + UIDDuBlocSuivant + "\n" + 
-					"    end\n" +
-					"  end";
-		else
-			return	"  " + Compilateur.codeSauteSéquence( UIDDuSéquenceur, UID+1, UIDDuBlocSuivant );
-					
-	}
-
-	// Séquence 3
-	// - Séquences du bloc interne
-	public	String	Séquence_3() {
-
-		if ( __blocsInternes != null )
-			return	__blocsInternes.codePourLeSéquenceur;
-		else
-			return "";
+		return "__variable[" + __variables[_nom] + "]";
 
 	}
 
 
-	// Séquence 4
-	// - Passe au second bloc du groupe
-	public	String	Séquence_4() {
-		String	code="";
+	public	static	void	AjouteUneVariable( String _nom ) {
 
-		if (Compilateur.afficherLesCommentaires)
-			code += "  # (UID " + __UID + " FIN) Instruction Blockly : " + __nomDansBlockly + "\n";
-
-		if ( __blocsInternes != null )
-			code +=	"  " + Compilateur.codeSauteSéquence( UIDDuSéquenceur, __blocsInternes.premierBloc.UID+__blocsInternes.nombreDeSéquence, UID+1 );
-		else
-			code +=	"  " + Compilateur.codeSauteSéquence( UIDDuSéquenceur, UID+2, UID+1 );
-
-		return code;
+		if ( !__variables.ContainsKey( _nom ) ) {
+			__variables.Add( _nom,  __variables.Count );
+		}
+			
 	}
-
 
 }
 }

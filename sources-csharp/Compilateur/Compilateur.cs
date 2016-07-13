@@ -438,6 +438,14 @@ public class	Compilateur {
 		#endregion
 
 
+		#region Variables
+
+		case "variables_set" :
+			bloc = new Variable_DéfinirUneVariable( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
+			break;
+
+		#endregion
+
 
 		// Sinon, une erreur est déclenchée
 		// --------------------------------
@@ -518,8 +526,8 @@ public class	Compilateur {
 		 * -----------------
 		 */
 
-		// Boutons fléches
-		// ---------------
+		#region Boutons - Flèches
+
 		case "0_2_Valeur_Booléen_Bouton_FlècheAvant" :
 			code = __BOUTONS.code( (int)__BOUTONS.NOM.FLÈCHE_VERS_L_AVANT );
 			break;
@@ -536,8 +544,11 @@ public class	Compilateur {
 			code = __BOUTONS.code( (int)__BOUTONS.NOM.FLÈCHE_AUCUNE );
 			break;
 
-		// Capteurs de proximité avant
-		// ---------------------------
+		#endregion
+
+
+		#region Capteur - Proximité avant
+
 		case "0_2_Valeur_Booléen_Capteur_AvantDroite" :
 			code = __CAPTEURS.code( (int)__CAPTEURS.NOM.AVANT_DROITE, (int)__CAPTEURS.PARAMÈTRE.DISTANCE_PRÈS );
 			break;
@@ -786,8 +797,10 @@ public class	Compilateur {
 			codeDéclarationDesVariables +=	"var __sequenceur[" + événementsRacines.Count + "]\n" + 
 											"var __chrono[" + événementsRacines.Count + "]\n";
 		if ( __GroupeDInstructions_Boucle_Répète_AvecNombre.__compteurDeBoucle > 0 )
-			codeDéclarationDesVariables +=	"var __variable[" + __GroupeDInstructions_Boucle_Répète_AvecNombre.__compteurDeBoucle + "]\n";
-
+			codeDéclarationDesVariables +=	"var __boucle[" + __GroupeDInstructions_Boucle_Répète_AvecNombre.__compteurDeBoucle + "]\n";
+		if ( __Variable.nombreDeVariable > 0 )
+			codeDéclarationDesVariables +=	"var __variable[" + __Variable.nombreDeVariable + "]\n";
+		
 		
         // Ajoute le code généré pour chaque événement
         foreach ( __Evénement événementRacine in événementsRacines ) {
@@ -868,9 +881,9 @@ public class	Compilateur {
 
 
         // Remplace les sections définis par des marqueurs par le code correspondant
-        framework = framework.Replace("### VARIABLES ###", codeDéclarationDesVariables);
+        framework = framework.Replace( "### VARIABLES ###", codeDéclarationDesVariables );
 
-        framework = framework.Replace("### EVENEMENT AU LANCEMENT ###", codeEvénementLancementDuProgramme );
+        framework = framework.Replace( "### EVENEMENT AU LANCEMENT ###", codeEvénementLancementDuProgramme );
 
         if ( codeEvénementCommandeIR != "" )
 			codeEvénementCommandeIR += "  \n__etat = ETAT_EN_MARCHE";

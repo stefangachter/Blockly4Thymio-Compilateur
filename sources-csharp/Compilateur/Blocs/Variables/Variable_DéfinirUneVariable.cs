@@ -71,71 +71,64 @@ knowledge of the CeCILL license and that you accept its terms.
 
 
 
+/*
+ * Variable_DéfinirUneVariable
+ * ---------------------------
+ */
+
+
 using 	System;
-using 	System.Globalization;
 using 	System.Xml;
 
 
 
-namespace		Blockly4Thymio {
-public	class	__GroupeDInstructions_Boucle_Répète_AvecNombre : __GroupeDeBlocs { 
+namespace 		Blockly4Thymio {
+public 	class 	Variable_DéfinirUneVariable : __Variable {
 
-	/*
-     * Membres
-     */
-    public	static	int	__compteurDeBoucle;				// Nombre de groupe d'instructions de type Boucle_Répète_AvecNombre
-    
-	public			int	__UIDDeBoucle;					// Identifiant du compteur de boucle dans Aseba
+	String	__nom;
+	String	__valeur;
 
-	private			int	__nombreDeBoucle;
 
 
 	/*
-	 * Propriétés
-     */
-	public	int	nombreDeBoucle {
-	get { return __nombreDeBoucle; }
-	set {
-		__nombreDeBoucle = value+1;
-		// Limite le nombre de boucles
-		if ( __nombreDeBoucle <= 0 ) {
-			__nombreDeBoucle = 1;
-			Compilateur.AfficheUnMessageDInformation( Messages.Message((int)Messages.TYPE.BOUCLE_INFÉRIEURE_A_1) );
+	 * Constructeur
+	 */
+	public	Variable_DéfinirUneVariable( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs ) {
+
+		// Déclarations
+		// ------------
+
+		String	nomDeLAttribut;
+
+
+
+        // Traitements
+        // -----------
+
+        // Analyse du Bloc d'instruction
+        foreach  (XmlNode XMLDUnNoeudFils in _XMLDuBloc ) {
+
+            nomDeLAttribut = "";
+            if (XMLDUnNoeudFils.Attributes["name"] != null)
+                nomDeLAttribut = XMLDUnNoeudFils.Attributes["name"].Value;
+			
+            switch(nomDeLAttribut) {
+			case "VAR" :
+				__nom = XMLDUnNoeudFils.FirstChild.InnerText;
+				break;
+			case "VALUE" :
+				__valeur = Compilateur.AnalyseUnNoeudDExpression( _UID, XMLDUnNoeudFils.FirstChild, _blocPrécédent, _groupeDeBlocs );
+				break;
+			}
+
 		}
-//		if ( __nombreDeBoucle > 100 ) {
-//			__nombreDeBoucle = 100;
-//			Compilateur.AfficheUnMessageDInformation( Messages.Message((int)Messages.TYPE.BOUCLE_SUPÉRIEURE_A_100) );
-//		}
-	}
-	}
 
-
-	/*
-     * Constructeur
-     */
-	public __GroupeDInstructions_Boucle_Répète_AvecNombre( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs, __BlocsInternes _blocsInternes, int _nombreDeBoucle ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs ) {
-
-		// Initialisation des membres
-		// --------------------------
-
-		__compteurDeBoucle++;
-		__UIDDeBoucle = __compteurDeBoucle;	
-
-		__blocsInternes = _blocsInternes;
-		__nombreDeBoucle = _nombreDeBoucle+1;
-
-		// Il est possible de sortir de ce groupe, à l'aide du bloc SortDeLaBoucleFaire
-		__bloc_SortDeLaBoucleFaire_Possible = true;
+		__Variable.AjouteUneVariable( __nom );
 
 
 		// Liste les séquences du bloc
 		// ---------------------------
 		__séquences.Add( (Séquence)Séquence_1 );
-		__séquences.Add( (Séquence)Séquence_2 );
-		__séquences.Add( (Séquence)Séquence_3 );
-		__séquences.Add( (Séquence)Séquence_4 );
-
-		__nombreDeBlocsInternes = 1;
 
 	}
 
@@ -145,62 +138,15 @@ public	class	__GroupeDInstructions_Boucle_Répète_AvecNombre : __GroupeDeBlocs 
 	 */
 
 	// Séquence 1
-	// - Initialise le nombre de boucle, passe au bloc suivant
+	// - Enregistre la valeur dans la variable
+	// - Passe au bloc suivant
 	public	String	Séquence_1() {
-		
+
 		return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n" +
-				"    __boucle[" + (__UIDDeBoucle-1) + "]=" + __nombreDeBoucle + "\n" +
-				"    __sequenceur[" + UIDDuSéquenceur + "]=" + (UID + 1) + "\n" +
+				"    " + __Variable.code(__nom) + "=" + __valeur + "\n" +
+				"    __sequenceur[" + UIDDuSéquenceur + "]=" + UIDDuBlocSuivant + "\n" +
 				"  end";
 		
-	}
-
-	// Séquence 2
-	// - Décrémente le nombre de boucle
-	//   - Si le nombre de boucle est >0, passe au premier bloc interne
-	//   - Si le nombre de boucle est =0, passe au bloc de fin
-	public	String	Séquence_2() {
-
-		if ( __blocsInternes != null )
-			return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + (UID + 1) + " then\n" +
-					"    __boucle[" + (__UIDDeBoucle-1) + "]--\n" +
-					"    if __boucle[" + (__UIDDeBoucle-1) + "]>0 then\n" +
-					"      __sequenceur[" + UIDDuSéquenceur + "]=" + (__blocsInternes.premierBloc.UID) + "\n" + 
-					"    else\n" +
-					"      __sequenceur[" + UIDDuSéquenceur + "]=" + UIDDuBlocSuivant + "\n" + 
-					"    end\n" +
-					"  end";
-		else
-			return	"  " + Compilateur.codeSauteSéquence( UIDDuSéquenceur, UID+1, UIDDuBlocSuivant );
-					
-	}
-
-	// Séquence 3
-	// - Séquences du bloc interne
-	public	String	Séquence_3() {
-
-		if ( __blocsInternes != null )
-			return	__blocsInternes.codePourLeSéquenceur;
-		else
-			return "";
-
-	}
-
-
-	// Séquence 4
-	// - Passe au second bloc du groupe
-	public	String	Séquence_4() {
-		String	code="";
-
-		if (Compilateur.afficherLesCommentaires)
-			code += "  # (UID " + __UID + " FIN) Instruction Blockly : " + __nomDansBlockly + "\n";
-
-		if ( __blocsInternes != null )
-			code +=	"  " + Compilateur.codeSauteSéquence( UIDDuSéquenceur, __blocsInternes.premierBloc.UID+__blocsInternes.nombreDeSéquence, UID+1 );
-		else
-			code +=	"  " + Compilateur.codeSauteSéquence( UIDDuSéquenceur, UID+2, UID+1 );
-
-		return code;
 	}
 
 

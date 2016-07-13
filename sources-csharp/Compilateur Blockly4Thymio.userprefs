@@ -2,10 +2,10 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="WINDOWS-Debug|x86" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Compilateur\Compilateur.cs">
     <Files>
-      <File FileName="Compilateur\Compilateur.cs" Line="635" Column="6" />
-      <File FileName="Compilateur\Blocs\Valeurs\Valeur_Entier_SAIValeur.cs" Line="121" Column="1" />
-      <File FileName="Compilateur\Blocs\Valeurs\__Valeur.cs" Line="107" Column="1" />
-      <File FileName="Compilateur\Blocs\__Bloc.cs" Line="167" Column="1" />
+      <File FileName="Compilateur\Compilateur.cs" Line="550" Column="3" />
+      <File FileName="Compilateur\Blocs\Variables\Variable_DéfinirUneVariable.cs" Line="126" Column="31" />
+      <File FileName="Compilateur\Blocs\Variables\__Variable.cs" Line="125" Column="2" />
+      <File FileName="Compilateur\Blocs\Instructions\Instructions - Lumières\__Lumières_AllumeLesLEDs_AvecLEDCouleur.cs" Line="114" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
