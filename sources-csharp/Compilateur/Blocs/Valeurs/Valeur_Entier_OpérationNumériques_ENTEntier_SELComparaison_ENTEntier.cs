@@ -72,8 +72,8 @@ knowledge of the CeCILL license and that you accept its terms.
 
 
 /*
- * Valeur_ComparaionNumériques
- * ---------------------------
+ * Valeur_Entier_OpérationNumériques_ENTEntier_SELComparaison_ENTEntier
+ * --------------------------------------------------------------------
  */
 
 
@@ -83,7 +83,9 @@ using 	System.Xml;
 
 
 namespace 		Blockly4Thymio {
-public 	class 	Valeur_ComparaisonsNumériques : __Valeur {
+public 	class 	Valeur_Entier_OpérationNumériques_ENTEntier_SELComparaison_ENTEntier : __Valeur {
+
+	int		opération;
 
 	String	valeur1;
 	String	valeur2;
@@ -93,7 +95,7 @@ public 	class 	Valeur_ComparaisonsNumériques : __Valeur {
 	/*
 	 * Constructeur
 	 */
-	public	Valeur_ComparaisonsNumériques( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs, int _comparaion) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs ) {
+	public	Valeur_Entier_OpérationNumériques_ENTEntier_SELComparaison_ENTEntier( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs ) {
 
 		// Déclarations
 		// ------------
@@ -113,20 +115,29 @@ public 	class 	Valeur_ComparaisonsNumériques : __Valeur {
                 nomDeLAttribut = XMLDUnNoeudFils.Attributes["name"].Value;
 			
             switch(nomDeLAttribut) {
-			case "Valeur1":
+			case "Valeur1" :
 				valeur1 = Compilateur.AnalyseUnNoeudDExpression( _UID, XMLDUnNoeudFils.FirstChild, _blocPrécédent, _groupeDeBlocs );
 				break;
-			case "Valeur2":
+			case "Valeur2" :
 				valeur2 = Compilateur.AnalyseUnNoeudDExpression( _UID, XMLDUnNoeudFils.FirstChild, _blocPrécédent, _groupeDeBlocs );
+				break;
+			case "Opération" :
+				switch ( XMLDUnNoeudFils.InnerText ) {
+				case "PLUS" :	opération = (int)__OPÉRATIONS_NUMÉRIQUES.NOM.PLUS; break;
+				case "MOINS" :	opération = (int)__OPÉRATIONS_NUMÉRIQUES.NOM.MOINS; break;
+				}
 				break;
 			}
 
 		}
 
 
-		switch( _comparaion ) {
-		case (int)__COMPARAISON_NUMÉRIQUES.NOM.EGUAL:
-			__code = "(" + valeur1 + " == " + valeur2 + ")";
+		switch( opération ) {
+		case (int)__OPÉRATIONS_NUMÉRIQUES.NOM.PLUS :
+			__code = "(" + valeur1 + "+" + valeur2 + ")";
+			break;
+		case (int)__OPÉRATIONS_NUMÉRIQUES.NOM.MOINS :
+			__code = "(" + valeur1 + "-" + valeur2 + ")";
 			break;
 		}
 

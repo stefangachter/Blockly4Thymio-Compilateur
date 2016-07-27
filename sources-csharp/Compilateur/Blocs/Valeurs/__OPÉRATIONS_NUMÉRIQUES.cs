@@ -72,11 +72,11 @@ knowledge of the CeCILL license and that you accept its terms.
 
 
 /*
- * Classe __COMPARAISON_NUMÉRIQUES
- * -------------------------------
+ * Classe __OPÉRATIONS_NUMÉRIQUES
+ * ------------------------------
  *
  * Pour la déclaration des constantes
- * et des fonctions des comparaions numériques
+ * et des fonctions des opérations numériques
  *
  */
 
@@ -85,15 +85,16 @@ using 	System;
 
 
 namespace			Blockly4Thymio {
-public 		class 	__COMPARAISON_NUMÉRIQUES {
+public 		class 	__OPÉRATIONS_NUMÉRIQUES {
 
 	/*
 	 * Constantes
 	 */
 
 	public	enum NOM {
-		// Enumération des comparaions numériques
-		EGUAL
+		// Enumération des opérations numériques
+		PLUS,
+		MOINS
 	}
 
 
