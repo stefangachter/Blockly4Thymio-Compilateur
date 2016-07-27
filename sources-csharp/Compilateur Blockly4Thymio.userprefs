@@ -1,6 +1,14 @@
 ﻿<Properties StartupItem="Compilateur Blockly4Thymio.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="WINDOWS-Debug|x86" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Compilateur\Compilateur.cs">
+    <Files>
+      <File FileName="Compilateur\Blocs\Valeurs\Valeur_Booléen_ComparaisonNumériques_ENTEntier_SELComparaison_ENTEntier.cs" Line="98" Column="2" />
+      <File FileName="Compilateur\Blocs\Valeurs\__COMPARAISONS_NUMÉRIQUES.cs" Line="76" Column="30" />
+      <File FileName="Compilateur\Compilateur.cs" Line="656" Column="10" />
+      <File FileName="Compilateur\Blocs\Valeurs\__OPÉRATIONS_NUMÉRIQUES.cs" Line="79" Column="35" />
+      <File FileName="Compilateur\Blocs\Valeurs\Valeur_Entier_OpérationNumériques_ENTEntier_SELComparaison_ENTEntier.cs" Line="141" Column="10" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

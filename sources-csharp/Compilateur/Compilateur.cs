@@ -636,35 +636,32 @@ public class	Compilateur {
 
 		#region Comparaions numériques
 
-		case "0_8_Valeur_Booléen_Comparaison_ENTNumérique_Egual_ENTNumérique" :
-			expression = new Valeur_ComparaisonsNumériques( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__COMPARAISON_NUMÉRIQUES.NOM.EGUAL );
+		case "0_8_Valeur_Booléen_Comparaison_ENTEntier_SELComparaion_ENTEntier" :
+			expression = new Valeur_Booléen_ComparaisonNumériques_ENTEntier_SELComparaison_ENTEntier( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
 			code = expression.codePourLeSéquenceur;
 			break;
 
 		#endregion
 
 
-		/*
-		 * Valeurs entières
-		 * -----------------
-		 */
+		#region Valeur
 
-		// Valeur 1
-		// --------
-		case "0_7_Valeur_Entier_1" :
-			code = "1";
+		case "0_8_Valeur_Entier_NombreAuHasardEntre0et7" :
+			code = "(__nombreAleatoire &amp; 0x7)";
 			break;
 
-		// Valeur au hasard
-		// ----------------
-		case "0_7_Valeur_Aléatoire_Entre0et7" :
-			code = "(__valeurAleatoire &amp; 0x7)";
-			break;
-
-		case "0_8_Valeurs_Entier_SAIValeur" :
+		case "0_8_Valeur_Entier_SAIValeur" :
 			expression = new Valeur_Entier_SAIValeur( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
 			code = expression.codePourLeSéquenceur;
 			break;
+
+		case "0_8_Valeur_Entier_Opération_ENTEntier_SELOpération_ENTEntier" :
+			expression = new Valeur_Entier_OpérationNumériques_ENTEntier_SELComparaison_ENTEntier( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
+			code = expression.codePourLeSéquenceur;
+			break;
+
+		#endregion
+
 
 		case "variables_get" :
 			expression = new Variable_RécupérerUneVariable( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );

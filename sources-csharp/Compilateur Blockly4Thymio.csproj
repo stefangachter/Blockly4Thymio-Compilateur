@@ -171,12 +171,14 @@ Transforme un fichiers .b4t en fichier .aesl puis le transmet à Thymio.</Descri
     <Compile Include="Compilateur\Blocs\Instructions\Instructions - Contrôles\Contrôle_Attends_ENTDurée.cs" />
     <Compile Include="Compilateur\Blocs\Instructions\Instructions - Mouvements\Mouvement_Déplacement_SELVitesse_ENTDistance.cs" />
     <Compile Include="Compilateur\Blocs\Instructions\Instructions - Mouvements\Mouvement_VitesseDesRoues_ENTVitesseAGauche_ENTVitesseADroite.cs" />
-    <Compile Include="Compilateur\Blocs\Valeurs\__COMPARAISON_NUMÉRIQUES.cs" />
-    <Compile Include="Compilateur\Blocs\Valeurs\Valeur_ComparaisonsNumériques.cs" />
     <Compile Include="Compilateur\Blocs\Valeurs\Valeur_Entier_SAIValeur.cs" />
     <Compile Include="Compilateur\Blocs\Variables\Variable_DéfinirUneVariable.cs" />
     <Compile Include="Compilateur\Blocs\Variables\__Variable.cs" />
     <Compile Include="Compilateur\Blocs\Variables\Variable_RécupérerUneVariable.cs" />
+    <Compile Include="Compilateur\Blocs\Valeurs\__OPÉRATIONS_NUMÉRIQUES.cs" />
+    <Compile Include="Compilateur\Blocs\Valeurs\__COMPARAISONS_NUMÉRIQUES.cs" />
+    <Compile Include="Compilateur\Blocs\Valeurs\Valeur_Entier_OpérationNumériques_ENTEntier_SELComparaison_ENTEntier.cs" />
+    <Compile Include="Compilateur\Blocs\Valeurs\Valeur_Booléen_ComparaisonNumériques_ENTEntier_SELComparaison_ENTEntier.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
