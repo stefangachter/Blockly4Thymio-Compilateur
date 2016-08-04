@@ -116,6 +116,7 @@ var __etat
 var __coeurQuiBat = 0
 var __temp
 var __lectureDUnSon = 0
+var __variableAAfficher
 
 # Variable pour les nombres aléatoires
 var __nombreAleatoire
@@ -124,6 +125,7 @@ var __nombreAleatoire
 var __led.rouge
 var __led.vert
 var __led.bleu
+var __led.cercle[8]
 
 # Variables pour l'odométrie
 var __odo.degre
@@ -131,6 +133,7 @@ var __odo.delta
 var __odo.temp
 var __odo.theta = 0
 var __odo.x = 0			# 500 pour ~100mm (précision à 0,2mm)
+
 
 ### VARIABLES ###
 
@@ -151,6 +154,30 @@ timer.period[0] = FREQUENCE_TIMER
 # ---------------------------
 # DECLARATIONS DES PROCEDURES
 # ---------------------------
+
+# Allume les LEDs du cercle
+sub __AllumeLeCercleDeLEDs
+  call leds.circle(__led.cercle[0],__led.cercle[1],__led.cercle[2],__led.cercle[3],__led.cercle[4],__led.cercle[5],__led.cercle[6],__led.cercle[7])
+
+# Eteins toutes les LEDs du cercle
+sub __EteinsLeCercleDeLEDs
+  __led.cercle[0]=0
+  __led.cercle[1]=0
+  __led.cercle[2]=0
+  __led.cercle[3]=0
+  __led.cercle[4]=0
+  __led.cercle[5]=0
+  __led.cercle[6]=0
+  __led.cercle[7]=0
+  callsub __AllumeLeCercleDeLEDs
+
+# Affiche une variable sur le cercle de LEDs
+sub AfficheUneVariable
+  callsub __EteinsLeCercleDeLEDs
+  if __variableAAfficher>0 and __variableAAfficher&lt;=8 then
+    __led.cercle[__variableAAfficher-1]=31
+    callsub __AllumeLeCercleDeLEDs
+  end
 
 # Allume toutes les LEDs (bottom.left, bottom.right et top)
 sub	__AllumeLesLEDs
@@ -184,6 +211,7 @@ sub __ArreteLeProgramme
   __led.vert = 0
   __led.bleu = 0
   callsub __AllumeLesLEDs
+  callsub __EteinsLeCercleDeLEDs
 
 
 # ----------
@@ -225,28 +253,18 @@ onevent button.center
 # Evénement déclenché par le timer pour le séquenceur
 # ---------------------------------------------------
 onevent timer0
-  # A chaque appel du timer, on sort un nombre aléatoire de 0 à 32767
-  call math.rand( __nombreAleatoire )
-  __nombreAleatoire = __nombreAleatoire &amp; 0x7fff
-
   if __etat == ETAT_EN_MARCHE then
-    
     # La LED de la flèche avant clignote, le programme s'execute
     __coeurQuiBat+=(COEUR_QUI_BAT/FREQUENCE_TIMER)
     call math.sin(__temp,__coeurQuiBat)
     call leds.buttons( abs(__temp)>>12, 0, 0, 0 )
-    
     # Appel le séquenceur
     callsub __Sequenceur
-    
   else
-    
     # le programme va s'arrêter, la LED de la flèche avant s'éteint
     __coeurQuiBat=0
-    
     # Arrête tous les accurateurs
     callsub __ArreteLeProgramme
-    
   end
   
   

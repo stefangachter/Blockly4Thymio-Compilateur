@@ -85,8 +85,9 @@ using 	System.Xml;
 namespace 		Blockly4Thymio {
 public 	class 	Variable_DéfinirUneVariable : __Variable {
 
-	String	__nom;
-	String	__valeur;
+	String		__nom;
+
+	__Valeur	__expression;
 
 
 
@@ -98,7 +99,7 @@ public 	class 	Variable_DéfinirUneVariable : __Variable {
 		// Déclarations
 		// ------------
 
-		String	nomDeLAttribut;
+		String		nomDeLAttribut;
 
 
 
@@ -117,7 +118,7 @@ public 	class 	Variable_DéfinirUneVariable : __Variable {
 				__nom = XMLDUnNoeudFils.FirstChild.InnerText;
 				break;
 			case "VALUE" :
-				__valeur = Compilateur.AnalyseUnNoeudDExpression( _UID, XMLDUnNoeudFils.FirstChild, _blocPrécédent, _groupeDeBlocs );
+				__expression = Compilateur.AnalyseUnNoeudDExpression( _UID, XMLDUnNoeudFils.FirstChild, _blocPrécédent, _groupeDeBlocs );
 				break;
 			}
 
@@ -142,11 +143,19 @@ public 	class 	Variable_DéfinirUneVariable : __Variable {
 	// - Passe au bloc suivant
 	public	String	Séquence_1() {
 
-		return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n" +
-				"    " + __Variable.code(__nom) + "=" + __valeur + "\n" +
-				"    __sequenceur[" + UIDDuSéquenceur + "]=" + UIDDuBlocSuivant + "\n" +
-				"  end";
-		
+		String	code;
+
+
+
+		code = 		"  if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n";
+		if (__expression.codeDInitialisationPourLeSéquenceur != "" )
+			code +=	"    " + __expression.codeDInitialisationPourLeSéquenceur + "\n";
+		code +=		"    " + __Variable.code(__nom) + "=" + __expression.codePourLeSéquenceur + "\n" +
+					"    __sequenceur[" + UIDDuSéquenceur + "]=" + UIDDuBlocSuivant + "\n" +
+					"  end";
+
+		return code;
+
 	}
 
 

@@ -83,7 +83,7 @@ public	class	__GroupeDInstructions_Si_Alors_Sinon_AvecCondition : __GroupeDeBloc
 	/*
 	 * Attributs
 	 */
-	protected	String	__conditionDEntré;
+	protected	__Valeur	__conditionDEntré;
 
 
 				
@@ -105,7 +105,7 @@ public	class	__GroupeDInstructions_Si_Alors_Sinon_AvecCondition : __GroupeDeBloc
 	/*
      * Constructeur
      */
-	public __GroupeDInstructions_Si_Alors_Sinon_AvecCondition( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs, __BlocsInternes _blocsInternesSi, __BlocsInternes _blocsInternesSinon, String _ConditionDEntré ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs ) {
+	public __GroupeDInstructions_Si_Alors_Sinon_AvecCondition( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs, __BlocsInternes _blocsInternesSi, __BlocsInternes _blocsInternesSinon, __Valeur _ConditionDEntré ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs ) {
 
 		// Initialisation des membres
 		// --------------------------
@@ -137,8 +137,10 @@ public	class	__GroupeDInstructions_Si_Alors_Sinon_AvecCondition : __GroupeDeBloc
 	public	String	Séquence_1() {
 		String	code;
 
-		code =		"  if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n" +
-					"    if " + __conditionDEntré + " then\n";
+		code =		"  if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n";
+		if ( __conditionDEntré.codeDInitialisationPourLeSéquenceur != "" )
+			code +=	"    " + __conditionDEntré.codeDInitialisationPourLeSéquenceur + "\n";
+		code +=		"    if " + __conditionDEntré.codePourLeSéquenceur + " then\n";
 		if ( __blocsInternes == null )
 			code += "      __sequenceur[" + UIDDuSéquenceur + "]=" + (UIDDeLaDernièreSéquence) + "\n";
 		else

@@ -92,7 +92,7 @@ public class 	GroupeDInstructions_Boucle_Faire_TantQue_ENTCondition : __GroupeDe
 	/*
 	 * Attributs
 	 */
-	protected	String	__conditionDeBoucle;
+	protected	__Valeur	__conditionDeBoucle;
 	
 
 	/*

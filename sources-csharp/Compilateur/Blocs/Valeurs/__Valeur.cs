@@ -82,14 +82,21 @@ public class	__Valeur : __Bloc {
     /*
      * Membres
      */
-    protected   String	__code;
+	protected   String	__code;
+    protected   String	__codeDInitialisation;
 
     
+    /*
+     * Propriétés
+     */
+    public	virtual	String	codeDInitialisationPourLeSéquenceur {
+    get { return __codeDInitialisation; }
+    }
 
 	/*
 	 * Propriétés surchargeant la classe mère __Bloc.
      */
-    public new String codePourLeSéquenceur {
+    public new 		String	codePourLeSéquenceur {
     get { return __code; }
     }
 
@@ -98,11 +105,12 @@ public class	__Valeur : __Bloc {
     /*
      * Constructeur
      */
-    public	__Valeur( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs ) {
+    public	__Valeur( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs, String _code = "" ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs ) {
 
 		// Initialisations
         // ---------------
-		__code = "";
+		__code = _code;
+		__codeDInitialisation = "";
 
     }
 

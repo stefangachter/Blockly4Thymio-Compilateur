@@ -85,10 +85,32 @@ using 	System.Xml;
 namespace 		Blockly4Thymio {
 public 	class 	Valeur_Booléen_ComparaisonNumériques_ENTEntier_SELComparaison_ENTEntier : __Valeur {
 
-	int		comparaison;
+	int			__comparaison;
 
-	String	valeur1;
-	String	valeur2;
+	__Valeur	__valeur1;
+	__Valeur	__valeur2;
+
+
+
+	/*
+	 * Proprités publiques
+	 */
+	public	override	String	codeDInitialisationPourLeSéquenceur {
+    get {
+    	String	code;
+
+    	code = "";
+    	if ( __valeur1.codeDInitialisationPourLeSéquenceur != "" )
+			code += __valeur1.codeDInitialisationPourLeSéquenceur;
+		if ( __valeur2.codeDInitialisationPourLeSéquenceur != "" ) {
+			if ( code != "" )
+				code += " ";
+			code += __valeur2.codeDInitialisationPourLeSéquenceur;
+		}
+
+    	return code;
+    }
+    }
 
 
 
@@ -116,19 +138,19 @@ public 	class 	Valeur_Booléen_ComparaisonNumériques_ENTEntier_SELComparaison_E
 			
             switch(nomDeLAttribut) {
 			case "Valeur1" :
-				valeur1 = Compilateur.AnalyseUnNoeudDExpression( _UID, XMLDUnNoeudFils.FirstChild, _blocPrécédent, _groupeDeBlocs );
+				__valeur1 = Compilateur.AnalyseUnNoeudDExpression( _UID, XMLDUnNoeudFils.FirstChild, _blocPrécédent, _groupeDeBlocs );
 				break;
 			case "Valeur2" :
-				valeur2 = Compilateur.AnalyseUnNoeudDExpression( _UID, XMLDUnNoeudFils.FirstChild, _blocPrécédent, _groupeDeBlocs );
+				__valeur2 = Compilateur.AnalyseUnNoeudDExpression( _UID, XMLDUnNoeudFils.FirstChild, _blocPrécédent, _groupeDeBlocs );
 				break;
 			case "Comparaison" :
 				switch ( XMLDUnNoeudFils.InnerText ) {
-				case "ÉGAL" :				comparaison = (int)__COMPARAISONS_NUMÉRIQUES.NOM.ÉGAL; break;
-				case "DIFFÉRENT" :			comparaison = (int)__COMPARAISONS_NUMÉRIQUES.NOM.DIFFÉRENT; break;
-				case "PLUS_GRAND" :			comparaison = (int)__COMPARAISONS_NUMÉRIQUES.NOM.PLUS_GRAND; break;
-				case "PLUS_PETIT" :			comparaison = (int)__COMPARAISONS_NUMÉRIQUES.NOM.PLUS_PETIT; break;
-				case "PLUS_GRAND_OU_ÉGAL" :	comparaison = (int)__COMPARAISONS_NUMÉRIQUES.NOM.PLUS_GRAND_OU_ÉGAL; break;
-				case "PLUS_PETIT_OU_ÉGAL" :	comparaison = (int)__COMPARAISONS_NUMÉRIQUES.NOM.PLUS_PETIT_OU_ÉGAL; break;
+				case "ÉGAL" :				__comparaison = (int)__COMPARAISONS_NUMÉRIQUES.NOM.ÉGAL; break;
+				case "DIFFÉRENT" :			__comparaison = (int)__COMPARAISONS_NUMÉRIQUES.NOM.DIFFÉRENT; break;
+				case "PLUS_GRAND" :			__comparaison = (int)__COMPARAISONS_NUMÉRIQUES.NOM.PLUS_GRAND; break;
+				case "PLUS_PETIT" :			__comparaison = (int)__COMPARAISONS_NUMÉRIQUES.NOM.PLUS_PETIT; break;
+				case "PLUS_GRAND_OU_ÉGAL" :	__comparaison = (int)__COMPARAISONS_NUMÉRIQUES.NOM.PLUS_GRAND_OU_ÉGAL; break;
+				case "PLUS_PETIT_OU_ÉGAL" :	__comparaison = (int)__COMPARAISONS_NUMÉRIQUES.NOM.PLUS_PETIT_OU_ÉGAL; break;
 				}
 				break;
 			}
@@ -136,24 +158,24 @@ public 	class 	Valeur_Booléen_ComparaisonNumériques_ENTEntier_SELComparaison_E
 		}
 
 
-		switch( comparaison ) {
+		switch( __comparaison ) {
 		case (int)__COMPARAISONS_NUMÉRIQUES.NOM.ÉGAL :
-			__code = "(" + valeur1 + "==" + valeur2 + ")";
+			__code = "(" + __valeur1.codePourLeSéquenceur + "==" + __valeur2.codePourLeSéquenceur + ")";
 			break;
 		case (int)__COMPARAISONS_NUMÉRIQUES.NOM.DIFFÉRENT :
-			__code = "(" + valeur1 + "!=" + valeur2 + ")";
+			__code = "(" + __valeur1.codePourLeSéquenceur + "!=" + __valeur2.codePourLeSéquenceur + ")";
 			break;
 		case (int)__COMPARAISONS_NUMÉRIQUES.NOM.PLUS_GRAND :
-			__code = "(" + valeur1 + ">" + valeur2 + ")";
+			__code = "(" + __valeur1.codePourLeSéquenceur + ">" + __valeur2.codePourLeSéquenceur + ")";
 			break;
 		case (int)__COMPARAISONS_NUMÉRIQUES.NOM.PLUS_PETIT :
-			__code = "(" + valeur1 + "<" + valeur2 + ")";
+			__code = "(" + __valeur1.codePourLeSéquenceur + "<" + __valeur2.codePourLeSéquenceur + ")";
 			break;
 		case (int)__COMPARAISONS_NUMÉRIQUES.NOM.PLUS_GRAND_OU_ÉGAL :
-			__code = "(" + valeur1 + ">=" + valeur2 + ")";
+			__code = "(" + __valeur1.codePourLeSéquenceur + ">=" + __valeur2.codePourLeSéquenceur + ")";
 			break;
 		case (int)__COMPARAISONS_NUMÉRIQUES.NOM.PLUS_PETIT_OU_ÉGAL :
-			__code = "(" + valeur1 + "<=" + valeur2 + ")";
+			__code = "(" + __valeur1.codePourLeSéquenceur + "<=" + __valeur2.codePourLeSéquenceur + ")";
 			break;
 
 		}

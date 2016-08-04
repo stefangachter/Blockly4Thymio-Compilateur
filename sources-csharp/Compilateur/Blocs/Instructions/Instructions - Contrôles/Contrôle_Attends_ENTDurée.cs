@@ -98,7 +98,9 @@ public	class	Contrôle_Attends_ENTDurée : __Contrôle_Attends_AvecDurée {
 		// Déclarations
 		// ------------
 
-		String	nomDeLAttribut;
+		String		nomDeLAttribut;
+
+		__Valeur	expression;
 
 
 
@@ -114,8 +116,9 @@ public	class	Contrôle_Attends_ENTDurée : __Contrôle_Attends_AvecDurée {
 
             switch( nomDeLAttribut ) {
 
-            case "Durée" :				
-				__durée = float.Parse( Compilateur.AnalyseUnNoeudDExpression( _UID, XMLDUnNoeudFils.FirstChild, _blocPrécédent, _groupe ) );
+            case "Durée" :
+				expression = Compilateur.AnalyseUnNoeudDExpression( _UID, XMLDUnNoeudFils.FirstChild, _blocPrécédent, _groupe );
+				__durée = float.Parse( expression.codePourLeSéquenceur );
 				break;
 			
 			}

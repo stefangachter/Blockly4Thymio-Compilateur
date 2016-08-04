@@ -83,14 +83,14 @@ public	class	__GroupeDInstructions_Si_Alors_AvecCondition : __GroupeDeBlocs {
 	/*
 	 * Attributs
 	 */
-	protected	String	__conditionDEntré;
+	protected	__Valeur	__conditionDEntré;
 
 
 
 	/*
      * Constructeur
      */
-	public __GroupeDInstructions_Si_Alors_AvecCondition( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs, __BlocsInternes _blocsInternes, String _ConditionDEntré ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs ) {
+	public __GroupeDInstructions_Si_Alors_AvecCondition( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs, __BlocsInternes _blocsInternes, __Valeur _ConditionDEntré ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs ) {
 
 		// Initialisation des membres
 		// --------------------------
@@ -119,15 +119,22 @@ public	class	__GroupeDInstructions_Si_Alors_AvecCondition : __GroupeDeBlocs {
 	//   - Celle-ci est vrai, on passe au premier bloc interne
 	public	String	Séquence_1() {
 
-		if ( __blocsInternes != null )
-			return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n" +
-					"    if " + __conditionDEntré + " then\n" +
-					"      __sequenceur[" + UIDDuSéquenceur + "]=" + (UID + 1) + "\n" +
-					"    else\n" +
-					"      __sequenceur[" + UIDDuSéquenceur + "]=" + (__blocsInternes.premierBloc.UID+__blocsInternes.nombreDeSéquence) + "\n" +
-					"    end\n" + 
-			  		"  end";
-		else
+		String	code;
+
+
+
+		if ( __blocsInternes != null ) {
+			code = 		"  if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n";
+			if (__conditionDEntré.codeDInitialisationPourLeSéquenceur != "")
+				code +=	"    " + __conditionDEntré.codeDInitialisationPourLeSéquenceur + "\n";
+			code +=		"    if " + __conditionDEntré.codePourLeSéquenceur + " then\n" +
+						"      __sequenceur[" + UIDDuSéquenceur + "]=" + (UID + 1) + "\n" +
+						"    else\n" +
+						"      __sequenceur[" + UIDDuSéquenceur + "]=" + (__blocsInternes.premierBloc.UID+__blocsInternes.nombreDeSéquence) + "\n" +
+						"    end\n" + 
+				  		"  end";
+			return code;
+		} else
 			return	"  " + Compilateur.codeSauteSéquence( UIDDuSéquenceur, UID, UID+2 );
 		
 	}

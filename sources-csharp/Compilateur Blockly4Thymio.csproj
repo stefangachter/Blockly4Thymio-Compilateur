@@ -179,6 +179,8 @@ Transforme un fichiers .b4t en fichier .aesl puis le transmet à Thymio.</Descri
     <Compile Include="Compilateur\Blocs\Valeurs\__COMPARAISONS_NUMÉRIQUES.cs" />
     <Compile Include="Compilateur\Blocs\Valeurs\Valeur_Entier_OpérationNumériques_ENTEntier_SELComparaison_ENTEntier.cs" />
     <Compile Include="Compilateur\Blocs\Valeurs\Valeur_Booléen_ComparaisonNumériques_ENTEntier_SELComparaison_ENTEntier.cs" />
+    <Compile Include="Compilateur\Blocs\Valeurs\Valeur_Entier_NombreAléatoireEntre0et7.cs" />
+    <Compile Include="Compilateur\Blocs\Instructions\Instructions - Valeurs\Valeur_AfficheLaValeur_ENTEntier.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -212,5 +214,6 @@ Transforme un fichiers .b4t en fichier .aesl puis le transmet à Thymio.</Descri
     <Folder Include="Compilateur\Blocs\Instructions\Instructions - Mouvements\" />
     <Folder Include="Compilateur\Blocs\Instructions\Instructions - Contrôles\" />
     <Folder Include="Compilateur\Blocs\Variables\" />
+    <Folder Include="Compilateur\Blocs\Instructions\Instructions - Valeurs\" />
   </ItemGroup>
 </Project>

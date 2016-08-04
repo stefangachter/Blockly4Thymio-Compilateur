@@ -85,11 +85,32 @@ using 	System.Xml;
 namespace 		Blockly4Thymio {
 public 	class 	Valeur_Entier_OpérationNumériques_ENTEntier_SELComparaison_ENTEntier : __Valeur {
 
-	int		opération;
+	int			opération;
 
-	String	valeur1;
-	String	valeur2;
+	__Valeur	__valeur1;
+	__Valeur	__valeur2;
 
+
+
+	/*
+	 * Proprités publiques
+	 */
+	public	override	String	codeDInitialisationPourLeSéquenceur {
+    get {
+    	String	code;
+
+    	code = "";
+    	if ( __valeur1.codeDInitialisationPourLeSéquenceur != "" )
+			code += __valeur1.codeDInitialisationPourLeSéquenceur;
+		if ( __valeur2.codeDInitialisationPourLeSéquenceur != "" ) {
+			if ( code != "" )
+				code += " ";
+			code += __valeur2.codeDInitialisationPourLeSéquenceur;
+		}
+
+    	return code;
+    }
+    }
 
 
 	/*
@@ -116,15 +137,18 @@ public 	class 	Valeur_Entier_OpérationNumériques_ENTEntier_SELComparaison_ENTE
 			
             switch(nomDeLAttribut) {
 			case "Valeur1" :
-				valeur1 = Compilateur.AnalyseUnNoeudDExpression( _UID, XMLDUnNoeudFils.FirstChild, _blocPrécédent, _groupeDeBlocs );
+				__valeur1 = Compilateur.AnalyseUnNoeudDExpression( _UID, XMLDUnNoeudFils.FirstChild, _blocPrécédent, _groupeDeBlocs );
 				break;
 			case "Valeur2" :
-				valeur2 = Compilateur.AnalyseUnNoeudDExpression( _UID, XMLDUnNoeudFils.FirstChild, _blocPrécédent, _groupeDeBlocs );
+				__valeur2 = Compilateur.AnalyseUnNoeudDExpression( _UID, XMLDUnNoeudFils.FirstChild, _blocPrécédent, _groupeDeBlocs );
 				break;
 			case "Opération" :
 				switch ( XMLDUnNoeudFils.InnerText ) {
-				case "PLUS" :	opération = (int)__OPÉRATIONS_NUMÉRIQUES.NOM.PLUS; break;
-				case "MOINS" :	opération = (int)__OPÉRATIONS_NUMÉRIQUES.NOM.MOINS; break;
+				case "ADDITION" :		opération = (int)__OPÉRATIONS_NUMÉRIQUES.NOM.ADDITION; break;
+				case "SOUSTRACTION" :	opération = (int)__OPÉRATIONS_NUMÉRIQUES.NOM.SOUSTRACTION; break;
+				case "MULTIPLICATION" :	opération = (int)__OPÉRATIONS_NUMÉRIQUES.NOM.MULTIPLICATION; break;
+				case "DIVISION" :		opération = (int)__OPÉRATIONS_NUMÉRIQUES.NOM.DIVISION; break;
+				case "MODULO" :			opération = (int)__OPÉRATIONS_NUMÉRIQUES.NOM.MODULO; break;
 				}
 				break;
 			}
@@ -133,11 +157,20 @@ public 	class 	Valeur_Entier_OpérationNumériques_ENTEntier_SELComparaison_ENTE
 
 
 		switch( opération ) {
-		case (int)__OPÉRATIONS_NUMÉRIQUES.NOM.PLUS :
-			__code = "(" + valeur1 + "+" + valeur2 + ")";
+		case (int)__OPÉRATIONS_NUMÉRIQUES.NOM.ADDITION :
+			__code = "(" + __valeur1.codePourLeSéquenceur + "+" + __valeur2.codePourLeSéquenceur + ")";
 			break;
-		case (int)__OPÉRATIONS_NUMÉRIQUES.NOM.MOINS :
-			__code = "(" + valeur1 + "-" + valeur2 + ")";
+		case (int)__OPÉRATIONS_NUMÉRIQUES.NOM.SOUSTRACTION :
+			__code = "(" + __valeur1.codePourLeSéquenceur + "-" + __valeur2.codePourLeSéquenceur + ")";
+			break;
+		case (int)__OPÉRATIONS_NUMÉRIQUES.NOM.MULTIPLICATION :
+			__code = "(" + __valeur1.codePourLeSéquenceur + "*" + __valeur2.codePourLeSéquenceur + ")";
+			break;
+		case (int)__OPÉRATIONS_NUMÉRIQUES.NOM.DIVISION :
+			__code = "(" + __valeur1.codePourLeSéquenceur + "/" + __valeur2.codePourLeSéquenceur + ")";
+			break;
+		case (int)__OPÉRATIONS_NUMÉRIQUES.NOM.MODULO :
+			__code = "(" + __valeur1.codePourLeSéquenceur + "%" + __valeur2.codePourLeSéquenceur + ")";
 			break;
 		}
 

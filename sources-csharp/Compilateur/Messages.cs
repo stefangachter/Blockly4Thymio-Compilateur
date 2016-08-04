@@ -98,7 +98,9 @@ public class 	Messages {
 		FICHIER_N_EXISTE_PAS,
 		FICHIER_NON_LISIBLE,
 		AIDE,
-		ENTÊTE
+		ENTÊTE,
+		BLOC_NON_TRAITÉ_DANS_CETTE_VERSION,
+		LA_VERSION_APPROPRIÉE_POUR_CE_BLOC
 	}
 
 
@@ -115,7 +117,9 @@ public class 	Messages {
 
 
 		switch( _numéro ) {
-		
+
+	
+
 		case (int)TYPE.BOUCLE_INFÉRIEURE_A_1 :						return "Dans une des boucle, le nombre de répétition est plus petit que 1. Celui-ci a été corrigé pour être au moins à 1.";
 		case (int)TYPE.BOUCLE_SUPÉRIEURE_A_100 :					return "Dans une des boucle, le nombre de répétition est plus grand que 100. Celui-ci a été corrigé pour être à 100.";
 															
@@ -165,6 +169,11 @@ public class 	Messages {
 																			"Blockly4Thymio utilise le programme asebamassloader.exe pour le transfert du fichier Aseba vers le robot Thymio.\r\n" +
 																			"\r\n";
 																	return	texte;
+
+		case (int)TYPE.BLOC_NON_TRAITÉ_DANS_CETTE_VERSION :			return	"Erreur ! Le bloc {0} n'est pas traité dans cette version du compilateur.";
+
+		case (int)TYPE.LA_VERSION_APPROPRIÉE_POUR_CE_BLOC :			return	"\n\nLa version du compilateur la plus appropiée pour ce bloc est la version {0}";
+
 		}
 
 		throw new Exception( "Le message " + _numéro + " n'existe pas dans la liste des  messages." );

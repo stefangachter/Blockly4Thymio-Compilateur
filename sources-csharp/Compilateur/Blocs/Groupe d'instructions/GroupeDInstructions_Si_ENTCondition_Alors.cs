@@ -81,15 +81,9 @@ namespace		Blockly4Thymio {
 public	class	GroupeDInstructions_Si_ENTCondition_Alors : __GroupeDInstructions_Si_Alors_AvecCondition { 
 	
 	/*
-	 * Attributs
-	 */
-	protected	String	__conditionDeSortie;
-	
-
-	/*
      * Constructeur
      */
-	public GroupeDInstructions_Si_ENTCondition_Alors( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, null, "" ) {
+	public GroupeDInstructions_Si_ENTCondition_Alors( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, null, null ) {
 
 		// Déclarations
 		// ------------

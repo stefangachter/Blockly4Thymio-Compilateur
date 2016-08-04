@@ -84,7 +84,7 @@ public	class	GroupeDInstructions_Si_IlYAUnObstacleDevant_Alors : __GroupeDInstru
 	/*
      * Constructeur
      */
-	public GroupeDInstructions_Si_IlYAUnObstacleDevant_Alors( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, null, "" ) {
+	public GroupeDInstructions_Si_IlYAUnObstacleDevant_Alors( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, null, null ) {
 
 		// Déclarations
 		// ------------
@@ -95,7 +95,8 @@ public	class	GroupeDInstructions_Si_IlYAUnObstacleDevant_Alors : __GroupeDInstru
 		// Initialisation des membres
 		// --------------------------
 
-		__conditionDEntré = __CAPTEURS.code( (int)__CAPTEURS.NOM.AVANT_AU_MOINS_UN, (int)__CAPTEURS.PARAMÈTRE.DISTANCE_PRÈS );
+		__conditionDEntré = new __Valeur(	_UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs,
+											__CAPTEURS.code( (int)__CAPTEURS.NOM.AVANT_AU_MOINS_UN, (int)__CAPTEURS.PARAMÈTRE.DISTANCE_PRÈS ) );
 
 
 		// Blocs internes au groupe

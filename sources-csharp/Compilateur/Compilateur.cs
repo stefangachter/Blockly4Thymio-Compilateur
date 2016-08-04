@@ -438,6 +438,15 @@ public class	Compilateur {
 		#endregion
 
 
+		#region Instructions - Valeurs
+
+		case "0_8_Valeur_AfficheLaValeur_ENTEntier" :
+			bloc = new Valeur_AfficheLaValeur_ENTEntier( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
+			break;
+
+		#endregion
+
+
 		#region Variables
 
 		case "variables_set" :
@@ -450,12 +459,12 @@ public class	Compilateur {
 		// Sinon, une erreur est déclenchée
 		// --------------------------------
 		default:
-			erreur = "Erreur ! Le bloc " + instruction + " n'est pas traité dans cette version du compilateur.";
+			erreur = String.Format( Messages.Message((int)Messages.TYPE.BLOC_NON_TRAITÉ_DANS_CETTE_VERSION), instruction );
 			position = instruction.IndexOf( "_", 2 );
 			if ( position != -1 ) {
 				version = instruction.Substring( 0, position );
 				version = version.Replace( "_", "." );
-				erreur += "\n\nLa version du compilateur la plus appropiée pour ce bloc est la version " + version;
+				erreur += String.Format( Messages.Message((int)Messages.TYPE.LA_VERSION_APPROPRIÉE_POUR_CE_BLOC), version );
 			}
 			throw new Exception( erreur );
 
@@ -485,30 +494,30 @@ public class	Compilateur {
 	/// <summary>
     /// Analyse un noeud d'expression et retourne la chaine équivalente de cette expression.
     /// </summary>
-	public	static	String	AnalyseUnNoeudDExpression( int _UIDPourLeBloc, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs ) {
+	public	static	__Valeur	AnalyseUnNoeudDExpression( int _UIDPourLeBloc, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs ) {
 
 		// Déclarations
 		// ------------
-		String		code;
+		int			position;	
+
 		String		erreur;
 		String		instruction;		
+		String		version;
 		
 		__Valeur	expression;
-		__Variable	variable;
 
 
-
-        /*
-         * Initialisations
-         */
-        code = "";
+		/*
+		 * Initialisations
+		 */
+		expression = null;
 
 
 
         /*
          * Contrôles
          */
-        if ( _XMLDuBloc == null ) { return code; }
+        if ( _XMLDuBloc == null ) { return null; }
 
 
 
@@ -530,19 +539,24 @@ public class	Compilateur {
 		#region Boutons - Flèches
 
 		case "0_2_Valeur_Booléen_Bouton_FlècheAvant" :
-			code = __BOUTONS.code( (int)__BOUTONS.NOM.FLÈCHE_VERS_L_AVANT );
+			expression = new __Valeur(	_UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs,
+										__BOUTONS.code( (int)__BOUTONS.NOM.FLÈCHE_VERS_L_AVANT ) );
 			break;
 		case "0_2_Valeur_Booléen_Bouton_FlècheArrière" :
-			code = __BOUTONS.code( (int)__BOUTONS.NOM.FLÈCHE_VERS_L_ARRIÈRE );
+			expression = new __Valeur(	_UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs,
+										__BOUTONS.code( (int)__BOUTONS.NOM.FLÈCHE_VERS_L_ARRIÈRE ) );
 			break;
 		case "0_2_Valeur_Booléen_Bouton_FlècheADroite" :
-			code = __BOUTONS.code( (int)__BOUTONS.NOM.FLÈCHE_VERS_LA_DROITE );
+			expression = new __Valeur(	_UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs,
+										__BOUTONS.code( (int)__BOUTONS.NOM.FLÈCHE_VERS_LA_DROITE ) );
 			break;
 		case "0_2_Valeur_Booléen_Bouton_FlècheAGauche" :
-			code = __BOUTONS.code( (int)__BOUTONS.NOM.FLÈCHE_VERS_LA_GAUCHE );
+			expression = new __Valeur(	_UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs,
+										__BOUTONS.code( (int)__BOUTONS.NOM.FLÈCHE_VERS_LA_GAUCHE ) );
 			break;
 		case "0_6_Valeur_Booléen_Bouton_AucuneFlèche" :
-			code = __BOUTONS.code( (int)__BOUTONS.NOM.FLÈCHE_AUCUNE );
+			expression = new __Valeur(	_UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs,
+										__BOUTONS.code( (int)__BOUTONS.NOM.FLÈCHE_AUCUNE ) );
 			break;
 
 		#endregion
@@ -551,22 +565,28 @@ public class	Compilateur {
 		#region Capteur - Proximité avant
 
 		case "0_2_Valeur_Booléen_Capteur_AvantDroite" :
-			code = __CAPTEURS.code( (int)__CAPTEURS.NOM.AVANT_DROITE, (int)__CAPTEURS.PARAMÈTRE.DISTANCE_PRÈS );
+			expression = new __Valeur(	_UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs,
+										__CAPTEURS.code( (int)__CAPTEURS.NOM.AVANT_DROITE, (int)__CAPTEURS.PARAMÈTRE.DISTANCE_PRÈS ) );
 			break;
 		case "0_2_Valeur_Booléen_Capteur_AvantGauche" :
-			code = __CAPTEURS.code( (int)__CAPTEURS.NOM.AVANT_GAUCHE, (int)__CAPTEURS.PARAMÈTRE.DISTANCE_PRÈS );
+			expression = new __Valeur(	_UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs,
+										__CAPTEURS.code( (int)__CAPTEURS.NOM.AVANT_GAUCHE, (int)__CAPTEURS.PARAMÈTRE.DISTANCE_PRÈS ) );
 			break;
 		case "0_2_Valeur_Booléen_Capteur_AvantMilieu" :
-			code = __CAPTEURS.code( (int)__CAPTEURS.NOM.AVANT_MILIEU, (int)__CAPTEURS.PARAMÈTRE.DISTANCE_PRÈS );
+			expression = new __Valeur(	_UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs,
+										__CAPTEURS.code( (int)__CAPTEURS.NOM.AVANT_MILIEU, (int)__CAPTEURS.PARAMÈTRE.DISTANCE_PRÈS ) );
 			break;
 		case "0_2_Valeur_Booléen_Capteur_AvantMilieuDroite" :
-			code = __CAPTEURS.code( (int)__CAPTEURS.NOM.AVANT_MILIEU_DROITE, (int)__CAPTEURS.PARAMÈTRE.DISTANCE_PRÈS );
+			expression = new __Valeur(	_UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs,
+										__CAPTEURS.code( (int)__CAPTEURS.NOM.AVANT_MILIEU_DROITE, (int)__CAPTEURS.PARAMÈTRE.DISTANCE_PRÈS ) );
 			break;
 		case "0_2_Valeur_Booléen_Capteur_AvantMilieuGauche" :
-			code = __CAPTEURS.code( (int)__CAPTEURS.NOM.AVANT_MILIEU_GAUCHE, (int)__CAPTEURS.PARAMÈTRE.DISTANCE_PRÈS );
+			expression = new __Valeur(	_UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs,
+										__CAPTEURS.code( (int)__CAPTEURS.NOM.AVANT_MILIEU_GAUCHE, (int)__CAPTEURS.PARAMÈTRE.DISTANCE_PRÈS ) );
 			break;
 		case "0_7_Valeur_Booléen_Capteur_AvantAucun" :
-			code = __CAPTEURS.code( (int)__CAPTEURS.NOM.AVANT_AUCUN, (int)__CAPTEURS.PARAMÈTRE.DISTANCE_PRÈS );
+			expression = new __Valeur(	_UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs,
+										__CAPTEURS.code( (int)__CAPTEURS.NOM.AVANT_AUCUN, (int)__CAPTEURS.PARAMÈTRE.DISTANCE_PRÈS ) );
 			break;
 
 		#endregion
@@ -575,10 +595,12 @@ public class	Compilateur {
 		#region Capteur - Proximité arrière
 
 		case "0_2_Valeur_Booléen_Capteur_ArrièreDroite" :
-			code = __CAPTEURS.code( (int)__CAPTEURS.NOM.ARRIÈRE_DROITE, (int)__CAPTEURS.PARAMÈTRE.DISTANCE_PRÈS );
+			expression = new __Valeur(	_UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs,
+										__CAPTEURS.code( (int)__CAPTEURS.NOM.ARRIÈRE_DROITE, (int)__CAPTEURS.PARAMÈTRE.DISTANCE_PRÈS ) );
 			break;
 		case "0_2_Valeur_Booléen_Capteur_ArrièreGauche" :
-			code = __CAPTEURS.code( (int)__CAPTEURS.NOM.ARRIÈRE_GAUCHE, (int)__CAPTEURS.PARAMÈTRE.DISTANCE_PRÈS );
+			expression = new __Valeur(	_UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs,
+										__CAPTEURS.code( (int)__CAPTEURS.NOM.ARRIÈRE_GAUCHE, (int)__CAPTEURS.PARAMÈTRE.DISTANCE_PRÈS ) );
 			break;
 
 		#endregion
@@ -587,16 +609,20 @@ public class	Compilateur {
 		#region Capteur - Teinte du dessous
 
 		case "0_2_Valeur_Booléen_Capteur_DessousGauche_Noir" :
-			code = __CAPTEURS.code( (int)__CAPTEURS.NOM.DESSOUS_GAUCHE, (int)__CAPTEURS.PARAMÈTRE.COULEUR_SOL_NOIR );
+			expression = new __Valeur(	_UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs,
+										__CAPTEURS.code( (int)__CAPTEURS.NOM.DESSOUS_GAUCHE, (int)__CAPTEURS.PARAMÈTRE.COULEUR_SOL_NOIR ) );
 			break;
 		case "0_2_Valeur_Booléen_Capteur_DessousGauche_Blanc" :
-			code = __CAPTEURS.code( (int)__CAPTEURS.NOM.DESSOUS_GAUCHE, (int)__CAPTEURS.PARAMÈTRE.COULEUR_SOL_BLANC );
+			expression = new __Valeur(	_UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs,
+										__CAPTEURS.code( (int)__CAPTEURS.NOM.DESSOUS_GAUCHE, (int)__CAPTEURS.PARAMÈTRE.COULEUR_SOL_BLANC ) );
 			break;
 		case "0_2_Valeur_Booléen_Capteur_DessousDroite_Noir" :
-			code = __CAPTEURS.code( (int)__CAPTEURS.NOM.DESSOUS_DROITE, (int)__CAPTEURS.PARAMÈTRE.COULEUR_SOL_NOIR );
+			expression = new __Valeur(	_UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs,
+										__CAPTEURS.code( (int)__CAPTEURS.NOM.DESSOUS_DROITE, (int)__CAPTEURS.PARAMÈTRE.COULEUR_SOL_NOIR ) );
 			break;
 		case "0_2_Valeur_Booléen_Capteur_DessousDroite_Blanc" :
-			code = __CAPTEURS.code( (int)__CAPTEURS.NOM.DESSOUS_DROITE, (int)__CAPTEURS.PARAMÈTRE.COULEUR_SOL_BLANC );
+			expression = new __Valeur(	_UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs,
+										__CAPTEURS.code( (int)__CAPTEURS.NOM.DESSOUS_DROITE, (int)__CAPTEURS.PARAMÈTRE.COULEUR_SOL_BLANC ) );
 			break;
 
 		#endregion
@@ -606,11 +632,9 @@ public class	Compilateur {
 
 		case "0_2_Valeur_Booléen_ToucheDeLaTélécommandeEst_SELTouche" :
 			expression = new Valeur_CapteurIR_SELTouche( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
-			code = expression.codePourLeSéquenceur;
 			break;
 		case "0_5_Valeur_Booléen_BoutonDeLaTélécommandeEst_SELTouche" :
 			expression = new Valeur_CapteurIR_SELBouton( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
-			code = expression.codePourLeSéquenceur;
 			break;
 
 		#endregion
@@ -620,15 +644,12 @@ public class	Compilateur {
 		
 		case "0_6_Valeur_Booléen_OULogique_ENTBooleen_ENTBooleen" :
 			expression = new Valeur_OpérateurLogique( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__OPÉRATIONS_LOGIQUES.NOM.OU );
-			code = expression.codePourLeSéquenceur;
 			break;
 		case "0_6_Valeur_Booléen_ETLogique_ENTBooleen_ENTBooleen" :
 			expression = new Valeur_OpérateurLogique( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__OPÉRATIONS_LOGIQUES.NOM.ET );
-			code = expression.codePourLeSéquenceur;
 			break;
 		case "0_6_Valeur_Booléen_NONLogique_ENTBooleen":
 			expression = new Valeur_OpérateurLogique( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__OPÉRATIONS_LOGIQUES.NOM.NON );
-			code = expression.codePourLeSéquenceur;
 			break;
 
 		#endregion
@@ -638,7 +659,6 @@ public class	Compilateur {
 
 		case "0_8_Valeur_Booléen_Comparaison_ENTEntier_SELComparaion_ENTEntier" :
 			expression = new Valeur_Booléen_ComparaisonNumériques_ENTEntier_SELComparaison_ENTEntier( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
-			code = expression.codePourLeSéquenceur;
 			break;
 
 		#endregion
@@ -647,17 +667,15 @@ public class	Compilateur {
 		#region Valeur
 
 		case "0_8_Valeur_Entier_NombreAuHasardEntre0et7" :
-			code = "(__nombreAleatoire &amp; 0x7)";
+			expression = new Valeur_Entier_NombreAléatoireEntre0et7( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
 			break;
 
 		case "0_8_Valeur_Entier_SAIValeur" :
 			expression = new Valeur_Entier_SAIValeur( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
-			code = expression.codePourLeSéquenceur;
 			break;
 
 		case "0_8_Valeur_Entier_Opération_ENTEntier_SELOpération_ENTEntier" :
 			expression = new Valeur_Entier_OpérationNumériques_ENTEntier_SELComparaison_ENTEntier( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
-			code = expression.codePourLeSéquenceur;
 			break;
 
 		#endregion
@@ -665,7 +683,6 @@ public class	Compilateur {
 
 		case "variables_get" :
 			expression = new Variable_RécupérerUneVariable( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
-			code = expression.codePourLeSéquenceur;
 			break;
 
 		
@@ -673,16 +690,13 @@ public class	Compilateur {
 		 * Sinon, une erreur est déclenchée
 		 * --------------------------------
 		 */
-		default:
-			int		pos;	
-			String	ver;
-
-			erreur = "Erreur ! Le bloc " + instruction + " n'est pas traité dans cette version du compilateur.";
-			pos = instruction.IndexOf( "_", 2 );
-			if ( pos != -1 ) {
-				ver = instruction.Substring( 0, pos );
-				ver = ver.Replace( "_", "." );
-				erreur += "\n\nLa version du compilateur la plus appropiée pour ce bloc est la version " + ver;
+		default :
+			erreur = String.Format( Messages.Message((int)Messages.TYPE.BLOC_NON_TRAITÉ_DANS_CETTE_VERSION), instruction );
+			position = instruction.IndexOf( "_", 2 );
+			if ( position != -1 ) {
+				version = instruction.Substring( 0, position );
+				version = version.Replace( "_", "." );
+				erreur += String.Format( Messages.Message((int)Messages.TYPE.LA_VERSION_APPROPRIÉE_POUR_CE_BLOC), version );
 			}
 			throw new Exception( erreur );
 
@@ -693,7 +707,7 @@ public class	Compilateur {
 		// Fin
 		// ---
 
-		return code;
+		return expression;
 
 	}
 
@@ -913,7 +927,7 @@ public class	Compilateur {
 		framework = framework.Replace("### EVENEMENT COMMANDE INFRAROUGE ###", codeEvénementCommandeIR );
 
 		if( codeEvénementBoutonFlèche != "" )
-			codeEvénementBoutonFlèche = "  if button.forward==1 or button.backward==1 or button.left==1 or button.right==1 then\n  " + codeEvénementBoutonFlèche + "\n    __etat = ETAT_EN_MARCHE\n  end";
+		  codeEvénementBoutonFlèche = "  when button.forward==1 or button.backward==1 or button.left==1 or button.right==1 do\n  " + codeEvénementBoutonFlèche + "\n    __etat = ETAT_EN_MARCHE\n  end";
 		framework = framework.Replace("### EVENEMENT BOUTON FLECHE ###", codeEvénementBoutonFlèche );
 
 		if( codeEvénementCapteurAvant != "" )

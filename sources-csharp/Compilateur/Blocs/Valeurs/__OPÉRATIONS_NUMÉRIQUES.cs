@@ -93,8 +93,11 @@ public 		class 	__OPÉRATIONS_NUMÉRIQUES {
 
 	public	enum NOM {
 		// Enumération des opérations numériques
-		PLUS,
-		MOINS
+		ADDITION,
+		SOUSTRACTION,
+		MULTIPLICATION,
+		DIVISION,
+		MODULO
 	}
 
 

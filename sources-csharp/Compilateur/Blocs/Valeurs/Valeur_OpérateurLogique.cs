@@ -85,8 +85,8 @@ using 	System.Xml;
 namespace 		Blockly4Thymio {
 public 	class 	Valeur_OpérateurLogique : __Valeur {
 
-	String	valeur1;
-	String	valeur2;
+	__Valeur	__valeur1;
+	__Valeur	__valeur2;
 
 
 
@@ -114,10 +114,10 @@ public 	class 	Valeur_OpérateurLogique : __Valeur {
 			
             switch(nomDeLAttribut) {
 			case "Valeur1":
-				valeur1 = Compilateur.AnalyseUnNoeudDExpression( _UID, XMLDUnNoeudFils.FirstChild, _blocPrécédent, _groupeDeBlocs );
+				__valeur1 = Compilateur.AnalyseUnNoeudDExpression( _UID, XMLDUnNoeudFils.FirstChild, _blocPrécédent, _groupeDeBlocs );
 				break;
 			case "Valeur2":
-				valeur2 = Compilateur.AnalyseUnNoeudDExpression( _UID, XMLDUnNoeudFils.FirstChild, _blocPrécédent, _groupeDeBlocs );
+				__valeur2 = Compilateur.AnalyseUnNoeudDExpression( _UID, XMLDUnNoeudFils.FirstChild, _blocPrécédent, _groupeDeBlocs );
 				break;
 			}
 
@@ -126,13 +126,13 @@ public 	class 	Valeur_OpérateurLogique : __Valeur {
 
 		switch( _opérationLogique ) {
 		case (int)__OPÉRATIONS_LOGIQUES.NOM.OU :
-			__code = "(" + valeur1 + " or " + valeur2 + ")";
+			__code = "(" + __valeur1.codePourLeSéquenceur + " or " + __valeur2.codePourLeSéquenceur + ")";
 			break;
 		case (int)__OPÉRATIONS_LOGIQUES.NOM.ET :
-			__code = "(" + valeur1 + " and " + valeur2 + ")";
+			__code = "(" + __valeur1.codePourLeSéquenceur + " and " + __valeur2.codePourLeSéquenceur + ")";
 			break;
 		case (int)__OPÉRATIONS_LOGIQUES.NOM.NON :
-			__code = "not (" + valeur1 + ")";
+			__code = "not (" + __valeur1.codePourLeSéquenceur + ")";
 			break;
 		}
 
