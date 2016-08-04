@@ -161,6 +161,10 @@ public	class	__Bloc {
 
 		if ( __blocPrécédent != null )
 			__UIDDuSéquenceur = __blocPrécédent.__UIDDuSéquenceur;
+		else
+			if ( __groupeDeBlocs != null )
+				__UIDDuSéquenceur = __groupeDeBlocs.__UIDDuSéquenceur;		
+			
 
 		__séquences = new List<Séquence>();
 
