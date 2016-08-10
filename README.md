@@ -28,7 +28,7 @@ Suivi des versions
 * Mise en place des variables
 * Nouvelle instruction : Nombre au hasard
 * Nouvelles opérations : Addition, Soustraction, Multiplication, Division, Modulo
-* Nouvelles comparaisons : Egual, Plus petit, Plus grand, etc...
+* Nouvelles comparaisons : Egal, Plus petit, Plus grand, etc...
 * Nouvelle instruction : Afficher la valeur
 * Utilisation d'asebahttp pour le transfert vers Thymio des fichiers .aesl pour la compatibilité avec le firmware 10.
 
