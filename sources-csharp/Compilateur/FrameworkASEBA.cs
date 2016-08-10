@@ -114,9 +114,10 @@ public class FrameworkASEBA {
 
 var __etat
 var __coeurQuiBat = 0
-var __temp
 var __lectureDUnSon = 0
+var __temp
 var __variableAAfficher
+var __compteur
 
 # Variable pour les nombres aléatoires
 var __nombreAleatoire
@@ -175,7 +176,11 @@ sub __EteinsLeCercleDeLEDs
 sub AfficheUneVariable
   callsub __EteinsLeCercleDeLEDs
   if __variableAAfficher>0 and __variableAAfficher&lt;=8 then
-    __led.cercle[__variableAAfficher-1]=31
+    __compteur=0
+  	while __compteur&lt;__variableAAfficher do
+      __led.cercle[__compteur]=31
+      __compteur++
+    end
     callsub __AllumeLeCercleDeLEDs
   end
 
