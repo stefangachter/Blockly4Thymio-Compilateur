@@ -10,7 +10,7 @@
     <RootNamespace>Blockly4Thymio</RootNamespace>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
-    <ReleaseVersion>0.7</ReleaseVersion>
+    <ReleaseVersion>0.8</ReleaseVersion>
     <Description>Compilateur du projet Blockly4Thymio.
 Transforme un fichiers .b4t en fichier .aesl puis le transmet à Thymio.</Description>
     <ApplicationIcon>icone.ico</ApplicationIcon>
@@ -32,7 +32,7 @@ Transforme un fichiers .b4t en fichier .aesl puis le transmet à Thymio.</Descri
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
-    <AssemblyName>Compilateur.0.7</AssemblyName>
+    <AssemblyName>Compilateur.0.8</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'WINDOWS-Release|x86' ">
     <Optimize>false</Optimize>

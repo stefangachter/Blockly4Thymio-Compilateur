@@ -1,11 +1,8 @@
 ﻿<Properties StartupItem="Compilateur Blockly4Thymio.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="WINDOWS-Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Compilateur\FrameworkASEBA.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="WINDOWS-Release|x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Compilateur\Compilateur.cs">
     <Files>
-      <File FileName="Compilateur\Blocs\Variables\Variable_DéfinirUneVariable.cs" Line="87" Column="1" />
-      <File FileName="Compilateur\Blocs\Instructions\Instructions - Valeurs\Valeur_AfficheLaValeur_ENTEntier.cs" Line="150" Column="42" />
-      <File FileName="Compilateur\FrameworkASEBA.cs" Line="176" Column="33" />
-      <File FileName="c:\Users\Okimi\Mes projets\2016\Blockly4Thymio-Compilateur\sources-csharp\Compilateur\Compilateur.cs" Line="444" Column="47" />
+      <File FileName="Compilateur\Compilateur.cs" Line="186" Column="23" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
