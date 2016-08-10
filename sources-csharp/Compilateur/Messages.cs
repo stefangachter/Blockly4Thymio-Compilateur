@@ -88,7 +88,7 @@ public class 	Messages {
 		ANGLE_SUPÉRIEURE_A_360,
 		VITESSE_INFÉRIEURE_A_MOINS_100_POURCENT,
 		VITESSE_SUPÉRIEURE_A_100_POURCENT,
-		ASEBAMASSLOADER_INTROUVABLE,
+		ASEBAHTTP_INTROUVABLE,
 		PAS_D_INSTRUCTION_DE_DÉPART,
 		FICHIER,
 		LECTURE_DU_FICHIER_B4T,
@@ -135,7 +135,7 @@ public class 	Messages {
 		case (int)TYPE.VITESSE_INFÉRIEURE_A_MOINS_100_POURCENT :	return "La vitesse est inférieure à -100(%). Celle-ci a été corrigée pour être à -100(%).";
 		case (int)TYPE.VITESSE_SUPÉRIEURE_A_100_POURCENT :			return "La vitesse est supérieure à 100(%). Celle-ci a été corrigée pour être à 100(%).";
 
-		case (int)TYPE.ASEBAMASSLOADER_INTROUVABLE :				return "Erreur ! L'exécutable {0} pour transmettre le fichier .aesl au robot Thymio n'existe pas.";
+		case (int)TYPE.ASEBAHTTP_INTROUVABLE :						return "Erreur ! L'exécutable {0} pour transmettre le fichier .aesl au robot Thymio n'existe pas.";
 
 		case (int)TYPE.PAS_D_INSTRUCTION_DE_DÉPART :				return "Il n'y a pas d'instruction de départ dans le fichier {0} .";
 

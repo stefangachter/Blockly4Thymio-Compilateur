@@ -153,17 +153,16 @@ static	class 	ProgrammePrincipal {
 		#endif
 
 
-		// Emplacement de programme de transfert AsebaMassloader
-		// -----------------------------------------------------
+		// Emplacement de programme de transfert asebahttp.exe
+		// ---------------------------------------------------
 		#if (DEBUG && WINDOWS)
-		Compilateur.nomDuFichierASEBAMASSLOADER = @"C:\Blockly4Thymio.v0.7\asebamassloader\asebamassloader.exe";
-		//Compilateur.nomDuFichierASEBAMASSLOADER = @"C:\Users\fort\Downloads\compilateur\setup-win\fichiers\asebamassloader\asebamassloader.exe";
+		Compilateur.nomDuFichierASEBAHTTP = @"C:\Blockly4Thymio.v0.7\asebahttp\asebahttp.exe";
 		#endif
 		#if (!DEBUG && WINDOWS)
-		Compilateur.nomDuFichierASEBAMASSLOADER =  Path.GetDirectoryName(Application.ExecutablePath) + @"\asebamassloader\asebamassloader.exe";
+		Compilateur.nomDuFichierASEBAHTTP =  Path.GetDirectoryName(Application.ExecutablePath) + @"\asebahttp\asebahttp.exe";
 		#endif
 		#if (LINUX)
-		Compilateur.nomDuFichierASEBAMASSLOADER = @"/usr/bin/asebamassloader";
+		Compilateur.nomDuFichierASEBAHTTP = @"/usr/bin/asebahttp";
 		#endif
 		
 

@@ -117,7 +117,7 @@ public class	Compilateur {
     public	static	String					nomDuFichierB4T;
 	public	static	String					nomDuFichierAESL;
     public	static	String					nomDuFichierAESLTemp;
-    public	static	String					nomDuFichierASEBAMASSLOADER;
+	public	static	String					nomDuFichierASEBAHTTP;
 	public	static	String					version;
 
 	public	static	List<__Evénement>		événementsRacines;
@@ -774,7 +774,7 @@ public class	Compilateur {
          */
         if (Compilateur.transfertDuFichierAESL) {
 			AjouteUnMessage( Messages.Message((int)Messages.TYPE.TRANSFERT_DU_FICHIER_ASEBA) + "\n" );
-        	if ( !TransmissionDuFichierAESL( _fenêtrePrincipal ) )
+        	if ( !TransfertDuFichierAESLVersThymio( _fenêtrePrincipal ) )
         		return false;
         }
         
@@ -1093,7 +1093,7 @@ public class	Compilateur {
 
 
 	/// <summary>
-    /// Transmission du fichier .aesl, à l'aide de l'exécutable asebamassloader.exe
+    /// Transfert du fichier .aesl, à l'aide de l'exécutable asebamassloader.exe
     /// Tests en cours pour réaliser la transmission à l'aide de asebahttp, qui est compatible avec Aseba protocol 5 (pour le firware 10 de Thymio)
 	/// Commande : asebahttp --aesl "C:\Users\fort\Downloads\test.aesl" "tcp:localhost;33333"
 	/// Commande : asebahttp --aesl temp.aesl "ser:name=Thymio-II"
@@ -1106,14 +1106,16 @@ public class	Compilateur {
     /// </summary>
     /// <returns><c>true</c>, si le fichier a été transmis, <c>false</c> sinon.</returns>
     ///
+    /// Release 0.7.3 de Scratch-thymioII de David Sherman + Firmware 10 : OK
 	/// Aseba 1.5.3 (Aseba 5) + Firmware 10 : Erreur "1 scripts have no corresponding nodes in the current network and have not been loaded."
-/// /// Aseba 1.5.3 (Aseba 5) + Firmware 9 : OK : Loaded aesl script from temp.aesl
+	/// Aseba 1.5.3 (Aseba 5) + Firmware 9 : OK : Loaded aesl script from temp.aesl
 	/// Aseba 1.4 (Aseba 4) + Firmware 9 : OK : Loaded aesl script from temp.aesl
 	///
-    private	static	bool	TransmissionDuFichierAESL( FEN_Principale _fenêtrePrincipal ) {
+    private	static	bool	TransfertDuFichierAESLVersThymio( FEN_Principale _fenêtrePrincipal ) {
 
         // Déclarations
         // ------------
+   
         Process				processus;
 
         ProcessStartInfo	exécutable;
@@ -1122,8 +1124,8 @@ public class	Compilateur {
 
         // Contrôles
         // ---------
-        if (!File.Exists(nomDuFichierASEBAMASSLOADER)) {
-            AfficheUnMessageDErreur( String.Format( Messages.Message((int)Messages.TYPE.ASEBAMASSLOADER_INTROUVABLE), nomDuFichierASEBAMASSLOADER ) );
+		if (!File.Exists(nomDuFichierASEBAHTTP)) {
+            AfficheUnMessageDErreur( String.Format( Messages.Message((int)Messages.TYPE.ASEBAHTTP_INTROUVABLE), nomDuFichierASEBAHTTP ) );
             return false;
         }
 
@@ -1132,11 +1134,11 @@ public class	Compilateur {
 		// Traitements
         // -----------
 
-        // Prépare le processus de transfert avec l'application asebamassloader.exe
+        // Prépare le processus de transfert avec l'application asebahttp.exe
         exécutable = new ProcessStartInfo();
-        exécutable.Arguments = "\"" + nomDuFichierAESL + "\" ser:name=Thymio-II";
-        exécutable.FileName = nomDuFichierASEBAMASSLOADER;
-        exécutable.WorkingDirectory = Path.GetDirectoryName(nomDuFichierASEBAMASSLOADER);
+		exécutable.Arguments = "--aesl \"" + nomDuFichierAESL + "\" ser:name=Thymio-II";
+        exécutable.FileName = nomDuFichierASEBAHTTP;
+        exécutable.WorkingDirectory = Path.GetDirectoryName(nomDuFichierASEBAHTTP);
         exécutable.WindowStyle = ProcessWindowStyle.Hidden;
         exécutable.CreateNoWindow = true;
 		exécutable.RedirectStandardOutput = true;
@@ -1148,7 +1150,7 @@ public class	Compilateur {
 		processus = new Process();
 		processus.OutputDataReceived += new DataReceivedEventHandler(RedirectionDeLaConsole);
 		processus.ErrorDataReceived += new DataReceivedEventHandler(RedirectionDeLaConsole);	
-		processus.EnableRaisingEvents = true;
+		processus.EnableRaisingEvents = false;
 		processus.StartInfo = exécutable;
 		processus.Start();
 		processus.BeginOutputReadLine();
@@ -1156,8 +1158,12 @@ public class	Compilateur {
 
 		// Boucle de TimeOut de 10 secondes
 		for ( int i=0; i<10*2; i++ ) {
-			if ( !__transfertEnCours )
+			if ( !__transfertEnCours ) {
+				// Attends 4s, le temps que le transfert se termine.
+				// Temporisation à déterminer avec un Thymio Wireless
+				System.Threading.Thread.Sleep(4000);
 				break;
+			}
 			System.Threading.Thread.Sleep(500);
 		}
 		processus.Kill();
@@ -1177,9 +1183,9 @@ public class	Compilateur {
      * Si le texte contient la chaîne "loaded to target", c'est que le transfert est terminé.
      */
 	private	static	void	RedirectionDeLaConsole( object _sender, DataReceivedEventArgs _e ) {
-		//Console.Write( _e.Data );		
+		Console.Write( _e.Data );		
         if ( _e.Data != null ) 
-        	if ( _e.Data.IndexOf("loaded to target") != -1 )
+        	if ( _e.Data.IndexOf("Found Thymio-II on port") != -1 )
 				__transfertEnCours = false;
     }
 
