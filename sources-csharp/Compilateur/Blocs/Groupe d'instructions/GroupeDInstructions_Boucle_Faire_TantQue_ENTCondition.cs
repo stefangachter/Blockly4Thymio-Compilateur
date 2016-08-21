@@ -181,23 +181,27 @@ public class 	GroupeDInstructions_Boucle_Faire_TantQue_ENTCondition : __GroupeDe
 		if (Compilateur.afficherLesCommentaires)
 			code += "  # (UID " + __UID + " FIN) Instruction Blockly : " + __nomDansBlockly + "\n";
 
-		if ( __blocsInternes != null )
-			code +=	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + (__blocsInternes.premierBloc.UID+__blocsInternes.nombreDeSéquence) + " then\n" +
-					"    if " + __conditionDeBoucle + " then\n" +
-					"      __sequenceur[" + UIDDuSéquenceur + "]=" + (UID) + "\n" +
-					"    else\n" +
-					"      __sequenceur[" + UIDDuSéquenceur + "]=" + (UIDDuBlocSuivant) + "\n" +
-					"    end\n" +
-					"  end";
-		else
-			code +=	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + (UID+1) + " then\n" +
-					"    if " + __conditionDeBoucle + " then\n" +
-					"      __sequenceur[" + UIDDuSéquenceur + "]=" + (UID) + "\n" +
-					"    else\n" +
-					"      __sequenceur[" + UIDDuSéquenceur + "]=" + (UIDDuBlocSuivant) + "\n" +
-					"    end\n" +
-					"  end";
-
+		if ( __blocsInternes != null ) {
+			code +=		"  if __sequenceur[" + UIDDuSéquenceur + "]==" + (__blocsInternes.premierBloc.UID+__blocsInternes.nombreDeSéquence) + " then\n";
+			if ( __conditionDeBoucle.codeDInitialisationPourLeSéquenceur != "")
+				code += "    " + __conditionDeBoucle.codeDInitialisationPourLeSéquenceur + "\n";
+			code +=		"    if " + __conditionDeBoucle.codePourLeSéquenceur + " then\n" +
+						"      __sequenceur[" + UIDDuSéquenceur + "]=" + (UID) + "\n" +
+						"    else\n" +
+						"      __sequenceur[" + UIDDuSéquenceur + "]=" + (UIDDuBlocSuivant) + "\n" +
+						"    end\n" +
+						"  end";
+		} else {
+			code +=	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + (UID+1) + " then\n";
+			if ( __conditionDeBoucle.codeDInitialisationPourLeSéquenceur != "")
+				code += "    " + __conditionDeBoucle.codeDInitialisationPourLeSéquenceur + "\n";
+			code +=		"    if " + __conditionDeBoucle.codePourLeSéquenceur + " then\n" +
+						"      __sequenceur[" + UIDDuSéquenceur + "]=" + (UID) + "\n" +
+						"    else\n" +
+						"      __sequenceur[" + UIDDuSéquenceur + "]=" + (UIDDuBlocSuivant) + "\n" +
+						"    end\n" +
+						"  end";
+		}
 		
 		return code;
 	}

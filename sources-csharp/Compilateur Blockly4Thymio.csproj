@@ -10,7 +10,7 @@
     <RootNamespace>Blockly4Thymio</RootNamespace>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
-    <ReleaseVersion>0.8</ReleaseVersion>
+    <ReleaseVersion>0.8.1</ReleaseVersion>
     <Description>Compilateur du projet Blockly4Thymio.
 Transforme un fichiers .b4t en fichier .aesl puis le transmet à Thymio.</Description>
     <ApplicationIcon>icone.ico</ApplicationIcon>
@@ -32,7 +32,6 @@ Transforme un fichiers .b4t en fichier .aesl puis le transmet à Thymio.</Descri
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
-    <AssemblyName>Compilateur.0.8</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'WINDOWS-Release|x86' ">
     <Optimize>false</Optimize>
@@ -41,6 +40,7 @@ Transforme un fichiers .b4t en fichier .aesl puis le transmet à Thymio.</Descri
     <WarningLevel>4</WarningLevel>
     <RunCodeAnalysis>false</RunCodeAnalysis>
     <PlatformTarget>x86</PlatformTarget>
+    <AssemblyName>Compilateur.0.8.1</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'LINUX-Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
@@ -50,6 +50,7 @@ Transforme un fichiers .b4t en fichier .aesl puis le transmet à Thymio.</Descri
     <WarningLevel>4</WarningLevel>
     <RunCodeAnalysis>false</RunCodeAnalysis>
     <PlatformTarget>x86</PlatformTarget>
+    <AssemblyName>Compilateur.0.8</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'LINUX-Release|x86' ">
     <Optimize>false</Optimize>
@@ -58,6 +59,7 @@ Transforme un fichiers .b4t en fichier .aesl puis le transmet à Thymio.</Descri
     <WarningLevel>4</WarningLevel>
     <RunCodeAnalysis>false</RunCodeAnalysis>
     <PlatformTarget>x86</PlatformTarget>
+    <AssemblyName>Compilateur.0.8</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'WINDOWS-Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
@@ -68,6 +70,7 @@ Transforme un fichiers .b4t en fichier .aesl puis le transmet à Thymio.</Descri
     <RunCodeAnalysis>false</RunCodeAnalysis>
     <Commandlineparameters>"C:\Users\fort\Downloads\compilateur\programme.b4t"</Commandlineparameters>
     <PlatformTarget>x86</PlatformTarget>
+    <AssemblyName>Compilateur.0.8</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
