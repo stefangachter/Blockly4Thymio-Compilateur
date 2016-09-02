@@ -26,6 +26,8 @@ Suivi des versions
 
 ###Version 0.8.5
 
+* Nouvelle valeur : Température
+
 
 ###Version 0.8
 * Mise en place des variables

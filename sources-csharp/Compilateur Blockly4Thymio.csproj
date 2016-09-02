@@ -182,6 +182,7 @@ Transforme un fichiers .b4t en fichier .aesl puis le transmet à Thymio.</Descri
     <Compile Include="Compilateur\Blocs\Valeurs\Valeur_Booléen_ComparaisonNumériques_ENTEntier_SELComparaison_ENTEntier.cs" />
     <Compile Include="Compilateur\Blocs\Valeurs\Valeur_Entier_NombreAléatoireEntre0et7.cs" />
     <Compile Include="Compilateur\Blocs\Instructions\Instructions - Valeurs\Valeur_AfficheLaValeur_ENTEntier.cs" />
+    <Compile Include="Compilateur\Blocs\Valeurs\Valeur_Entier_Température.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
