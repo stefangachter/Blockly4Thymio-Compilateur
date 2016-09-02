@@ -24,6 +24,9 @@ Ces sources sont distribuées sous licence libre CeCILL-C V2.
 Suivi des versions
 ------------------
 
+###Version 0.8.5
+
+
 ###Version 0.8
 * Mise en place des variables
 * Nouvelle instruction : Nombre au hasard

@@ -89,7 +89,7 @@ static	class 	ProgrammePrincipal {
 		// Initialisations
 		// ---------------
 
-		Compilateur.version = "0.8.1";
+		Compilateur.version = "0.8.5";
 
 
 		// Nom du fichier programme.b4t à tester
