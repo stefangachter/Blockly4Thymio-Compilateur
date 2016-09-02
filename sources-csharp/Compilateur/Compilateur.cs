@@ -678,6 +678,10 @@ public class	Compilateur {
 			expression = new Valeur_Entier_OpérationNumériques_ENTEntier_SELComparaison_ENTEntier( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
 			break;
 
+		case "0_9_Valeur_Entier_Température" :
+			expression = new Valeur_Entier_Température( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
+			break;
+
 		#endregion
 
 
