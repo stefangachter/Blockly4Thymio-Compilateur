@@ -77,13 +77,13 @@ using 	System.Xml;
 
 
 namespace		Blockly4Thymio {
-public	class	Evénement_QuandUnOrdreArriveDeLaTélécommandeIR : __Evénement {
+public	class	Evénement_QuandLeChronomètreATerminéDeCompter : __Evénement {
 
 
 	/*
 	 * Constructeur
 	 */
-	public	Evénement_QuandUnOrdreArriveDeLaTélécommandeIR( XmlNode _XMLDuBloc ) : base( _XMLDuBloc ) { }
+	public	Evénement_QuandLeChronomètreATerminéDeCompter( XmlNode _XMLDuBloc ) : base( _XMLDuBloc ) { }
 
 	
 }

@@ -236,6 +236,10 @@ public class	Compilateur {
 			bloc = new Evénement_QuandUnCapteurAvantVoitUnObstacle( _XMLDuBloc );
 			break;
 
+		case "0_9_Evénement_QuandLeChronomètreATerminerDeCompter":
+			bloc = new Evénement_QuandLeChronomètreATerminéDeCompter( _XMLDuBloc );
+			break;
+
 		#endregion
 
 
@@ -899,7 +903,17 @@ public class	Compilateur {
                     codeSéquenceur += événementRacine.blocSuivant.codePourLeSéquenceur + "\n";
                 }
 
-            }
+			} else if	( événementRacine is Evénement_QuandLeChronomètreATerminéDeCompter ) {
+
+				// Evénement : Quand le chronomètre a terminer de compter
+                if ( événementRacine.blocSuivant != null ) {
+                    // Exécute l'instruction qui suit l'événement
+					if ( codeEvénementCapteurArrière != "" ) { codeEvénementCapteurArrière += "  "; }
+					codeEvénementCapteurArrière += "  __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + événementRacine.blocSuivant.UID;
+                    codeSéquenceur += événementRacine.blocSuivant.codePourLeSéquenceur + "\n";
+                }
+
+			}
 
         }
 
@@ -1040,6 +1054,10 @@ public class	Compilateur {
 				}
 				if ( bloc is Evénement_QuandUnCapteurArrièreVoitUnObstacle ) {
 					événementRacine = (Evénement_QuandUnCapteurArrièreVoitUnObstacle)bloc;
+					événementsRacines.Add( événementRacine );
+				}
+				if ( bloc is Evénement_QuandLeChronomètreATerminéDeCompter ) {
+					événementRacine = (Evénement_QuandLeChronomètreATerminéDeCompter)bloc;
 					événementsRacines.Add( événementRacine );
 				}
 			}
