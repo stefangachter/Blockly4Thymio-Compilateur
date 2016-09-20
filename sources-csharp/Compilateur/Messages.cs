@@ -100,7 +100,9 @@ public class 	Messages {
 		AIDE,
 		ENTÊTE,
 		BLOC_NON_TRAITÉ_DANS_CETTE_VERSION,
-		LA_VERSION_APPROPRIÉE_POUR_CE_BLOC
+		LA_VERSION_APPROPRIÉE_POUR_CE_BLOC,
+		CHRONOMÈTRE_INFÉRIEUR_À_1_SECONDE,
+		CHRONOMÈTRE_SUPÉRIEUR_À_6_SECONDES
 	}
 
 
@@ -174,6 +176,10 @@ public class 	Messages {
 
 		case (int)TYPE.LA_VERSION_APPROPRIÉE_POUR_CE_BLOC :			return	"\n\nLa version du compilateur la plus appropiée pour ce bloc est la version {0}";
 
+		case (int)TYPE.CHRONOMÈTRE_INFÉRIEUR_À_1_SECONDE :			return	"Le temps du chronomètre le plus petit est de 1 seconde.";
+
+		case (int)TYPE.CHRONOMÈTRE_SUPÉRIEUR_À_6_SECONDES :			return	"Le temps du chronomètre le plus grand est de 6 secondes.";
+		
 		}
 
 		throw new Exception( "Le message " + _numéro + " n'existe pas dans la liste des  messages." );

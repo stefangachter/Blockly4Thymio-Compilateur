@@ -240,6 +240,14 @@ public class	Compilateur {
 			bloc = new Evénement_QuandLeChronomètreATerminéDeCompter( _XMLDuBloc );
 			break;
 
+		case "0_9_Evénement_DémarrerLeChronomètre":
+			bloc = new Evénement_DémarrerLeChronomètre( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
+			break;
+
+		case "0_9_Evénement_ArrêterLeChronomètre":
+			bloc = new Evénement_ArrêterLeChronomètre( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
+			break;
+
 		#endregion
 
 
@@ -429,14 +437,18 @@ public class	Compilateur {
 
 		#region Instructions - Paramètres
 
-		case "0_4_Paramètre_CalibreLesMoteurs_SAIValeur" :
+		case "0_4_Paramètre_CalibreLesMoteurs_SAIValeur":
 			bloc = new Paramètre_CalibreLesMoteurs_SAIValeur( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
 			break;
 
 		// Paramètres - version 0.5
 		// ------------------------
-		case "0_5_Paramètre_LAdresseDeLaTélécommandeEst_SAIAdresse" :
+		case "0_5_Paramètre_LAdresseDeLaTélécommandeEst_SAIAdresse":
 			bloc = new Paramètre_LAdresseDeLaTélécommandeEst_SAIValeur( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
+			break;
+
+		case "0_9_Paramètre_InitialiseLeChronomètre_SAIValeur":
+			bloc = new Paramètre_InitialiseLeChronomètre_SAIValeur( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
 			break;
 
 		#endregion
@@ -812,6 +824,7 @@ public class	Compilateur {
 		String			codeEvénementCapteurArrière;
 		String			codeEvénementCapteurAvant;
 		String			codeEvénementBoutonFlèche;
+		String			codeEvénementChronomètre;
         String			codeEvénementCommandeIR;
 		String			codeEvénementLancementDuProgramme;        
         String			codePourLeSéquenceur;
@@ -826,6 +839,7 @@ public class	Compilateur {
 		codeEvénementCapteur = "";
 		codeEvénementCapteurArrière = "";
 		codeEvénementCapteurAvant = "";
+		codeEvénementChronomètre = "";
 		codeEvénementBoutonFlèche = "";
 		codeEvénementCommandeIR = "";
         codeEvénementLancementDuProgramme = "";
@@ -908,8 +922,8 @@ public class	Compilateur {
 				// Evénement : Quand le chronomètre a terminer de compter
                 if ( événementRacine.blocSuivant != null ) {
                     // Exécute l'instruction qui suit l'événement
-					if ( codeEvénementCapteurArrière != "" ) { codeEvénementCapteurArrière += "  "; }
-					codeEvénementCapteurArrière += "  __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + événementRacine.blocSuivant.UID;
+					if ( codeEvénementChronomètre != "" ) { codeEvénementChronomètre += "  "; }
+					codeEvénementChronomètre += "  __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + événementRacine.blocSuivant.UID;
                     codeSéquenceur += événementRacine.blocSuivant.codePourLeSéquenceur + "\n";
                 }
 
@@ -945,7 +959,7 @@ public class	Compilateur {
 		framework = framework.Replace("### EVENEMENT COMMANDE INFRAROUGE ###", codeEvénementCommandeIR );
 
 		if( codeEvénementBoutonFlèche != "" )
-		  codeEvénementBoutonFlèche = "  when button.forward==1 or button.backward==1 or button.left==1 or button.right==1 do\n  " + codeEvénementBoutonFlèche + "\n    __etat = ETAT_EN_MARCHE\n  end";
+			codeEvénementBoutonFlèche = "  when button.forward==1 or button.backward==1 or button.left==1 or button.right==1 do\n  " + codeEvénementBoutonFlèche + "\n    __etat = ETAT_EN_MARCHE\n  end";
 		framework = framework.Replace("### EVENEMENT BOUTON FLECHE ###", codeEvénementBoutonFlèche );
 
 		if( codeEvénementCapteurAvant != "" )
@@ -955,7 +969,12 @@ public class	Compilateur {
 				codeEvénementCapteur += "\n";
 			codeEvénementCapteur = "  if prox.horizontal[5]!=0 or prox.horizontal[6]!=0 then\n  " + codeEvénementCapteurArrière + "\n    __etat = ETAT_EN_MARCHE\n  end";
 		}
+
 		framework = framework.Replace("### EVENEMENT CAPTEUR DISTANCE ###", codeEvénementCapteur );
+
+		if( codeEvénementChronomètre != "" )
+			codeEvénementChronomètre += "  " + "__etat = ETAT_EN_MARCHE\n";
+		framework = framework.Replace("### EVENEMENT CHRONOMETRE ###", codeEvénementChronomètre );
 		
 		// Met en place le code du séquenceur
 		framework = framework.Replace( "### SEQUENCEUR ###", codeSéquenceur );

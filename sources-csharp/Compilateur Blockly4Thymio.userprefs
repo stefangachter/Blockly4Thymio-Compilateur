@@ -1,14 +1,6 @@
 ﻿<Properties StartupItem="Compilateur Blockly4Thymio.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="WINDOWS-Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Compilateur\Compilateur.cs">
-    <Files>
-      <File FileName="Compilateur\Blocs\Evénements\Evénement_QuandLeChronomètreATerminéDeCompter.cs" Line="79" Column="12" />
-      <File FileName="Compilateur\Blocs\Evénements\Evénement_QuandLeProgrammeCommence.cs" Line="79" Column="12" />
-      <File FileName="Compilateur\Blocs\Evénements\Evénement_QuandUnBoutonFlècheEstAppuyé.cs" Line="81" Column="14" />
-      <File FileName="Compilateur\Compilateur.cs" Line="235" Column="13" />
-      <File FileName="Compilateur\Blocs\Evénements\Evénement_QuandUnCapteurAvantVoitUnObstacle.cs" Line="86" Column="9" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

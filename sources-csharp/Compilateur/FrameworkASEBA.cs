@@ -112,12 +112,13 @@ public class FrameworkASEBA {
 # DECLARATION DES VARIABLES GLOBALES
 # ----------------------------------
 
-var __etat
+var __chronomètre = 1000
 var __coeurQuiBat = 0
+var __compteur
+var __etat
 var __lectureDUnSon = 0
 var __temp
 var __variableAAfficher
-var __compteur
 
 # Variable pour les nombres aléatoires
 var __nombreAleatoire
@@ -147,9 +148,8 @@ rc5.address = 0
 rc5.command = 0
 # Initialise le(s) séquenceur(s)
 ### ETAT AU LANCEMENT ###
-# Initialise le Timer sur 10ms (100Hz)
+# Initialise le timer du séquenceur sur 10ms (100Hz)
 timer.period[0] = FREQUENCE_TIMER
-
 
 
 # ---------------------------
@@ -231,6 +231,10 @@ sub __Sequenceur
 # ---------------------------
 # DECLARATIONS DES EVENEMENTS
 # ---------------------------
+
+onevent timer1
+### EVENEMENT CHRONOMETRE ###
+
 
 onevent buttons
 ### EVENEMENT BOUTON FLECHE ###
