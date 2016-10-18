@@ -157,7 +157,7 @@ public	class	Paramètre_InitialiseLeChronomètre_SAIValeur : __Bloc {
 
 		return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n" +
 				"    __chronomètre=" + chronomètre*1000 + "\n" +
-				"    __sequenceur[" + UIDDuSéquenceur + "]=" + (UID + 1) + "\n" +
+				"    __sequenceur[" + UIDDuSéquenceur + "]=" + UIDDuBlocSuivant + "\n" +
 				"  end";
 		
 	}

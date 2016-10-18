@@ -160,6 +160,7 @@ timer.period[0] = FREQUENCE_TIMER
 sub __AllumeLeCercleDeLEDs
   call leds.circle(__led.cercle[0],__led.cercle[1],__led.cercle[2],__led.cercle[3],__led.cercle[4],__led.cercle[5],__led.cercle[6],__led.cercle[7])
 
+
 # Eteins toutes les LEDs du cercle
 sub __EteinsLeCercleDeLEDs
   __led.cercle[0]=0
@@ -172,6 +173,7 @@ sub __EteinsLeCercleDeLEDs
   __led.cercle[7]=0
   callsub __AllumeLeCercleDeLEDs
 
+
 # Affiche une variable sur le cercle de LEDs
 sub AfficheUneVariable
   callsub __EteinsLeCercleDeLEDs
@@ -183,6 +185,7 @@ sub AfficheUneVariable
     end
     callsub __AllumeLeCercleDeLEDs
   end
+
 
 # Allume toutes les LEDs (bottom.left, bottom.right et top)
 sub	__AllumeLesLEDs
@@ -254,6 +257,7 @@ onevent button.center
       # Relance le programme
       callsub __ExecuteLeProgramme
     else
+	  timer.period[1]=0					# Arrête le chronomètre (si celui-ci a été lancé)
 	  __etat = ETAT_ARRET
     end
   end

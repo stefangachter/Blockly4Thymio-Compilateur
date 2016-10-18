@@ -106,7 +106,7 @@ public	class	Evénement_ArrêterLeChronomètre : __Bloc {
 
 		return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n" +
 				"    timer.period[1]=0\n" +
-				"    __sequenceur[" + UIDDuSéquenceur + "]=" + (UID + 1) + "\n" +
+				"    __sequenceur[" + UIDDuSéquenceur + "]=" + UIDDuBlocSuivant + "\n" +
 				"  end";
 		
 	}

@@ -236,7 +236,7 @@ public class	Compilateur {
 			bloc = new Evénement_QuandUnCapteurAvantVoitUnObstacle( _XMLDuBloc );
 			break;
 
-		case "0_9_Evénement_QuandLeChronomètreATerminerDeCompter":
+		case "0_9_Evénement_QuandLeChronomètreATerminéDeCompter":
 			bloc = new Evénement_QuandLeChronomètreATerminéDeCompter( _XMLDuBloc );
 			break;
 
@@ -955,7 +955,7 @@ public class	Compilateur {
         framework = framework.Replace( "### EVENEMENT AU LANCEMENT ###", codeEvénementLancementDuProgramme );
 
         if ( codeEvénementCommandeIR != "" )
-			codeEvénementCommandeIR += "  \n__etat = ETAT_EN_MARCHE";
+			codeEvénementCommandeIR += "\n  __etat = ETAT_EN_MARCHE";
 		framework = framework.Replace("### EVENEMENT COMMANDE INFRAROUGE ###", codeEvénementCommandeIR );
 
 		if( codeEvénementBoutonFlèche != "" )
@@ -973,7 +973,7 @@ public class	Compilateur {
 		framework = framework.Replace("### EVENEMENT CAPTEUR DISTANCE ###", codeEvénementCapteur );
 
 		if( codeEvénementChronomètre != "" )
-			codeEvénementChronomètre += "  " + "__etat = ETAT_EN_MARCHE\n";
+			codeEvénementChronomètre += "\n  " + "__etat = ETAT_EN_MARCHE\n";
 		framework = framework.Replace("### EVENEMENT CHRONOMETRE ###", codeEvénementChronomètre );
 		
 		// Met en place le code du séquenceur
