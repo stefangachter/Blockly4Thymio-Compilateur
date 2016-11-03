@@ -27,6 +27,7 @@ Suivi des versions
 ###Version 0.9
 
 * Nouvelle valeur : Température
+* Nouvel événement : Chronomètre
 
 
 ###Version 0.8

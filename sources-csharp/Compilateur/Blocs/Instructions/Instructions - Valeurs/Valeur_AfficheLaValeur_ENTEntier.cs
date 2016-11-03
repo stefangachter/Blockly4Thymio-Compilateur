@@ -85,9 +85,8 @@ using 	System.Xml;
 namespace 		Blockly4Thymio {
 public 	class 	Valeur_AfficheLaValeur_ENTEntier : __Bloc {
 
-
-	String		__nom;
-
+	// Déclarations
+	// ------------
 	__Valeur	__expression;
 
 
