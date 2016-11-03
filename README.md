@@ -24,6 +24,10 @@ Ces sources sont distribuées sous licence libre CeCILL-C V2.
 Suivi des versions
 ------------------
 
+###Version 1.0
+
+
+
 ###Version 0.9
 
 * Nouvelle valeur : Température
