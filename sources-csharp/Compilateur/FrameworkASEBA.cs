@@ -175,7 +175,7 @@ sub __EteinsLeCercleDeLEDs
 
 
 # Affiche une variable sur le cercle de LEDs
-sub AfficheUneVariable
+sub __AfficheUneVariable
   callsub __EteinsLeCercleDeLEDs
   if __variableAAfficher>0 and __variableAAfficher&lt;=8 then
     __compteur=0

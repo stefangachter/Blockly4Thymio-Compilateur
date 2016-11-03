@@ -146,7 +146,7 @@ public 	class 	Valeur_AfficheLaValeur_ENTEntier : __Bloc {
 		if (__expression.codeDInitialisationPourLeSéquenceur != "" )
 			code +=	"    " + __expression.codeDInitialisationPourLeSéquenceur + "\n";
 			code +=	"    __variableAAfficher=" + __expression.codePourLeSéquenceur + "\n" +
-					"    callsub AfficheUneVariable\n" +
+					"    callsub __AfficheUneVariable\n" +
 					"    __sequenceur[" + UIDDuSéquenceur + "]=" + UIDDuBlocSuivant + "\n" +
 					"  end";
 

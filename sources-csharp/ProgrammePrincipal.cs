@@ -89,7 +89,7 @@ static	class 	ProgrammePrincipal {
 		// Initialisations
 		// ---------------
 
-		Compilateur.version = "0.9";
+		Compilateur.version = "1.0";
 
 
 		// Nom du fichier programme.b4t à tester
@@ -110,6 +110,7 @@ static	class 	ProgrammePrincipal {
 
 
 		// Affichage des commentaires dans le fichier .aesl
+		// ------------------------------------------------
 		#if (DEBUG)
 		Compilateur.afficherLesCommentaires = true;
 		#else
@@ -126,17 +127,20 @@ static	class 	ProgrammePrincipal {
 
 
 		// Affichage des messages d'erreur
+		// -------------------------------
 		Compilateur.afficheLesMessagesDErreur = true;
 
 
 		// Arrête le robot si tous les séquenceurs sont terminés
 		// -----------------------------------------------------
 		Compilateur.arrêtDuRobotALaFinDesSéquenceurs = true;
-		
 
+
+		// Optimisation du code Aseba généré
+		// ---------------------------------
 		#if (DEBUG)
 		Compilateur.optimisationDuSéquenceur = true;
-		Compilateur.optimisationDuSéquenceur = false;
+		//Compilateur.optimisationDuSéquenceur = false;
 		#else
 		Compilateur.optimisationDuSéquenceur = true;
 		#endif
@@ -156,7 +160,7 @@ static	class 	ProgrammePrincipal {
 		// Emplacement de programme de transfert asebahttp.exe
 		// ---------------------------------------------------
 		#if (DEBUG && WINDOWS)
-		Compilateur.nomDuFichierASEBAHTTP = @"C:\Blockly4Thymio.v0.8.1\asebahttp\asebahttp.exe";
+		Compilateur.nomDuFichierASEBAHTTP = @"C:\Blockly4Thymio.v0.9\asebahttp\asebahttp.exe";
 		#endif
 		#if (!DEBUG && WINDOWS)
 		Compilateur.nomDuFichierASEBAHTTP =  Path.GetDirectoryName(Application.ExecutablePath) + @"\asebahttp\asebahttp.exe";

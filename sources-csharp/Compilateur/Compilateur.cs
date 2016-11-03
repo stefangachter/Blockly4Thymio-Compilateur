@@ -1109,7 +1109,7 @@ public class	Compilateur {
 			return _code;
 
 		// Tri les sauts de séquence par ordre décroissant (pour les traiter des derniers aux premiers)
-		//sautsDeSéquence.Sort( delegate (__SautDeSéquence _ss1, __SautDeSéquence _ss2) { return _ss2.séquenceDeDépart-_ss1.séquenceDeDépart; } );
+		sautsDeSéquence.Sort( delegate (__SautDeSéquence _ss1, __SautDeSéquence _ss2) { return _ss2.séquenceDeDépart-_ss1.séquenceDeDépart; } );
 
 		foreach ( __SautDeSéquence sautDeSéquence in sautsDeSéquence ) {
 			
