@@ -250,7 +250,11 @@ public class	Compilateur {
 		case "1_0_Evénement_QuandUnChocEstDétecté":
 			bloc = new Evénement_QuandUnChocEstDétecté( _XMLDuBloc );
 			break;
-		
+
+		case "1_0_Evénement_QuandUnSonEstDétecté":
+			bloc = new Evénement_QuandUnSonEstDétecté( _XMLDuBloc );
+			break;
+
 		#endregion
 
 
@@ -827,10 +831,11 @@ public class	Compilateur {
 		String			codeEvénementCapteurArrière;
 		String			codeEvénementCapteurAvant;
 		String			codeEvénementChoc;
-		String			codeEvénementBoutonFlèche;
 		String			codeEvénementChronomètre;
-        String			codeEvénementCommandeIR;
-		String			codeEvénementLancementDuProgramme;        
+		String			codeEvénementCommandeIR;
+		String			codeEvénementBoutonFlèche;
+		String			codeEvénementLancementDuProgramme;
+		String			codeEvénementSon;
         String			codePourLeSéquenceur;
         String			codeSéquenceur;
         String			framework;
@@ -839,16 +844,18 @@ public class	Compilateur {
         /*
 		 * Initialisations
 		 */
-        codeDéclarationDesVariables = "";
-		codeEvénementCapteur = "";
-		codeEvénementCapteurArrière = "";
-		codeEvénementCapteurAvant = "";
-		codeEvénementChronomètre = "";
-		codeEvénementChoc = "";
-		codeEvénementBoutonFlèche = "";
-		codeEvénementCommandeIR = "";
-        codeEvénementLancementDuProgramme = "";
-        codeSéquenceur = "";
+        codeDéclarationDesVariables			= "";
+		codeEvénementCapteur				= "";
+		codeEvénementCapteurArrière			= "";
+		codeEvénementCapteurAvant			= "";
+		codeEvénementChoc					= "";
+		codeEvénementChronomètre			= "";
+		codeEvénementCommandeIR				= "";
+		codeEvénementBoutonFlèche			= "";
+        codeEvénementLancementDuProgramme	= "";
+		codeEvénementSon					= "";
+        codeSéquenceur						= "";
+
         framework = FrameworkASEBA.version_0_2_1();
 		framework = framework.Replace( "### VERSION ###", version );
 
@@ -942,6 +949,16 @@ public class	Compilateur {
                     codeSéquenceur += événementRacine.blocSuivant.codePourLeSéquenceur + "\n";
                 }
 
+			} else if	( événementRacine is Evénement_QuandUnSonEstDétecté ) {
+
+				// Evénement : Quand un son est détecté
+                if ( événementRacine.blocSuivant != null ) {
+                    // Exécute l'instruction qui suit l'événement
+					if ( codeEvénementSon != "" ) { codeEvénementSon += "  "; }
+					codeEvénementSon += "  __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + événementRacine.blocSuivant.UID;
+                    codeSéquenceur += événementRacine.blocSuivant.codePourLeSéquenceur + "\n";
+                }
+
 			}
 
         }
@@ -994,6 +1011,11 @@ public class	Compilateur {
 		if ( codeEvénementChoc!= "" )
 			codeEvénementChoc += "\n  __etat = ETAT_EN_MARCHE";
 		framework = framework.Replace( "### EVENEMENT CHOC ###", codeEvénementChoc );
+
+
+		if ( codeEvénementSon!= "" )
+			codeEvénementSon += "\n  __etat = ETAT_EN_MARCHE";
+		framework = framework.Replace( "### EVENEMENT SON ###", codeEvénementSon );
 
 
 		if( codeEvénementChronomètre != "" )
@@ -1106,6 +1128,10 @@ public class	Compilateur {
 				}
 				if ( bloc is Evénement_QuandUnChocEstDétecté ) {
 					événementRacine = (Evénement_QuandUnChocEstDétecté)bloc;
+					événementsRacines.Add( événementRacine );
+				}
+				if ( bloc is Evénement_QuandUnSonEstDétecté ) {
+					événementRacine = (Evénement_QuandUnSonEstDétecté)bloc;
 					événementsRacines.Add( événementRacine );
 				}
 			}

@@ -150,6 +150,8 @@ rc5.command = 0
 ### ETAT AU LANCEMENT ###
 # Initialise le timer du séquenceur sur 10ms (100Hz)
 timer.period[0] = FREQUENCE_TIMER
+# Initialise la sensibilité du micro
+mic.threshold = 250
 
 
 # ---------------------------
@@ -249,6 +251,10 @@ onevent prox
 
 onevent tap
 ### EVENEMENT CHOC ###
+
+
+onevent mic
+### EVENEMENT SON ###
 
 
 # Avec le bouton central, l'utilisateur lance ou arrête le programme
