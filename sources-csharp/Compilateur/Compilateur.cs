@@ -122,8 +122,7 @@ public class	Compilateur {
 
 	public	static	List<__Evénement>		événementsRacines;
 
-	public	static	List<__SautDeSéquence>	sautsDeSéquence;
-	
+
 	private	static	bool					__transfertEnCours;
 
 	private	static	FEN_Principale			__fenêtrePrincipal;
@@ -767,7 +766,7 @@ public class	Compilateur {
 		#endif
 
         événementsRacines = new List<__Evénement>();
-        sautsDeSéquence = new List<__SautDeSéquence>();
+        //sautsDeSéquence = new List<__SautDeSéquence>();
 
 
         /*
@@ -1099,36 +1098,84 @@ public class	Compilateur {
 
     /// <summary>
     /// Optimise le code du séquenceur, en supprimant les instructions "Saute mouton"
+	/// 
+	/// boucle
+	/// 	lister les "saute mouton" dont la source est > 1
+	/// 	si il y a pas de "saute mouton"
+	/// 		sortir de la boucle
+	/// 	fin
+	/// 	prendre dernier "saute mouton"
+	/// 	Optimisation()
+	/// fin
     /// </summary>
 	public	static	String	OptimiseLeSéquenceur( String _code ) {
 
-		String	codeAChercher;
+		String					codeAChercher;
+		String					séquenceDArrivée;
+		String					séquenceDeDépart;
+		String					UIDDuSéquenceur;
 
-		// Il n'y a pas de saut de séquence, donc il n'y a pas d'optimisation à faire
-		if ( sautsDeSéquence.Count == 0 )
-			return _code;
+		List<__SautDeSéquence>	sautsDeSéquence;
 
-		// Tri les sauts de séquence par ordre décroissant (pour les traiter des derniers aux premiers)
-		sautsDeSéquence.Sort( delegate (__SautDeSéquence _ss1, __SautDeSéquence _ss2) { return _ss2.séquenceDeDépart-_ss1.séquenceDeDépart; } );
+		MatchCollection			matchSautsDeSéquence;
 
-		foreach ( __SautDeSéquence sautDeSéquence in sautsDeSéquence ) {
-			
-			if ( sautDeSéquence.séquenceDeDépart != 1) {
-				// Recompose la chaine de la séquence de saut
-				codeAChercher = Compilateur.CréeLeCodeDeSautDeSéquence( sautDeSéquence.UIDDuséquenceur, sautDeSéquence.séquenceDeDépart, sautDeSéquence.séquenceDArrivée );
+		Regex					regexSéquenceDeDépart	= new Regex( @"==[0-9]+" );																		// Trouve les séquences du type : ==7 dans la séquence précédente
+		Regex					regexSéquenceDArrivée	= new Regex( @"\]=[0-9]+" );																	// Trouver les séquences du type : ]=1 dans la séquance précédente
+		Regex					regexSautDeSéquence		= new Regex( @"\sif\s__sequenceur\[[0-9]+\]==[0-9]+\sthen\s__sequenceur\[[0-9]+\]=[0-9]+" );	// Trouve les séquences du type : if __sequenceur[0]==7 then __sequenceur[0]=1 end
+		Regex					regexUIDDuSéquenceur	= new Regex( @"\[[0-9]+\]" );																	// Trouve les séquences du type : [0]
 
-				// Efface cette séquence de saut
-				//_code = _code.Replace( codeAChercher, "# " + codeAChercher );
-				_code = _code.Replace( codeAChercher, "" );
+		__SautDeSéquence		sautDeSéquence;
 
-				// Remplace la séquence d'arrivée de ce saut dans le reste du code
-				codeAChercher = "__sequenceur[" + sautDeSéquence.UIDDuséquenceur + "]=" + sautDeSéquence.séquenceDeDépart;
-				_code = _code.Replace( codeAChercher, "__sequenceur[" + sautDeSéquence.UIDDuséquenceur + "]=" + sautDeSéquence.séquenceDArrivée );
+
+		do {
+
+			matchSautsDeSéquence = regexSautDeSéquence.Matches( _code );
+			if ( matchSautsDeSéquence.Count == 0) {
+				// Il n'y a pas de saut de séquence
+				return _code;
 			}
 
-		}
+			// Crée la liste des sauts de séquence dont la séquence de départ > 1
+			sautsDeSéquence = new List<__SautDeSéquence>();
+			foreach ( Match matchSautDeSéquence in matchSautsDeSéquence ) {
+				// Numéro de la séquence de départ
+				séquenceDeDépart = regexSéquenceDeDépart.Match( matchSautDeSéquence.Value ).Value.Substring( 2 );
+				// Le numéro de la séquance de départ est 1, il n'y a pas d'optimisation à faire pour cette ligne,
+				// on passe au saut de ligne suivant.
+				if ( séquenceDeDépart == "1" )
+					continue;
+				// Numéro de la séquence de fin
+				séquenceDArrivée = regexSéquenceDArrivée.Match( matchSautDeSéquence.Value ).Value.Substring( 2 );
+				// Numéro du séquenceur
+				UIDDuSéquenceur = regexUIDDuSéquenceur.Match( matchSautDeSéquence.Value ).Value.Substring( 1 );
+				UIDDuSéquenceur = UIDDuSéquenceur.Substring( 0, UIDDuSéquenceur.Length-1 );
+				//Console.WriteLine( matchSautDeSéquence.Value + " " + séquenceur );
+				sautDeSéquence = new __SautDeSéquence( int.Parse(UIDDuSéquenceur), int.Parse(séquenceDeDépart), int.Parse(séquenceDArrivée) );
+				sautsDeSéquence.Add( sautDeSéquence );
+	  		}
 
-		return _code;
+
+			// Il n'y a pas de saut de séquence, donc il n'y a pas d'optimisation à faire
+			if ( sautsDeSéquence.Count == 0 )
+				return _code;
+
+
+			// Prend le dernier saut de séquence
+			sautDeSéquence = sautsDeSéquence[sautsDeSéquence.Count-1];
+
+			// Recompose la chaine de la séquence de saut
+			codeAChercher = Compilateur.CréeLeCodeDeSautDeSéquence( sautDeSéquence.UIDDuséquenceur, sautDeSéquence.séquenceDeDépart, sautDeSéquence.séquenceDArrivée );
+
+			// Efface cette séquence de saut
+			//_code = _code.Replace( codeAChercher, "# " + codeAChercher );
+			_code = _code.Replace( codeAChercher, "" );
+
+			// Remplace la séquence d'arrivée de ce saut dans le reste du code
+			codeAChercher = "__sequenceur[" + sautDeSéquence.UIDDuséquenceur + "]=" + sautDeSéquence.séquenceDeDépart;
+			_code = _code.Replace( codeAChercher, "__sequenceur[" + sautDeSéquence.UIDDuséquenceur + "]=" + sautDeSéquence.séquenceDArrivée );
+
+		} while (true);
+
     }
 
 
@@ -1233,7 +1280,7 @@ public class	Compilateur {
 
 	public	static	String	codeSauteSéquence( int _UIDDuSéquenceur, int _séquenceDeDépart, int _séquenceDArrivée ) {
 
-		Compilateur.sautsDeSéquence.Add( new __SautDeSéquence( _UIDDuSéquenceur, _séquenceDeDépart, _séquenceDArrivée ) );
+		//Compilateur.sautsDeSéquence.Add( new __SautDeSéquence( _UIDDuSéquenceur, _séquenceDeDépart, _séquenceDArrivée ) );
 
 		return	CréeLeCodeDeSautDeSéquence( _UIDDuSéquenceur, _séquenceDeDépart, _séquenceDArrivée );
 		
