@@ -187,6 +187,7 @@ Transforme un fichiers .b4t en fichier .aesl puis le transmet à Thymio.</Descri
     <Compile Include="Compilateur\Blocs\Evénements\Evénement_DémarrerLeChronomètre.cs" />
     <Compile Include="Compilateur\Blocs\Evénements\Evénement_ArrêterLeChronomètre.cs" />
     <Compile Include="Compilateur\Blocs\Paramètres\Paramètre_InitialiseLeChronomètre_SAIValeur.cs" />
+    <Compile Include="Compilateur\Blocs\Evénements\Evénement_QuandUnChocEstDétecté.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

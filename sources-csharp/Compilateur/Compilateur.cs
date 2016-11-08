@@ -247,6 +247,10 @@ public class	Compilateur {
 			bloc = new Evénement_ArrêterLeChronomètre( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
 			break;
 
+		case "1_0_Evénement_QuandUnChocEstDétecté":
+			bloc = new Evénement_QuandUnChocEstDétecté( _XMLDuBloc );
+			break;
+		
 		#endregion
 
 
@@ -822,6 +826,7 @@ public class	Compilateur {
 		String			codeEvénementCapteur;
 		String			codeEvénementCapteurArrière;
 		String			codeEvénementCapteurAvant;
+		String			codeEvénementChoc;
 		String			codeEvénementBoutonFlèche;
 		String			codeEvénementChronomètre;
         String			codeEvénementCommandeIR;
@@ -839,6 +844,7 @@ public class	Compilateur {
 		codeEvénementCapteurArrière = "";
 		codeEvénementCapteurAvant = "";
 		codeEvénementChronomètre = "";
+		codeEvénementChoc = "";
 		codeEvénementBoutonFlèche = "";
 		codeEvénementCommandeIR = "";
         codeEvénementLancementDuProgramme = "";
@@ -926,6 +932,16 @@ public class	Compilateur {
                     codeSéquenceur += événementRacine.blocSuivant.codePourLeSéquenceur + "\n";
                 }
 
+			} else if	( événementRacine is Evénement_QuandUnChocEstDétecté ) {
+
+				// Evénement : Quand un choc est détecté
+                if ( événementRacine.blocSuivant != null ) {
+                    // Exécute l'instruction qui suit l'événement
+					if ( codeEvénementChoc != "" ) { codeEvénementChoc += "  "; }
+					codeEvénementChoc += "  __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + événementRacine.blocSuivant.UID;
+                    codeSéquenceur += événementRacine.blocSuivant.codePourLeSéquenceur + "\n";
+                }
+
 			}
 
         }
@@ -951,15 +967,19 @@ public class	Compilateur {
         // Remplace les sections définis par des marqueurs par le code correspondant
         framework = framework.Replace( "### VARIABLES ###", codeDéclarationDesVariables );
 
+
         framework = framework.Replace( "### EVENEMENT AU LANCEMENT ###", codeEvénementLancementDuProgramme );
+
 
         if ( codeEvénementCommandeIR != "" )
 			codeEvénementCommandeIR += "\n  __etat = ETAT_EN_MARCHE";
-		framework = framework.Replace("### EVENEMENT COMMANDE INFRAROUGE ###", codeEvénementCommandeIR );
+		framework = framework.Replace( "### EVENEMENT COMMANDE INFRAROUGE ###", codeEvénementCommandeIR );
+
 
 		if( codeEvénementBoutonFlèche != "" )
 			codeEvénementBoutonFlèche = "  when button.forward==1 or button.backward==1 or button.left==1 or button.right==1 do\n  " + codeEvénementBoutonFlèche + "\n    __etat = ETAT_EN_MARCHE\n  end";
-		framework = framework.Replace("### EVENEMENT BOUTON FLECHE ###", codeEvénementBoutonFlèche );
+		framework = framework.Replace( "### EVENEMENT BOUTON FLECHE ###", codeEvénementBoutonFlèche );
+
 
 		if( codeEvénementCapteurAvant != "" )
 			codeEvénementCapteur = "  if prox.horizontal[0]!=0 or prox.horizontal[1]!=0 or prox.horizontal[2]!=0 or prox.horizontal[3]!=0 or prox.horizontal[4]!=0 then\n  " + codeEvénementCapteurAvant + "\n    __etat = ETAT_EN_MARCHE\n  end";
@@ -968,21 +988,27 @@ public class	Compilateur {
 				codeEvénementCapteur += "\n";
 			codeEvénementCapteur = "  if prox.horizontal[5]!=0 or prox.horizontal[6]!=0 then\n  " + codeEvénementCapteurArrière + "\n    __etat = ETAT_EN_MARCHE\n  end";
 		}
+		framework = framework.Replace( "### EVENEMENT CAPTEUR DISTANCE ###", codeEvénementCapteur );
 
-		framework = framework.Replace("### EVENEMENT CAPTEUR DISTANCE ###", codeEvénementCapteur );
+
+		if ( codeEvénementChoc!= "" )
+			codeEvénementChoc += "\n  __etat = ETAT_EN_MARCHE";
+		framework = framework.Replace( "### EVENEMENT CHOC ###", codeEvénementChoc );
+
 
 		if( codeEvénementChronomètre != "" )
 			codeEvénementChronomètre += "\n  " + "__etat = ETAT_EN_MARCHE\n";
-		framework = framework.Replace("### EVENEMENT CHRONOMETRE ###", codeEvénementChronomètre );
-		
+		framework = framework.Replace( "### EVENEMENT CHRONOMETRE ###", codeEvénementChronomètre );
+
+
 		// Met en place le code du séquenceur
 		framework = framework.Replace( "### SEQUENCEUR ###", codeSéquenceur );
 
         // Définie le mode de lancement du programme auto ou manuel
         if ( lancementAutomatique ) {
-            framework = framework.Replace("### ETAT AU LANCEMENT ###", codeEvénementLancementDuProgramme + "\n__etat=ETAT_EN_MARCHE");
+            framework = framework.Replace( "### ETAT AU LANCEMENT ###", codeEvénementLancementDuProgramme + "\n__etat=ETAT_EN_MARCHE");
         } else {
-            framework = framework.Replace("### ETAT AU LANCEMENT ###", codeEvénementLancementDuProgramme + "\n__etat=ETAT_ARRET");
+            framework = framework.Replace( "### ETAT AU LANCEMENT ###", codeEvénementLancementDuProgramme + "\n__etat=ETAT_ARRET");
         }
 
 
@@ -1076,6 +1102,10 @@ public class	Compilateur {
 				}
 				if ( bloc is Evénement_QuandLeChronomètreATerminéDeCompter ) {
 					événementRacine = (Evénement_QuandLeChronomètreATerminéDeCompter)bloc;
+					événementsRacines.Add( événementRacine );
+				}
+				if ( bloc is Evénement_QuandUnChocEstDétecté ) {
+					événementRacine = (Evénement_QuandUnChocEstDétecté)bloc;
 					événementsRacines.Add( événementRacine );
 				}
 			}

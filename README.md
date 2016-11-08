@@ -26,6 +26,8 @@ Suivi des versions
 
 ###Version 1.0
 
+* Amélioration de l'optimisation du code Aseba
+* Nouvel événement : Quand un choc est détecté
 
 
 ###Version 0.9

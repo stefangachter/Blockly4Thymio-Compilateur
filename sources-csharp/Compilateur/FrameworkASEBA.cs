@@ -247,6 +247,10 @@ onevent prox
 ### EVENEMENT CAPTEUR DISTANCE ###
 
 
+onevent tap
+### EVENEMENT CHOC ###
+
+
 # Avec le bouton central, l'utilisateur lance ou arrête le programme
 # ------------------------------------------------------------------
 onevent button.center
