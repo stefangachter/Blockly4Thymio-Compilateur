@@ -227,7 +227,7 @@ public class	Compilateur {
 			bloc = new Evénement_QuandUnOrdreArriveDeLaTélécommandeIR( _XMLDuBloc );
 			break;
 
-		case "0_5_Evénment_QuandUnCapteurArrièreVoitUnObstacle":
+		case "0_5_Evénement_QuandUnCapteurArrièreVoitUnObstacle":
 			bloc = new Evénement_QuandUnCapteurArrièreVoitUnObstacle( _XMLDuBloc );
 			break;
 
@@ -919,7 +919,7 @@ public class	Compilateur {
                     codeSéquenceur += événementRacine.blocSuivant.codePourLeSéquenceur + "\n";
                 }
 
-			} else if	( événementRacine is Evénement_QuandUnCapteurAvantVoitUnObstacle ) {
+			} else if	( événementRacine is Evénement_QuandUnCapteurArrièreVoitUnObstacle ) {
 
 				// Evénement : Quand un capteur arrière voit un obstacle
                 if ( événementRacine.blocSuivant != null ) {
@@ -1003,7 +1003,7 @@ public class	Compilateur {
 		if( codeEvénementCapteurArrière != "" ) {
 			if ( codeEvénementCapteur != "" )
 				codeEvénementCapteur += "\n";
-			codeEvénementCapteur = "  if prox.horizontal[5]!=0 or prox.horizontal[6]!=0 then\n  " + codeEvénementCapteurArrière + "\n    __etat = ETAT_EN_MARCHE\n  end";
+			codeEvénementCapteur += "  if prox.horizontal[5]!=0 or prox.horizontal[6]!=0 then\n  " + codeEvénementCapteurArrière + "\n    __etat = ETAT_EN_MARCHE\n  end";
 		}
 		framework = framework.Replace( "### EVENEMENT CAPTEUR DISTANCE ###", codeEvénementCapteur );
 

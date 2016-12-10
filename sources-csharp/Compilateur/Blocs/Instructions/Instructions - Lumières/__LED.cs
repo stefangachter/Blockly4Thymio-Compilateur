@@ -160,13 +160,13 @@ public 		class 	__LED {
 		else
 			switch (_led) {
 			case (int)LED.DU_DESSUS:
-				code += "call leds.top(" + CalculLaCouleur(_couleur, (int)COMPOSANTE.BLEUE) + "," + CalculLaCouleur(_couleur, (int)COMPOSANTE.VERTE) + "," + CalculLaCouleur(_couleur, (int)COMPOSANTE.ROUGE) + ")";
+				code += "call leds.top(" + CalculLaCouleur(_couleur, (int)COMPOSANTE.ROUGE) + "," + CalculLaCouleur(_couleur, (int)COMPOSANTE.VERTE) + "," + CalculLaCouleur(_couleur, (int)COMPOSANTE.BLEUE) + ")";
 				break;
 			case (int)LED.DE_GAUCHE:
-				code += "call leds.bottom.left(" + CalculLaCouleur(_couleur, (int)COMPOSANTE.BLEUE) + "," + CalculLaCouleur(_couleur, (int)COMPOSANTE.VERTE) + "," + CalculLaCouleur(_couleur, (int)COMPOSANTE.ROUGE) + ")";
+				code += "call leds.bottom.left(" + CalculLaCouleur(_couleur, (int)COMPOSANTE.ROUGE) + "," + CalculLaCouleur(_couleur, (int)COMPOSANTE.VERTE) + "," + CalculLaCouleur(_couleur, (int)COMPOSANTE.BLEUE) + ")";
 				break;
 			case (int)LED.DE_DROITE:
-				code += "call leds.bottom.right(" + CalculLaCouleur(_couleur, (int)COMPOSANTE.BLEUE) + "," + CalculLaCouleur(_couleur, (int)COMPOSANTE.VERTE) + "," + CalculLaCouleur(_couleur, (int)COMPOSANTE.ROUGE) + ")";
+				code += "call leds.bottom.right(" + CalculLaCouleur(_couleur, (int)COMPOSANTE.ROUGE) + "," + CalculLaCouleur(_couleur, (int)COMPOSANTE.VERTE) + "," + CalculLaCouleur(_couleur, (int)COMPOSANTE.BLEUE) + ")";
 				break;
 			}
 

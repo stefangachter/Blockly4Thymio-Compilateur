@@ -157,7 +157,7 @@ public class 	__Lumières_AllumeLesLEDs_AvecLEDCouleurDurée : __Bloc {
 
 		return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n" +
 				"    __chrono[" + UIDDuSéquenceur + "]=0\n" +
-				"    " + __LED.code (__led, __couleur) + "\n" +
+				"    " + __LED.code( __led, __couleur ) + "\n" +
 				"    __sequenceur[" + UIDDuSéquenceur + "]=" + (UID + 1) + "\n" +
 				"  end";
 		

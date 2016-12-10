@@ -29,6 +29,7 @@ Suivi des versions
 * Amélioration de l'optimisation du code Aseba
 * Nouvel événement : Quand un choc est détecté
 * Nouvel événement : Quand un son est détecté
+* Corrections sur certaines instructions "Allume lumières" et "Quand un obstacle est détecté"
 
 
 ###Version 0.9
