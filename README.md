@@ -124,4 +124,4 @@ Suivi des versions
 
 
 
-Blockly4Thymio - © 2015-2016 Okimi (contact at okimi dot net)
+Blockly4Thymio - © 2015-2017 Okimi (contact at okimi dot net)

@@ -1,13 +1,6 @@
 ﻿<Properties StartupItem="Compilateur Blockly4Thymio.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="WINDOWS-Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Compilateur\Compilateur.cs">
-    <Files>
-      <File FileName="ProgrammePrincipal.cs" Line="1" Column="1" />
-      <File FileName="Compilateur\Compilateur.cs" Line="524" Column="2" />
-      <File FileName="Compilateur\Blocs\Variables\Variable_IncrémenterUneVariable.cs" Line="121" Column="57" />
-      <File FileName="Compilateur\Blocs\Valeurs\Valeur_Entier_SAIValeur.cs" Line="93" Column="2" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="WINDOWS-Release|x86" />
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -5,7 +5,7 @@
                         /___/               /___/ 
         Liste des sons à mettre sur la carte micro SD
                    www.blockly4thymio.net
-      Blockly4Thymio - © 2015-2016 Okimi (contact at okimi dot net)
+      Blockly4Thymio - © 2015-2017 Okimi (contact at okimi dot net)
 
 Liste des sons pour le compilateur Blockly4Thymio, version 0.4 minimum
 
