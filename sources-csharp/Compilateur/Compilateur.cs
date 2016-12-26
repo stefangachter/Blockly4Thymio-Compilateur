@@ -476,6 +476,10 @@ public class	Compilateur {
 			bloc = new Variable_DéfinirUneVariable( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
 			break;
 
+		case "math_change" :
+			bloc = new Variable_IncrémenterUneVariable( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
+			break;
+
 		#endregion
 
 
@@ -693,7 +697,7 @@ public class	Compilateur {
 			expression = new Valeur_Entier_NombreAléatoireEntre0et7( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
 			break;
 
-		case "0_8_Valeur_Entier_SAIValeur" :
+		case "0_8_Valeur_Entier_SAIValeur": 
 			expression = new Valeur_Entier_SAIValeur( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
 			break;
 
@@ -703,6 +707,10 @@ public class	Compilateur {
 
 		case "0_9_Valeur_Entier_Température" :
 			expression = new Valeur_Entier_Température( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
+			break;
+
+		case "math_number" :
+			expression = new Valeur_Math_Number( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
 			break;
 
 		#endregion

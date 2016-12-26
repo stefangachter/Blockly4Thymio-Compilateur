@@ -29,10 +29,10 @@ Transforme un fichiers .b4t en fichier .aesl puis le transmet à Thymio.</Descri
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
     <TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
     <AssemblyName>Compilateur.0.9</AssemblyName>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'WINDOWS-Release|x86' ">
     <Optimize>false</Optimize>
@@ -189,6 +189,8 @@ Transforme un fichiers .b4t en fichier .aesl puis le transmet à Thymio.</Descri
     <Compile Include="Compilateur\Blocs\Paramètres\Paramètre_InitialiseLeChronomètre_SAIValeur.cs" />
     <Compile Include="Compilateur\Blocs\Evénements\Evénement_QuandUnChocEstDétecté.cs" />
     <Compile Include="Compilateur\Blocs\Evénements\Evénement_QuandUnSonEstDétecté.cs" />
+    <Compile Include="Compilateur\Blocs\Variables\Variable_IncrémenterUneVariable.cs" />
+    <Compile Include="Compilateur\Blocs\Valeurs\Valeur_Math_Number.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

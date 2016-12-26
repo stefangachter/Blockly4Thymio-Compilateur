@@ -30,6 +30,7 @@ Suivi des versions
 * Nouvel événement : Quand un choc est détecté
 * Nouvel événement : Quand un son est détecté
 * Corrections sur certaines instructions "Allume lumières" et "Quand un obstacle est détecté"
+* Vérifications sur les valeurs entières saisies
 
 
 ###Version 0.9

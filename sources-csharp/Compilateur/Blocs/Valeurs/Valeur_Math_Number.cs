@@ -72,8 +72,8 @@ knowledge of the CeCILL license and that you accept its terms.
 
 
 /*
- * Variable_DéfinirUneVariable
- * ---------------------------
+ * Valeur_Math_Number
+ * ------------------
  */
 
 
@@ -83,24 +83,19 @@ using 	System.Xml;
 
 
 namespace 		Blockly4Thymio {
-public 	class 	Variable_DéfinirUneVariable : __Variable {
-
-	String		__nom;
-
-	__Valeur	__expression;
+public 	class 	Valeur_Math_Number : __Valeur {
 
 
 
 	/*
 	 * Constructeur
 	 */
-	public	Variable_DéfinirUneVariable( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs ) {
+	public	Valeur_Math_Number( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs ) {
 
 		// Déclarations
 		// ------------
 
-		String		erreur;
-		String		nomDeLAttribut;
+		String	nomDeLAttribut;
 
 
 
@@ -115,53 +110,13 @@ public 	class 	Variable_DéfinirUneVariable : __Variable {
                 nomDeLAttribut = XMLDUnNoeudFils.Attributes["name"].Value;
 			
             switch(nomDeLAttribut) {
-			case "VAR" :
-				__nom = XMLDUnNoeudFils.FirstChild.InnerText;
+			case "NUM":
+				__code = XMLDUnNoeudFils.FirstChild.InnerText;
 				break;
-			case "VALUE" :
-				__expression = Compilateur.AnalyseUnNoeudDExpression( _UID, XMLDUnNoeudFils.FirstChild, _blocPrécédent, _groupeDeBlocs );
-				break;
+
 			}
 
 		}
-
-		if ( __expression == null ) {
-			erreur = String.Format( Messages.Message((int)Messages.TYPE.VARIABLE_NON_INITIALISÉE), __nom );
-			throw new Exception( erreur );
-		}
-
-
-		__Variable.AjouteUneVariable( __nom );
-
-
-		// Liste les séquences du bloc
-		// ---------------------------
-		__séquences.Add( (Séquence)Séquence_1 );
-
-	}
-
-
-	/*
-	 * Séquences
-	 */
-
-	// Séquence 1
-	// - Enregistre la valeur dans la variable
-	// - Passe au bloc suivant
-	public	String	Séquence_1() {
-
-		String	code;
-
-
-
-		code = 		"  if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n";
-		if (__expression.codeDInitialisationPourLeSéquenceur != "" )
-			code +=	"    " + __expression.codeDInitialisationPourLeSéquenceur + "\n";
-		code +=		"    " + __Variable.code(__nom) + "=" + __expression.codePourLeSéquenceur + "\n" +
-					"    __sequenceur[" + UIDDuSéquenceur + "]=" + UIDDuBlocSuivant + "\n" +
-					"  end";
-
-		return code;
 
 	}
 

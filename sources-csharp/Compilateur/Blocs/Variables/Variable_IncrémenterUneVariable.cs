@@ -72,8 +72,8 @@ knowledge of the CeCILL license and that you accept its terms.
 
 
 /*
- * Variable_DéfinirUneVariable
- * ---------------------------
+ * Variable_IncrémenterUneVariable
+ * -------------------------------
  */
 
 
@@ -83,7 +83,7 @@ using 	System.Xml;
 
 
 namespace 		Blockly4Thymio {
-public 	class 	Variable_DéfinirUneVariable : __Variable {
+public 	class 	Variable_IncrémenterUneVariable : __Variable {
 
 	String		__nom;
 
@@ -94,12 +94,11 @@ public 	class 	Variable_DéfinirUneVariable : __Variable {
 	/*
 	 * Constructeur
 	 */
-	public	Variable_DéfinirUneVariable( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs ) {
+	public	Variable_IncrémenterUneVariable( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs ) : base( _UID, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs ) {
 
 		// Déclarations
 		// ------------
 
-		String		erreur;
 		String		nomDeLAttribut;
 
 
@@ -118,18 +117,23 @@ public 	class 	Variable_DéfinirUneVariable : __Variable {
 			case "VAR" :
 				__nom = XMLDUnNoeudFils.FirstChild.InnerText;
 				break;
-			case "VALUE" :
-				__expression = Compilateur.AnalyseUnNoeudDExpression( _UID, XMLDUnNoeudFils.FirstChild, _blocPrécédent, _groupeDeBlocs );
+			case "DELTA" :
+				switch ( XMLDUnNoeudFils.ChildNodes.Count ) {
+				case 1:
+					// Le Noeud fils contient seulement une balise <shadow>
+					// C'est la balise <shadow> qui est sélectionnée avec XMLDUnNoeudFils.FirstChild
+					__expression = Compilateur.AnalyseUnNoeudDExpression( _UID, XMLDUnNoeudFils.FirstChild, _blocPrécédent, _groupeDeBlocs );
+					break;
+				case 2:
+					// Le Noeud fils contient une balise <shadow> et une balise <block>
+					// C'est la balise <block> qui est sélectionnée avec XMLDUnNoeudFils.LastChild
+					__expression = Compilateur.AnalyseUnNoeudDExpression( _UID, XMLDUnNoeudFils.LastChild, _blocPrécédent, _groupeDeBlocs );
+					break;
+				}
 				break;
 			}
 
 		}
-
-		if ( __expression == null ) {
-			erreur = String.Format( Messages.Message((int)Messages.TYPE.VARIABLE_NON_INITIALISÉE), __nom );
-			throw new Exception( erreur );
-		}
-
 
 		__Variable.AjouteUneVariable( __nom );
 
@@ -157,7 +161,7 @@ public 	class 	Variable_DéfinirUneVariable : __Variable {
 		code = 		"  if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n";
 		if (__expression.codeDInitialisationPourLeSéquenceur != "" )
 			code +=	"    " + __expression.codeDInitialisationPourLeSéquenceur + "\n";
-		code +=		"    " + __Variable.code(__nom) + "=" + __expression.codePourLeSéquenceur + "\n" +
+		code +=		"    " + __Variable.code(__nom) + "+=" + __expression.codePourLeSéquenceur + "\n" +
 					"    __sequenceur[" + UIDDuSéquenceur + "]=" + UIDDuBlocSuivant + "\n" +
 					"  end";
 

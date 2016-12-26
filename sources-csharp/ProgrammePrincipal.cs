@@ -150,7 +150,7 @@ static	class 	ProgrammePrincipal {
 		// --------------------------------------------------
 		#if (DEBUG)
 		Compilateur.transfertDuFichierAESL = true;
-		//Compilateur.transfertDuFichierAESL = false;
+		Compilateur.transfertDuFichierAESL = false;
 		#endif
 		#if (!DEBUG)
 		Compilateur.transfertDuFichierAESL = true;

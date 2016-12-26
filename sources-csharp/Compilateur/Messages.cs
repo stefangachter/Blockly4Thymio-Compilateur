@@ -102,7 +102,8 @@ public class 	Messages {
 		BLOC_NON_TRAITÉ_DANS_CETTE_VERSION,
 		LA_VERSION_APPROPRIÉE_POUR_CE_BLOC,
 		CHRONOMÈTRE_INFÉRIEUR_À_1_SECONDE,
-		CHRONOMÈTRE_SUPÉRIEUR_À_6_SECONDES
+		CHRONOMÈTRE_SUPÉRIEUR_À_6_SECONDES,
+		VARIABLE_NON_INITIALISÉE
 	}
 
 
@@ -179,7 +180,9 @@ public class 	Messages {
 		case (int)TYPE.CHRONOMÈTRE_INFÉRIEUR_À_1_SECONDE :			return	"Le temps du chronomètre le plus petit est de 1 seconde.";
 
 		case (int)TYPE.CHRONOMÈTRE_SUPÉRIEUR_À_6_SECONDES :			return	"Le temps du chronomètre le plus grand est de 6 secondes.";
-		
+
+		case (int)TYPE.VARIABLE_NON_INITIALISÉE :					return	"La variable {0} n'est pas nitialisée.";
+
 		}
 
 		throw new Exception( "Le message " + _numéro + " n'existe pas dans la liste des  messages." );
