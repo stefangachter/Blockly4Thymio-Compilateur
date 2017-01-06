@@ -162,7 +162,7 @@ public 		class 	__MOTEUR {
 			code = "motor.left.target=" + _vitesseAGauche + " motor.right.target=" + _vitesseADroite;
 			break;
 		case (int)SENS.ARRÊT :
-			code = "motor.left.target=0 motor.right.target=0";
+			code = "callsub __ArreteLesMoteurs";
 			break;
 		}
 
