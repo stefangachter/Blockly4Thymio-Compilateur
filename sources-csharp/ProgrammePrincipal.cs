@@ -89,7 +89,7 @@ static	class 	ProgrammePrincipal {
 		// Initialisations
 		// ---------------
 
-		Compilateur.version = "1.0";
+		Compilateur.version = "1.0b";
 
 
 		// Nom du fichier programme.b4t à tester
@@ -140,7 +140,7 @@ static	class 	ProgrammePrincipal {
 		// ---------------------------------
 		#if (DEBUG)
 		Compilateur.optimisationDuSéquenceur = true;
-		//Compilateur.optimisationDuSéquenceur = false;
+		Compilateur.optimisationDuSéquenceur = false;
 		#else
 		Compilateur.optimisationDuSéquenceur = true;
 		#endif
@@ -150,7 +150,7 @@ static	class 	ProgrammePrincipal {
 		// --------------------------------------------------
 		#if (DEBUG)
 		Compilateur.transfertDuFichierAESL = true;
-		Compilateur.transfertDuFichierAESL = false;
+		//Compilateur.transfertDuFichierAESL = false;
 		#endif
 		#if (!DEBUG)
 		Compilateur.transfertDuFichierAESL = true;
@@ -160,7 +160,7 @@ static	class 	ProgrammePrincipal {
 		// Emplacement de programme de transfert asebahttp.exe
 		// ---------------------------------------------------
 		#if (DEBUG && WINDOWS)
-		Compilateur.nomDuFichierASEBAHTTP = @"C:\Blockly4Thymio.v0.9\asebahttp\asebahttp.exe";
+		Compilateur.nomDuFichierASEBAHTTP = @"C:\Blockly4Thymio.v1.0\asebahttp\asebahttp.exe";
 		#endif
 		#if (!DEBUG && WINDOWS)
 		Compilateur.nomDuFichierASEBAHTTP =  Path.GetDirectoryName(Application.ExecutablePath) + @"\asebahttp\asebahttp.exe";

@@ -125,7 +125,7 @@ public class 	__Mouvement_Déplacement_AvecSensVitesses : __Bloc {
 	 */
 
 	// Séquence 1
-	// - Allume les LEDs
+	// - Allume les moteurs
 	// - Passe au bloc suivant
 	public	String	Séquence_1() {
 

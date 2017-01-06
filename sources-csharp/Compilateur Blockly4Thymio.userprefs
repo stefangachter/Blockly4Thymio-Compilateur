@@ -1,6 +1,13 @@
 ﻿<Properties StartupItem="Compilateur Blockly4Thymio.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="WINDOWS-Release|x86" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="WINDOWS-Debug|x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Compilateur\Blocs\Groupe d'instructions\__GroupeDeBlocs.cs">
+    <Files>
+      <File FileName="Compilateur\Compilateur.cs" Line="516" Column="1" />
+      <File FileName="ProgrammePrincipal.cs" Line="153" Column="5" />
+      <File FileName="Compilateur\Blocs\Groupe d'instructions\__GroupeDeBlocs.cs" Line="81" Column="1" />
+      <File FileName="Compilateur\Blocs\Groupe d'instructions\GroupeDInstructions_Boucle_RépèteToutLeTemps.cs" Line="157" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

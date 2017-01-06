@@ -902,8 +902,11 @@ public class	Compilateur {
 				// Evénement : Quand un ordre arrive de la télécommande IR
                 if ( événementRacine.blocSuivant != null ) {
                     // Exécute l'instruction qui suit l'événement
-					if ( codeEvénementCommandeIR != "" ) { codeEvénementCommandeIR += "  "; }
-                    codeEvénementCommandeIR += "  __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + événementRacine.blocSuivant.UID;
+                    codeEvénementCommandeIR +=	"  if __sequenceur[" + événementRacine.UIDDuSéquenceur + "]==0 then\n" + 
+                    							"    __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + événementRacine.blocSuivant.UID +
+												"    __etat = ETAT_EN_MARCHE\n" +
+												"  end\n";
+
                     codeSéquenceur += événementRacine.blocSuivant.codePourLeSéquenceur + "\n";
                 }
 
@@ -952,8 +955,10 @@ public class	Compilateur {
 				// Evénement : Quand un choc est détecté
                 if ( événementRacine.blocSuivant != null ) {
                     // Exécute l'instruction qui suit l'événement
-					if ( codeEvénementChoc != "" ) { codeEvénementChoc += "  "; }
-					codeEvénementChoc += "  __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + événementRacine.blocSuivant.UID;
+					codeEvénementChoc += "  if __sequenceur[" + événementRacine.UIDDuSéquenceur + "]==0 then\n" + 
+											"    __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + événementRacine.blocSuivant.UID + "\n" +
+											"    __etat = ETAT_EN_MARCHE\n" +
+											"  end\n";
                     codeSéquenceur += événementRacine.blocSuivant.codePourLeSéquenceur + "\n";
                 }
 
@@ -962,8 +967,10 @@ public class	Compilateur {
 				// Evénement : Quand un son est détecté
                 if ( événementRacine.blocSuivant != null ) {
                     // Exécute l'instruction qui suit l'événement
-					if ( codeEvénementSon != "" ) { codeEvénementSon += "  "; }
-					codeEvénementSon += "  __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + événementRacine.blocSuivant.UID;
+					codeEvénementSon += "  if __sequenceur[" + événementRacine.UIDDuSéquenceur + "]==0 then\n" + 
+										"    __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + événementRacine.blocSuivant.UID + "\n" +
+										"    __etat = ETAT_EN_MARCHE\n" +
+										"  end\n";
                     codeSéquenceur += événementRacine.blocSuivant.codePourLeSéquenceur + "\n";
                 }
 
@@ -996,8 +1003,6 @@ public class	Compilateur {
         framework = framework.Replace( "### EVENEMENT AU LANCEMENT ###", codeEvénementLancementDuProgramme );
 
 
-        if ( codeEvénementCommandeIR != "" )
-			codeEvénementCommandeIR += "\n  __etat = ETAT_EN_MARCHE";
 		framework = framework.Replace( "### EVENEMENT COMMANDE INFRAROUGE ###", codeEvénementCommandeIR );
 
 
@@ -1016,13 +1021,9 @@ public class	Compilateur {
 		framework = framework.Replace( "### EVENEMENT CAPTEUR DISTANCE ###", codeEvénementCapteur );
 
 
-		if ( codeEvénementChoc!= "" )
-			codeEvénementChoc += "\n  __etat = ETAT_EN_MARCHE";
 		framework = framework.Replace( "### EVENEMENT CHOC ###", codeEvénementChoc );
 
 
-		if ( codeEvénementSon!= "" )
-			codeEvénementSon += "\n  __etat = ETAT_EN_MARCHE";
 		framework = framework.Replace( "### EVENEMENT SON ###", codeEvénementSon );
 
 
