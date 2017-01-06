@@ -906,7 +906,6 @@ public class	Compilateur {
                     							"    __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + événementRacine.blocSuivant.UID +
 												"    __etat = ETAT_EN_MARCHE\n" +
 												"  end\n";
-
                     codeSéquenceur += événementRacine.blocSuivant.codePourLeSéquenceur + "\n";
                 }
 
@@ -915,8 +914,12 @@ public class	Compilateur {
 				// Evénement : Quand un bouton flèche est appuyé
                 if ( événementRacine.blocSuivant != null ) {
                     // Exécute l'instruction qui suit l'événement
-					if ( codeEvénementBoutonFlèche != "" ) { codeEvénementBoutonFlèche += "  "; }
-                    codeEvénementBoutonFlèche += "  __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + événementRacine.blocSuivant.UID;
+//					if ( codeEvénementBoutonFlèche != "" ) { codeEvénementBoutonFlèche += "  "; }
+//                    codeEvénementBoutonFlèche += "  __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + événementRacine.blocSuivant.UID;
+					codeEvénementBoutonFlèche +=	"  if __sequenceur[" + événementRacine.UIDDuSéquenceur + "]==0 then\n" + 
+                    								"    __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + événementRacine.blocSuivant.UID +
+													"    __etat = ETAT_EN_MARCHE\n" +
+													"  end\n";
                     codeSéquenceur += événementRacine.blocSuivant.codePourLeSéquenceur + "\n";
                 }
 
@@ -1007,7 +1010,7 @@ public class	Compilateur {
 
 
 		if( codeEvénementBoutonFlèche != "" )
-			codeEvénementBoutonFlèche = "  when button.forward==1 or button.backward==1 or button.left==1 or button.right==1 do\n  " + codeEvénementBoutonFlèche + "\n    __etat = ETAT_EN_MARCHE\n  end";
+			codeEvénementBoutonFlèche = "  when button.forward==1 or button.backward==1 or button.left==1 or button.right==1 do\n  " + codeEvénementBoutonFlèche + "\n    end";
 		framework = framework.Replace( "### EVENEMENT BOUTON FLECHE ###", codeEvénementBoutonFlèche );
 
 
