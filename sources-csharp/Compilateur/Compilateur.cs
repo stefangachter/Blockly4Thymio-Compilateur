@@ -914,8 +914,6 @@ public class	Compilateur {
 				// Evénement : Quand un bouton flèche est appuyé
                 if ( événementRacine.blocSuivant != null ) {
                     // Exécute l'instruction qui suit l'événement
-//					if ( codeEvénementBoutonFlèche != "" ) { codeEvénementBoutonFlèche += "  "; }
-//                    codeEvénementBoutonFlèche += "  __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + événementRacine.blocSuivant.UID;
 					codeEvénementBoutonFlèche +=	"  if __sequenceur[" + événementRacine.UIDDuSéquenceur + "]==0 then\n" + 
                     								"    __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + événementRacine.blocSuivant.UID +
 													"    __etat = ETAT_EN_MARCHE\n" +
@@ -948,8 +946,10 @@ public class	Compilateur {
 				// Evénement : Quand le chronomètre a terminer de compter
                 if ( événementRacine.blocSuivant != null ) {
                     // Exécute l'instruction qui suit l'événement
-					if ( codeEvénementChronomètre != "" ) { codeEvénementChronomètre += "  "; }
-					codeEvénementChronomètre += "  __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + événementRacine.blocSuivant.UID;
+					codeEvénementChronomètre += "  if __sequenceur[" + événementRacine.UIDDuSéquenceur + "]==0 then\n" + 
+                    							"    __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + événementRacine.blocSuivant.UID +
+												"    __etat = ETAT_EN_MARCHE\n" +
+												"  end\n";
                     codeSéquenceur += événementRacine.blocSuivant.codePourLeSéquenceur + "\n";
                 }
 
@@ -1030,8 +1030,6 @@ public class	Compilateur {
 		framework = framework.Replace( "### EVENEMENT SON ###", codeEvénementSon );
 
 
-		if( codeEvénementChronomètre != "" )
-			codeEvénementChronomètre += "\n  " + "__etat = ETAT_EN_MARCHE\n";
 		framework = framework.Replace( "### EVENEMENT CHRONOMETRE ###", codeEvénementChronomètre );
 
 
