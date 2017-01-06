@@ -24,6 +24,12 @@ Ces sources sont distribuées sous licence libre CeCILL-C V2.
 Suivi des versions
 ------------------
 
+###Version 1.0b
+
+* Mise ne place d'anti-rebonds sur les événements 
+* Corrections sur le bloc SI ... ALORS ... SINON ...
+
+
 ###Version 1.0
 
 * Amélioration de l'optimisation du code Aseba
