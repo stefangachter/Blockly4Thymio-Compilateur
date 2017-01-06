@@ -926,8 +926,12 @@ public class	Compilateur {
 				// Evénement : Quand un capteur avant voit un obstacle
                 if ( événementRacine.blocSuivant != null ) {
                     // Exécute l'instruction qui suit l'événement
-					if ( codeEvénementCapteurAvant != "" ) { codeEvénementCapteurAvant += "  "; }
-					codeEvénementCapteurAvant += "  __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + événementRacine.blocSuivant.UID;
+//					if ( codeEvénementCapteurAvant != "" ) { codeEvénementCapteurAvant += "  "; }
+//					codeEvénementCapteurAvant += "  __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + événementRacine.blocSuivant.UID;
+					codeEvénementCapteurAvant +=	"  if __sequenceur[" + événementRacine.UIDDuSéquenceur + "]==0 then\n" + 
+                    								"    __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + événementRacine.blocSuivant.UID +
+													"    __etat = ETAT_EN_MARCHE\n" +
+													"  end\n";
                     codeSéquenceur += événementRacine.blocSuivant.codePourLeSéquenceur + "\n";
                 }
 
@@ -936,8 +940,12 @@ public class	Compilateur {
 				// Evénement : Quand un capteur arrière voit un obstacle
                 if ( événementRacine.blocSuivant != null ) {
                     // Exécute l'instruction qui suit l'événement
-					if ( codeEvénementCapteurArrière != "" ) { codeEvénementCapteurArrière += "  "; }
-					codeEvénementCapteurArrière += "  __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + événementRacine.blocSuivant.UID;
+//					if ( codeEvénementCapteurArrière != "" ) { codeEvénementCapteurArrière += "  "; }
+//					codeEvénementCapteurArrière += "  __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + événementRacine.blocSuivant.UID;
+					codeEvénementCapteurArrière +=	"  if __sequenceur[" + événementRacine.UIDDuSéquenceur + "]==0 then\n" + 
+                    								"    __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + événementRacine.blocSuivant.UID +
+													"    __etat = ETAT_EN_MARCHE\n" +
+													"  end\n";
                     codeSéquenceur += événementRacine.blocSuivant.codePourLeSéquenceur + "\n";
                 }
 
@@ -1015,11 +1023,11 @@ public class	Compilateur {
 
 
 		if( codeEvénementCapteurAvant != "" )
-			codeEvénementCapteur = "  if prox.horizontal[0]!=0 or prox.horizontal[1]!=0 or prox.horizontal[2]!=0 or prox.horizontal[3]!=0 or prox.horizontal[4]!=0 then\n  " + codeEvénementCapteurAvant + "\n    __etat = ETAT_EN_MARCHE\n  end";
+			codeEvénementCapteur = "  if prox.horizontal[0]!=0 or prox.horizontal[1]!=0 or prox.horizontal[2]!=0 or prox.horizontal[3]!=0 or prox.horizontal[4]!=0 then\n  " + codeEvénementCapteurAvant + "\n  end";
 		if( codeEvénementCapteurArrière != "" ) {
 			if ( codeEvénementCapteur != "" )
 				codeEvénementCapteur += "\n";
-			codeEvénementCapteur += "  if prox.horizontal[5]!=0 or prox.horizontal[6]!=0 then\n  " + codeEvénementCapteurArrière + "\n    __etat = ETAT_EN_MARCHE\n  end";
+			codeEvénementCapteur += "  if prox.horizontal[5]!=0 or prox.horizontal[6]!=0 then\n  " + codeEvénementCapteurArrière + "\n  end";
 		}
 		framework = framework.Replace( "### EVENEMENT CAPTEUR DISTANCE ###", codeEvénementCapteur );
 
