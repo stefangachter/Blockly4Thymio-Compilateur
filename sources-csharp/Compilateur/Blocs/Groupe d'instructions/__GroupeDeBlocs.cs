@@ -101,7 +101,7 @@ public	class	__GroupeDeBlocs : __Bloc {
 	} }
 
 
-	public	int				nombreDeSéquenceAvecLesBlocsInternes {
+	public	virtual	int		nombreDeSéquenceAvecLesBlocsInternes {
 	get {
 		if ( __blocsInternes != null )
 			return nombreDeSéquence + __blocsInternes.nombreDeSéquence;

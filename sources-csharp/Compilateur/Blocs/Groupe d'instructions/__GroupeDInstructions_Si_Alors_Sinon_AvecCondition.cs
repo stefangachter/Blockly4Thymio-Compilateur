@@ -88,18 +88,23 @@ public	class	__GroupeDInstructions_Si_Alors_Sinon_AvecCondition : __GroupeDeBloc
 
 				
 	/*
-	 * Propriétés privées
+	 * Propriétés publiques
 	 */
 	public	override	int	UIDDeLaDernièreSéquence {
 	get {
-		int	uid = __UID + nombreDeSéquence;
-		if ( __blocsInternes != null )
-			uid += __blocsInternes.nombreDeSéquence;
-		if ( __blocsInternesSupplémentaires != null )
-			uid += __blocsInternesSupplémentaires.nombreDeSéquence;
-		return uid;
+		return ( __UID + nombreDeSéquenceAvecLesBlocsInternes) -1;
 	} }
 
+
+	public	override	int	nombreDeSéquenceAvecLesBlocsInternes {
+	get {
+		int	nombre = nombreDeSéquence;
+		if ( __blocsInternes != null )
+			nombre += __blocsInternes.nombreDeSéquence;
+		if ( __blocsInternesSupplémentaires != null )
+			nombre += __blocsInternesSupplémentaires.nombreDeSéquence;
+		return nombre;
+	} }
 
 
 	/*
@@ -172,7 +177,7 @@ public	class	__GroupeDInstructions_Si_Alors_Sinon_AvecCondition : __GroupeDeBloc
 	// - Séquences des blocs internes
 	public	String	Séquence_3() {
 
-	if ( __blocsInternesSupplémentaires != null )
+		if ( __blocsInternesSupplémentaires != null )
 			return	__blocsInternesSupplémentaires.codePourLeSéquenceur;
 		else
 			return "";

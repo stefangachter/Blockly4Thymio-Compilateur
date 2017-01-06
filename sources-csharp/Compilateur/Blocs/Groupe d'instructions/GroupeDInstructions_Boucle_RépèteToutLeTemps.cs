@@ -123,14 +123,17 @@ public	class	GroupeDInstructions_Boucle_RépèteToutLeTemps : __GroupeDeBlocs {
 	 * Séquences
 	 */
 
-	// Séquence 1
+	// Séquence 1 : Séquence de DEBUT de Boucle_RépèteToutLeTemps
 	// - Passe au premier bloc interne
 	public	String	Séquence_1() {
 
-		if ( __blocsInternes != null )
+		if ( __blocsInternes != null ) {
+			// Passe au premier bloc de la séquence interne
 			return	"  " + Compilateur.codeSauteSéquence( UIDDuSéquenceur, UID, __blocsInternes.premierBloc.UID );
-		else
+		} else {
+			// Passe à la séquence FIN de Boucle_RépèteToutLeTemps
 			return	"  " + Compilateur.codeSauteSéquence( UIDDuSéquenceur, UID, UID+2 );
+		}
 	}
 
 
@@ -146,7 +149,7 @@ public	class	GroupeDInstructions_Boucle_RépèteToutLeTemps : __GroupeDeBlocs {
 	}
 
 
-	// Séquence 3
+	// Séquence 3 : Séquence de FIN de Boucle_RépèteToutLeTemps
 	// - Passe au premier bloc du groupe
 	public	String	Séquence_3() {
 		String	code="";
@@ -154,6 +157,7 @@ public	class	GroupeDInstructions_Boucle_RépèteToutLeTemps : __GroupeDeBlocs {
 		if (Compilateur.afficherLesCommentaires)
 			code += "  # (UID " + __UID + " FIN) Instruction Blockly : " + __nomDansBlockly + "\n";
 
+		// Boucle sur l'instruction de DEBUT de Boucle_RépèteToutLeTemps
 		if ( __blocsInternes != null )
 			code +=	"  " + Compilateur.codeSauteSéquence( UIDDuSéquenceur, __blocsInternes.premierBloc.UID+__blocsInternes.nombreDeSéquence, UID );
 		else
