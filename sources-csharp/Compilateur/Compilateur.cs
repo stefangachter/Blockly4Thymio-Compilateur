@@ -906,7 +906,10 @@ public class	Compilateur {
                     							"    __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + événementRacine.blocSuivant.UID +
 												"    __etat = ETAT_EN_MARCHE\n" +
 												"  end\n";
-                    codeSéquenceur += événementRacine.blocSuivant.codePourLeSéquenceur + "\n";
+					if ( optimisationDuSéquenceur )
+						codeSéquenceur += OptimiseLeSéquenceur( événementRacine.blocSuivant.codePourLeSéquenceur ) + "\n";
+					else
+                    	codeSéquenceur += événementRacine.blocSuivant.codePourLeSéquenceur + "\n";
                 }
 
             } else if	( événementRacine is Evénement_QuandUnBoutonFlècheEstAppuyé ) {
@@ -918,7 +921,10 @@ public class	Compilateur {
                     								"    __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + événementRacine.blocSuivant.UID +
 													"    __etat = ETAT_EN_MARCHE\n" +
 													"  end\n";
-                    codeSéquenceur += événementRacine.blocSuivant.codePourLeSéquenceur + "\n";
+					if ( optimisationDuSéquenceur )
+						codeSéquenceur += OptimiseLeSéquenceur( événementRacine.blocSuivant.codePourLeSéquenceur ) + "\n";
+					else
+                    	codeSéquenceur += événementRacine.blocSuivant.codePourLeSéquenceur + "\n";
                 }
 
 			} else if	( événementRacine is Evénement_QuandUnCapteurAvantVoitUnObstacle ) {
@@ -926,13 +932,14 @@ public class	Compilateur {
 				// Evénement : Quand un capteur avant voit un obstacle
                 if ( événementRacine.blocSuivant != null ) {
                     // Exécute l'instruction qui suit l'événement
-//					if ( codeEvénementCapteurAvant != "" ) { codeEvénementCapteurAvant += "  "; }
-//					codeEvénementCapteurAvant += "  __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + événementRacine.blocSuivant.UID;
 					codeEvénementCapteurAvant +=	"  if __sequenceur[" + événementRacine.UIDDuSéquenceur + "]==0 then\n" + 
                     								"    __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + événementRacine.blocSuivant.UID +
 													"    __etat = ETAT_EN_MARCHE\n" +
 													"  end\n";
-                    codeSéquenceur += événementRacine.blocSuivant.codePourLeSéquenceur + "\n";
+					if (optimisationDuSéquenceur )
+						codeSéquenceur += OptimiseLeSéquenceur( événementRacine.blocSuivant.codePourLeSéquenceur ) + "\n";
+					else
+                    	codeSéquenceur += événementRacine.blocSuivant.codePourLeSéquenceur + "\n";
                 }
 
 			} else if	( événementRacine is Evénement_QuandUnCapteurArrièreVoitUnObstacle ) {
@@ -940,13 +947,14 @@ public class	Compilateur {
 				// Evénement : Quand un capteur arrière voit un obstacle
                 if ( événementRacine.blocSuivant != null ) {
                     // Exécute l'instruction qui suit l'événement
-//					if ( codeEvénementCapteurArrière != "" ) { codeEvénementCapteurArrière += "  "; }
-//					codeEvénementCapteurArrière += "  __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + événementRacine.blocSuivant.UID;
 					codeEvénementCapteurArrière +=	"  if __sequenceur[" + événementRacine.UIDDuSéquenceur + "]==0 then\n" + 
                     								"    __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + événementRacine.blocSuivant.UID +
 													"    __etat = ETAT_EN_MARCHE\n" +
 													"  end\n";
-                    codeSéquenceur += événementRacine.blocSuivant.codePourLeSéquenceur + "\n";
+					if ( optimisationDuSéquenceur )
+						codeSéquenceur += OptimiseLeSéquenceur( événementRacine.blocSuivant.codePourLeSéquenceur ) + "\n";
+					else
+                    	codeSéquenceur += événementRacine.blocSuivant.codePourLeSéquenceur + "\n";
                 }
 
 			} else if	( événementRacine is Evénement_QuandLeChronomètreATerminéDeCompter ) {
@@ -958,7 +966,10 @@ public class	Compilateur {
                     							"    __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + événementRacine.blocSuivant.UID +
 												"    __etat = ETAT_EN_MARCHE\n" +
 												"  end\n";
-                    codeSéquenceur += événementRacine.blocSuivant.codePourLeSéquenceur + "\n";
+					if ( optimisationDuSéquenceur )
+						codeSéquenceur += OptimiseLeSéquenceur( événementRacine.blocSuivant.codePourLeSéquenceur ) + "\n";
+					else
+                    	codeSéquenceur += événementRacine.blocSuivant.codePourLeSéquenceur + "\n";
                 }
 
 			} else if	( événementRacine is Evénement_QuandUnChocEstDétecté ) {
@@ -970,7 +981,10 @@ public class	Compilateur {
 											"    __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + événementRacine.blocSuivant.UID + "\n" +
 											"    __etat = ETAT_EN_MARCHE\n" +
 											"  end\n";
-                    codeSéquenceur += événementRacine.blocSuivant.codePourLeSéquenceur + "\n";
+					if ( optimisationDuSéquenceur )
+						codeSéquenceur += OptimiseLeSéquenceur( événementRacine.blocSuivant.codePourLeSéquenceur ) + "\n";
+					else
+						codeSéquenceur += événementRacine.blocSuivant.codePourLeSéquenceur + "\n";
                 }
 
 			} else if	( événementRacine is Evénement_QuandUnSonEstDétecté ) {
@@ -982,7 +996,10 @@ public class	Compilateur {
 										"    __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + événementRacine.blocSuivant.UID + "\n" +
 										"    __etat = ETAT_EN_MARCHE\n" +
 										"  end\n";
-                    codeSéquenceur += événementRacine.blocSuivant.codePourLeSéquenceur + "\n";
+					if ( optimisationDuSéquenceur )
+						codeSéquenceur += OptimiseLeSéquenceur( événementRacine.blocSuivant.codePourLeSéquenceur ) + "\n";
+					else
+                    	codeSéquenceur += événementRacine.blocSuivant.codePourLeSéquenceur + "\n";
                 }
 
 			}
@@ -1174,11 +1191,11 @@ public class	Compilateur {
     /// Optimise le code du séquenceur, en supprimant les instructions "Saute mouton"
 	/// 
 	/// boucle
-	/// 	lister les "saute mouton" dont la source est > 1
-	/// 	si il y a pas de "saute mouton"
+	/// 	lister les SAUT DE SEQUENCE dont la source est > 1
+	/// 	si il y a pas de SAUT DE SEQUENCE
 	/// 		sortir de la boucle
 	/// 	fin
-	/// 	prendre dernier "saute mouton"
+	/// 	prendre dernier SAUT DE SEQUENCE
 	/// 	Optimisation()
 	/// fin
     /// </summary>
