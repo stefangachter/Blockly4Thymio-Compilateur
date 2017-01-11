@@ -24,6 +24,11 @@ Ces sources sont distribuées sous licence libre CeCILL-C V2.
 Suivi des versions
 ------------------
 
+###Version 1.1
+
+* Optimisation sous tous les événements
+
+
 ###Version 1.0b
 
 * Mise ne place d'anti-rebonds sur les événements 
