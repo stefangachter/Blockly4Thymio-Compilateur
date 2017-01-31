@@ -129,6 +129,9 @@ var __led.vert
 var __led.bleu
 var __led.cercle[8]
 
+# Variable pour les sons
+var __son
+
 # Variables pour l'odométrie
 var __odo.degre
 var __odo.delta
@@ -222,6 +225,11 @@ sub __ArreteLeProgramme
   __led.bleu = 0
   callsub __AllumeLesLEDs
   callsub __EteinsLeCercleDeLEDs
+
+
+sub __JoueUnSon
+  __lectureDUnSon = 1
+  call sound.play(__son)
 
 
 # ----------

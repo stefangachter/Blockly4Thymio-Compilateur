@@ -27,6 +27,8 @@ Suivi des versions
 ###Version 1.1
 
 * Optimisation sous tous les événements
+* Nouveau bloc Joue un instrument
+* Optimisation des blocs JoueUnSon
 
 
 ###Version 1.0b

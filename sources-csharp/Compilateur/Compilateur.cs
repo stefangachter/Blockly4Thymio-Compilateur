@@ -336,7 +336,15 @@ public class	Compilateur {
 		case "0_4_Sons_RelireLeSonEnregistré" :
 			bloc = new __Sons_JoueUnSon_AvecSon( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__SONS.SON.DEPUIS_LE_MICROPHONE );
 			break;
-		
+
+		case "1_1_Sons_JoueUnInstrument_SELInstrument_SELNote_SELDurée" :
+			bloc = new Sons_JoueUnInstrument_SELInstrument_SELNote_SELDurée( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs );
+			break;
+
+		case "1_1_Sons_JoueUnePercussion_SELNote_SELDurée" :
+			bloc = new Sons_JoueUnInstrument_SELInstrument_SELNote_SELDurée( _UIDPourLeBloc, _XMLDuBloc, _blocPrécédent, _groupeDeBlocs, (int)__SONS.INSTRUMENTS.PERCUSSIONS );
+			break;
+
 		#endregion
 
 
@@ -1229,6 +1237,7 @@ public class	Compilateur {
 			// Crée la liste des sauts de séquence dont la séquence de départ > 1
 			sautsDeSéquence = new List<__SautDeSéquence>();
 			foreach ( Match matchSautDeSéquence in matchSautsDeSéquence ) {
+				Console.WriteLine( matchSautDeSéquence );
 				// Numéro de la séquence de départ
 				séquenceDeDépart = regexSéquenceDeDépart.Match( matchSautDeSéquence.Value ).Value.Substring( 2 );
 				// Le numéro de la séquance de départ est 1, il n'y a pas d'optimisation à faire pour cette ligne,
@@ -1240,7 +1249,7 @@ public class	Compilateur {
 				// Numéro du séquenceur
 				UIDDuSéquenceur = regexUIDDuSéquenceur.Match( matchSautDeSéquence.Value ).Value.Substring( 1 );
 				UIDDuSéquenceur = UIDDuSéquenceur.Substring( 0, UIDDuSéquenceur.Length-1 );
-				//Console.WriteLine( matchSautDeSéquence.Value + " " + séquenceur );
+				//Console.WriteLine( séquenceDeDépart + "->" + séquenceDArrivée );
 				sautDeSéquence = new __SautDeSéquence( int.Parse(UIDDuSéquenceur), int.Parse(séquenceDeDépart), int.Parse(séquenceDArrivée) );
 				sautsDeSéquence.Add( sautDeSéquence );
 	  		}
@@ -1256,6 +1265,7 @@ public class	Compilateur {
 
 			// Recompose la chaine de la séquence de saut
 			codeAChercher = Compilateur.CréeLeCodeDeSautDeSéquence( sautDeSéquence.UIDDuséquenceur, sautDeSéquence.séquenceDeDépart, sautDeSéquence.séquenceDArrivée );
+			//Console.WriteLine( codeAChercher );
 
 			// Efface cette séquence de saut
 			//_code = _code.Replace( codeAChercher, "# " + codeAChercher );
@@ -1263,7 +1273,9 @@ public class	Compilateur {
 
 			// Remplace la séquence d'arrivée de ce saut dans le reste du code
 			codeAChercher = "__sequenceur[" + sautDeSéquence.UIDDuséquenceur + "]=" + sautDeSéquence.séquenceDeDépart;
+			//Console.WriteLine( codeAChercher );
 			_code = _code.Replace( codeAChercher, "__sequenceur[" + sautDeSéquence.UIDDuséquenceur + "]=" + sautDeSéquence.séquenceDArrivée );
+			//Console.WriteLine( sautDeSéquence.séquenceDArrivée );
 
 		} while (true);
 

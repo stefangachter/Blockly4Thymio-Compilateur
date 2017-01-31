@@ -10,7 +10,7 @@
     <RootNamespace>Blockly4Thymio</RootNamespace>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
-    <ReleaseVersion>1.0b</ReleaseVersion>
+    <ReleaseVersion>1.1</ReleaseVersion>
     <Description>Compilateur du projet Blockly4Thymio.
 Transforme un fichiers .b4t en fichier .aesl puis le transmet à Thymio.</Description>
     <ApplicationIcon>icone.ico</ApplicationIcon>
@@ -30,7 +30,7 @@ Transforme un fichiers .b4t en fichier .aesl puis le transmet à Thymio.</Descri
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
-    <AssemblyName>Compilateur.1.0b</AssemblyName>
+    <AssemblyName>Compilateur.1.1</AssemblyName>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
@@ -191,6 +191,7 @@ Transforme un fichiers .b4t en fichier .aesl puis le transmet à Thymio.</Descri
     <Compile Include="Compilateur\Blocs\Evénements\Evénement_QuandUnSonEstDétecté.cs" />
     <Compile Include="Compilateur\Blocs\Variables\Variable_IncrémenterUneVariable.cs" />
     <Compile Include="Compilateur\Blocs\Valeurs\Valeur_Math_Number.cs" />
+    <Compile Include="Compilateur\Blocs\Instructions\Instructions - Sons\Sons_JoueUnInstrument_SELInstrument_SELNote_SELDurée.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

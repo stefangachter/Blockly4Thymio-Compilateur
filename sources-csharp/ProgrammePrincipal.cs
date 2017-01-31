@@ -89,7 +89,7 @@ static	class 	ProgrammePrincipal {
 		// Initialisations
 		// ---------------
 
-		Compilateur.version = "1.0b";
+		Compilateur.version = "1.1";
 
 
 		// Nom du fichier programme.b4t à tester
@@ -160,7 +160,7 @@ static	class 	ProgrammePrincipal {
 		// Emplacement de programme de transfert asebahttp.exe
 		// ---------------------------------------------------
 		#if (DEBUG && WINDOWS)
-		Compilateur.nomDuFichierASEBAHTTP = @"C:\Blockly4Thymio.v1.0\asebahttp\asebahttp.exe";
+		Compilateur.nomDuFichierASEBAHTTP = @"C:\Blockly4Thymio.v1.1\asebahttp\asebahttp.exe";
 		#endif
 		#if (!DEBUG && WINDOWS)
 		Compilateur.nomDuFichierASEBAHTTP =  Path.GetDirectoryName(Application.ExecutablePath) + @"\asebahttp\asebahttp.exe";

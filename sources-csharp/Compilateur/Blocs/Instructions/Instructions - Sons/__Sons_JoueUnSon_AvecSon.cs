@@ -125,13 +125,15 @@ public class 	__Sons_JoueUnSon_AvecSon : __Bloc {
 
 		String	code;
 
-		code =		"  if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n" +
-					"    __lectureDUnSon=1\n";
-		if ( __son == (int)__SONS.SON.DEPUIS_LE_MICROPHONE )
-			code +=	"    call sound.replay(" + __son + ")\n";
-		else
-			code +=	"    call sound.play(" + __son + ")\n";
-
+		code =		"  if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n";
+					
+		if ( __son == (int)__SONS.SON.DEPUIS_LE_MICROPHONE ) {
+			code +=	"    __lectureDUnSon=1\n" + 
+					"    call sound.replay(" + __son + ")\n";
+		} else {
+			code +=	"    __son = " + __son + "\n" +
+					"    callsub __JoueUnSon\n";
+		}
 		code +=		"    __sequenceur[" + UIDDuSéquenceur + "]=" + (UID + 1) + "\n" +
 					"  end";
 

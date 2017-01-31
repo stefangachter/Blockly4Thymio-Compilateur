@@ -86,6 +86,7 @@ public	class	__Bloc {
     protected		int				__UID;
 	protected		int				__UIDDuSéquenceur;
 
+	protected		String			__commentaire;
 	protected		String			__nomDansBlockly;
 
 	protected		__Bloc			__blocPrécédent;
@@ -126,8 +127,12 @@ public	class	__Bloc {
 	get {
 		String	code = "";
 
-		if (Compilateur.afficherLesCommentaires)
-			code += "\n  # (UID " + __UID + ") Instruction Blockly : " + __nomDansBlockly + "\n";
+		if (Compilateur.afficherLesCommentaires) {
+			code += "\n  # (UID " + __UID + ") Instruction Blockly : " + __nomDansBlockly;
+			if ( __commentaire != "" )
+				code += " (" + __commentaire + ")";
+			code += "\n";
+		}
 
 		foreach ( Séquence séquence in __séquences )
 			code += séquence () + "\n";
@@ -152,6 +157,8 @@ public	class	__Bloc {
 	public	__Bloc( int _UID, XmlNode _XMLDuBloc, __Bloc _blocPrécédent, __GroupeDeBlocs _groupeDeBlocs ) {
 
 		__UID = _UID;
+
+		__commentaire = "";
 
         __nomDansBlockly = _XMLDuBloc.Attributes["type"].Value;
 
