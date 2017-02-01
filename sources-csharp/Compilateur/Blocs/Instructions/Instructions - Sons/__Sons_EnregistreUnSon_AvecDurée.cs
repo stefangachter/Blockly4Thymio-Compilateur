@@ -149,10 +149,10 @@ public class 	__Sons_EnregistreUnSon_AvecDurée : __Bloc {
 	// - Lance l'enregistrement du fichier son à partir du microphone
 	public	String	Séquence_1() {
 
-		return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n" +
+		return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + Compilateur.ComplèteÀZéro(UID) + " then\n" +
 				"    __chrono[" + UIDDuSéquenceur + "]=0\n" +
                 "    call sound.record(" + (int)__SONS.SON.DEPUIS_LE_MICROPHONE + ")\n" + 
-				"    __sequenceur[" + UIDDuSéquenceur + "]=" + (UID + 1) + "\n" +
+				"    __sequenceur[" + UIDDuSéquenceur + "]=" + Compilateur.ComplèteÀZéro(UID + 1) + "\n" +
 				"  end";
 		
 	}
@@ -164,11 +164,11 @@ public class 	__Sons_EnregistreUnSon_AvecDurée : __Bloc {
 	//     - Si le chrono est écoulé, stop l'enregistrement du fichier son à partir du microphone
 	public	String	Séquence_2() {
 
-		return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + (UID + 1) + " then\n" +
+		return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + Compilateur.ComplèteÀZéro(UID + 1) + " then\n" +
 				"    __chrono[" + UIDDuSéquenceur + "]++\n" +
 				"    if __chrono[" + UIDDuSéquenceur + "]>=" + (int)(__durée * 100) + " then\n" +
 				"      call sound.record(-1)\n" +
-				"      __sequenceur[" + UIDDuSéquenceur + "]=" + UIDDuBlocSuivant + "\n" +
+				"      __sequenceur[" + UIDDuSéquenceur + "]=" + Compilateur.ComplèteÀZéro(UIDDuBlocSuivant) + "\n" +
 				"    end\n" +
 				"  end";
 		

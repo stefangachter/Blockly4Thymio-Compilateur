@@ -125,6 +125,8 @@ public class	Compilateur {
 
 	private	static	bool					__transfertEnCours;
 
+	private	static	String					__messageDuTransfert;
+
 	private	static	FEN_Principale			__fenêtrePrincipal;
 
 
@@ -898,7 +900,7 @@ public class	Compilateur {
                 if ( événementRacine.blocSuivant != null ) {
                     // Exécute l'instruction qui suit l'événement
                     if ( codeEvénementLancementDuProgramme != "" ) { codeEvénementLancementDuProgramme += " "; }
-                    codeEvénementLancementDuProgramme += "__sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + événementRacine.blocSuivant.UID;
+                    codeEvénementLancementDuProgramme += "__sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + ComplèteÀZéro(événementRacine.blocSuivant.UID);
 					codePourLeSéquenceur = événementRacine.blocSuivant.codePourLeSéquenceur + "\n";
 					if ( optimisationDuSéquenceur )
 						codePourLeSéquenceur = OptimiseLeSéquenceur( codePourLeSéquenceur );
@@ -911,7 +913,7 @@ public class	Compilateur {
                 if ( événementRacine.blocSuivant != null ) {
                     // Exécute l'instruction qui suit l'événement
                     codeEvénementCommandeIR +=	"  if __sequenceur[" + événementRacine.UIDDuSéquenceur + "]==0 then\n" + 
-                    							"    __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + événementRacine.blocSuivant.UID +
+                    							"    __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + ComplèteÀZéro(événementRacine.blocSuivant.UID) +
 												"    __etat = ETAT_EN_MARCHE\n" +
 												"  end\n";
 					if ( optimisationDuSéquenceur )
@@ -926,7 +928,7 @@ public class	Compilateur {
                 if ( événementRacine.blocSuivant != null ) {
                     // Exécute l'instruction qui suit l'événement
 					codeEvénementBoutonFlèche +=	"  if __sequenceur[" + événementRacine.UIDDuSéquenceur + "]==0 then\n" + 
-                    								"    __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + événementRacine.blocSuivant.UID +
+                    								"    __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + ComplèteÀZéro(événementRacine.blocSuivant.UID) +
 													"    __etat = ETAT_EN_MARCHE\n" +
 													"  end\n";
 					if ( optimisationDuSéquenceur )
@@ -941,7 +943,7 @@ public class	Compilateur {
                 if ( événementRacine.blocSuivant != null ) {
                     // Exécute l'instruction qui suit l'événement
 					codeEvénementCapteurAvant +=	"  if __sequenceur[" + événementRacine.UIDDuSéquenceur + "]==0 then\n" + 
-                    								"    __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + événementRacine.blocSuivant.UID +
+                    								"    __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + ComplèteÀZéro(événementRacine.blocSuivant.UID) +
 													"    __etat = ETAT_EN_MARCHE\n" +
 													"  end\n";
 					if (optimisationDuSéquenceur )
@@ -956,7 +958,7 @@ public class	Compilateur {
                 if ( événementRacine.blocSuivant != null ) {
                     // Exécute l'instruction qui suit l'événement
 					codeEvénementCapteurArrière +=	"  if __sequenceur[" + événementRacine.UIDDuSéquenceur + "]==0 then\n" + 
-                    								"    __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + événementRacine.blocSuivant.UID +
+                    								"    __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + ComplèteÀZéro(événementRacine.blocSuivant.UID) +
 													"    __etat = ETAT_EN_MARCHE\n" +
 													"  end\n";
 					if ( optimisationDuSéquenceur )
@@ -971,7 +973,7 @@ public class	Compilateur {
                 if ( événementRacine.blocSuivant != null ) {
                     // Exécute l'instruction qui suit l'événement
 					codeEvénementChronomètre += "  if __sequenceur[" + événementRacine.UIDDuSéquenceur + "]==0 then\n" + 
-                    							"    __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + événementRacine.blocSuivant.UID +
+                    							"    __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + ComplèteÀZéro(événementRacine.blocSuivant.UID) +
 												"    __etat = ETAT_EN_MARCHE\n" +
 												"  end\n";
 					if ( optimisationDuSéquenceur )
@@ -986,7 +988,7 @@ public class	Compilateur {
                 if ( événementRacine.blocSuivant != null ) {
                     // Exécute l'instruction qui suit l'événement
 					codeEvénementChoc += "  if __sequenceur[" + événementRacine.UIDDuSéquenceur + "]==0 then\n" + 
-											"    __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + événementRacine.blocSuivant.UID + "\n" +
+											"    __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + ComplèteÀZéro(événementRacine.blocSuivant.UID) + "\n" +
 											"    __etat = ETAT_EN_MARCHE\n" +
 											"  end\n";
 					if ( optimisationDuSéquenceur )
@@ -1001,7 +1003,7 @@ public class	Compilateur {
                 if ( événementRacine.blocSuivant != null ) {
                     // Exécute l'instruction qui suit l'événement
 					codeEvénementSon += "  if __sequenceur[" + événementRacine.UIDDuSéquenceur + "]==0 then\n" + 
-										"    __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + événementRacine.blocSuivant.UID + "\n" +
+										"    __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + ComplèteÀZéro(événementRacine.blocSuivant.UID) + "\n" +
 										"    __etat = ETAT_EN_MARCHE\n" +
 										"  end\n";
 					if ( optimisationDuSéquenceur )
@@ -1218,10 +1220,10 @@ public class	Compilateur {
 
 		MatchCollection			matchSautsDeSéquence;
 
-		Regex					regexSéquenceDeDépart	= new Regex( @"==[0-9]+" );																		// Trouve les séquences du type : ==7 dans la séquence précédente
-		Regex					regexSéquenceDArrivée	= new Regex( @"\]=[0-9]+" );																	// Trouver les séquences du type : ]=1 dans la séquance précédente
-		Regex					regexSautDeSéquence		= new Regex( @"\sif\s__sequenceur\[[0-9]+\]==[0-9]+\sthen\s__sequenceur\[[0-9]+\]=[0-9]+" );	// Trouve les séquences du type : if __sequenceur[0]==7 then __sequenceur[0]=1 end
-		Regex					regexUIDDuSéquenceur	= new Regex( @"\[[0-9]+\]" );																	// Trouve les séquences du type : [0]
+		Regex					regexSéquenceDeDépart	= new Regex( @"==[0-9]{4}" );																		// Trouve les séquences du type : ==0007 dans la séquence précédente
+		Regex					regexSéquenceDArrivée	= new Regex( @"\]=[0-9]{4}" );																		// Trouver les séquences du type : ]=0001 dans la séquance précédente
+		Regex					regexSautDeSéquence		= new Regex( @"\sif\s__sequenceur\[[0-9]+\]==[0-9]{4}\sthen\s__sequenceur\[[0-9]+\]=[0-9]{4}" );	// Trouve les séquences du type : if __sequenceur[0]==0007 then __sequenceur[0]=0001 end
+		Regex					regexUIDDuSéquenceur	= new Regex( @"\[[0-9]+\]" );																		// Trouve les séquences du type : [0]
 
 		__SautDeSéquence		sautDeSéquence;
 
@@ -1237,12 +1239,12 @@ public class	Compilateur {
 			// Crée la liste des sauts de séquence dont la séquence de départ > 1
 			sautsDeSéquence = new List<__SautDeSéquence>();
 			foreach ( Match matchSautDeSéquence in matchSautsDeSéquence ) {
-				Console.WriteLine( matchSautDeSéquence );
+				//Console.WriteLine( matchSautDeSéquence );
 				// Numéro de la séquence de départ
 				séquenceDeDépart = regexSéquenceDeDépart.Match( matchSautDeSéquence.Value ).Value.Substring( 2 );
 				// Le numéro de la séquance de départ est 1, il n'y a pas d'optimisation à faire pour cette ligne,
 				// on passe au saut de ligne suivant.
-				if ( séquenceDeDépart == "1" )
+				if ( séquenceDeDépart == ComplèteÀZéro(1) )
 					continue;
 				// Numéro de la séquence de fin
 				séquenceDArrivée = regexSéquenceDArrivée.Match( matchSautDeSéquence.Value ).Value.Substring( 2 );
@@ -1268,13 +1270,12 @@ public class	Compilateur {
 			//Console.WriteLine( codeAChercher );
 
 			// Efface cette séquence de saut
-			//_code = _code.Replace( codeAChercher, "# " + codeAChercher );
 			_code = _code.Replace( codeAChercher, "" );
 
 			// Remplace la séquence d'arrivée de ce saut dans le reste du code
-			codeAChercher = "__sequenceur[" + sautDeSéquence.UIDDuséquenceur + "]=" + sautDeSéquence.séquenceDeDépart;
+			codeAChercher = "__sequenceur[" + sautDeSéquence.UIDDuséquenceur + "]=" + ComplèteÀZéro(sautDeSéquence.séquenceDeDépart);
 			//Console.WriteLine( codeAChercher );
-			_code = _code.Replace( codeAChercher, "__sequenceur[" + sautDeSéquence.UIDDuséquenceur + "]=" + sautDeSéquence.séquenceDArrivée );
+			_code = _code.Replace( codeAChercher, "__sequenceur[" + sautDeSéquence.UIDDuséquenceur + "]=" + ComplèteÀZéro(sautDeSéquence.séquenceDArrivée) );
 			//Console.WriteLine( sautDeSéquence.séquenceDArrivée );
 
 		} while (true);
@@ -1338,6 +1339,7 @@ public class	Compilateur {
 
         // Lance le processus de transfert
 		__transfertEnCours = true;
+		__messageDuTransfert = "";
 		processus = new Process();
 		processus.OutputDataReceived += new DataReceivedEventHandler(RedirectionDeLaConsole);
 		processus.ErrorDataReceived += new DataReceivedEventHandler(RedirectionDeLaConsole);	
@@ -1357,14 +1359,15 @@ public class	Compilateur {
 			}
 			System.Threading.Thread.Sleep(500);
 		}
+
 		processus.Kill();
 
-
-
-        // Fin
-        // ---
-
-        return true;
+		if ( __messageDuTransfert == "" )
+			return true;
+		else {
+			AfficheUnMessageDErreur( __messageDuTransfert );
+			return false;
+		}
 
     }
 
@@ -1375,9 +1378,18 @@ public class	Compilateur {
      */
 	private	static	void	RedirectionDeLaConsole( object _sender, DataReceivedEventArgs _e ) {
 		Console.Write( _e.Data );		
-        if ( _e.Data != null ) 
+        if ( _e.Data != null ) {
         	if ( _e.Data.IndexOf("Found Thymio-II on port") != -1 )
 				__transfertEnCours = false;
+			if ( _e.Data.IndexOf("HttpInterface can't connect target") != -1 ) {
+				__messageDuTransfert = Messages.Message((int)Messages.TYPE.THYMIO_NON_CONNECTÉ);
+				__transfertEnCours = false;
+			}
+			if ( _e.Data.IndexOf("Script too big for target bytecode") != -1 ) {
+				__messageDuTransfert = Messages.Message((int)Messages.TYPE.PROGRAMME_TROP_GRAND_POUR_THYMIO);
+				__transfertEnCours = false;
+			} 
+		}
     }
 
 
@@ -1392,10 +1404,23 @@ public class	Compilateur {
 
 	public	static	String	CréeLeCodeDeSautDeSéquence( int _UIDDuSéquenceur, int _séquenceDeDépart, int _séquenceDArrivée ) {
 		
-		return "if __sequenceur[" + _UIDDuSéquenceur + "]==" + _séquenceDeDépart + " then __sequenceur[" + _UIDDuSéquenceur + "]=" + _séquenceDArrivée + " end";
+		return "if __sequenceur[" + _UIDDuSéquenceur + "]==" + ComplèteÀZéro(_séquenceDeDépart) + " then __sequenceur[" + _UIDDuSéquenceur + "]=" + ComplèteÀZéro(_séquenceDArrivée) + " end";
 
 	}
 
+
+	/// <summary>
+	/// Complète _séquence avec 4 zéros
+	/// </summary>
+	/// <param name="_séquence">Séquence.</param>
+	public	static	String	ComplèteÀZéro( int _séquence ) {
+
+		if (_séquence==0)
+			return "0";
+		else
+			return _séquence.ToString().PadLeft(4,'0');
+
+	}
 
 }
 }

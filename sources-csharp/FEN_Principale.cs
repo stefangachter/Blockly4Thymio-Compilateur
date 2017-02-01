@@ -151,21 +151,17 @@ public		partial	class	FEN_Principale : Form {
 	
 		// Lance la compilation.
 		// Si la compilation s'est bien déroulée, le programme se ferme automatiquement
-//		try {
-			if (Compilateur.Compile(this)) {
-				if (Compilateur.fermetureDeLaFenêtreALaFin) {
-					#if (DEBUG)
-					Application.Exit();
-					#else
-					FermeLaFenêtreAprès2Secondes();
-					#endif
-				}
-			}
+		if (Compilateur.Compile(this)) {
 			// Message : Transfert terminé
 			AjouteUnMessage( "\n\n" + Messages.Message( (int)Messages.TYPE.COMPILATION_ET_TRANSFERT_TERMINÉ ) );
-//		} catch ( Exception ex ) {
-//			AfficheUnMessageDErreur( ex.Message );
-//		}
+			if (Compilateur.fermetureDeLaFenêtreALaFin) {
+				#if (DEBUG)
+				Application.Exit();
+				#else
+				FermeLaFenêtreAprès2Secondes();
+				#endif
+			}
+		}
 
 	}
 

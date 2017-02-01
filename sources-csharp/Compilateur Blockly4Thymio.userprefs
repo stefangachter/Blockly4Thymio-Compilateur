@@ -1,8 +1,8 @@
 ﻿<Properties StartupItem="Compilateur Blockly4Thymio.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="WINDOWS-Debug|x86" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="WINDOWS-Release|x86" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Compilateur\Compilateur.cs">
     <Files>
-      <File FileName="Compilateur\Compilateur.cs" Line="1224" Column="73" />
+      <File FileName="Compilateur\Compilateur.cs" Line="763" Column="31" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

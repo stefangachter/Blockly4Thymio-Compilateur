@@ -164,23 +164,23 @@ public class 	GroupeDInstructions_Boucle_TantQue_ENTCondition_Faire : __GroupeDe
 
 
 		if ( __blocsInternes != null ) {
-			code +=		"  if __sequenceur[" + UIDDuSéquenceur + "]==" + (UID) + " then\n";
+			code +=		"  if __sequenceur[" + UIDDuSéquenceur + "]==" + Compilateur.ComplèteÀZéro(UID) + " then\n";
 			if ( __conditionDeBoucle.codeDInitialisationPourLeSéquenceur !="" )
 				code +=	"    " + __conditionDeBoucle.codeDInitialisationPourLeSéquenceur + "\n;";
 			code += 	"    if " + __conditionDeBoucle.codePourLeSéquenceur + " then\n" +
-						"      __sequenceur[" + UIDDuSéquenceur + "]=" + (__blocsInternes.premierBloc.UID) + "\n" +
+						"      __sequenceur[" + UIDDuSéquenceur + "]=" + Compilateur.ComplèteÀZéro(__blocsInternes.premierBloc.UID) + "\n" +
 						"    else\n" +
-						"      __sequenceur[" + UIDDuSéquenceur + "]=" + (UIDDuBlocSuivant) + "\n" +
+						"      __sequenceur[" + UIDDuSéquenceur + "]=" + Compilateur.ComplèteÀZéro(UIDDuBlocSuivant) + "\n" +
 						"    end\n" +
 						"  end";
 		} else {
-			code +=		"  if __sequenceur[" + UIDDuSéquenceur + "]==" + (UID) + " then\n";
+			code +=		"  if __sequenceur[" + UIDDuSéquenceur + "]==" + Compilateur.ComplèteÀZéro(UID) + " then\n";
 			if ( __conditionDeBoucle.codeDInitialisationPourLeSéquenceur !="" )
 				code +=	"    " + __conditionDeBoucle.codeDInitialisationPourLeSéquenceur + "\n;";
 			code +=		"    if " + __conditionDeBoucle.codePourLeSéquenceur + " then\n" +
-						"      __sequenceur[" + UIDDuSéquenceur + "]=" + (UID+1) + "\n" +
+						"      __sequenceur[" + UIDDuSéquenceur + "]=" + Compilateur.ComplèteÀZéro(UID+1) + "\n" +
 						"    else\n" +
-						"      __sequenceur[" + UIDDuSéquenceur + "]=" + (UIDDuBlocSuivant) + "\n" +
+						"      __sequenceur[" + UIDDuSéquenceur + "]=" + Compilateur.ComplèteÀZéro(UIDDuBlocSuivant) + "\n" +
 						"    end\n" +
 						"  end";
 		}

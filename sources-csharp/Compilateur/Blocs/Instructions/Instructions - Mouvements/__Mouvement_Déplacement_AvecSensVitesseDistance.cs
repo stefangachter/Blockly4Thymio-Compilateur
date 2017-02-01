@@ -156,7 +156,7 @@ public class 	__Mouvement_Déplacement_Avec_Sens_Vitesse_Distance : __Bloc {
 		String	code = "";
 		
 		
-		code +=		"  if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n";
+		code +=		"  if __sequenceur[" + UIDDuSéquenceur + "]==" + Compilateur.ComplèteÀZéro(UID) + " then\n";
 		
         switch ( __sens ) {
         case (int)__MOTEUR.SENS.EN_AVANT:
@@ -167,7 +167,7 @@ public class 	__Mouvement_Déplacement_Avec_Sens_Vitesse_Distance : __Bloc {
             break;
         }
 		
-		code +=		"    __sequenceur[" + UIDDuSéquenceur + "]=" + (UID + 1) + "\n" +
+		code +=		"    __sequenceur[" + UIDDuSéquenceur + "]=" + Compilateur.ComplèteÀZéro(UID + 1) + "\n" +
 					"  end";
 		
 		return code;
@@ -190,7 +190,7 @@ public class 	__Mouvement_Déplacement_Avec_Sens_Vitesse_Distance : __Bloc {
 	if (__vitesse==(int)__MOTEUR.VITESSE.LENTE)
 			correctionDeCalibration = 7;
 		
-		code +=		"  if __sequenceur[" + UIDDuSéquenceur + "]==" + (UID + 1) + " then\n";
+		code +=		"  if __sequenceur[" + UIDDuSéquenceur + "]==" + Compilateur.ComplèteÀZéro(UID + 1) + " then\n";
 
         switch (__sens) {
         case (int)__MOTEUR.SENS.EN_AVANT :
@@ -202,7 +202,7 @@ public class 	__Mouvement_Déplacement_Avec_Sens_Vitesse_Distance : __Bloc {
 		}
 
 		code +=		"      callsub __ArreteLesMoteurs\n" +
-					"      __sequenceur[" + UIDDuSéquenceur + "]=" + UIDDuBlocSuivant + "\n" +
+					"      __sequenceur[" + UIDDuSéquenceur + "]=" + Compilateur.ComplèteÀZéro(UIDDuBlocSuivant) + "\n" +
 					"    end\n" +
 					"  end";
 		

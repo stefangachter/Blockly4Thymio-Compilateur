@@ -125,7 +125,7 @@ public class 	__Sons_JoueUnSon_AvecSon : __Bloc {
 
 		String	code;
 
-		code =		"  if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n";
+		code =		"  if __sequenceur[" + UIDDuSéquenceur + "]==" + Compilateur.ComplèteÀZéro(UID) + " then\n";
 					
 		if ( __son == (int)__SONS.SON.DEPUIS_LE_MICROPHONE ) {
 			code +=	"    __lectureDUnSon=1\n" + 
@@ -134,7 +134,7 @@ public class 	__Sons_JoueUnSon_AvecSon : __Bloc {
 			code +=	"    __son = " + __son + "\n" +
 					"    callsub __JoueUnSon\n";
 		}
-		code +=		"    __sequenceur[" + UIDDuSéquenceur + "]=" + (UID + 1) + "\n" +
+		code +=		"    __sequenceur[" + UIDDuSéquenceur + "]=" + Compilateur.ComplèteÀZéro(UID + 1) + "\n" +
 					"  end";
 
 		return code;
@@ -147,11 +147,11 @@ public class 	__Sons_JoueUnSon_AvecSon : __Bloc {
 	//     - Si la lecture du son est terminée, passe au bloc suivant
 	public	String	Séquence_2() {
 
-		return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + (UID + 1) + " then\n" +
-			"    if __lectureDUnSon==0 then\n" +
-			"      __sequenceur[" + UIDDuSéquenceur + "]=" + UIDDuBlocSuivant + "\n" +
-			"    end\n" +
-			"  end";
+		return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + Compilateur.ComplèteÀZéro(UID + 1) + " then\n" +
+				"    if __lectureDUnSon==0 then\n" +
+				"      __sequenceur[" + UIDDuSéquenceur + "]=" + Compilateur.ComplèteÀZéro(UIDDuBlocSuivant) + "\n" +
+				"    end\n" +
+				"  end";
 
 	}
 

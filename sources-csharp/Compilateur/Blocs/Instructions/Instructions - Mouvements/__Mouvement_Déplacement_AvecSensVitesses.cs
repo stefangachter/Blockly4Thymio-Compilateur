@@ -129,9 +129,9 @@ public class 	__Mouvement_Déplacement_AvecSensVitesses : __Bloc {
 	// - Passe au bloc suivant
 	public	String	Séquence_1() {
 
-		return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n" +
+		return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + Compilateur.ComplèteÀZéro(UID) + " then\n" +
 				"    " + __MOTEUR.code( __sens, __vitesseAGauche, __vitesseADroite ) + "\n" +
-				"    __sequenceur[" + UIDDuSéquenceur + "]=" + UIDDuBlocSuivant + "\n" +
+				"    __sequenceur[" + UIDDuSéquenceur + "]=" + Compilateur.ComplèteÀZéro(UIDDuBlocSuivant) + "\n" +
 				"  end";
 		
 	}

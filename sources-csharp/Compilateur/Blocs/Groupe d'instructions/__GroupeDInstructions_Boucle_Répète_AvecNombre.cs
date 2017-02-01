@@ -148,9 +148,9 @@ public	class	__GroupeDInstructions_Boucle_Répète_AvecNombre : __GroupeDeBlocs 
 	// - Initialise le nombre de boucle, passe au bloc suivant
 	public	String	Séquence_1() {
 		
-		return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n" +
+		return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + Compilateur.ComplèteÀZéro(UID) + " then\n" +
 				"    __boucle[" + (__UIDDeBoucle-1) + "]=" + __nombreDeBoucle + "\n" +
-				"    __sequenceur[" + UIDDuSéquenceur + "]=" + (UID + 1) + "\n" +
+				"    __sequenceur[" + UIDDuSéquenceur + "]=" + Compilateur.ComplèteÀZéro(UID + 1) + "\n" +
 				"  end";
 		
 	}
@@ -162,12 +162,12 @@ public	class	__GroupeDInstructions_Boucle_Répète_AvecNombre : __GroupeDeBlocs 
 	public	String	Séquence_2() {
 
 		if ( __blocsInternes != null )
-			return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + (UID + 1) + " then\n" +
+			return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + Compilateur.ComplèteÀZéro(UID + 1) + " then\n" +
 					"    __boucle[" + (__UIDDeBoucle-1) + "]--\n" +
 					"    if __boucle[" + (__UIDDeBoucle-1) + "]>0 then\n" +
-					"      __sequenceur[" + UIDDuSéquenceur + "]=" + (__blocsInternes.premierBloc.UID) + "\n" + 
+					"      __sequenceur[" + UIDDuSéquenceur + "]=" + Compilateur.ComplèteÀZéro(__blocsInternes.premierBloc.UID) + "\n" + 
 					"    else\n" +
-					"      __sequenceur[" + UIDDuSéquenceur + "]=" + UIDDuBlocSuivant + "\n" + 
+					"      __sequenceur[" + UIDDuSéquenceur + "]=" + Compilateur.ComplèteÀZéro(UIDDuBlocSuivant) + "\n" + 
 					"    end\n" +
 					"  end";
 		else

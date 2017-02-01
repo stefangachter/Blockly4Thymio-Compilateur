@@ -155,10 +155,10 @@ public class 	__Lumières_AllumeLesLEDs_AvecLEDCouleurDurée : __Bloc {
 	// - Passe au bloc suivant
 	public	String	Séquence_1() {
 
-		return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n" +
+		return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + Compilateur.ComplèteÀZéro(UID) + " then\n" +
 				"    __chrono[" + UIDDuSéquenceur + "]=0\n" +
 				"    " + __LED.code( __led, __couleur ) + "\n" +
-				"    __sequenceur[" + UIDDuSéquenceur + "]=" + (UID + 1) + "\n" +
+				"    __sequenceur[" + UIDDuSéquenceur + "]=" + Compilateur.ComplèteÀZéro(UID + 1) + "\n" +
 				"  end";
 		
 	}
@@ -170,11 +170,11 @@ public class 	__Lumières_AllumeLesLEDs_AvecLEDCouleurDurée : __Bloc {
 	//     - Si le chrono est écoulé, éteins les lumières et passe au bloc suivant
 	public	String	Séquence_2() {
 
-		return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + (UID + 1) + " then\n" +
+		return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + Compilateur.ComplèteÀZéro(UID + 1) + " then\n" +
 				"    __chrono[" + UIDDuSéquenceur + "]++\n" +
 				"    if __chrono[" + UIDDuSéquenceur + "]>=" + (int)(__durée * 100) + " then\n" +
 				"      " + __LED.code( __led, 0 ) + "\n" +
-				"      __sequenceur[" + UIDDuSéquenceur + "]=" + UIDDuBlocSuivant + "\n" +
+				"      __sequenceur[" + UIDDuSéquenceur + "]=" + Compilateur.ComplèteÀZéro(UIDDuBlocSuivant) + "\n" +
 				"    end\n" +
 				"  end";
 		

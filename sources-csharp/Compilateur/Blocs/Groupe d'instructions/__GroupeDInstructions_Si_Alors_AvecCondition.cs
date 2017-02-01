@@ -124,13 +124,13 @@ public	class	__GroupeDInstructions_Si_Alors_AvecCondition : __GroupeDeBlocs {
 
 
 		if ( __blocsInternes != null ) {
-			code = 		"  if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n";
+			code = 		"  if __sequenceur[" + UIDDuSéquenceur + "]==" + Compilateur.ComplèteÀZéro(UID) + " then\n";
 			if (__conditionDEntré.codeDInitialisationPourLeSéquenceur != "")
 				code +=	"    " + __conditionDEntré.codeDInitialisationPourLeSéquenceur + "\n";
 			code +=		"    if " + __conditionDEntré.codePourLeSéquenceur + " then\n" +
-						"      __sequenceur[" + UIDDuSéquenceur + "]=" + (UID + 1) + "\n" +
+						"      __sequenceur[" + UIDDuSéquenceur + "]=" + Compilateur.ComplèteÀZéro(UID + 1) + "\n" +
 						"    else\n" +
-						"      __sequenceur[" + UIDDuSéquenceur + "]=" + (__blocsInternes.premierBloc.UID+__blocsInternes.nombreDeSéquence) + "\n" +
+						"      __sequenceur[" + UIDDuSéquenceur + "]=" + Compilateur.ComplèteÀZéro(__blocsInternes.premierBloc.UID+__blocsInternes.nombreDeSéquence) + "\n" +
 						"    end\n" + 
 				  		"  end";
 			return code;

@@ -155,9 +155,9 @@ public	class	Paramètre_InitialiseLeChronomètre_SAIValeur : __Bloc {
 	// - Modifie la variable __chronomètre
 	public	String	Séquence_1() {
 
-		return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n" +
+		return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + Compilateur.ComplèteÀZéro(UID) + " then\n" +
 				"    __chronomètre=" + chronomètre*1000 + "\n" +
-				"    __sequenceur[" + UIDDuSéquenceur + "]=" + UIDDuBlocSuivant + "\n" +
+				"    __sequenceur[" + UIDDuSéquenceur + "]=" + Compilateur.ComplèteÀZéro(UIDDuBlocSuivant) + "\n" +
 				"  end";
 		
 	}

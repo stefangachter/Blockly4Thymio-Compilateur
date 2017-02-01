@@ -51,6 +51,7 @@ Source: "fichiers\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs crea
 [Icons]
 Name: "{group}\Fichiers sons pour la carte SD"; Filename: "{app}\sons-pour-carte-micro-sd"
 Name: "{group}\{cm:ProgramOnTheWeb,{#MyAppName}}"; Filename: "{#MyAppURL}"
+Name: "{group}\{cm:ProgramOnTheWeb,interface-cycle1}"; Filename: "http://robotique.canope-aura.fr/thymio/interface1"
 Name: "{group}\Tester le compilateur"; Filename: "{app}\tester-le-compilateur.b4t"
 Name: "{group}\LISEZ-MOI"; Filename: "{app}\LISEZ-MOI.rtf"
 Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"

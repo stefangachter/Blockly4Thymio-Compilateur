@@ -154,11 +154,11 @@ public 	class 	Variable_DéfinirUneVariable : __Variable {
 
 
 
-		code = 		"  if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n";
+		code = 		"  if __sequenceur[" + UIDDuSéquenceur + "]==" + Compilateur.ComplèteÀZéro(UID) + " then\n";
 		if (__expression.codeDInitialisationPourLeSéquenceur != "" )
 			code +=	"    " + __expression.codeDInitialisationPourLeSéquenceur + "\n";
 		code +=		"    " + __Variable.code(__nom) + "=" + __expression.codePourLeSéquenceur + "\n" +
-					"    __sequenceur[" + UIDDuSéquenceur + "]=" + UIDDuBlocSuivant + "\n" +
+					"    __sequenceur[" + UIDDuSéquenceur + "]=" + Compilateur.ComplèteÀZéro(UIDDuBlocSuivant) + "\n" +
 					"  end";
 
 		return code;

@@ -111,7 +111,7 @@ public	class	Contrôle_ArrêteLeProgramme : __Bloc {
 	// - Passe au bloc suivant
 	public	String	Séquence_1() {
 		
-		return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n" +
+		return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + Compilateur.ComplèteÀZéro(UID) + " then\n" +
 				"    __sequenceur[" + UIDDuSéquenceur + "]=0\n" +
 				"  end";
 		

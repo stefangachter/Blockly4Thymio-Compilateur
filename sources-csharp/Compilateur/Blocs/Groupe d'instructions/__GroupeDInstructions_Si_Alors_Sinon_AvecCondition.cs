@@ -142,19 +142,19 @@ public	class	__GroupeDInstructions_Si_Alors_Sinon_AvecCondition : __GroupeDeBloc
 	public	String	Séquence_1() {
 		String	code;
 
-		code =		"  if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n";
+		code =		"  if __sequenceur[" + UIDDuSéquenceur + "]==" + Compilateur.ComplèteÀZéro(UID) + " then\n";
 		if ( __conditionDEntré.codeDInitialisationPourLeSéquenceur != "" )
 			code +=	"    " + __conditionDEntré.codeDInitialisationPourLeSéquenceur + "\n";
 		code +=		"    if " + __conditionDEntré.codePourLeSéquenceur + " then\n";
 		if ( __blocsInternes == null )
-			code += "      __sequenceur[" + UIDDuSéquenceur + "]=" + (UIDDeLaDernièreSéquence) + "\n";
+			code += "      __sequenceur[" + UIDDuSéquenceur + "]=" + Compilateur.ComplèteÀZéro(UIDDeLaDernièreSéquence) + "\n";
 		else
-			code +=	"      __sequenceur[" + UIDDuSéquenceur + "]=" + (__blocsInternes.premierBloc.UID) + "\n";
+			code +=	"      __sequenceur[" + UIDDuSéquenceur + "]=" + Compilateur.ComplèteÀZéro(__blocsInternes.premierBloc.UID) + "\n";
 		code +=		"    else\n";
 		if ( __blocsInternesSupplémentaires == null )
-			code += "      __sequenceur[" + UIDDuSéquenceur + "]=" + (UIDDeLaDernièreSéquence) + "\n";
+			code += "      __sequenceur[" + UIDDuSéquenceur + "]=" + Compilateur.ComplèteÀZéro(UIDDeLaDernièreSéquence) + "\n";
 		else
-			code +=	"      __sequenceur[" + UIDDuSéquenceur + "]=" + (__blocsInternesSupplémentaires.premierBloc.UID) + "\n";
+			code +=	"      __sequenceur[" + UIDDuSéquenceur + "]=" + Compilateur.ComplèteÀZéro(__blocsInternesSupplémentaires.premierBloc.UID) + "\n";
 		code +=		"    end\n" + 
 			  		"  end";
 		return code;

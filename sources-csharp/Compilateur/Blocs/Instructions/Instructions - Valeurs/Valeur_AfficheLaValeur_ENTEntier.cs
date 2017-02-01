@@ -142,12 +142,12 @@ public 	class 	Valeur_AfficheLaValeur_ENTEntier : __Bloc {
 
 
 
-		code = 		"  if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n";
+		code = 		"  if __sequenceur[" + UIDDuSéquenceur + "]==" + Compilateur.ComplèteÀZéro(UID) + " then\n";
 		if (__expression.codeDInitialisationPourLeSéquenceur != "" )
 			code +=	"    " + __expression.codeDInitialisationPourLeSéquenceur + "\n";
 			code +=	"    __variableAAfficher=" + __expression.codePourLeSéquenceur + "\n" +
 					"    callsub __AfficheUneVariable\n" +
-					"    __sequenceur[" + UIDDuSéquenceur + "]=" + UIDDuBlocSuivant + "\n" +
+					"    __sequenceur[" + UIDDuSéquenceur + "]=" + Compilateur.ComplèteÀZéro(UIDDuBlocSuivant) + "\n" +
 					"  end";
 
 		return code;

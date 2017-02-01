@@ -89,6 +89,8 @@ public class 	Messages {
 		VITESSE_INFÉRIEURE_A_MOINS_100_POURCENT,
 		VITESSE_SUPÉRIEURE_A_100_POURCENT,
 		ASEBAHTTP_INTROUVABLE,
+		THYMIO_NON_CONNECTÉ,
+		PROGRAMME_TROP_GRAND_POUR_THYMIO,
 		PAS_D_INSTRUCTION_DE_DÉPART,
 		FICHIER,
 		LECTURE_DU_FICHIER_B4T,
@@ -139,6 +141,8 @@ public class 	Messages {
 		case (int)TYPE.VITESSE_SUPÉRIEURE_A_100_POURCENT :			return "La vitesse est supérieure à 100(%). Celle-ci a été corrigée pour être à 100(%).";
 
 		case (int)TYPE.ASEBAHTTP_INTROUVABLE :						return "Erreur ! L'exécutable {0} pour transmettre le fichier .aesl au robot Thymio n'existe pas.";
+		case (int)TYPE.THYMIO_NON_CONNECTÉ :						return "Erreur ! Thymio n'est pas connecté.";
+		case (int)TYPE.PROGRAMME_TROP_GRAND_POUR_THYMIO :			return "Erreur ! Le programme est trop grand pour la mémoire de Thymio.";
 
 		case (int)TYPE.PAS_D_INSTRUCTION_DE_DÉPART :				return "Il n'y a pas d'instruction de départ dans le fichier {0} .";
 

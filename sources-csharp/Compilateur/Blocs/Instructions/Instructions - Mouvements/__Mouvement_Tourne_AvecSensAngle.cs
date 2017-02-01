@@ -154,7 +154,7 @@ public class 	__Mouvement_Tourne_AvecSensAngle : __Bloc {
 		String code = "";
 		
 		
-		code +=		"  if __sequenceur[" + UIDDuSéquenceur + "]==" + UID + " then\n";
+		code +=		"  if __sequenceur[" + UIDDuSéquenceur + "]==" + Compilateur.ComplèteÀZéro(UID) + " then\n";
 
 		switch (__sens) {
         case (int)__MOTEUR.TOURNE.A_DROITE:
@@ -164,7 +164,7 @@ public class 	__Mouvement_Tourne_AvecSensAngle : __Bloc {
             code +=	"    motor.left.target=-" + (int)__MOTEUR.VITESSE.NORMALE + " motor.right.target=" + (int)__MOTEUR.VITESSE.NORMALE + "\n";
             break;
         }
-		code +=		"    __sequenceur[" + UIDDuSéquenceur + "]=" + (UID+1) + "\n" +
+		code +=		"    __sequenceur[" + UIDDuSéquenceur + "]=" + Compilateur.ComplèteÀZéro(UID+1) + "\n" +
 					"  end";
 		
 		return code;
@@ -179,7 +179,7 @@ public class 	__Mouvement_Tourne_AvecSensAngle : __Bloc {
 		String code = "";
 		
 		
-		code +=		"  if __sequenceur[" + UIDDuSéquenceur + "]==" + (UID+1) + " then\n";
+		code +=		"  if __sequenceur[" + UIDDuSéquenceur + "]==" + Compilateur.ComplèteÀZéro(UID+1) + " then\n";
 
 		switch (__sens) {
         case (int)__MOTEUR.TOURNE.A_DROITE:
@@ -190,7 +190,7 @@ public class 	__Mouvement_Tourne_AvecSensAngle : __Bloc {
             break;
         }
 		code +=		"      callsub __ArreteLesMoteurs\n" + 
-					"      __sequenceur[" + UIDDuSéquenceur + "]=" + UIDDuBlocSuivant + "\n" +
+					"      __sequenceur[" + UIDDuSéquenceur + "]=" + Compilateur.ComplèteÀZéro(UIDDuBlocSuivant) + "\n" +
         			"    end\n" + 
 					"  end";
 		
