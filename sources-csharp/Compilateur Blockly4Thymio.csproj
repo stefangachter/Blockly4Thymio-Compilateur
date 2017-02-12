@@ -29,7 +29,7 @@ Transforme un fichiers .b4t en fichier .aesl puis le transmet à Thymio.</Descri
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <AssemblyName>Compilateur.1.1</AssemblyName>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
@@ -57,7 +57,8 @@ Transforme un fichiers .b4t en fichier .aesl puis le transmet à Thymio.</Descri
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'LINUX-Release|x86' ">
     <Optimize>false</Optimize>
     <OutputPath>bin\x86\Release\</OutputPath>
-    <DefineConstants>LINUX</DefineConstants>
+    <CustomConstants Condition=" '$(TargetFrameworkVersion)' != 'v4.5' ">NOT_NET_45</CustomConstants>
+    <DefineConstants>LINUX $(CustomConstants)</DefineConstants>
     <WarningLevel>4</WarningLevel>
     <RunCodeAnalysis>false</RunCodeAnalysis>
     <PlatformTarget>x86</PlatformTarget>
@@ -67,7 +68,8 @@ Transforme un fichiers .b4t en fichier .aesl puis le transmet à Thymio.</Descri
     <DebugSymbols>true</DebugSymbols>
     <Optimize>false</Optimize>
     <OutputPath>bin\x86\Debug-LINUX</OutputPath>
-    <DefineConstants>LINUX DEBUG</DefineConstants>
+    <CustomConstants Condition=" '$(TargetFrameworkVersion)' != 'v4.5' ">NOT_NET_45</CustomConstants>
+    <DefineConstants>LINUX DEBUG $(CustomConstants)</DefineConstants>
     <WarningLevel>4</WarningLevel>
     <RunCodeAnalysis>false</RunCodeAnalysis>
     <PlatformTarget>x86</PlatformTarget>

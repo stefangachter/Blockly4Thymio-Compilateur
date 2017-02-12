@@ -95,6 +95,9 @@ static	class 	ProgrammePrincipal {
 		#if (WINDOWS && NOT_NET_30)
 		#error La compilation sous Windows doit être réalisée pour le framework .NET 3.0. Modifiez dans les options du projet, rubrique Construire->Général->Target framework = Mono / .NET 3.0
 		#endif
+		#if (LINUX && NOT_NET_45)
+		#error La compilation sous Linux doit être réalisée pour le framework .NET 4.5. Modifiez dans les options du projet, rubrique Construire->Général->Target framework = Mono / .NET 4.5
+		#endif
 
 		// Nom du fichier programme.b4t à tester
 		// -------------------------------------
