@@ -92,6 +92,10 @@ static	class 	ProgrammePrincipal {
 		Compilateur.version = "1.1";
 
 
+		#if (WINDOWS && NOT_NET_30)
+		#error La compilation sous Windows doit être réalisée pour le framework .NET 3.0. Modifiez dans les options du projet, rubrique Construire->Général->Target framework = Mono / .NET 3.0
+		#endif
+
 		// Nom du fichier programme.b4t à tester
 		// -------------------------------------
 		#if (DEBUG && WINDOWS)

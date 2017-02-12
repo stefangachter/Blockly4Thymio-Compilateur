@@ -37,18 +37,21 @@ Transforme un fichiers .b4t en fichier .aesl puis le transmet à Thymio.</Descri
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'WINDOWS-Release|x86' ">
     <Optimize>false</Optimize>
     <OutputPath>bin\WINDOWS-Release\</OutputPath>
-    <DefineConstants>WINDOWS</DefineConstants>
+    <CustomConstants Condition=" '$(TargetFrameworkVersion)' != 'v3.0' ">NOT_NET_30</CustomConstants>
+    <DefineConstants>WINDOWS $(CustomConstants)</DefineConstants>
     <WarningLevel>4</WarningLevel>
     <RunCodeAnalysis>false</RunCodeAnalysis>
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'LINUX-Debug|x86' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'WINDOWS-Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
     <Optimize>false</Optimize>
-    <OutputPath>bin\x86\Debug-LINUX</OutputPath>
-    <DefineConstants>DEBUG LINUX</DefineConstants>
+    <OutputPath>bin\WINDOWS-Debug\</OutputPath>
+    <CustomConstants Condition=" '$(TargetFrameworkVersion)' != 'v3.0' ">NOT_NET_30</CustomConstants>
+    <DefineConstants>WINDOWS DEBUG $(CustomConstants)</DefineConstants>
     <WarningLevel>4</WarningLevel>
     <RunCodeAnalysis>false</RunCodeAnalysis>
+    <Commandlineparameters>"C:\Users\fort\Downloads\compilateur\programme.b4t"</Commandlineparameters>
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'LINUX-Release|x86' ">
@@ -60,14 +63,13 @@ Transforme un fichiers .b4t en fichier .aesl puis le transmet à Thymio.</Descri
     <PlatformTarget>x86</PlatformTarget>
     <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'WINDOWS-Debug|x86' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'LINUX-Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
     <Optimize>false</Optimize>
-    <OutputPath>bin\WINDOWS-Debug\</OutputPath>
-    <DefineConstants>DEBUG WINDOWS</DefineConstants>
+    <OutputPath>bin\x86\Debug-LINUX</OutputPath>
+    <DefineConstants>LINUX DEBUG</DefineConstants>
     <WarningLevel>4</WarningLevel>
     <RunCodeAnalysis>false</RunCodeAnalysis>
-    <Commandlineparameters>"C:\Users\fort\Downloads\compilateur\programme.b4t"</Commandlineparameters>
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
