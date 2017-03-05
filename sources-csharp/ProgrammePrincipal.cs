@@ -89,7 +89,7 @@ static	class 	ProgrammePrincipal {
 		// Initialisations
 		// ---------------
 
-		Compilateur.version = "1.1";
+		Compilateur.version = "1.2";
 
 
 		#if (WINDOWS && NOT_NET_30)

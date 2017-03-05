@@ -24,6 +24,12 @@ Ces sources sont distribuées sous licence libre CeCILL-C V2.
 Suivi des versions
 ------------------
 
+###Version 1.2
+
+* Corrections mineures
+* Préparations pour la version Linux
+
+
 ###Version 1.1
 
 * Optimisation sur tous les événements
