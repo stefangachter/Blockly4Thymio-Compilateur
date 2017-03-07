@@ -183,9 +183,9 @@ static	class 	ProgrammePrincipal {
 
 		// Fermeture automatique de la fenêtre à la fin des traitements
 		// ------------------------------------------------------------
-		#if (DEBUG)
-		//Compilateur.fermetureDeLaFenêtreALaFin = false;
+		#if (DEBUG)		
 		Compilateur.fermetureDeLaFenêtreALaFin = true;
+		//Compilateur.fermetureDeLaFenêtreALaFin = false;
 		#endif
 		#if (!DEBUG)
 		Compilateur.fermetureDeLaFenêtreALaFin = true;
