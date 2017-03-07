@@ -103,7 +103,6 @@ static	class 	ProgrammePrincipal {
 		// -------------------------------------
 		#if (DEBUG && WINDOWS)
 		Compilateur.nomDuFichierB4T = @"C:\Users\Okimi\Downloads\programme.b4t";
-		//Compilateur.nomDuFichierB4T = @"C:\Users\fort\Downloads\programme.b4t";
 		#endif
 		#if (DEBUG && LINUX)
 		Compilateur.nomDuFichierB4T = @"/home/okimi/Téléchargements/programme.b4t";
@@ -173,7 +172,7 @@ static	class 	ProgrammePrincipal {
 		Compilateur.nomDuFichierASEBAHTTP =  Path.GetDirectoryName(Application.ExecutablePath) + @"\asebahttp\asebahttp.exe";
 		#endif
 		#if (LINUX)
-		Compilateur.nomDuFichierASEBAHTTP = @"/usr/bin/asebahttp";
+		Compilateur.nomDuFichierASEBAHTTP = @"/usr/share/blockly4thymio/asebahttp";
 		#endif
 		
 

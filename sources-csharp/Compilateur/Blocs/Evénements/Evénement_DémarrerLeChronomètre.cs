@@ -105,7 +105,7 @@ public	class	Evénement_DémarrerLeChronomètre : __Bloc {
 	public	String	Séquence_1() {
 
 		return	"  if __sequenceur[" + UIDDuSéquenceur + "]==" + Compilateur.ComplèteÀZéro(UID) + " then\n" +
-				"    timer.period[1]=__chronomètre\n" +
+				"    timer.period[1]=__chronometre\n" +
 				"    __sequenceur[" + UIDDuSéquenceur + "]=" + Compilateur.ComplèteÀZéro(UIDDuBlocSuivant) + "\n" +
 				"  end";
 		

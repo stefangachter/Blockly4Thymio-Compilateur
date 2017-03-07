@@ -112,7 +112,7 @@ public class FrameworkASEBA {
 # DECLARATION DES VARIABLES GLOBALES
 # ----------------------------------
 
-var __chronomètre = 1000
+var __chronometre = 1000
 var __coeurQuiBat = 0
 var __compteur
 var __etat
