@@ -155,14 +155,11 @@ public class 	Messages {
 			case (int)TYPE.FICHIER_NON_LISIBLE :						return "Error reading file {0}.";
 			case (int)TYPE.AIDE :										return	"\r\n" + 
 																				"No .b4t source files have been declared.\r\n" +
-																				"\r\n" + 
-																				"Usage: Assign the .b4t files to this executable.\r\n" +
-																				"\r\n";
+																				"Usage: Assign the .b4t files to this executable.\r\n";
 			case (int)TYPE.ENTÊTE:
 				texte = "";
 				#if DEBUG
-				texte +=														"\r\n" +
-																				"**********************\r\n" +
+				texte +=														"**********************\r\n" +
 																				"* !!! DEBUG MODE !!! *\r\n" +
 																				"**********************\r\n";
 				#endif
@@ -173,7 +170,7 @@ public class 	Messages {
 																				"\r\n";
 				return	texte;
 			case (int)TYPE.BLOC_NON_TRAITÉ_DANS_CETTE_VERSION :			return	"Error ! The {0} block is not processed in this version of the compiler.";
-			case (int)TYPE.LA_VERSION_APPROPRIÉE_POUR_CE_BLOC :			return	"\n\nThe most suitable compiler version for this block is version {0}";
+			case (int)TYPE.LA_VERSION_APPROPRIÉE_POUR_CE_BLOC :			return	"\nThe most suitable compiler version for this block is version {0}";
 			case (int)TYPE.CHRONOMÈTRE_INFÉRIEUR_À_1_SECONDE :			return	"The time of the smallest timer is 1 second.";
 			case (int)TYPE.CHRONOMÈTRE_SUPÉRIEUR_À_6_SECONDES :			return	"The largest timer time is 6 seconds.";
 			case (int)TYPE.VARIABLE_NON_INITIALISÉE :					return	"The variable {0} is not initialized.";
@@ -209,14 +206,11 @@ public class 	Messages {
 			case (int)TYPE.FICHIER_NON_LISIBLE :						return "Erreur lors de la lecture du fichier {0} .";
 			case (int)TYPE.AIDE :										return	"\r\n" + 
 																				"Aucun fichier source .b4t n'a été déclaré.\r\n" +
-																				"\r\n" + 
-																				"Utilisation : Associez les fichier .b4t à cet éxécutable.\r\n" +
-																				"\r\n";
+																				"Utilisation : Associez les fichier .b4t à cet éxécutable.\r\n";
 			case (int)TYPE.ENTÊTE:
 				texte = "";
 				#if DEBUG
-				texte +=														"\r\n" +
-																				"**********************\r\n" +
+				texte +=														"**********************\r\n" +
 																				"* !!! MODE DEBUG !!! *\r\n" +
 																				"**********************\r\n";
 				#endif
@@ -227,7 +221,7 @@ public class 	Messages {
 																				"\r\n";
 				return	texte;
 			case (int)TYPE.BLOC_NON_TRAITÉ_DANS_CETTE_VERSION :			return	"Erreur ! Le bloc {0} n'est pas traité dans cette version du compilateur.";
-			case (int)TYPE.LA_VERSION_APPROPRIÉE_POUR_CE_BLOC :			return	"\n\nLa version du compilateur la plus appropiée pour ce bloc est la version {0}";
+			case (int)TYPE.LA_VERSION_APPROPRIÉE_POUR_CE_BLOC :			return	"\nLa version du compilateur la plus appropiée pour ce bloc est la version {0}";
 			case (int)TYPE.CHRONOMÈTRE_INFÉRIEUR_À_1_SECONDE :			return	"Le temps du chronomètre le plus petit est de 1 seconde.";
 			case (int)TYPE.CHRONOMÈTRE_SUPÉRIEUR_À_6_SECONDES :			return	"Le temps du chronomètre le plus grand est de 6 secondes.";
 			case (int)TYPE.VARIABLE_NON_INITIALISÉE :					return	"La variable {0} n'est pas initialisée.";
