@@ -1,0 +1,4 @@
+
+Cette version d'AsebaHTTP est issue de la release 0.7.3 de Scratch-thymioII de David Sherman.
+
+Cette version (différente de la version fournie avec AsebaStudio fonctionne avec le firmware 10 de Thymio)
