@@ -1,11 +1,8 @@
 ﻿<Properties StartupItem="Compilateur Blockly4Thymio.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="LINUX-Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Compilateur/Messages.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="LINUX-Release|x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="ProgrammePrincipal.cs">
     <Files>
-      <File FileName="FEN_Principale.cs" Line="155" Column="22" />
-      <File FileName="Compilateur/Compilateur.cs" Line="1359" Column="1" />
-      <File FileName="ProgrammePrincipal.cs" Line="104" Column="1" />
-      <File FileName="Compilateur/Messages.cs" Line="167" Column="22" />
+      <File FileName="ProgrammePrincipal.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

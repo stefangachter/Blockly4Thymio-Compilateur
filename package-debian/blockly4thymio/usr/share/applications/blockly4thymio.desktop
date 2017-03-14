@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Blockly4Thymio 1.2
+Name[fr]=Blockly4Thymio 1.2
+GenericName=Integrated Development Environment for Thymio
+GenericName[fr]=Environnement de développement pour Thymio
+Exec=blockly4thymio
+TryExec=blockly4thymio
+Categories=Education;Science;
+Icon=blockly4thymio
+Name[fr_FR]=blockly4thymio.desktop
