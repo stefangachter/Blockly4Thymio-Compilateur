@@ -1,7 +1,7 @@
 
 Répertoire /usr/bin
 Mettre l'application blockly4thymio.1.2.exe et un lien symbolique nommé blockly4thymio
-Mettre l'application asebahttp (asebahttp de Scratch)
+Mettre l'application asebahttp (asebahttp de Scratch renommé en blockly4thymio-asebahttp)
 
 
 Répertoire /usr/share/applications
