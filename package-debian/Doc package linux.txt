@@ -1,0 +1,24 @@
+Installer les outils pour produire le packet
+============================================
+
+sudo apt-get install dpkg debconf debhelper
+sudo apt-get install fakeroot rsync dos2unix
+
+
+Construire le paquet debian
+===========================
+
+fakeroot dpkg-deb -v --build ./deb
+
+
+Nettoyer/débloquer le processus d'instalaltion de paquet
+========================================================
+
+sudo apt-get install -f
+
+
+Installer à la main le paquer .deb crée
+=======================================
+
+sudo apt-get install ./deb.deb
+
