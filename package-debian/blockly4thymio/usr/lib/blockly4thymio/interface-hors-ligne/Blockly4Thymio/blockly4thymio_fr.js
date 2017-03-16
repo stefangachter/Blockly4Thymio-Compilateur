@@ -11,7 +11,7 @@ Blockly.Blocks['0_1b_Evénement_QuandLeProgrammeCommence'] = {
     this.setColour( '#ed5565' ); 
     this.setTooltip( 'C\'est la premier bloc à mettre dans un programme.' ); 
     this.appendDummyInput()
-      .appendField(new Blockly.FieldImage( "blockly4thymio/icones/icone-evenement-quand-le-programme-commence.png", 20, 20, "noire" ));
+      .appendField(new Blockly.FieldImage( "Blockly4Thymio/icones/icone-evenement-quand-le-programme-commence.png", 20, 20, "noire" ));
     this.appendDummyInput().appendField( 'quand le programme commence' );
     this.setNextStatement( true, "null" );
     this.setInputsInline( true );
@@ -23,7 +23,7 @@ Blockly.Blocks['0_2_Evénement_QuandUnBoutonFlècheEstAppuyé'] = {
     this.setColour( '#ed5565' ); 
     this.setTooltip( 'Le programme commence lorsque que l\'un des boutons flèche est appuyé.' ); 
     this.appendDummyInput()
-      .appendField(new Blockly.FieldImage( "blockly4thymio/icones/icone-boutons-fleches.png", 20, 20, "noire" ));
+      .appendField(new Blockly.FieldImage( "Blockly4Thymio/icones/icone-boutons-fleches.png", 20, 20, "noire" ));
     this.appendDummyInput().appendField( 'quand un bouton flèche est appuyé' );
     this.setNextStatement( true, "null" );
     this.setInputsInline( true );
@@ -35,7 +35,7 @@ Blockly.Blocks['0_5_Evénement_QuandUnCapteurAvantVoitUnObstacle'] = {
     this.setColour( '#ed5565' ); 
     this.setTooltip( 'Le programme commence lorsque que l\'un des capteurs avant voit un obstacle.' ); 
     this.appendDummyInput()
-      .appendField(new Blockly.FieldImage( "blockly4thymio/icones/icone-capteur-avant-tous.png", 20, 20, "noire" ));
+      .appendField(new Blockly.FieldImage( "Blockly4Thymio/icones/icone-capteur-avant-tous.png", 20, 20, "noire" ));
     this.appendDummyInput().appendField( 'quand un capteur avant voit un obstacle' );
     this.setNextStatement( true, "null" );
     this.setInputsInline( true );
@@ -47,7 +47,7 @@ Blockly.Blocks['0_5_Evénement_QuandUnCapteurArrièreVoitUnObstacle'] = {
     this.setColour( '#ed5565' ); 
     this.setTooltip( 'Le programme commence lorsque que l\'un des capteurs arrière voit un obstacle.' ); 
     this.appendDummyInput()
-      .appendField(new Blockly.FieldImage( "blockly4thymio/icones/icone-capteur-arriere-tous.png", 20, 20, "noire" ));
+      .appendField(new Blockly.FieldImage( "Blockly4Thymio/icones/icone-capteur-arriere-tous.png", 20, 20, "noire" ));
     this.appendDummyInput().appendField( 'quand un capteur arrière voit un obstacle' );
     this.setNextStatement( true, "null" );
     this.setInputsInline( true );
@@ -59,7 +59,7 @@ Blockly.Blocks['0_2_Evénement_QuandUnOrdreArriveDeLaTélécommandeIR'] = {
     this.setColour( '#ed5565' ); 
     this.setTooltip( 'Le programme commence lorsque qu\'une touche de la télécommande est appuyée. Pour la télécommande Thymio, canal&#61;0.' ); 
     this.appendDummyInput()
-      .appendField(new Blockly.FieldImage( "blockly4thymio/icones/icone-telecommande.png", 20, 20, "noire" ));
+      .appendField(new Blockly.FieldImage( "Blockly4Thymio/icones/icone-telecommande.png", 20, 20, "noire" ));
     this.appendDummyInput().appendField( 'quand un bouton de la télécommande est appuyé' );
     this.setNextStatement( true, "null" );
     this.setInputsInline( true );
@@ -71,7 +71,7 @@ Blockly.Blocks['0_9_Evénement_QuandLeChronomètreATerminéDeCompter'] = {
     this.setColour( '#ed5565' ); 
     this.setTooltip( 'Le programme commence lorsque que le chronomètre à terminé de compter' ); 
     this.appendDummyInput()
-      .appendField(new Blockly.FieldImage( "blockly4thymio/icones/icone-chronomètre.png", 20, 20, "noire" ));
+      .appendField(new Blockly.FieldImage( "Blockly4Thymio/icones/icone-chronomètre.png", 20, 20, "noire" ));
     this.appendDummyInput().appendField( 'quand le chronomètre a terminé de compter' );
     this.setNextStatement( true, "null" );
     this.setInputsInline( true );
@@ -83,7 +83,7 @@ Blockly.Blocks['1_0_Evénement_QuandUnChocEstDétecté'] = {
     this.setColour( '#ed5565' ); 
     this.setTooltip( 'Le programme commence lorsque qu\'un choc est détecté' ); 
     this.appendDummyInput()
-      .appendField(new Blockly.FieldImage( "blockly4thymio/icones/icone-evenement-quand-un-choc-est-detecte.png", 20, 20, "noire" ));
+      .appendField(new Blockly.FieldImage( "Blockly4Thymio/icones/icone-evenement-quand-un-choc-est-detecte.png", 20, 20, "noire" ));
     this.appendDummyInput().appendField( 'quand un choc est détecté' );
     this.setNextStatement( true, "null" );
     this.setInputsInline( true );
@@ -95,7 +95,7 @@ Blockly.Blocks['1_0_Evénement_QuandUnSonEstDétecté'] = {
     this.setColour( '#ed5565' ); 
     this.setTooltip( 'Le programme commence lorsque qu\'un son est détecté' ); 
     this.appendDummyInput()
-      .appendField(new Blockly.FieldImage( "blockly4thymio/icones/icone-evenement-quand-un-son-est-detecte.png", 20, 20, "noire" ));
+      .appendField(new Blockly.FieldImage( "Blockly4Thymio/icones/icone-evenement-quand-un-son-est-detecte.png", 20, 20, "noire" ));
     this.appendDummyInput().appendField( 'quand un son est détecté' );
     this.setNextStatement( true, "null" );
     this.setInputsInline( true );
@@ -490,7 +490,7 @@ Blockly.Blocks['0_2_Sons_JoueUneNoteCroche_SELNote'] = {
     this.setColour( '#a0d468' ); 
     this.setTooltip( 'Joue une note croche.' ); 
     this.appendDummyInput()
-      .appendField(new Blockly.FieldImage( "blockly4thymio/icones/icone-note-croche.png", 20, 20, "croche" ));
+      .appendField(new Blockly.FieldImage( "Blockly4Thymio/icones/icone-note-croche.png", 20, 20, "croche" ));
     this.appendDummyInput().appendField(
       new Blockly.FieldDropdown([ ["Do₃", "DO3"],
        	                                      ["Ré₃",  "RE3"],
@@ -518,7 +518,7 @@ Blockly.Blocks['0_2_Sons_JoueUneNoteNoire_SELNote'] = {
     this.setColour( '#a0d468' ); 
     this.setTooltip( 'Joue une note noire.' ); 
     this.appendDummyInput()
-      .appendField(new Blockly.FieldImage( "blockly4thymio/icones/icone-note-noire.png", 20, 20, "noire" ));
+      .appendField(new Blockly.FieldImage( "Blockly4Thymio/icones/icone-note-noire.png", 20, 20, "noire" ));
     this.appendDummyInput().appendField(
       new Blockly.FieldDropdown([ ["Do₃", "DO3"],
        	                                      ["Ré₃",  "RE3"],
@@ -546,7 +546,7 @@ Blockly.Blocks['0_2_Sons_JoueUneNoteBlanche_SELNote'] = {
     this.setColour( '#a0d468' ); 
     this.setTooltip( 'Joue une note blanche.' ); 
     this.appendDummyInput()
-      .appendField(new Blockly.FieldImage( "blockly4thymio/icones/icone-note-blanche.png", 20, 20, "blanche" ));
+      .appendField(new Blockly.FieldImage( "Blockly4Thymio/icones/icone-note-blanche.png", 20, 20, "blanche" ));
     this.appendDummyInput().appendField(
       new Blockly.FieldDropdown([ ["Do₃", "DO3"],
        	                                      ["Ré₃",  "RE3"],
@@ -607,9 +607,9 @@ Blockly.Blocks['1_1_Sons_JoueUnInstrument_SELInstrument_SELNote_SELDurée'] = {
                                                                      [ "Si₄",  "SI4" ]
                                                                      ] ), "Note" )
       .appendField( 'durée' )
-      .appendField( new Blockly.FieldDropdown( [  [ {"src":"blockly4thymio/icones/icone-note-croche.png","width":15,"height":15,"alt":"croche"}, "CROCHE" ],
-                                                                     [ {"src":"blockly4thymio/icones/icone-note-noire.png","width":15,"height":15,"alt":"noire"}, "NOIRE" ],
-                                                                     [ {"src":"blockly4thymio/icones/icone-note-blanche.png","width":15,"height":15,"alt":"blanche"}, "BLANCHE" ]
+      .appendField( new Blockly.FieldDropdown( [  [ {"src":"Blockly4Thymio/icones/icone-note-croche.png","width":15,"height":15,"alt":"croche"}, "CROCHE" ],
+                                                                     [ {"src":"Blockly4Thymio/icones/icone-note-noire.png","width":15,"height":15,"alt":"noire"}, "NOIRE" ],
+                                                                     [ {"src":"Blockly4Thymio/icones/icone-note-blanche.png","width":15,"height":15,"alt":"blanche"}, "BLANCHE" ]
                                                                   ] ), "Durée" );
     this.setInputsInline( true );
     this.setPreviousStatement( true, "null" );
@@ -644,9 +644,9 @@ Blockly.Blocks['1_1_Sons_JoueUnePercussion_SELNote_SELDurée'] = {
                                                                      [ "Cuica 2", "SOL4" ]
                                                                      ] ), "Note" )
       .appendField( 'durée' )
-      .appendField( new Blockly.FieldDropdown( [  [ {"src":"blockly4thymio/icones/icone-note-croche.png","width":15,"height":15,"alt":"croche"}, "CROCHE" ],
-                                                                     [ {"src":"blockly4thymio/icones/icone-note-noire.png","width":15,"height":15,"alt":"noire"}, "NOIRE" ],
-                                                                     [ {"src":"blockly4thymio/icones/icone-note-blanche.png","width":15,"height":15,"alt":"blanche"}, "BLANCHE" ]
+      .appendField( new Blockly.FieldDropdown( [  [ {"src":"Blockly4Thymio/icones/icone-note-croche.png","width":15,"height":15,"alt":"croche"}, "CROCHE" ],
+                                                                     [ {"src":"Blockly4Thymio/icones/icone-note-noire.png","width":15,"height":15,"alt":"noire"}, "NOIRE" ],
+                                                                     [ {"src":"Blockly4Thymio/icones/icone-note-blanche.png","width":15,"height":15,"alt":"blanche"}, "BLANCHE" ]
                                                                   ] ), "Durée" );
     this.setInputsInline( true );
     this.setPreviousStatement( true, "null" );
@@ -817,7 +817,7 @@ Blockly.Blocks['0_2_Contrôles_Si_IlYAUnObstacleDevant_Alors'] = {
     this.setColour( '#48cfad' ); 
     this.setTooltip( 'Si il y a un obstacle devant Thymio, le groupe d\'instructions est exécuté.' ); 
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage( "blockly4thymio/icones/icone-capteur-avant-tous.png", 24, 24, "" ))
+        .appendField(new Blockly.FieldImage( "Blockly4Thymio/icones/icone-capteur-avant-tous.png", 24, 24, "" ))
         .appendField( "si il y a un obstacle devant" );
     this.appendStatementInput( "BlocsInternes" ).appendField( "faire" );
     this.setPreviousStatement( true );
@@ -921,7 +921,7 @@ Blockly.Blocks['0_6_Valeur_Booléen_Bouton_AucuneFlèche'] = {
     this.setColour( '#5d9cec' ); 
     this.setTooltip( 'Aucun bouton flèche n\'est appuyé.' ); 
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage( "blockly4thymio/icones/icone-boutons-aucune-fleche.png", 24, 24, "" ))
+        .appendField(new Blockly.FieldImage( "Blockly4Thymio/icones/icone-boutons-aucune-fleche.png", 24, 24, "" ))
         .appendField( "aucun bouton flèche n'est appuyé" );
     this.setInputsInline( false );
     this.setOutput( true, "Boolean" );
@@ -933,7 +933,7 @@ Blockly.Blocks['0_2_Valeur_Booléen_Bouton_FlècheAvant'] = {
     this.setColour( '#5d9cec' ); 
     this.setTooltip( 'Le bouton flèche avant est appuyé.' ); 
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage( "blockly4thymio/icones/icone-bouton-avant.png", 24, 24, "" ))
+        .appendField(new Blockly.FieldImage( "Blockly4Thymio/icones/icone-bouton-avant.png", 24, 24, "" ))
         .appendField( "le bouton flèche avant est appuyé" );
     this.setInputsInline( false );
     this.setOutput( true, "Boolean" );
@@ -945,7 +945,7 @@ Blockly.Blocks['0_2_Valeur_Booléen_Bouton_FlècheArrière'] = {
     this.setColour( '#5d9cec' ); 
     this.setTooltip( 'Le bouton flèche arrière est appuyé.' ); 
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage( "blockly4thymio/icones/icone-bouton-arriere.png", 24, 24, "" ))
+        .appendField(new Blockly.FieldImage( "Blockly4Thymio/icones/icone-bouton-arriere.png", 24, 24, "" ))
         .appendField( "le bouton flèche avrrière est appuyé" );
     this.setInputsInline( false );
     this.setOutput( true, "Boolean" );
@@ -957,7 +957,7 @@ Blockly.Blocks['0_2_Valeur_Booléen_Bouton_FlècheADroite'] = {
     this.setColour( '#5d9cec' ); 
     this.setTooltip( 'Le bouton flèche à droite est appuyé.' ); 
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage( "blockly4thymio/icones/icone-bouton-droite.png", 24, 24, "" ))
+        .appendField(new Blockly.FieldImage( "Blockly4Thymio/icones/icone-bouton-droite.png", 24, 24, "" ))
         .appendField( "le bouton flèche à droite est appuyé" );
     this.setInputsInline( false );
     this.setOutput( true, "Boolean" );
@@ -969,7 +969,7 @@ Blockly.Blocks['0_2_Valeur_Booléen_Bouton_FlècheAGauche'] = {
     this.setColour( '#5d9cec' ); 
     this.setTooltip( 'Le bouton flèche à gauche est appuyé.' ); 
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage( "blockly4thymio/icones/icone-bouton-gauche.png", 24, 24, "" ))
+        .appendField(new Blockly.FieldImage( "Blockly4Thymio/icones/icone-bouton-gauche.png", 24, 24, "" ))
         .appendField( "le bouton flèche à gauche est appuyé" );
     this.setInputsInline( false );
     this.setOutput( true, "Boolean" );
@@ -981,7 +981,7 @@ Blockly.Blocks['0_7_Valeur_Booléen_Capteur_AvantAucun'] = {
     this.setColour( '#5d9cec' ); 
     this.setTooltip( 'Sur tous les capteurs avant, Thymio ne détecte aucun obstacle.' ); 
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage( "blockly4thymio/icones/icone-capteur-avant-aucun.png", 24, 24, "" ))
+        .appendField(new Blockly.FieldImage( "Blockly4Thymio/icones/icone-capteur-avant-aucun.png", 24, 24, "" ))
         .appendField( "il n'y a pas d'obstacle devant" );
     this.setInputsInline( false );
     this.setOutput( true, "Boolean" );
@@ -993,7 +993,7 @@ Blockly.Blocks['0_2_Valeur_Booléen_Capteur_AvantGauche'] = {
     this.setColour( '#5d9cec' ); 
     this.setTooltip( 'Thymio détecte un obstacle devant, à gauche.' ); 
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage( "blockly4thymio/icones/icone-capteur-avant-gauche.png", 24, 24, "" ))
+        .appendField(new Blockly.FieldImage( "Blockly4Thymio/icones/icone-capteur-avant-gauche.png", 24, 24, "" ))
         .appendField( "il y a un obstacle devant, à gauche" );
     this.setInputsInline( false );
     this.setOutput( true, "Boolean" );
@@ -1005,7 +1005,7 @@ Blockly.Blocks['0_2_Valeur_Booléen_Capteur_AvantMilieuGauche'] = {
     this.setColour( '#5d9cec' ); 
     this.setTooltip( 'Thymio détecte un obstacle devant, un peu à gauche.' ); 
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage( "blockly4thymio/icones/icone-capteur-avant-milieu-gauche.png", 24, 24, "" ))
+        .appendField(new Blockly.FieldImage( "Blockly4Thymio/icones/icone-capteur-avant-milieu-gauche.png", 24, 24, "" ))
         .appendField( "il y a un obstacle devant, un peu à gauche" );
     this.setInputsInline( false );
     this.setOutput( true, "Boolean" );
@@ -1017,7 +1017,7 @@ Blockly.Blocks['0_2_Valeur_Booléen_Capteur_AvantMilieu'] = {
     this.setColour( '#5d9cec' ); 
     this.setTooltip( 'Thymio détecte un obstacle droit devant.' ); 
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage( "blockly4thymio/icones/icone-capteur-avant-milieu.png", 24, 24, "" ))
+        .appendField(new Blockly.FieldImage( "Blockly4Thymio/icones/icone-capteur-avant-milieu.png", 24, 24, "" ))
         .appendField( "il y a un obstacle droit devant" );
     this.setInputsInline( false );
     this.setOutput( true, "Boolean" );
@@ -1029,7 +1029,7 @@ Blockly.Blocks['0_2_Valeur_Booléen_Capteur_AvantMilieuDroite'] = {
     this.setColour( '#5d9cec' ); 
     this.setTooltip( 'Thymio détecte un obstacle devant, un peu à droite.' ); 
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage( "blockly4thymio/icones/icone-capteur-avant-milieu-droite.png", 24, 24, "" ))
+        .appendField(new Blockly.FieldImage( "Blockly4Thymio/icones/icone-capteur-avant-milieu-droite.png", 24, 24, "" ))
         .appendField( "il y a un obstacle devant, un peu à droite" );
     this.setInputsInline( false );
     this.setOutput( true, "Boolean" );
@@ -1041,7 +1041,7 @@ Blockly.Blocks['0_2_Valeur_Booléen_Capteur_AvantDroite'] = {
     this.setColour( '#5d9cec' ); 
     this.setTooltip( 'Thymio détecte un obstacle devant, à droite.' ); 
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage( "blockly4thymio/icones/icone-capteur-avant-droite.png", 24, 24, "" ))
+        .appendField(new Blockly.FieldImage( "Blockly4Thymio/icones/icone-capteur-avant-droite.png", 24, 24, "" ))
         .appendField( "il y a un obstacle devant, à droite" );
     this.setInputsInline( false );
     this.setOutput( true, "Boolean" );
@@ -1053,7 +1053,7 @@ Blockly.Blocks['0_7_Valeur_Booléen_Capteur_ArrièreAucun'] = {
     this.setColour( '#5d9cec' ); 
     this.setTooltip( 'Sur tous les capteurs arrières, Thymio ne détecte aucun obstacle.' ); 
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage( "blockly4thymio/icones/icone-capteur-arriere-aucun.png", 24, 24, "" ))
+        .appendField(new Blockly.FieldImage( "Blockly4Thymio/icones/icone-capteur-arriere-aucun.png", 24, 24, "" ))
         .appendField( "il n'y a pas d'obstacle derrière" );
     this.setInputsInline( false );
     this.setOutput( true, "Boolean" );
@@ -1065,7 +1065,7 @@ Blockly.Blocks['0_2_Valeur_Booléen_Capteur_ArrièreGauche'] = {
     this.setColour( '#5d9cec' ); 
     this.setTooltip( 'Thymio détecte un obstacle derrière, à gauche.' ); 
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage( "blockly4thymio/icones/icone-capteur-arriere-gauche.png", 24, 24, "" ))
+        .appendField(new Blockly.FieldImage( "Blockly4Thymio/icones/icone-capteur-arriere-gauche.png", 24, 24, "" ))
         .appendField( "il y a un obstacle derrière, à gauche" );
     this.setInputsInline( false );
     this.setOutput( true, "Boolean" );
@@ -1077,7 +1077,7 @@ Blockly.Blocks['0_2_Valeur_Booléen_Capteur_ArrièreDroite'] = {
     this.setColour( '#5d9cec' ); 
     this.setTooltip( 'Thymio détecte un obstacle derrière, à droite.' ); 
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage( "blockly4thymio/icones/icone-capteur-arriere-droite.png", 24, 24, "" ))
+        .appendField(new Blockly.FieldImage( "Blockly4Thymio/icones/icone-capteur-arriere-droite.png", 24, 24, "" ))
         .appendField( "il y a un obstacle derrière, à droite" );
     this.setInputsInline( false );
     this.setOutput( true, "Boolean" );
@@ -1089,7 +1089,7 @@ Blockly.Blocks['0_2_Valeur_Booléen_Capteur_DessousGauche_Blanc'] = {
     this.setColour( '#5d9cec' ); 
     this.setTooltip( 'Thymio voit le sol de couleur blanc, à gauche.' ); 
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage( "blockly4thymio/icones/icone-capteur-dessous-gauche-blanc.png", 24, 24, "" ))
+        .appendField(new Blockly.FieldImage( "Blockly4Thymio/icones/icone-capteur-dessous-gauche-blanc.png", 24, 24, "" ))
         .appendField( "le sol est blanc, à gauche" );
     this.setInputsInline( false );
     this.setOutput( true, "Boolean" );
@@ -1101,7 +1101,7 @@ Blockly.Blocks['0_2_Valeur_Booléen_Capteur_DessousGauche_Noir'] = {
     this.setColour( '#5d9cec' ); 
     this.setTooltip( 'Thymio voit le sol de couleur noir, à gauche.' ); 
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage( "blockly4thymio/icones/icone-capteur-dessous-gauche-noir.png", 24, 24, "" ))
+        .appendField(new Blockly.FieldImage( "Blockly4Thymio/icones/icone-capteur-dessous-gauche-noir.png", 24, 24, "" ))
         .appendField( "le sol est noir, à gauche" );
     this.setInputsInline( false );
     this.setOutput( true, "Boolean" );
@@ -1113,7 +1113,7 @@ Blockly.Blocks['0_2_Valeur_Booléen_Capteur_DessousDroite_Blanc'] = {
     this.setColour( '#5d9cec' ); 
     this.setTooltip( 'Thymio voit le sol de couleur blanc, à droite.' ); 
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage( "blockly4thymio/icones/icone-capteur-dessous-droite-blanc.png", 24, 24, "" ))
+        .appendField(new Blockly.FieldImage( "Blockly4Thymio/icones/icone-capteur-dessous-droite-blanc.png", 24, 24, "" ))
         .appendField( "le sol est blanc, à droite" );
     this.setInputsInline( false );
     this.setOutput( true, "Boolean" );
@@ -1125,7 +1125,7 @@ Blockly.Blocks['0_2_Valeur_Booléen_Capteur_DessousDroite_Noir'] = {
     this.setColour( '#5d9cec' ); 
     this.setTooltip( 'Thymio voit le sol de couleur noir, à droite.' ); 
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage( "blockly4thymio/icones/icone-capteur-dessous-droite-noir.png", 24, 24, "" ))
+        .appendField(new Blockly.FieldImage( "Blockly4Thymio/icones/icone-capteur-dessous-droite-noir.png", 24, 24, "" ))
         .appendField( "le sol est noir, à droite" );
     this.setInputsInline( false );
     this.setOutput( true, "Boolean" );
