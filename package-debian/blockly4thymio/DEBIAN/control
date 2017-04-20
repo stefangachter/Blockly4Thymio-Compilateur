@@ -2,7 +2,7 @@ Package: blockly4thymio
 Version: 1.2
 Section: base
 Priority: optional
-Architecture: all
+Architecture: amd64
 Depends: mono-complete
 Maintainer: Okimi <contact@blockly4thymio.net>
 Homepage: http://www.blockly4thymio.net

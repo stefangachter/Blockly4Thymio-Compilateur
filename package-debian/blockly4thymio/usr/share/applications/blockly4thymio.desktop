@@ -1,11 +1,13 @@
 [Desktop Entry]
 Type=Application
-Version=1.2
-Exec=nemo /usr/lib/blockly4thymio
+Exec=blockly4thymio
 Categories=Education;Science;
+MimeType=application/blockly4thymio
 Icon=blockly4thymio
+MimeType=text/b4t
 Name=Blockly4Thymio
 Name[fr]=Blockly4Thymio
 Terminal=false
-GenericName=Development environment for Thymio
-GenericName[fr]=Environnement de développement pour Thymio
+GenericName=Blockly4Thymio's compiler
+GenericName[fr]=Compilateur pour Blockly4Thymio
+

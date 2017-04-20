@@ -59,5 +59,12 @@ Installer à la main le paquer .deb crée
 sudo apt-get install ./deb.deb
 
 
-
+Tester l'association
+====================
 xdg-mime query text/b4
+
+
+Ajouter une ligne à un fichier texte
+====================================
+echo 'text/b4t=blocklythymio.desktop' >> defaults.list
+application/blockly4thymio=blocklythymio.desktop

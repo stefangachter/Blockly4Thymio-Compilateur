@@ -13,7 +13,8 @@ function  handleSaveButtonClick() {
   xml = xml.replace( /#/g, "%23" );
   var link = document.getElementById('saveLink');
   link.download = "programme.b4t";
-  link.href = "data:application/octet-stream," + xml;
+  //link.href = "data:application/octet-stream," + xml;
+  link.href = "data:application/b4t," + xml;
   link.click();  
 }
 

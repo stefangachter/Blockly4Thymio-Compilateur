@@ -1,0 +1,10 @@
+Package: blockly4thymio
+Version: 1.2
+Section: base
+Priority: optional
+Architecture: amd64
+Depends: mono-complete
+Maintainer: Okimi <contact@blockly4thymio.net>
+Homepage: http://www.blockly4thymio.net
+Description: Compilateur dédié à l'environnement d'apprentissage de la programmation : Blockly4Thymio
+
