@@ -195,3 +195,5 @@ ModelManifest.xml
 package-debian/blockly4thymio-amd64
 
 package-debian/blockly4thymio-i386
+
+*.deb

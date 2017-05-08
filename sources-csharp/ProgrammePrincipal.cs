@@ -172,7 +172,7 @@ static	class 	ProgrammePrincipal {
 		Compilateur.nomDuFichierASEBAHTTP =  Path.GetDirectoryName(Application.ExecutablePath) + @"\asebahttp\asebahttp.exe";
 		#endif
 		#if (LINUX)
-		Compilateur.nomDuFichierASEBAHTTP = @"/usr/share/blockly4thymio/asebahttp";
+		Compilateur.nomDuFichierASEBAHTTP = @"/usr/bin/blockly4thymio-asebahttp";
 		#endif
 		
 
