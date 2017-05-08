@@ -1,0 +1,11 @@
+[Desktop Entry]
+Icon=blockly4thymio
+Type=Application
+Categories=Education;Science;
+Name=Blockly4Thymio's exercices on www.blockly4thymio.net
+Name[fr]=Les exercices sur www.blockly4thymio.net
+GenericName=Blockly4Thymio's exercices on www.blockly4thymio.net
+GenericName[fr]=Les exercices sur www.blockly4thymio.net
+Comment=Exercices's web page on www.blockly4thymio.net
+Comment[fr]=Page internet des exercices sur www.blockly4thymio.net
+Exec=xdg-open http://www.blockly4thymio.net//index.php/les-exercices.html

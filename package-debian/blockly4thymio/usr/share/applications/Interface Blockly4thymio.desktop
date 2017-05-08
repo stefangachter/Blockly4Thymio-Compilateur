@@ -1,0 +1,12 @@
+[Desktop Entry]
+Terminal=false
+Icon=blockly4thymio
+Type=Application
+Categories=Education;Science;
+Name=Blockly4Thymio's interface
+Name[fr]=Interface Blockly4Thymio
+GenericName=Blockly4Thymio's interface
+GenericName[fr]=Interface Blockly4Thymio
+Comment=Program Thymio with Blockly4Thymio's interface
+Comment[fr]=Programmer Thymio avec l'interface Blockly4Thymio
+Exec=xdg-open file:///usr/lib/blockly4thymio/blockly4thymio-hors-ligne/Blockly4Thymio.html

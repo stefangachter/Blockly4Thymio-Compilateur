@@ -3,7 +3,7 @@ Version: 1.2
 Section: base
 Priority: optional
 Architecture: i386
-Depends: mono-complete
+Depends: mono-runtime-sgen
 Maintainer: Okimi <contact@blockly4thymio.net>
 Homepage: http://www.blockly4thymio.net
 Description: Compilateur dédié à l'environnement d'apprentissage de la programmation : Blockly4Thymio

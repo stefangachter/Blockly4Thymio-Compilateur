@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Thymio Interface 1</title>
+    <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<link rel="stylesheet" href="css/font_awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/general.min.css">
+</head>
+
+<body>
+
+	<div id="conteneur">
+
+		<div id="bloc_interface">
+
+			<div id="fond_gauche"></div><div id="bloc_principal">
+				<div id="bloc_bouton_haut"><i id="bouton_avancer" class="fa fa-arrow-up bouton_haut"></i><i id="bouton_reculer" class="fa fa-arrow-down bouton_haut"></i><i id="bouton_droite" class="fa fa-repeat bouton_haut"></i><i id="bouton_gauche" class="fa fa-undo bouton_haut"></i></div>
+				<div id="chevalet"><div id="bloc_carte"></div></div>
+				<div id="bloc_bouton_bas"><i id="bouton_rouge" class="fa fa-circle bouton_bas"></i><i id="bouton_jaune" class="fa fa-circle bouton_bas"></i><i id="bouton_bleu" class="fa fa-circle bouton_bas"></i><i id="bouton_musique" class="fa fa-music bouton_bas"></i></div>
+				<i id="bouton_effacer" class="fa fa-trash"></i>
+				<i id="bouton_go" class="fa fa-check"><a id="lien_telechargement"></a></i>
+			</div><div id="fond_droite"><div id="bouton_parametrage"><i class="fa fa-cog"></i></div></div>
+
+		</div><!-- fin bloc_interface -->
+
+		<div id="bloc_parametrage">
+
+			<div id="bouton_fermer_parametrage"><i class="fa fa-times-circle"></i></div>
+
+			<div id="bloc_valeur">
+
+				<p><label>Langue</label><select id="champ_langue"><option>Français</option><option>English</option></select></p>
+				<p><label>Avancer / Reculer</label><input type="number" id="champ_pas"> cm</p>
+				<p><label>Rotation droite / gauche</label><input type="number" id="champ_rotation"> <span>degrés</span></p>
+				<p><label>Allumage lumières</label><input type="number" id="champ_lumiere"> <span>secondes</span></p>
+				<p><label>Contact</label>sebastien.laurent@reseau-canope.fr</p>
+				<p><label>Remerciements</label><a href="http://blockly4thymio.net/" target="_blank">Okimi - Blockly4Thymio</a></p>
+				<p><label>Utilisation</label>
+					<ul>
+						<li><a href="https://aseba.wdfiles.com/local--files/en:wininstall/aseba-bin-1.5.3-git-3567730-win32.exe" target="_blank">installez les pilotes de Thymio</a></li>
+						<li><a href="http://blockly4thymio.net//files/telechargements/installation-Blockly4Thymio.v1.0.exe" target="_blank">installez le compilateur Blockly4Thymio</a></li>
+						<li>programmez les actions du robot et cliquez sur le bouton vert Valider</li>
+						<li>ouvrez le fichier .b4t généré avec le compilateur Blockly4Thymio</li>
+						<li>les instructions sont envoyées au robot qui devrait réagir instantanément</li>
+						<li><a href="http://blockly4thymio.net//index.php/essayer.html" target="_blank">pour plus d'informations, allez sur Blockly4Thymio.net</a></li>
+					</ul></p>
+				<a id="logo_canope" href="https://www.reseau-canope.fr/" target="_blank"><img src="media/logo_canope.png"></a>
+				<a id="logo_b4t" href="http://blockly4thymio.net/" target="_blank"><img src="media/logo_b4t.png"></a>
+				
+			</div><!-- fin bloc_valeur -->
+
+		</div><!-- fin bloc_parametrage -->
+
+	</div><!-- fin conteneur -->
+
+<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui-1.12.1.min.js"></script>
+<script type="text/javascript" src="js/jquery.backstretch.min.js"></script>
+<script type="text/javascript" src="js/index.min.js"></script>
+
+</body>
+</html>
