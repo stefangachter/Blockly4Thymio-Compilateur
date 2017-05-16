@@ -1,0 +1,10 @@
+Package: blockly4thymio-i386
+Version: 1.2
+Section: base
+Priority: optional
+Architecture: i386
+Depends: mono-runtime-sgen,mono-4.0-service
+Maintainer: Okimi <contact@blockly4thymio.net>
+Homepage: http://www.blockly4thymio.net
+Description: Compilateur dédié à l'environnement d'apprentissage de la programmation : Blockly4Thymio
+

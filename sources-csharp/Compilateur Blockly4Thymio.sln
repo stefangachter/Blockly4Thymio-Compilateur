@@ -8,13 +8,16 @@ Global
 		WINDOWS-Release|x86 = WINDOWS-Release|x86
 		WINDOWS-Debug|x86 = WINDOWS-Debug|x86
 		LINUX-Debug|x86 = LINUX-Debug|x86
-		LINUX-Release|x86 = LINUX-Release|x86
+		LINUX-Release-i386|x86 = LINUX-Release-i386|x86
+		LINUX-Release-amd64|x86 = LINUX-Release-amd64|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{DA7F29C6-89C1-4D2A-AFB6-56434085EF05}.LINUX-Debug|x86.ActiveCfg = LINUX-Debug|x86
 		{DA7F29C6-89C1-4D2A-AFB6-56434085EF05}.LINUX-Debug|x86.Build.0 = LINUX-Debug|x86
-		{DA7F29C6-89C1-4D2A-AFB6-56434085EF05}.LINUX-Release|x86.ActiveCfg = LINUX-Release|x86
-		{DA7F29C6-89C1-4D2A-AFB6-56434085EF05}.LINUX-Release|x86.Build.0 = LINUX-Release|x86
+		{DA7F29C6-89C1-4D2A-AFB6-56434085EF05}.LINUX-Release-amd64|x86.ActiveCfg = LINUX-Release-amd64|x86
+		{DA7F29C6-89C1-4D2A-AFB6-56434085EF05}.LINUX-Release-amd64|x86.Build.0 = LINUX-Release-amd64|x86
+		{DA7F29C6-89C1-4D2A-AFB6-56434085EF05}.LINUX-Release-i386|x86.ActiveCfg = LINUX-Release-i386|x86
+		{DA7F29C6-89C1-4D2A-AFB6-56434085EF05}.LINUX-Release-i386|x86.Build.0 = LINUX-Release-i386|x86
 		{DA7F29C6-89C1-4D2A-AFB6-56434085EF05}.WINDOWS-Debug|x86.ActiveCfg = WINDOWS-Debug|x86
 		{DA7F29C6-89C1-4D2A-AFB6-56434085EF05}.WINDOWS-Debug|x86.Build.0 = WINDOWS-Debug|x86
 		{DA7F29C6-89C1-4D2A-AFB6-56434085EF05}.WINDOWS-Release|x86.ActiveCfg = WINDOWS-Release|x86
@@ -194,7 +197,7 @@ Global
 		$29.IncludeStaticEntities = True
 		$0.VersionControlPolicy = $31
 		$31.inheritsSet = Mono
-		version = 1.1
+		version = 1.2
 		StartupItem = Compilateur Blockly4Thymio.csproj
 	EndGlobalSection
 EndGlobal

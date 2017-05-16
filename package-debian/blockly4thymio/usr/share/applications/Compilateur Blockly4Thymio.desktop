@@ -1,0 +1,12 @@
+[Desktop Entry]
+Terminal=false
+Icon=blockly4thymio
+Type=Application
+Categories=Education;Science;
+Name=Blockly4Thymio Compiler
+Name[fr]=Compilateur de Blockly4Thymio
+GenericName=Blockly4Thymio compiler
+GenericName[fr]=Compilateur de Blockly4Thymio
+Comment=Blockly4Thymio compiler
+Comment[fr]=Compilateur de Blockly4Thymio
+Exec=blockly4thymio
