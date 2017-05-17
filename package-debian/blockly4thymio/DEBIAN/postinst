@@ -1,0 +1,2 @@
+#!/bin/bash
+xdg-mime install /usr/lib/mimetype.xml

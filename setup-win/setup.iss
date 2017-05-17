@@ -25,7 +25,7 @@ InfoAfterFile=fichiers\LISEZ-MOI.rtf
 AllowNoIcons=yes
 OutputDir=.
 OutputBaseFilename=installation-{#MyAppName}
-SetupIconFile=icone.ico
+SetupIconFile=fichiers\blockly4thymio.ico
 Compression=lzma
 SolidCompression=yes
 ChangesAssociations=yes
@@ -49,15 +49,15 @@ Source: "fichiers\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs crea
 
 
 [Icons]
-Name: "{group}\Fichiers sons pour la carte SD"; Filename: "{app}\sons-pour-carte-micro-sd"
-Name: "{group}\{cm:ProgramOnTheWeb,{#MyAppName}}"; Filename: "{#MyAppURL}"
-Name: "{group}\{cm:ProgramOnTheWeb,interface-cycle1}"; Filename: "http://robotique.canope-aura.fr/thymio/interface1"
-Name: "{group}\Tester le compilateur"; Filename: "{app}\tester-le-compilateur.b4t"
-Name: "{group}\LISEZ-MOI"; Filename: "{app}\LISEZ-MOI.rtf"
-Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
-Name: "{group}\Interface hors ligne"; Filename: "{app}\interface-hors-ligne\Blockly4Thymio.html"
-Name: "{group}\{cm:UninstallProgram,{#MyAppName}}"; Filename: "{uninstallexe}"
-
+;Name: "{group}\Fichiers sons pour la carte SD"; Filename: "{app}\sons-pour-carte-micro-sd"
+Name: "{group}\Dossier Blockly4Thymio"; Filename: "{app}"; IconFilename: "{app}\blockly4thymio-folder.ico"
+Name: "{group}\Interface Blockly4Thymio"; Filename: "{app}\blockly4thymio-hors-ligne\Blockly4Thymio.html"; IconFilename: "{app}\blockly4thymio.ico"
+Name: "{group}\Interface pour les Cycles 1"; Filename: "{app}\interface-cycle-1\index.html"; IconFilename: "{app}\blockly4thymio.ico"
+Name: "{group}\Les exercices sur www.blockly4thymio.net"; Filename: "http://blockly4thymio.net/les-exercices.html"; IconFilename: "{app}\blockly4thymio.ico"
+;Name: "{group}\Tester le compilateur"; Filename: "{app}\tester-le-compilateur.b4t"
+;Name: "{group}\LISEZ-MOI"; Filename: "{app}\LISEZ-MOI.rtf"
+;Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
+;Name: "{group}\{cm:UninstallProgram,{#MyAppName}}"; Filename: "{uninstallexe}"
 
 
 [Code]

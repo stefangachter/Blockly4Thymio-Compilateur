@@ -1,0 +1,85 @@
+
+A faire pour accéder au dossier partagé : sudo usermod -a -G vboxsf okimi
+A faire pour accéder à Thymio en USB : sudo adduser $USER dialout
+
+Ajouter le sudo adduser $USER dialout
+
+
+Mint - 18.1 - 64b - Cinnamon
+----------------------------
+
+Addon de virtual box -> OK
+Accès au dossier partagé -> OK
+Aseba studio -> OK
+Installation B4T -> OK
+Menu B4T -> OK
+Association des fichiers .b4t dans l'explorateur de fichiers -> Pas d'application pour les fichiers Type application/b4t
+
+
+Mint - 18.1 - 64b - Mate
+------------------------
+
+Ok
+
+
+Mint - 17.3 - 32b - Mate
+------------------------
+
+Ok
+
+
+ubuntu - 16.04.2 - 32b
+----------------------
+Résumé : OK avec quelques manipulations supplémentaires
+
+Addon de virtual box -> OK
+Accès au dossier partagé -> OK
+Aseba studio -> OK
+Installation B4T -> OK
+Menu B4T -> OK
+Association des fichiers .b4t dans l'explorateur de fichiers -> Pas d'application pour les fichiers Type application/b4t
+Association des fichiers .b4t dans le navigateur Firefox (Depuis FF, sauvegarder le fichier b4t, puis dans les options Firefox/Préférences/Applications, changer l'application par /usr/bin/blockly4thymio) -> OK
+Lancement automatique depuis Firefox -> OK
+
+
+kubuntu - 16.04.2 - 64b
+-----------------------
+Résumé : OK avec quelques manipulations supplémentaires
+
+Sous Virtualbox, ne supporte pas la fermeture de session.
+Addon de virtual box -> Pas OK
+Accès au dossier partagé -> Pas OK
+Aseba studio -> OK
+Installation B4T -> OK
+Menu B4T -> OK
+Association des fichiers .b4t dans l'explorateur de fichiers -> OK
+Association des fichiers .b4t dans le navigateur Firefox (Depuis FF, sauvegarder le fichier b4t, puis dans les options Firefox/Préférences/Applications, changer l'application par /usr/bin/blockly4thymio) -> OK
+Lancement automatique depuis Firefox -> OK
+
+
+lubuntu - 17.04 - 64b
+---------------------
+Résumé : OK avec quelques manipulations supplémentaires
+
+Addon de virtual box -> Pas OK
+Accès au dossier partagé -> Pas OK
+Aseba studio -> OK mais installation par apt-get install
+Installation B4T -> OK
+Menu B4T -> OK
+Association des fichiers .b4t dans l'explorateur de fichiers -> OK mais il faut passer par l'explorateur de fichiers
+Association des fichiers .b4t dans le navigateur Firefox (Depuis FF, sauvegarder le fichier b4t, puis dans les options Firefox/Préférences/Applications, changer l'application par /usr/bin/blockly4thymio) -> OK
+Lancement automatique depuis Firefox -> OK
+
+
+xubuntu - 16.04.2 - 64b
+-----------------------
+Résumé : OK avec quelques manipulations supplémentaires
+
+Addon de virtual box -> OK
+Accès au dossier partagé -> OK
+Aseba studio -> OK
+Installation B4T -> OK
+Menu B4T -> OK
+Association des fichiers .b4t dans l'explorateur de fichiers -> OK
+Association des fichiers .b4t dans le navigateur Firefox (Depuis FF, sauvegarder le fichier b4t, puis dans les options Firefox/Préférences/Applications, changer l'application par /usr/bin/blockly4thymio) -> OK
+Lancement automatique depuis Firefox -> OK

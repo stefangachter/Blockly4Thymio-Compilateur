@@ -3,6 +3,7 @@ Terminal=false
 Icon=blockly4thymio
 Type=Application
 Categories=Education;Science;
+MimeType=application/b4t
 Name=Blockly4Thymio Compiler
 Name[fr]=Compilateur de Blockly4Thymio
 GenericName=Blockly4Thymio compiler
