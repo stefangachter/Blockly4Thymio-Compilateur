@@ -141,6 +141,7 @@ public class	Compilateur {
     public	static	void	AfficheLAide( TextBox _textBox ) {
         AfficheLEntête( _textBox );
         _textBox.Text += Messages.Message( (int)Messages.TYPE.AIDE );
+		_textBox.Refresh();
     }
 
 
@@ -150,6 +151,7 @@ public class	Compilateur {
     public	static	void	AfficheLEntête( TextBox _textBox ) {
         _textBox.Clear();
 		_textBox.Text += Messages.Message( (int)Messages.TYPE.ENTÊTE );
+		_textBox.Refresh();
 	}
 
 

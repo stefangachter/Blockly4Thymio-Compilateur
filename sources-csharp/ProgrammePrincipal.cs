@@ -89,7 +89,7 @@ static	class 	ProgrammePrincipal {
 		// Initialisations
 		// ---------------
 
-		Compilateur.version = "1.1";
+		Compilateur.version = "1.2";
 
 
 		#if (WINDOWS && NOT_NET_30)
@@ -103,7 +103,6 @@ static	class 	ProgrammePrincipal {
 		// -------------------------------------
 		#if (DEBUG && WINDOWS)
 		Compilateur.nomDuFichierB4T = @"C:\Users\Okimi\Downloads\programme.b4t";
-		//Compilateur.nomDuFichierB4T = @"C:\Users\fort\Downloads\programme.b4t";
 		#endif
 		#if (DEBUG && LINUX)
 		Compilateur.nomDuFichierB4T = @"/home/okimi/Téléchargements/programme.b4t";
@@ -173,7 +172,7 @@ static	class 	ProgrammePrincipal {
 		Compilateur.nomDuFichierASEBAHTTP =  Path.GetDirectoryName(Application.ExecutablePath) + @"\asebahttp\asebahttp.exe";
 		#endif
 		#if (LINUX)
-		Compilateur.nomDuFichierASEBAHTTP = @"/usr/bin/asebahttp";
+		Compilateur.nomDuFichierASEBAHTTP = @"/usr/bin/blockly4thymio-asebahttp";
 		#endif
 		
 
@@ -184,9 +183,9 @@ static	class 	ProgrammePrincipal {
 
 		// Fermeture automatique de la fenêtre à la fin des traitements
 		// ------------------------------------------------------------
-		#if (DEBUG)
-		//Compilateur.fermetureDeLaFenêtreALaFin = false;
+		#if (DEBUG)		
 		Compilateur.fermetureDeLaFenêtreALaFin = true;
+		//Compilateur.fermetureDeLaFenêtreALaFin = false;
 		#endif
 		#if (!DEBUG)
 		Compilateur.fermetureDeLaFenêtreALaFin = true;

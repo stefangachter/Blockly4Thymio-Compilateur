@@ -1,0 +1,8 @@
+- Depuis Firefox, enregistrer la page http://blockly4thymio.net/environnement.html?exercice=10 sur le disque avec le nom Blockly4Thymio
+- Copier depuis cette page enregistrée, tous les blocs 'Blockly.Blocks'
+- Remplacer les occurences de 'files/blockly4thymio/icones' par 'blockly4thymio/icones'
+- Copier le menu <xml id="toolbox"></xml>
+- Modifier la version dans le texte de description
+- Télécharger en FTP le répertoire /www/files/blockly4thymio/icones vers /Blockly4Thymio/icones
+
+- Une fois le dossier préparé, copier son contenu dans le dossier de préparation du package setup-win/fichiers/interface-hors-ligne

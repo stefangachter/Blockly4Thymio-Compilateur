@@ -1,0 +1,12 @@
+[Desktop Entry]
+Terminal=false
+Icon=blockly4thymio-folder
+Type=Application
+Categories=Education;Science;
+Name=Blockly4Thymio folder
+Name[fr]=Dossier Blockly4Thymio
+GenericName=Blockly4Thymio's folder
+GenericName[fr]=Blockly4Thymio
+Comment=Open Blockly4Thymio's folder
+Comment[fr]=Ouvre le dossier de Blockly4Thymio
+Exec=xdg-open /usr/lib/blockly4thymio

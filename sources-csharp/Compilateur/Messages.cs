@@ -69,8 +69,8 @@ The fact that you are presently reading this means that you have had
 knowledge of the CeCILL license and that you accept its terms.
 */
 
-
 using 	System;
+using 	System.Globalization;
 
 
 
@@ -117,75 +117,117 @@ public class 	Messages {
 	/// <returns>String</returns>
 	public	static	String	Message( int _numéro ) {
 
-		String	texte;
+		String		langue;
+		String		texte;
+
+		CultureInfo	ci = CultureInfo.InstalledUICulture ;
+		
+		
+
+		langue = ci.Name.ToLower().Substring(0,2);
+
+		switch (langue) {
+
+		case "en" :
+
+			switch( _numéro ) {
+
+			case (int)TYPE.BOUCLE_INFÉRIEURE_A_1 :						return "In one of the loops, the repetition number is less than 1. This has been corrected to be at least 1";
+			case (int)TYPE.BOUCLE_SUPÉRIEURE_A_100 :					return "In one of the loops, the repetition number is greater than 100. This has been corrected to be 100.";
+			case (int)TYPE.DURÉE_INFÉRIEURE_A_0 :						return "Une durée est plus petite que 0s. Celle-ci a été corrigée pour être au moins à 0 seconde.";
+			case (int)TYPE.DURÉE_SUPÉRIEURE_A_60 :						return "A duration is greater than 60s. This has been corrected to be 60 seconds.";
+			case (int)TYPE.DISTANCE_INFÉRIEURE_A_1 :					return "A distance is less than 1cm. This has been corrected to be at least 1cm.";
+			case (int)TYPE.DISTANCE_SUPÉRIEURE_A_100 :					return "A distance is greater than 100cm. This has been corrected to be 100cm.";
+			case (int)TYPE.ANGLE_INFÉRIEURE_A_0 :						return "An angle is less than 0°. This has been corrected to be at least 0°.";
+			case (int)TYPE.ANGLE_SUPÉRIEURE_A_360 :						return "An angle is greater than 360°. This one has been corrected to be 360°.";
+			case (int)TYPE.VITESSE_INFÉRIEURE_A_MOINS_100_POURCENT :	return "The speed is less than -100(%). This has been corrected to be -100(%).";
+			case (int)TYPE.VITESSE_SUPÉRIEURE_A_100_POURCENT :			return "The speed is greater than 100(%). This has been corrected to be 100(%).";
+			case (int)TYPE.ASEBAHTTP_INTROUVABLE :						return "Error ! The executable {0} to pass the .aesl file to the Thymio robot does not exist.";
+			case (int)TYPE.THYMIO_NON_CONNECTÉ :						return "Error ! Thymio is offline";
+			case (int)TYPE.PROGRAMME_TROP_GRAND_POUR_THYMIO :			return "Error ! The program is too large for Thymio's memory.";
+			case (int)TYPE.PAS_D_INSTRUCTION_DE_DÉPART :				return "There is no start instruction in file {0} .";
+			case (int)TYPE.FICHIER :									return "File : {0}";		
+			case (int)TYPE.LECTURE_DU_FICHIER_B4T :						return "Reading b4t file...";
+			case (int)TYPE.COMPILATION_DU_FICHIER_B4T :					return "Compiling b4t file...";
+			case (int)TYPE.TRANSFERT_DU_FICHIER_ASEBA :					return "Sending Aseba file...";
+			case (int)TYPE.COMPILATION_ET_TRANSFERT_TERMINÉ :			return "Compilation et transfer completed !";
+			case (int)TYPE.FICHIER_N_EXISTE_PAS :						return "Error ! The {0} file does not exist.";
+			case (int)TYPE.FICHIER_NON_LISIBLE :						return "Error reading file {0}.";
+			case (int)TYPE.AIDE :										return	"\r\n" + 
+																				"No .b4t source files have been declared.\r\n" +
+																				"Usage: Assign the .b4t files to this executable.\r\n";
+			case (int)TYPE.ENTÊTE:
+				texte = "";
+				#if DEBUG
+				texte +=														"**********************\r\n" +
+																				"* !!! DEBUG MODE !!! *\r\n" +
+																				"**********************\r\n";
+				#endif
+				texte +=														"Blockly4Thymio Compiler  - Okimi ©2015-2017 - version " + Compilateur.version + "\r\n" +
+																				"\r\n" +
+																				"Compiles a .b4t file into an Aseba file and passes it to the Thymio II robot.\r\n" +
+																				"Blockly4Thymio uses the asebahttp program to transfer the Aseba file to the Thymio robot.\r\n" +
+																				"\r\n";
+				return	texte;
+			case (int)TYPE.BLOC_NON_TRAITÉ_DANS_CETTE_VERSION :			return	"Error ! The {0} block is not processed in this version of the compiler.";
+			case (int)TYPE.LA_VERSION_APPROPRIÉE_POUR_CE_BLOC :			return	"\nThe most suitable compiler version for this block is version {0}";
+			case (int)TYPE.CHRONOMÈTRE_INFÉRIEUR_À_1_SECONDE :			return	"The time of the smallest timer is 1 second.";
+			case (int)TYPE.CHRONOMÈTRE_SUPÉRIEUR_À_6_SECONDES :			return	"The largest timer time is 6 seconds.";
+			case (int)TYPE.VARIABLE_NON_INITIALISÉE :					return	"The variable {0} is not initialized.";
+
+			}
+			break;
 
 
+		default :	// Langue française (fr)
 
-		switch( _numéro ) {
+			switch( _numéro ) {
 
-	
+			case (int)TYPE.BOUCLE_INFÉRIEURE_A_1 :						return "Dans une des boucle, le nombre de répétition est plus petit que 1. Celui-ci a été corrigé pour être au moins à 1.";
+			case (int)TYPE.BOUCLE_SUPÉRIEURE_A_100 :					return "Dans une des boucle, le nombre de répétition est plus grand que 100. Celui-ci a été corrigé pour être à 100.";
+			case (int)TYPE.DURÉE_INFÉRIEURE_A_0 :						return "Une durée est plus petite que 0s. Celle-ci a été corrigée pour être au moins à 0 seconde.";
+			case (int)TYPE.DURÉE_SUPÉRIEURE_A_60 :						return "Une durée est plus grande que 60s. Celle-ci a été corrigée pour être à 60 secondes.";
+			case (int)TYPE.DISTANCE_INFÉRIEURE_A_1 :					return "Une distance est plus petite que 1cm. Celle-ci a été corrigée pour être au moins à 1cm.";
+			case (int)TYPE.DISTANCE_SUPÉRIEURE_A_100 :					return "Une distance est plus grande que 100cm. Celle-ci a été corrigée pour être de 100cm.";
+			case (int)TYPE.ANGLE_INFÉRIEURE_A_0 :						return "Un angle est plus petit que 0°. Celui-ci a été corrigé pour être au moins à 0°.";
+			case (int)TYPE.ANGLE_SUPÉRIEURE_A_360 :						return "Un angle est plus grand que 360°. Celui-ci a été corrigé pour être de 360°.";
+			case (int)TYPE.VITESSE_INFÉRIEURE_A_MOINS_100_POURCENT :	return "La vitesse est inférieure à -100(%). Celle-ci a été corrigée pour être à -100(%).";
+			case (int)TYPE.VITESSE_SUPÉRIEURE_A_100_POURCENT :			return "La vitesse est supérieure à 100(%). Celle-ci a été corrigée pour être à 100(%).";
+			case (int)TYPE.ASEBAHTTP_INTROUVABLE :						return "Erreur ! L'exécutable {0} pour transmettre le fichier .aesl au robot Thymio n'existe pas.";
+			case (int)TYPE.THYMIO_NON_CONNECTÉ :						return "Erreur ! Thymio n'est pas connecté.";
+			case (int)TYPE.PROGRAMME_TROP_GRAND_POUR_THYMIO :			return "Erreur ! Le programme est trop grand pour la mémoire de Thymio.";
+			case (int)TYPE.PAS_D_INSTRUCTION_DE_DÉPART :				return "Il n'y a pas d'instruction de départ dans le fichier {0} .";
+			case (int)TYPE.FICHIER :									return "Fichier : {0}";		
+			case (int)TYPE.LECTURE_DU_FICHIER_B4T :						return "Lecture du fichier b4t...";
+			case (int)TYPE.COMPILATION_DU_FICHIER_B4T :					return "Compilation du fichier b4t...";
+			case (int)TYPE.TRANSFERT_DU_FICHIER_ASEBA :					return "Transfert du fichier Aseba...";
+			case (int)TYPE.COMPILATION_ET_TRANSFERT_TERMINÉ :			return "Compilation et transfert terminés !";
+			case (int)TYPE.FICHIER_N_EXISTE_PAS :						return "Erreur ! Le fichier {0} n'existe pas.";
+			case (int)TYPE.FICHIER_NON_LISIBLE :						return "Erreur lors de la lecture du fichier {0} .";
+			case (int)TYPE.AIDE :										return	"\r\n" + 
+																				"Aucun fichier source .b4t n'a été déclaré.\r\n" +
+																				"Utilisation : Associez les fichier .b4t à cet éxécutable.\r\n";
+			case (int)TYPE.ENTÊTE:
+				texte = "";
+				#if DEBUG
+				texte +=														"**********************\r\n" +
+																				"* !!! MODE DEBUG !!! *\r\n" +
+																				"**********************\r\n";
+				#endif
+				texte +=														"Compilateur Blockly4Thymio - Okimi ©2015-2017 - version " + Compilateur.version + "\r\n" +
+																				"\r\n" +
+																				"Compile un fichier .b4t en fichier Aseba et le transmet au robot Thymio II.\r\n" +
+																				"Blockly4Thymio utilise le programme asebahttp pour le transfert du fichier Aseba vers le robot Thymio.\r\n" +
+																				"\r\n";
+				return	texte;
+			case (int)TYPE.BLOC_NON_TRAITÉ_DANS_CETTE_VERSION :			return	"Erreur ! Le bloc {0} n'est pas traité dans cette version du compilateur.";
+			case (int)TYPE.LA_VERSION_APPROPRIÉE_POUR_CE_BLOC :			return	"\nLa version du compilateur la plus appropiée pour ce bloc est la version {0}";
+			case (int)TYPE.CHRONOMÈTRE_INFÉRIEUR_À_1_SECONDE :			return	"Le temps du chronomètre le plus petit est de 1 seconde.";
+			case (int)TYPE.CHRONOMÈTRE_SUPÉRIEUR_À_6_SECONDES :			return	"Le temps du chronomètre le plus grand est de 6 secondes.";
+			case (int)TYPE.VARIABLE_NON_INITIALISÉE :					return	"La variable {0} n'est pas initialisée.";
 
-		case (int)TYPE.BOUCLE_INFÉRIEURE_A_1 :						return "Dans une des boucle, le nombre de répétition est plus petit que 1. Celui-ci a été corrigé pour être au moins à 1.";
-		case (int)TYPE.BOUCLE_SUPÉRIEURE_A_100 :					return "Dans une des boucle, le nombre de répétition est plus grand que 100. Celui-ci a été corrigé pour être à 100.";
-															
-		case (int)TYPE.DURÉE_INFÉRIEURE_A_0 :						return "Une durée est plus petite que 0s. Celle-ci a été corrigée pour être au moins à 0 seconde.";
-		case (int)TYPE.DURÉE_SUPÉRIEURE_A_60 :						return "Une durée est plus grande que 60s. Celle-ci a été corrigée pour être à 60 secondes.";
-															
-		case (int)TYPE.DISTANCE_INFÉRIEURE_A_1 :					return "Une distance est plus petite que 1cm. Celle-ci a été corrigée pour être au moins à 1cm.";
-		case (int)TYPE.DISTANCE_SUPÉRIEURE_A_100 :					return "Une distance est plus grande que 100cm. Celle-ci a été corrigée pour être de 100cm.";
-															
-		case (int)TYPE.ANGLE_INFÉRIEURE_A_0 :						return "Un angle est plus petit que 0°. Celui-ci a été corrigé pour être au moins à 0°.";
-		case (int)TYPE.ANGLE_SUPÉRIEURE_A_360 :						return "Un angle est plus grand que 360°. Celui-ci a été corrigé pour être de 360°.";
-
-		case (int)TYPE.VITESSE_INFÉRIEURE_A_MOINS_100_POURCENT :	return "La vitesse est inférieure à -100(%). Celle-ci a été corrigée pour être à -100(%).";
-		case (int)TYPE.VITESSE_SUPÉRIEURE_A_100_POURCENT :			return "La vitesse est supérieure à 100(%). Celle-ci a été corrigée pour être à 100(%).";
-
-		case (int)TYPE.ASEBAHTTP_INTROUVABLE :						return "Erreur ! L'exécutable {0} pour transmettre le fichier .aesl au robot Thymio n'existe pas.";
-		case (int)TYPE.THYMIO_NON_CONNECTÉ :						return "Erreur ! Thymio n'est pas connecté.";
-		case (int)TYPE.PROGRAMME_TROP_GRAND_POUR_THYMIO :			return "Erreur ! Le programme est trop grand pour la mémoire de Thymio.";
-
-		case (int)TYPE.PAS_D_INSTRUCTION_DE_DÉPART :				return "Il n'y a pas d'instruction de départ dans le fichier {0} .";
-
-		case (int)TYPE.FICHIER :									return "Fichier : {0}";		
-		case (int)TYPE.LECTURE_DU_FICHIER_B4T :						return "Lecture du fichier b4t...";
-		case (int)TYPE.COMPILATION_DU_FICHIER_B4T :					return "Compilation du fichier b4t...";
-		case (int)TYPE.TRANSFERT_DU_FICHIER_ASEBA :					return "Transfert du fichier Aseba...";
-		case (int)TYPE.COMPILATION_ET_TRANSFERT_TERMINÉ :			return "Compilation et transfert terminés !";
-
-		case (int)TYPE.FICHIER_N_EXISTE_PAS :						return "Erreur ! Le fichier {0} n'existe pas.";
-
-		case (int)TYPE.FICHIER_NON_LISIBLE :						return "Erreur lors de la lecture du fichier {0} .";
-
-		case (int)TYPE.AIDE :										return	"\r\n" + 
-																			"Aucun fichier source .b4t n'a été déclaré.\r\n" +
-																			"\r\n" + 
-																			"Utilisation : Associez les fichier .b4t à cet éxécutable.\r\n" +
-																			"\r\n";
-
-		case (int)TYPE.ENTÊTE:
-			texte = "";
-			#if DEBUG
-			texte +=														"\r\n" +
-																			"**********************\r\n" +
-																			"* !!! MODE DEBUG !!! *\r\n" +
-																			"**********************\r\n";
-			#endif
-			texte +=														"Compilateur Blockly4Thymio - Okimi ©2015-2017 - version " + Compilateur.version + "\r\n" +
-																			"\r\n" +
-																			"Compile un fichier .b4t en fichier Aseba et le transmet au robot Thymio II.\r\n" +
-																			"Blockly4Thymio utilise le programme asebamassloader.exe pour le transfert du fichier Aseba vers le robot Thymio.\r\n" +
-																			"\r\n";
-																	return	texte;
-
-		case (int)TYPE.BLOC_NON_TRAITÉ_DANS_CETTE_VERSION :			return	"Erreur ! Le bloc {0} n'est pas traité dans cette version du compilateur.";
-
-		case (int)TYPE.LA_VERSION_APPROPRIÉE_POUR_CE_BLOC :			return	"\n\nLa version du compilateur la plus appropiée pour ce bloc est la version {0}";
-
-		case (int)TYPE.CHRONOMÈTRE_INFÉRIEUR_À_1_SECONDE :			return	"Le temps du chronomètre le plus petit est de 1 seconde.";
-
-		case (int)TYPE.CHRONOMÈTRE_SUPÉRIEUR_À_6_SECONDES :			return	"Le temps du chronomètre le plus grand est de 6 secondes.";
-
-		case (int)TYPE.VARIABLE_NON_INITIALISÉE :					return	"La variable {0} n'est pas nitialisée.";
+			}
+			break;
 
 		}
 
