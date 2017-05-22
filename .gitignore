@@ -190,10 +190,3 @@ GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
 /.project
-*.exe
-
-package-debian/blockly4thymio-amd64
-
-package-debian/blockly4thymio-i386
-
-*.deb
