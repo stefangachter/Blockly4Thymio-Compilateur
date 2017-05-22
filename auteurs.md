@@ -8,4 +8,5 @@ Emmanuel Fort <contact at okimi dot net>, idée originale, architecture, dévelo
 
 Un grand merci à : 
 - Alain Brotel, Frédéric Bui & Matthieu Chartry, pour leurs idées d'exercices. 
-- Jean-Marc Chiappa & Guillaume Cheramy, pour la version Linux. 
+- Jean-Marc Chiappa pour son immense aide sur la version Linux.
+- Guillaume Cheramy, pour ses conseils sur la création de packets Debian.

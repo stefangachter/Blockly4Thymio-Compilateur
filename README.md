@@ -27,7 +27,7 @@ Suivi des versions
 ###Version 1.2
 
 * Corrections mineures
-* Préparations pour la version Linux
+* Version Linux
 
 
 ###Version 1.1
