@@ -92,12 +92,12 @@ public 		class 	__CAPTEURS {
 	 */
 
 	// Valeurs des distances
-	const	int		DISTANCE_LOIN	= 0;
-	const	int		DISTANCE_PRÈS	= 1000;
+	const	int		DISTANCE_LOIN	 = 1000;
+	const	int		DISTANCE_PRÈS	 = 2000;
 
-	const	String	SOL_LIMITE_BASSE= ">10";		// Limite basse de déclenchement pour les capteurs de sol
-	const	String	SOL_NOIR		= "<=450";
-	const	String	SOL_BLANC		= ">450";
+	const	int 	SOL_LIMITE_BASSE = 10;		// Limite basse de déclenchement pour les capteurs de sol
+	const   int     SOL_NOIR		 = 450;
+	const   int     SOL_BLANC		 = 400;
 
 	public	enum PARAMÈTRE {
 		// Enumération des distances detectées par les capteurs de proximité avants et arrières.	
@@ -114,20 +114,24 @@ public 		class 	__CAPTEURS {
 	// Capteurs de luminosité du sol
 	// Capteur infra-rouge de la télécommande
 	public	enum NOM {
-		AVANT_AUCUN,			//  .....
-		AVANT_GAUCHE,			//  *....
-		AVANT_MILIEU_GAUCHE,	//  .*...
-		AVANT_MILIEU,			//  ..*..
-		AVANT_MILIEU_DROITE,	//  ...*.
-		AVANT_DROITE,			//  ....*
-		AVANT_AU_MOINS_UN,		// [*****]
-		ARRIÈRE_AUCUN,			//    ..
-		ARRIÈRE_GAUCHE,			//    *.
-		ARRIÈRE_DROITE,			//    .*
-		ARRIÈRE_AU_MOINS_UN,	//   [**]
-		DESSOUS_GAUCHE,
-		DESSOUS_DROITE,
-		TEMPERATURE,
+		AVANT_AUCUN,			  //  .....
+		AVANT_GAUCHE,			  //  *....
+		AVANT_MILIEU_GAUCHE,	  //  .*...
+		AVANT_MILIEU,			  //  ..*..
+		AVANT_MILIEU_DROITE,	  //  ...*.
+		AVANT_DROITE,			  //  ....*
+		AVANT_AU_MOINS_UN,        // [*****]
+        AVANT_PAS_AU_MOINS_UN,    // [.....]
+        ARRIÈRE_AUCUN,			  //    ..
+		ARRIÈRE_GAUCHE,			  //    *.
+		ARRIÈRE_DROITE,			  //    .*
+		ARRIÈRE_AU_MOINS_UN,      //   [**]
+        ARRIÈRE_PAS_AU_MOINS_UN,  //   [..]
+        DESSOUS_GAUCHE,           //    *.
+		DESSOUS_DROITE,           //    .*
+        DESSOUS_AU_MOINS_UN,      //   [**]
+        DESSOUS_TOUS,             //    **
+        TEMPERATURE,
 		IR
 	}
 	
@@ -143,31 +147,33 @@ public 		class 	__CAPTEURS {
 
 		String	code;
 		String	condition;
+        String  conditionLimite;
 
 
+        // Initialisations
+        // ---------------
+        code = "";
+        condition = "";
+        conditionLimite = "";
 
-		// Initialisations
-		// ---------------
-		code = "";
-		condition = "";
 
-
-
-		// Traitements
-		// -----------
-		switch( _paramètre ) {
+        // Traitements
+        // -----------
+            switch ( _paramètre ) {
 		case (int)PARAMÈTRE.DISTANCE_LOIN :
-			condition = "==" + DISTANCE_PRÈS;
+			condition = "<" + DISTANCE_LOIN;
 			break;
 		case (int)PARAMÈTRE.DISTANCE_PRÈS :
-			condition = ">" + DISTANCE_LOIN;
-			break;
+			condition = ">=" + DISTANCE_PRÈS;
+            break;
 		case (int)PARAMÈTRE.COULEUR_SOL_BLANC :
-			condition = SOL_BLANC;
-			break;
+            conditionLimite = ">" + SOL_LIMITE_BASSE;
+            condition = ">=" + SOL_BLANC;
+            break;
 		case (int)PARAMÈTRE.COULEUR_SOL_NOIR :
-			condition = SOL_NOIR;
-			break;
+            conditionLimite = ">" + SOL_LIMITE_BASSE;
+            condition = "<" + SOL_NOIR;
+            break;
 		}
 
 		
@@ -196,8 +202,11 @@ public 		class 	__CAPTEURS {
 		case (int)NOM.AVANT_AU_MOINS_UN :
 			code = "prox.horizontal[0]" + condition + " or prox.horizontal[1]" + condition + " or prox.horizontal[2]" + condition + " or prox.horizontal[3]" + condition + " or prox.horizontal[4]" + condition;
 			break;
-		case (int)NOM.ARRIÈRE_AUCUN :
-			code = "not (prox.horizontal[5]" + condition + " or prox.horizontal[6]" + condition + ")";
+        case (int)NOM.AVANT_PAS_AU_MOINS_UN:
+            code = "not (prox.horizontal[0]" + condition + " or prox.horizontal[1]" + condition + " or prox.horizontal[2]" + condition + " or prox.horizontal[3]" + condition + " or prox.horizontal[4]" + condition + ")";
+            break;
+        case (int)NOM.ARRIÈRE_AUCUN:
+            code = "not (prox.horizontal[5]" + condition + " and prox.horizontal[6]" + condition + ")";
 			break;
 		case (int)NOM.ARRIÈRE_GAUCHE :
 			code = "prox.horizontal[5]" + condition;
@@ -206,22 +215,31 @@ public 		class 	__CAPTEURS {
 			code = "prox.horizontal[6]" + condition;
 			break;
 		case (int)NOM.ARRIÈRE_AU_MOINS_UN :
-			code = "prox.horizontal[5]" + condition + " or prox.horizontal[6]" + condition;
-			break;
-					
-		// Capteurs de couleur du sol
-		// --------------------------
-		case (int)NOM.DESSOUS_GAUCHE :
-			code = "prox.ground.delta[0]" + condition + " and prox.ground.delta[0]" + SOL_LIMITE_BASSE;
+		    code = "prox.horizontal[5]" + condition + " or prox.horizontal[6]" + condition;
+            break;
+        case (int)NOM.ARRIÈRE_PAS_AU_MOINS_UN:
+            code = "not (prox.horizontal[5]" + condition + " or prox.horizontal[6]" + condition + ")";
+            break;
+
+
+        // Capteurs de couleur du sol
+        // --------------------------
+        case (int)NOM.DESSOUS_GAUCHE :
+			code = "prox.ground.delta[0]" + condition + " and prox.ground.delta[0]" + conditionLimite;
 			break;
 		case (int)NOM.DESSOUS_DROITE :
-			code = "prox.ground.delta[1]" + condition + " and prox.ground.delta[1]" + SOL_LIMITE_BASSE;
+			code = "prox.ground.delta[1]" + condition + " and prox.ground.delta[1]" + conditionLimite;
 			break;
+        case (int)NOM.DESSOUS_AU_MOINS_UN:
+            code = "(prox.ground.delta[0]" + condition + " and prox.ground.delta[0]" + conditionLimite + ") or (prox.ground.delta[1]" + condition + " and prox.ground.delta[1]" + conditionLimite + ")";
+            break;
+        case (int)NOM.DESSOUS_TOUS:
+            code = "(prox.ground.delta[0]" + condition + " and prox.ground.delta[0]" + conditionLimite + ") and (prox.ground.delta[1]" + condition + " and prox.ground.delta[1]" + conditionLimite + ")";
+            break;
 
-
-		// Capteur de température
-		// ----------------------
-		case (int)NOM.TEMPERATURE :
+        // Capteur de température
+        // ----------------------
+        case (int)NOM.TEMPERATURE :
 			code = "temperature*10";	// La température est exprimée en °C (le capteur lit en dixième de °C)
 			break;
 

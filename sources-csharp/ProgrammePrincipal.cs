@@ -178,14 +178,13 @@ static	class 	ProgrammePrincipal {
 
 		// Lance automatiquement le programme sur le Thymio à la fin du transfert
 		// ----------------------------------------------------------------------
-		Compilateur.lancementAutomatique = true;
+		Compilateur.lancementAutomatique = false;
 
 
 		// Fermeture automatique de la fenêtre à la fin des traitements
 		// ------------------------------------------------------------
 		#if (DEBUG)		
-		Compilateur.fermetureDeLaFenêtreALaFin = true;
-		//Compilateur.fermetureDeLaFenêtreALaFin = false;
+		Compilateur.fermetureDeLaFenêtreALaFin = false;
 		#endif
 		#if (!DEBUG)
 		Compilateur.fermetureDeLaFenêtreALaFin = true;
