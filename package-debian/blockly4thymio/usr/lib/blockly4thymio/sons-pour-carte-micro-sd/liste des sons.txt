@@ -1,0 +1,160 @@
+   ___  __         __    __     ____________              _
+  / _ )/ /__  ____/ /__ / /_ __/ / /_  __/ /  __ ____ _  (_)__
+ / _  / / _ \/ __/  '_// / // /_  _// / / _ \/ // /  ' \/ / _ \
+/____/_/\___/\__/_/\_\/_/\_, / /_/ /_/ /_//_/\_, /_/_/_/_/\___/
+                        /___/               /___/ 
+        Liste des sons à mettre sur la carte micro SD
+                   www.blockly4thymio.net
+      Blockly4Thymio - © 2015/2017 Okimi (contact@okimi.net)
+
+  liste des sons pour le compilateur Blockly4Thymio version 1.1
+
+
+p0.wav		Thymio say Hello
+p1.wav		Beep 1
+p2.wav		Beep 2
+p3.wav		Thymio is angry
+
+p100.wav	Sirène des pompiers
+
+Piano - Notes croche - Gamme 3
+p2001.wav	Do
+...
+p2012.wav	Si
+
+Piano - Notes croche - Gamme 4
+p2013.wav	Do
+...
+p2024.wav	Si
+
+Piano - Notes noires - Gamme 3
+p2041.wav	Do
+...
+p2052.wav	Si
+
+Piano - Notes noires - Gamme 4
+p2053.wav	Do
+...
+p2064.wav	Si
+
+Piano - Notes blanche - Gamme 3
+p2081.wav	Do
+...
+p2092.wav	Si
+
+Piano - Notes blanche - Gamme 4
+p2093.wav	Do
+...
+p2104.wav	Si
+
+Banjo - Notes croche - Gamme 3
+p3001.wav	Do
+...
+p3012.wav	Si
+
+Banjo - Notes croche - Gamme 4
+p3013.wav	Do
+...
+p3024.wav	Si
+
+Banjo - Notes noires - Gamme 3
+p3041.wav	Do
+...
+p3052.wav	Si
+
+Banjo - Notes noires - Gamme 4
+p3053.wav	Do
+...
+p3064.wav	Si
+
+Banjo - Notes blanche - Gamme 3
+p3081.wav	Do
+...
+p3092.wav	Si
+
+Banjo - Notes blanche - Gamme 4
+p3093.wav	Do
+...
+p3104.wav	Si
+
+Vibraphone - Notes croche - Gamme 3
+p4001.wav	Do
+...
+p4012.wav	Si
+
+Vibraphone - Notes croche - Gamme 4
+p4013.wav	Do
+...
+p4024.wav	Si
+
+Vibraphone - Notes noires - Gamme 3
+p4041.wav	Do
+...
+p4052.wav	Si
+
+Vibraphone - Notes noires - Gamme 4
+p4053.wav	Do
+...
+p4064.wav	Si
+
+Vibraphone - Notes blanche - Gamme 3
+p4081.wav	Do
+...
+p4092.wav	Si
+
+Vibraphone - Notes blanche - Gamme 4
+p4093.wav	Do
+...
+p4104.wav	Si
+
+Trompette - Notes croche - Gamme 3
+p6001.wav	Do
+...
+p6012.wav	Si
+
+Trompette - Notes croche - Gamme 4
+p6013.wav	Do
+...
+p6024.wav	Si
+
+Trompette - Notes noires - Gamme 3
+p6041.wav	Do
+...
+p6052.wav	Si
+
+Trompette - Notes noires - Gamme 4
+p6053.wav	Do
+...
+p6064.wav	Si
+
+Trompette - Notes blanche - Gamme 3
+p6081.wav	Do
+...
+p6092.wav	Si
+
+Trompette - Notes blanche - Gamme 4
+p6093.wav	Do
+...
+p6104.wav	Si
+
+Percussions
+p5001.wav	Bongo 1
+p5002.wav	Bongo 2
+p5003.wav	Bongo 3
+p5004.wav	Bongo 4
+p5005.wav	Bongo 5
+p5006.wav	Derbouka 1
+p5007.wav	Derbouka 2
+p5008.wav	Cloche 1
+p5009.wav	Cloche 2
+p5010.wav	Cyballe
+p5012.wav	Sifflet 1
+p5013.wav	Sifflet 2
+p5024.wav	Sifflet 3
+p5015.wav	Güiro
+p5016.wav	Woodblock 1
+p5017.wav	Woodblock 2
+p5018.wav	Woodblock 3
+p5019.wav	Cuica 1
+p5020.wav	Cuica 2
+

@@ -92,9 +92,8 @@ public		partial	class	FEN_Principale : Form {
 	static	Timer	temporisationDeCompilation;
 
 	string[] args;
+	
 
-	
-	
 	// Constructeur de la fenêtre
     // --------------------------
 	public FEN_Principale( string[] _args ) {
@@ -105,14 +104,14 @@ public		partial	class	FEN_Principale : Form {
 	
 	
 	public	void	AjouteUnMessage( String _texte ) {
-		TEXT_Messages.Text += _texte + "\r\n";
-		this.Refresh();
+		TEXT_Messages.Text += _texte + "\n";
+		TEXT_Messages.Refresh();
 	}
 	
 	
 	public	void	EffaceLesMessages() {
 		TEXT_Messages.Text = "";
-		this.Refresh();
+		TEXT_Messages.Refresh();
 	}
 	
 	/// <summary>
@@ -146,14 +145,14 @@ public		partial	class	FEN_Principale : Form {
 		Compilateur.AfficheLEntête(this.TEXT_Messages);
 
 		// Affiche le nom du fichier
-		AjouteUnMessage( "\n" + String.Format( Messages.Message( (int)Messages.TYPE.FICHIER ), Compilateur.nomDuFichierB4T  ) + "\n\n" );
+		AjouteUnMessage( String.Format( Messages.Message( (int)Messages.TYPE.FICHIER ), Compilateur.nomDuFichierB4T  ) + "\n" );
 
 	
 		// Lance la compilation.
 		// Si la compilation s'est bien déroulée, le programme se ferme automatiquement
 		if (Compilateur.Compile(this)) {
 			// Message : Transfert terminé
-			AjouteUnMessage( "\n\n" + Messages.Message( (int)Messages.TYPE.COMPILATION_ET_TRANSFERT_TERMINÉ ) );
+			AjouteUnMessage( "\n" + Messages.Message( (int)Messages.TYPE.COMPILATION_ET_TRANSFERT_TERMINÉ ) );
 			if (Compilateur.fermetureDeLaFenêtreALaFin) {
 				#if (DEBUG)
 				Application.Exit();

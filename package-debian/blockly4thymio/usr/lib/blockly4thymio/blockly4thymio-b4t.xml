@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<mime-info xmlns='http://www.freedesktop.org/standards/shared-mime-info'>
+  <mime-type type="application/b4t">
+    <comment>Fichier de Blockly4Thymio</comment>
+    <glob pattern="*.b4t"/>
+  </mime-type>
+</mime-info>

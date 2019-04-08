@@ -197,7 +197,7 @@ public 		class 	__CAPTEURS {
 			code = "prox.horizontal[0]" + condition + " or prox.horizontal[1]" + condition + " or prox.horizontal[2]" + condition + " or prox.horizontal[3]" + condition + " or prox.horizontal[4]" + condition;
 			break;
 		case (int)NOM.ARRIÈRE_AUCUN :
-			code = "not (prox.horizontal[5]" + condition + " and prox.horizontal[6]" + condition + ")";
+			code = "not (prox.horizontal[5]" + condition + " or prox.horizontal[6]" + condition + ")";
 			break;
 		case (int)NOM.ARRIÈRE_GAUCHE :
 			code = "prox.horizontal[5]" + condition;

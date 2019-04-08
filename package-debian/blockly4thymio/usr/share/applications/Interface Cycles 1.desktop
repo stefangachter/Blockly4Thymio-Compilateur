@@ -1,0 +1,12 @@
+[Desktop Entry]
+Terminal=false
+Icon=blockly4thymio
+Type=Application
+Categories=Education;Science;
+Name=Cycles1's interface
+Name[fr]=Interface pour les Cycles 1
+GenericName=Cycles1's interface
+GenericName[fr]=Interface pour les Cycles 1
+Comment=Program Thymio with Cycle1's interface
+Comment[fr]=Programmer Thymio avec l'interface pour les Cycles 1
+Exec=xdg-open file:///usr/lib/blockly4thymio/interface-cycle-1/index.html

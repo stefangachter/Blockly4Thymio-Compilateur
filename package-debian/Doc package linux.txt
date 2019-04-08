@@ -1,0 +1,94 @@
+
+Important : A faire à chaque version
+====================================
+
+Copier chaque compilateur dans leurs répertoires respactifs :
+- /fichiers-i386 et /fichiers-amd64
+
+Corriger les numéros de version dans :
+- le fichier /blockly4thymio/DEBIAN/control
+- le fichier ./blockly4thymio/usr/bin/blockly4thymio
+- les fichiers make-deb-i386.sh-et make-deb-amd64.sh
+- les fichiers install.sh et remove.sh
+
+
+
+
+
+
+Organisation des fichiers
+=========================
+
+/usr
+	|
+	/bin
+		- Mettre l'application blockly4thymio.1.2.exe et un lien symbolique nommé blockly4thymio
+		- Mettre l'application asebahttp (asebahttp de Scratch renommé en blockly4thymio-asebahttp)
+		!!! asebahttp de Scratch est en 64 bits
+		!!! Mettre plutôt la version de Jean-Marc Chiappa en 32 et 64bits
+	|
+	/share
+		|
+		/applications
+			- Mettre les fichiers *.desktop qui apparaitront dans le menu de lancement des applications.  Ils font le lien entre une application et son icone.
+		|
+		/icons
+			|
+			/hicolor
+				|
+				/48x48
+					|
+					/apps
+						- Icones des applications (format 48x48 png)
+	|
+	/lib
+		|
+		/blockly4thymio
+			- Mettre tous les autres fichiers (Lisez-moi.txt / interface hors ligne / sons wav)
+
+
+
+
+
+
+
+
+
+
+
+
+
+Installer les outils pour produire le packet
+============================================
+
+sudo apt-get install dpkg debconf debhelper
+sudo apt-get install fakeroot rsync dos2unix
+
+
+Construire le paquet debian
+===========================
+
+fakeroot dpkg-deb -v --build ./deb
+
+
+Nettoyer/débloquer le processus d'instalaltion de paquet
+========================================================
+
+sudo apt-get install -f
+
+
+Installer à la main le paquer .deb crée
+=======================================
+
+sudo apt-get install ./deb.deb
+
+
+Tester l'association
+====================
+xdg-mime query text/b4
+
+
+Ajouter une ligne à un fichier texte
+====================================
+echo 'text/b4t=blocklythymio.desktop' >> defaults.list
+application/blockly4thymio=blocklythymio.desktop

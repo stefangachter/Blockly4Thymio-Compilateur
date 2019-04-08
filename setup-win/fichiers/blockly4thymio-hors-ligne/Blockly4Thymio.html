@@ -1,0 +1,218 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+
+<head>
+
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+
+	<title>Amuse-toi à programmer Thymio</title>
+
+	<!-- Test -->
+	<!--[if lt IE 9]><script src="plugins/html5shim/html5-HTML5SHIM.js"></script><![endif]-->
+
+	<link rel="stylesheet" href="Blockly4Thymio/blockly4thymio.css" type="text/css">
+	<link rel="stylesheet" href="Blockly4Thymio/css.css">
+	
+	<script src="Blockly4Thymio/blockly_compressed.js"></script>
+	<script src="Blockly4Thymio/blocks_compressed.js"></script>
+	<script src="Blockly4Thymio/js/fr.js"></script>
+	<script src="Blockly4Thymio/load.js"></script>
+	<script src="Blockly4Thymio/blockly4thymio_fr.js"></script>
+
+</head>
+
+<body>
+
+	<!--[if lt IE 8]>
+		<p>You are using an outdated browser. <a href="http://whatbrowser.org/">Upgrade your browser today</a>.</p>
+	<![endif]-->
+	
+	<xml id="toolbox" style="display: none">
+		<category name="Evénements" colour="#ed5565">
+			<block type="0_1b_Evénement_QuandLeProgrammeCommence"></block>
+			<block type="0_2_Evénement_QuandUnBoutonFlècheEstAppuyé"></block>
+			<block type="0_5_Evénement_QuandUnCapteurAvantVoitUnObstacle"></block>
+			<block type="0_5_Evénement_QuandUnCapteurArrièreVoitUnObstacle"></block>
+			<block type="0_2_Evénement_QuandUnOrdreArriveDeLaTélécommandeIR"></block>
+			<block type="0_9_Evénement_QuandLeChronomètreATerminéDeCompter"></block>
+			<block type="1_0_Evénement_QuandUnChocEstDétecté"></block>
+			<block type="1_0_Evénement_QuandUnSonEstDétecté"></block>
+			<block type="0_4_Paramètre_CalibreLesMoteurs_SAIValeur"></block>
+			<block type="0_5_Paramètre_LAdresseDeLaTélécommandeEst_SAIAdresse"></block>
+			<block type="0_9_Paramètre_InitialiseLeChronomètre_SAIValeur"></block>
+			<block type="0_9_Evénement_DémarrerLeChronomètre"></block>
+			<block type="0_9_Evénement_ArrêterLeChronomètre"></block>
+		</category>
+		<category name="Mouvements" colour="#f59c00">
+			<block type="0_1b_Mouvement_Avance"></block>
+			<block type="0_1b_Mouvement_Avance_De5Centimètres"></block>
+			<block type="0_1b_Mouvement_Avance_SELVitesse_SAIDistance"></block>
+			<block type="0_1b_Mouvement_Recule"></block>
+			<block type="0_1b_Mouvement_Recule_SELVitesse_SAIDistance"></block>
+			<block type="0_1b_Mouvement_Arrête"></block>
+			<block type="0_5_Mouvement_TourneADroite"></block>
+			<block type="0_5_Mouvement_TourneAGauche"></block>
+			<block type="0_1b_Mouvement_TourneADroite_SAIAngle"></block>
+			<block type="0_1b_Mouvement_TourneAGauche_SAIAngle"></block>
+			<block type="0_2_Mouvement_Tourne_SELSens_SAIAngle"></block>
+			<block type="0_6_Mouvement_VitesseDesRoues_SAIVitesseAGauche_SAIVitesseADroite"></block>
+		</category>
+		<category name="Lumières" colour="#ffce54">
+			<block type="0_1b_Lumières_AllumeToutesLesLEDs_SELCouleur"></block>
+			<block type="0_1b_Lumières_AllumeLesLEDs_SELLED_SELCouleur"></block>
+			<block type="0_1b_Lumières_AllumeToutesLesLEDsPendant1Seconde_SELCouleur"></block>
+			<block type="0_2_Lumières_AllumeLesLEDs_SELLED_SELCouleur_SAIDurée"></block>
+			<block type="0_6_Lumières_EteinsToutesLesLEDs"></block>
+			<block type="0_1b_Lumières_EteinsToutesLesLEDsPendant1Seconde"></block>
+		</category>
+		<category name="Sons" colour="#a0d468">
+			<block type="0_1b_Sons_JoueLaNote_DO_Pendant05Seconde"></block>
+			<block type="0_1b_Sons_JoueLaNote_RE_Pendant05Seconde"></block>
+			<block type="0_1b_Sons_JoueLaNote_MI_Pendant05Seconde"></block>
+			<block type="0_1b_Sons_JoueLaNote_FA_Pendant05Seconde"></block>
+			<block type="0_1b_Sons_JoueLaNote_SOL_Pendant05Seconde"></block>
+			<block type="0_1b_Sons_JoueLaNote_LA_Pendant05Seconde"></block>
+			<block type="0_1b_Sons_JoueLaNote_SI_Pendant05Seconde"></block>
+			<block type="0_2_Sons_JoueUneNoteCroche_SELNote"></block>
+			<block type="0_2_Sons_JoueUneNoteNoire_SELNote"></block>
+			<block type="0_2_Sons_JoueUneNoteBlanche_SELNote"></block>
+			<block type="1_1_Sons_JoueUnInstrument_SELInstrument_SELNote_SELDurée"></block>
+			<block type="1_1_Sons_JoueUnePercussion_SELNote_SELDurée"></block>
+			<block type="0_2_Sons_JoueUnSon_SELSon"></block>
+			<block type="0_4_Sons_JoueUnSonPersonnel_SELSon"></block>
+			<block type="0_4_Sons_EnregistreUnSon_Pendant04Seconde"></block>
+			<block type="0_4_Sons_RelireLeSonEnregistré"></block>
+		</category>
+		<category name="Contrôles" colour="#48cfad">
+			<block type="0_1b_Contrôles_Attends1Seconde"></block>
+			<block type="0_2_Contrôles_Attends_SAIDurée"></block>
+			<block type="0_7_Contrôles_Attends_ENTDurée"></block>
+			<block type="0_1b_Contrôles_RépèteToutLeTemps"></block>
+			<block type="0_1b_Contrôles_Répète_SAIBoucle"></block>
+			<block type="0_6_Contrôles_Faire_TantQue_ENTCondition"></block>
+			<block type="0_7_Contrôles_TantQue_ENTCondition_Faire"></block>
+			<block type="0_2_Contrôles_Si_IlYAUnObstacleDevant_Alors"></block>
+			<block type="0_2_Contrôles_Si_ENTCondition_Alors"></block>
+			<block type="0_7_Contrôles_Si_ENTCondition_Faire_SinonFaire"></block>
+			<block type="0_6_Contrôles_SortDeLaBoucleFaire"></block>
+			<block type="0_6_Contrôles_ArrêteLeProgramme"></block>
+		</category>
+		<category name="Valeurs" colour="#5d9cec">
+			<block type="0_6_Valeur_Booléen_OULogique_ENTBooleen_ENTBooleen"></block>
+			<block type="0_6_Valeur_Booléen_ETLogique_ENTBooleen_ENTBooleen"></block>
+			<block type="0_6_Valeur_Booléen_NONLogique_ENTBooleen"></block>
+			<block type="0_6_Valeur_Booléen_Bouton_AucuneFlèche"></block>
+			<block type="0_2_Valeur_Booléen_Bouton_FlècheAvant"></block>
+			<block type="0_2_Valeur_Booléen_Bouton_FlècheArrière"></block>
+			<block type="0_2_Valeur_Booléen_Bouton_FlècheADroite"></block>
+			<block type="0_2_Valeur_Booléen_Bouton_FlècheAGauche"></block>
+			<block type="0_7_Valeur_Booléen_Capteur_AvantAucun"></block>
+			<block type="0_2_Valeur_Booléen_Capteur_AvantGauche"></block>
+			<block type="0_2_Valeur_Booléen_Capteur_AvantMilieuGauche"></block>
+			<block type="0_2_Valeur_Booléen_Capteur_AvantMilieu"></block>
+			<block type="0_2_Valeur_Booléen_Capteur_AvantMilieuDroite"></block>
+			<block type="0_2_Valeur_Booléen_Capteur_AvantDroite"></block>
+			<block type="0_7_Valeur_Booléen_Capteur_ArrièreAucun"></block>
+			<block type="0_2_Valeur_Booléen_Capteur_ArrièreGauche"></block>
+			<block type="0_2_Valeur_Booléen_Capteur_ArrièreDroite"></block>
+			<block type="0_2_Valeur_Booléen_Capteur_DessousGauche_Blanc"></block>
+			<block type="0_2_Valeur_Booléen_Capteur_DessousGauche_Noir"></block>
+			<block type="0_2_Valeur_Booléen_Capteur_DessousDroite_Blanc"></block>
+			<block type="0_2_Valeur_Booléen_Capteur_DessousDroite_Noir"></block>
+			<block type="0_5_Valeur_Booléen_BoutonDeLaTélécommandeEst_SELTouche"></block>
+			<block type="0_8_Valeur_Entier_SAIValeur"></block>
+			<block type="0_8_Valeur_Entier_NombreAuHasardEntre0et7"></block>
+			<block type="0_8_Valeur_Entier_Opération_ENTEntier_SELOpération_ENTEntier"></block>
+			<block type="0_8_Valeur_Booléen_Comparaison_ENTEntier_SELComparaion_ENTEntier"></block>
+			<block type="0_8_Valeur_AfficheLaValeur_ENTEntier"></block>
+			<block type="0_9_Valeur_Entier_Température"></block>
+		</category>
+		<category name="Variables" custom="VARIABLE" colour="#8f3fb0">
+		</category>
+	</xml>
+	
+ 	<table><tbody>
+		
+		<tr>
+			<td><div id="idMenu">
+				
+		  	</div></td>
+			<td colspan="3" style="width: 100%;"><div id="idTitrePrincipal"><h1>Amuse-toi avec Thymio !</h1></div></td>
+		</tr>
+
+		<tr id="idContenu">
+			<td rowspan="2" style="vertical-align: top;">
+				<div id="idColonneDeGauche">
+					<div id="idExercice">
+						<div id="idIconeDeLExercice">
+														<img src="Blockly4Thymio/bac-a-sable.png" style="vertical-align: middle;">
+													</div>
+						<div id="idTexteDeLExercice">
+							<h2>Thymio est génial !</h2>
+							<p>Il fait tout ce qu'on lui demande par programmation.</p>
+							<p>Amuse-toi à le programmer selon ton envie...</p>
+							<p><i>Version 1.2</i></p></div>
+					</div>
+				</div>
+			</td>
+			<td colspan="3" style="vertical-align:top;">
+				<div dir="LTR" style="width: 1688px; height: 752px;" id="blocklyDiv"></div>				
+		  	</td>		  	
+		</tr>
+		<tr>
+			<td width="96px">
+				<div id="idBoutonEnvoyerAThymio">
+					<button id="saveButton" title="Envoyer le programme à Thymio..." onclick="handleSaveButtonClick();"></button>
+					<a id="saveLink" href="" download="" style="display:none;">lien</a>
+				</div>
+			</td>
+			<td width="64px">
+				<div id="idChargerUnProgramme" onclick="loadButton.click();" title="Charger un programme Blockly4Thymio depuis l'ordinateur."></div>
+				<input id="loadButton" type="file">
+			</td>
+			<td>
+				<div id="idPiedDePage"><img src="Blockly4Thymio/logo-blockly4thymio.png"></div>
+			</td>
+		</tr>
+
+	</tbody></table>
+
+
+	<script>
+
+	var onresize = function(e) {
+		
+		var idContenu = document.getElementById('idContenu');
+		var blocklyDiv = document.getElementById('blocklyDiv');
+		
+		blocklyDiv.style.width = window.innerWidth-232 + 'px';
+		blocklyDiv.style.height = window.innerHeight-150-80 + 'px';
+
+		};
+		
+	window.addEventListener( 'resize', onresize, false );
+	onresize();
+
+	var workspace = Blockly.inject(	'blocklyDiv',
+									{toolbox: document.getElementById('toolbox'),
+									zoom:	{controls: true,
+											wheel: false,
+											startScale: 1.0,
+											maxScale: 3,
+											minScale: 0.3,
+											scaleSpeed: 1.2},
+									media: "Blockly4Thymio/media/",
+									disable: false,
+									collapse: false,
+									trashcan: true});
+	
+	document.getElementById('loadButton').addEventListener('change', handleLoadButtonClick, false);
+
+	</script>
+
+</body></html>
+
+
+
+

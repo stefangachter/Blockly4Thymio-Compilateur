@@ -1,0 +1,321 @@
+<!DOCTYPE aesl-source>
+<network>
+
+
+<!--list of global events--> 
+
+
+<!--list of constants-->
+<constant value="0" name="ETAT_ARRET"/>
+<constant value="1" name="ETAT_EN_MARCHE"/>
+<constant value="2500" name="COEUR_QUI_BAT"/>
+<constant value="10" name="FREQUENCE_TIMER"/>
+
+
+<!--show keywords state-->
+<keywords flag="false"/>
+
+
+<!--node thymio-II-->
+<node nodeId="1" name="thymio-II">
+
+
+#    ___  __         __    __     ____________              _
+#   / _ )/ /__  ____/ /__ / /_ __/ / /_  __/ /  __ ____ _  (_)__
+#  / _  / / _ \/ __/  '_// / // /_  _// / / _ \/ // /  ' \/ / _ \
+# /____/_/\___/\__/_/\_\/_/\_, / /_/ /_/ /_//_/\_, /_/_/_/_/\___/
+#                         /___/               /___/ 
+#        Programme AESL pour Thymio II - Version 1.2
+# généré automatiquement par Blockly4THymio www.blockly4thymio.net
+#     Blockly4Thymio - © 2017 Okimi (contact at okimi dot net)
+
+# ----------------------------------
+# DECLARATION DES VARIABLES GLOBALES
+# ----------------------------------
+
+var __chronometre = 1000
+var __coeurQuiBat = 0
+var __compteur
+var __etat
+var __lectureDUnSon = 0
+var __temp
+var __variableAAfficher
+
+# Variable pour les nombres aléatoires
+var __nombreAleatoire
+
+# Variables pour les LEDs
+var __led.rouge
+var __led.vert
+var __led.bleu
+var __led.cercle[8]
+
+# Variable pour les sons
+var __son
+
+# Variables pour l'odométrie
+var __odo.degre
+var __odo.delta
+var __odo.temp
+var __odo.theta = 0
+var __odo.x = 0			# 500 pour ~100mm (précision à 0,2mm)
+
+
+var __sequenceur[1]
+var __chrono[1]
+var __boucle[1]
+
+
+
+# -----------
+# APPLICATION
+# -----------
+# Efface la précédente commande (éventuellement en mémoire)
+rc5.address = 0
+rc5.command = 0
+# Initialise le(s) séquenceur(s)
+__sequenceur[0]=0001
+__etat=ETAT_EN_MARCHE
+# Initialise le timer du séquenceur sur 10ms (100Hz)
+timer.period[0] = FREQUENCE_TIMER
+# Initialise la sensibilité du micro
+mic.threshold = 250
+
+
+# ---------------------------
+# DECLARATIONS DES PROCEDURES
+# ---------------------------
+
+# Allume les LEDs du cercle
+sub __AllumeLeCercleDeLEDs
+  call leds.circle(__led.cercle[0],__led.cercle[1],__led.cercle[2],__led.cercle[3],__led.cercle[4],__led.cercle[5],__led.cercle[6],__led.cercle[7])
+
+
+# Eteins toutes les LEDs du cercle
+sub __EteinsLeCercleDeLEDs
+  __led.cercle[0]=0
+  __led.cercle[1]=0
+  __led.cercle[2]=0
+  __led.cercle[3]=0
+  __led.cercle[4]=0
+  __led.cercle[5]=0
+  __led.cercle[6]=0
+  __led.cercle[7]=0
+  callsub __AllumeLeCercleDeLEDs
+
+
+# Affiche une variable sur le cercle de LEDs
+sub __AfficheUneVariable
+  callsub __EteinsLeCercleDeLEDs
+  if __variableAAfficher>0 and __variableAAfficher&lt;=8 then
+    __compteur=0
+  	while __compteur&lt;__variableAAfficher do
+      __led.cercle[__compteur]=31
+      __compteur++
+    end
+    callsub __AllumeLeCercleDeLEDs
+  end
+
+
+# Allume toutes les LEDs (bottom.left, bottom.right et top)
+sub	__AllumeLesLEDs
+  call leds.bottom.left( __led.rouge, __led.vert, __led.bleu )
+  call leds.bottom.right( __led.rouge, __led.vert, __led.bleu )
+  call leds.top( __led.rouge, __led.vert, __led.bleu )
+
+
+# Arrête les moteurs
+sub	__ArreteLesMoteurs
+  motor.left.target = 0
+  motor.right.target = 0
+  __odo.x = 0
+  __odo.degre = 0
+  __odo.theta = 0
+
+
+sub __ExecuteLeProgramme
+  __sequenceur[0]=0001
+
+
+sub __ArreteLeProgramme
+  # Arrête les moteurs
+  callsub __ArreteLesMoteurs
+  # Eteins toutes les LEDs
+  call leds.buttons(0,0,0,0)
+  call leds.circle( 0, 0, 0, 0, 0, 0, 0, 0 ) 
+  call leds.sound(0)
+  call leds.temperature(0,0)
+  __led.rouge = 0
+  __led.vert = 0
+  __led.bleu = 0
+  callsub __AllumeLesLEDs
+  callsub __EteinsLeCercleDeLEDs
+
+
+sub __JoueUnSon
+  __lectureDUnSon = 1
+  call sound.play(__son)
+
+
+# ----------
+# SEQUENCEUR
+# ----------
+
+sub __Sequenceur
+  if __sequenceur[0]==0001 then
+    __boucle[0]=4
+    __sequenceur[0]=0002
+  end
+  if __sequenceur[0]==0002 then
+    __boucle[0]--
+    if __boucle[0]>0 then
+      __sequenceur[0]=0003
+    else
+      __sequenceur[0]=0
+    end
+  end
+  if __sequenceur[0]==0003 then
+    __chrono[0]=0
+    __led.rouge=31 __led.vert=0 __led.bleu=0 callsub __AllumeLesLEDs
+    __sequenceur[0]=0004
+  end
+  if __sequenceur[0]==0004 then
+    __chrono[0]++
+    if __chrono[0]>=100 then
+      __led.rouge=0 __led.vert=0 __led.bleu=0 callsub __AllumeLesLEDs
+      __sequenceur[0]=0005
+    end
+  end
+
+  if __sequenceur[0]==0005 then
+    __chrono[0]=0
+    __led.rouge=0 __led.vert=31 __led.bleu=0 callsub __AllumeLesLEDs
+    __sequenceur[0]=0006
+  end
+  if __sequenceur[0]==0006 then
+    __chrono[0]++
+    if __chrono[0]>=100 then
+      __led.rouge=0 __led.vert=0 __led.bleu=0 callsub __AllumeLesLEDs
+      __sequenceur[0]=0007
+    end
+  end
+
+  if __sequenceur[0]==0007 then
+    __chrono[0]=0
+    __led.rouge=0 __led.vert=0 __led.bleu=31 callsub __AllumeLesLEDs
+    __sequenceur[0]=0008
+  end
+  if __sequenceur[0]==0008 then
+    __chrono[0]++
+    if __chrono[0]>=100 then
+      __led.rouge=0 __led.vert=0 __led.bleu=0 callsub __AllumeLesLEDs
+      __sequenceur[0]=0002
+    end
+  end
+
+  
+
+  if __sequenceur[0]==0 then
+    __etat = ETAT_ARRET
+  end
+
+
+
+
+# ---------------------------
+# DECLARATIONS DES EVENEMENTS
+# ---------------------------
+
+onevent timer1
+
+
+
+onevent buttons
+
+
+
+onevent prox
+
+
+
+onevent tap
+
+
+
+onevent mic
+
+
+
+# Avec le bouton central, l'utilisateur lance ou arrête le programme
+# ------------------------------------------------------------------
+onevent button.center
+  if button.center == 1 then
+    # Si le bouton central est appuyé
+    if __etat == ETAT_ARRET then
+      __etat = ETAT_EN_MARCHE
+      # Relance le programme
+      callsub __ExecuteLeProgramme
+    else
+	  timer.period[1]=0					# Arrête le chronomètre (si celui-ci a été lancé)
+	  __etat = ETAT_ARRET
+    end
+  end
+
+
+# Evénement déclenché par le timer pour le séquenceur
+# ---------------------------------------------------
+onevent timer0
+  if __etat == ETAT_EN_MARCHE then
+    # La LED de la flèche avant clignote, le programme s'execute
+    __coeurQuiBat+=(COEUR_QUI_BAT/FREQUENCE_TIMER)
+    call math.sin(__temp,__coeurQuiBat)
+    call leds.buttons( abs(__temp)>>12, 0, 0, 0 )
+    # Appel le séquenceur
+    callsub __Sequenceur
+  else
+    # le programme va s'arrêter, la LED de la flèche avant s'éteint
+    __coeurQuiBat=0
+    # Arrête tous les accurateurs
+    callsub __ArreteLeProgramme
+  end
+  
+  
+# Evénement déclenché lors de la réception d'une commande
+# rc5 de la télécommande infrarouge
+# -------------------------------------------------------
+
+onevent rc5
+
+  
+  
+# Evénement déclenché à la fin de la lecture d'un fichier son
+# -----------------------------------------------------------
+onevent	sound.finished
+  __lectureDUnSon=0
+
+
+
+# Evénement moteur, appelé toutes les 10ms (100Hz)
+# ------------------------------------------------
+onevent	motor
+  # Calcul du déplacement et de la rotation par odométrie.
+  # Code basé sur le fichier thymio_motion.aels de David Sherman
+  # A lire aussi : https://fr.wikipedia.org/wiki/Odom%C3%A9trie
+  if motor.right.target == 0 and motor.left.target == 0 then
+	__odo.x = 0
+	__odo.degre = 0
+	__odo.theta = 0
+  else    
+    call math.muldiv(__odo.temp, (motor.right.target - motor.left.target), 3406, 10000)		# dΘ = (différence de vitesse des roues * 3406) / 10000
+    __odo.theta += __odo.temp																# Θ = Θ+dΘ
+    __odo.degre = __odo.theta / 170															# Convertis θ en angle (en degré)
+    call math.cos(__odo.temp,__odo.theta)													# = cosΘ
+    __odo.delta = (motor.right.target + motor.left.target) / 2								# Δ = moyenne des vitesses des roues
+    call math.muldiv(__odo.temp, __odo.delta,__odo.temp, 32767)								# = (Δ*cosΘ ) / PI
+    __odo.x += __odo.temp/45
+  end
+
+</node>
+
+
+</network>
