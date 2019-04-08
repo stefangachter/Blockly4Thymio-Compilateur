@@ -6,6 +6,8 @@
 *.user
 *.sln.docstates
 
+sources-csharp/.vs
+
 # Build results
 sources-csharp/[Dd]ebug/
 sources-csharp/[Dd]ebugPublic/

@@ -14,6 +14,10 @@
     <Description>Compilateur du projet Blockly4Thymio.
 Transforme un fichiers .b4t en fichier .aesl puis le transmet à Thymio.</Description>
     <ApplicationIcon>blockly4thymio.ico</ApplicationIcon>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
     <PublishUrl>publier\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -26,16 +30,12 @@ Transforme un fichiers .b4t en fichier .aesl puis le transmet à Thymio.</Descri
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'WINDOWS-Release|x86' ">
     <Optimize>false</Optimize>
-    <OutputPath>bin\WINDOWS-Release\</OutputPath>
+    <OutputPath>bin\x86\WINDOWS-Release\</OutputPath>
     <CustomConstants Condition=" '$(TargetFrameworkVersion)' != 'v3.0' ">NOT_NET_30</CustomConstants>
     <DefineConstants>WINDOWS $(CustomConstants)</DefineConstants>
     <WarningLevel>4</WarningLevel>
@@ -46,7 +46,7 @@ Transforme un fichiers .b4t en fichier .aesl puis le transmet à Thymio.</Descri
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'WINDOWS-Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
     <Optimize>false</Optimize>
-    <OutputPath>bin\WINDOWS-Debug\</OutputPath>
+    <OutputPath>bin\x86\WINDOWS-Debug\</OutputPath>
     <CustomConstants Condition=" '$(TargetFrameworkVersion)' != 'v3.0' ">NOT_NET_30</CustomConstants>
     <DefineConstants>WINDOWS DEBUG $(CustomConstants)</DefineConstants>
     <WarningLevel>4</WarningLevel>
@@ -68,7 +68,7 @@ Transforme un fichiers .b4t en fichier .aesl puis le transmet à Thymio.</Descri
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'LINUX-Release-i386|x86' ">
     <Optimize>false</Optimize>
-    <OutputPath>bin\x86\Release-i386\</OutputPath>
+    <OutputPath>bin\x86\LINUX-Release-i386\</OutputPath>
     <DefineConstants>LINUX $(CustomConstants)</DefineConstants>
     <WarningLevel>4</WarningLevel>
     <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
@@ -79,7 +79,7 @@ Transforme un fichiers .b4t en fichier .aesl puis le transmet à Thymio.</Descri
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'LINUX-Release-amd64|x86' ">
     <Optimize>false</Optimize>
-    <OutputPath>bin\x86\Release-amd64\</OutputPath>
+    <OutputPath>bin\x86\LINUX-Release-amd64\</OutputPath>
     <DefineConstants>LINUX $(CustomConstants)</DefineConstants>
     <WarningLevel>4</WarningLevel>
     <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
@@ -237,12 +237,5 @@ Transforme un fichiers .b4t en fichier .aesl puis le transmet à Thymio.</Descri
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Compilateur\Blocs\Groupe d%27instructions\" />
-    <Folder Include="Compilateur\Blocs\Instructions\Instructions - Sons\" />
-    <Folder Include="Compilateur\Blocs\Instructions\Instructions - Mouvements\" />
-    <Folder Include="Compilateur\Blocs\Instructions\Instructions - Contrôles\" />
-    <Folder Include="Compilateur\Blocs\Variables\" />
-    <Folder Include="Compilateur\Blocs\Instructions\Instructions - Valeurs\" />
-  </ItemGroup>
+  <ItemGroup />
 </Project>
