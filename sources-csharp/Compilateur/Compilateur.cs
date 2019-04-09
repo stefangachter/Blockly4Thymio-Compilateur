@@ -116,9 +116,12 @@ namespace Blockly4Thymio
         public static int compteurDeSéquenceur;
 
         public static String nomDuFichierB4T;
+        public static String nomDuFichierB4TSauvgarde;
         public static String nomDuFichierAESL;
+        public static String nomDuFichierAESLSauvgarde;
         public static String nomDuFichierAESLTemp;
         public static String nomDuFichierASEBAHTTP;
+        public static String dossierSauvgarde;
         public static String version;
 
         public static List<__Evénement> événementsRacines;
@@ -817,15 +820,30 @@ namespace Blockly4Thymio
             */
             compteurDeSéquenceur = 0;
 
-#if (WINDOWS)
-            nomDuFichierAESL = Path.GetDirectoryName(nomDuFichierB4T) + @"\temp.aesl";
-            nomDuFichierAESLTemp = Path.GetTempPath() + @"\temp.aesl";
-#endif
+            String nomDeBaseDuFichierB4T = Path.GetFileNameWithoutExtension(nomDuFichierB4T);
+            String nomDExtensionDuFichierB4T = Path.GetExtension(nomDuFichierB4T);
+            String nomDeBaseDuFichierAESL = nomDeBaseDuFichierB4T;
+            String nomDExtensionDuFichierAESL = ".aesl";
+            nomDuFichierAESL = Path.GetDirectoryName(nomDuFichierB4T) + Path.DirectorySeparatorChar + nomDeBaseDuFichierAESL + nomDExtensionDuFichierAESL;
+            nomDuFichierAESLTemp = Path.GetTempPath() + Path.DirectorySeparatorChar + nomDeBaseDuFichierAESL + nomDExtensionDuFichierAESL;
 
-#if (LINUX)
-            nomDuFichierAESL = Path.GetDirectoryName(nomDuFichierB4T) + "/temp.aesl";
-            nomDuFichierAESLTemp = Path.GetTempPath() + "/temp.aesl";
-#endif
+            AppDomain domain = AppDomain.CreateDomain("Backup");
+            dossierSauvgarde = domain.BaseDirectory + Path.DirectorySeparatorChar + "backup";
+            if (!Directory.Exists(dossierSauvgarde))
+            {
+                Directory.CreateDirectory(dossierSauvgarde);
+            }
+            if (Directory.Exists(dossierSauvgarde))
+            {
+                String estampille = DateTime.Now.ToString("yyyyMMddHH_mmssffff");
+                nomDuFichierB4TSauvgarde = dossierSauvgarde + Path.DirectorySeparatorChar + nomDeBaseDuFichierB4T + nomDExtensionDuFichierB4T + "_" + estampille;
+                nomDuFichierAESLSauvgarde = dossierSauvgarde + Path.DirectorySeparatorChar + nomDeBaseDuFichierAESL + nomDExtensionDuFichierAESL + "_" + estampille;
+                File.Copy(nomDuFichierB4T, nomDuFichierB4TSauvgarde, true);
+            }
+            else
+            {
+                dossierSauvgarde = "";
+            }
 
             événementsRacines = new List<__Evénement>();
             //sautsDeSéquence = new List<__SautDeSéquence>();
@@ -1115,13 +1133,14 @@ namespace Blockly4Thymio
 
             if (codeEvénementCapteurAvant != "")
             {
-                codeEvénementCapteur = "  if prox.horizontal[0]!=0 or prox.horizontal[1]!=0 or prox.horizontal[2]!=0 or prox.horizontal[3]!=0 or prox.horizontal[4]!=0 then\n  " + codeEvénementCapteurAvant + "\n  end";
+                codeEvénementCapteur = "  if " + __CAPTEURS.code((int)__CAPTEURS.NOM.AVANT_AU_MOINS_UN, (int)__CAPTEURS.PARAMÈTRE.DISTANCE_PRÈS) + " then\n  " + codeEvénementCapteurAvant + "\n  end";
             }
             if (codeEvénementCapteurArrière != "")
             {
                 if (codeEvénementCapteur != "")
                     codeEvénementCapteur += "\n";
-                codeEvénementCapteur += "  if prox.horizontal[5]!=0 or prox.horizontal[6]!=0 then\n  " + codeEvénementCapteurArrière + "\n  end";
+
+                codeEvénementCapteur += "  if " + __CAPTEURS.code((int)__CAPTEURS.NOM.ARRIÈRE_AU_MOINS_UN, (int)__CAPTEURS.PARAMÈTRE.DISTANCE_PRÈS) + " then\n  " + codeEvénementCapteurArrière + "\n  end";
             }
             framework = framework.Replace("### EVENEMENT CAPTEUR DISTANCE ###", codeEvénementCapteur);
 
@@ -1158,10 +1177,18 @@ namespace Blockly4Thymio
             }
             catch
             {
-                fichierAESL = new StreamWriter(nomDuFichierAESLTemp);
+                nomDuFichierAESL = nomDuFichierAESLTemp;
+                fichierAESL = new StreamWriter(nomDuFichierAESL);
             }
             fichierAESL.Write(framework);
             fichierAESL.Close();
+            if (dossierSauvgarde.Length > 0)
+            {
+                if (File.Exists(nomDuFichierAESL))
+                {
+                    File.Copy(nomDuFichierAESL, nomDuFichierAESLSauvgarde, true);
+                }
+            }
 
 
 
