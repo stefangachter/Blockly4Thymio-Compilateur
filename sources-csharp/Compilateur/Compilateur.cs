@@ -116,12 +116,12 @@ namespace Blockly4Thymio
         public static int compteurDeSéquenceur;
 
         public static String nomDuFichierB4T;
-        public static String nomDuFichierB4TSauvgarde;
+        //public static String nomDuFichierB4TSauvgarde;
         public static String nomDuFichierAESL;
-        public static String nomDuFichierAESLSauvgarde;
+        //public static String nomDuFichierAESLSauvgarde;
         public static String nomDuFichierAESLTemp;
         public static String nomDuFichierASEBAHTTP;
-        public static String dossierSauvgarde;
+        //public static String dossierSauvgarde;
         public static String version;
 
         public static List<__Evénement> événementsRacines;
@@ -819,7 +819,19 @@ namespace Blockly4Thymio
             * Initialisations
             */
             compteurDeSéquenceur = 0;
-
+            
+            #if (WINDOWS)
+            nomDuFichierAESL = Path.GetDirectoryName(nomDuFichierB4T) + @"\temp.aesl";
+            nomDuFichierAESLTemp = Path.GetTempPath() + @"\temp.aesl";
+            #endif
+            
+            #if (LINUX)
+            nomDuFichierAESL = Path.GetDirectoryName(nomDuFichierB4T) + "/temp.aesl";
+            nomDuFichierAESLTemp = Path.GetTempPath() + "/temp.aesl";
+            #endif
+            
+            /*
+            // Because of access rights in Windows and Linux, creation of backup does not work
             String nomDeBaseDuFichierB4T = Path.GetFileNameWithoutExtension(nomDuFichierB4T);
             String nomDExtensionDuFichierB4T = Path.GetExtension(nomDuFichierB4T);
             String nomDeBaseDuFichierAESL = nomDeBaseDuFichierB4T;
@@ -844,7 +856,8 @@ namespace Blockly4Thymio
             {
                 dossierSauvgarde = "";
             }
-
+            */
+			
             événementsRacines = new List<__Evénement>();
             //sautsDeSéquence = new List<__SautDeSéquence>();
 
@@ -1177,18 +1190,19 @@ namespace Blockly4Thymio
             }
             catch
             {
-                nomDuFichierAESL = nomDuFichierAESLTemp;
-                fichierAESL = new StreamWriter(nomDuFichierAESL);
+                //nomDuFichierAESL = nomDuFichierAESLTemp;
+                //fichierAESL = new StreamWriter(nomDuFichierAESL);
+                fichierAESL = new StreamWriter(nomDuFichierAESLTemp);
             }
             fichierAESL.Write(framework);
             fichierAESL.Close();
-            if (dossierSauvgarde.Length > 0)
-            {
-                if (File.Exists(nomDuFichierAESL))
-                {
-                    File.Copy(nomDuFichierAESL, nomDuFichierAESLSauvgarde, true);
-                }
-            }
+            //if (dossierSauvgarde.Length > 0)
+            //{
+            //    if (File.Exists(nomDuFichierAESL))
+            //    {
+            //        File.Copy(nomDuFichierAESL, nomDuFichierAESLSauvgarde, true);
+            //    }
+            //}
 
 
 
