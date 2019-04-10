@@ -116,11 +116,11 @@ namespace Blockly4Thymio
         public static int compteurDeSéquenceur;
 
         public static String nomDuFichierB4T;
-        //public static String nomDuFichierB4TSauvgarde;
         public static String nomDuFichierAESL;
-        //public static String nomDuFichierAESLSauvgarde;
         public static String nomDuFichierAESLTemp;
         public static String nomDuFichierASEBAHTTP;
+        //public static String nomDuFichierAESLSauvgarde;
+        //public static String nomDuFichierB4TSauvgarde;
         //public static String dossierSauvgarde;
         public static String version;
 
@@ -1176,7 +1176,7 @@ namespace Blockly4Thymio
                 if (codeEvénementCapteur != "")
                     codeEvénementCapteur += "\n";
 
-                codeEvénementCapteur = "  if " + __CAPTEURS.code((int)__CAPTEURS.NOM.AVANT_AU_MOINS_UN, (int)__CAPTEURS.PARAMÈTRE.DISTANCE_PRÈS) + " then\n  " + codeEvénementCapteurAvant + "\n  end";
+                codeEvénementCapteur += "  if " + __CAPTEURS.code((int)__CAPTEURS.NOM.AVANT_AU_MOINS_UN, (int)__CAPTEURS.PARAMÈTRE.DISTANCE_PRÈS) + " then\n  " + codeEvénementCapteurAvant + "\n  end";
             }
             if (codeEvénementCapteurArrière != "")
             {
@@ -1185,6 +1185,9 @@ namespace Blockly4Thymio
 
                 codeEvénementCapteur += "  if " + __CAPTEURS.code((int)__CAPTEURS.NOM.ARRIÈRE_AU_MOINS_UN, (int)__CAPTEURS.PARAMÈTRE.DISTANCE_PRÈS) + " then\n  " + codeEvénementCapteurArrière + "\n  end";
             }
+            // Nettoie le fichier des evénement de capteur des <
+            codeEvénementCapteur = codeEvénementCapteur.Replace("<", "&lt;");
+
             framework = framework.Replace("### EVENEMENT CAPTEUR DISTANCE ###", codeEvénementCapteur);
 
 
