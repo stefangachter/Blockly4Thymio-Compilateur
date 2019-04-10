@@ -250,6 +250,10 @@ namespace Blockly4Thymio
                     bloc = new Evénement_QuandUnCapteurAvantVoitUnObstacle(_XMLDuBloc);
                     break;
 
+                case "0_5_Evénement_QuandUnCapteurDeSolVoitDuNoir":
+                    bloc = new Evénement_QuandUnCapteurDeSolVoitDuNoir(_XMLDuBloc);
+                    break;
+
                 case "0_9_Evénement_QuandLeChronomètreATerminéDeCompter":
                     bloc = new Evénement_QuandLeChronomètreATerminéDeCompter(_XMLDuBloc);
                     break;
@@ -917,6 +921,7 @@ namespace Blockly4Thymio
             String codeEvénementCapteur;
             String codeEvénementCapteurArrière;
             String codeEvénementCapteurAvant;
+            String codeEvénementCapteurSol;
             String codeEvénementChoc;
             String codeEvénementChronomètre;
             String codeEvénementCommandeIR;
@@ -935,6 +940,7 @@ namespace Blockly4Thymio
             codeEvénementCapteur = "";
             codeEvénementCapteurArrière = "";
             codeEvénementCapteurAvant = "";
+            codeEvénementCapteurSol = "";
             codeEvénementChoc = "";
             codeEvénementChronomètre = "";
             codeEvénementCommandeIR = "";
@@ -1006,6 +1012,24 @@ namespace Blockly4Thymio
                     {
                         // Exécute l'instruction qui suit l'événement
                         codeEvénementBoutonFlèche += "  if __sequenceur[" + événementRacine.UIDDuSéquenceur + "]==0 then\n" +
+                                                        "    __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + ComplèteÀZéro(événementRacine.blocSuivant.UID) +
+                                                        "    __etat = ETAT_EN_MARCHE\n" +
+                                                        "  end\n";
+                        if (optimisationDuSéquenceur)
+                            codeSéquenceur += OptimiseLeSéquenceur(événementRacine.blocSuivant.codePourLeSéquenceur) + "\n";
+                        else
+                            codeSéquenceur += événementRacine.blocSuivant.codePourLeSéquenceur + "\n";
+                    }
+
+                }
+                else if (événementRacine is Evénement_QuandUnCapteurDeSolVoitDuNoir)
+                {
+
+                    // Evénement : Quand un capteur de sol voit du noir
+                    if (événementRacine.blocSuivant != null)
+                    {
+                        // Exécute l'instruction qui suit l'événement
+                        codeEvénementCapteurSol += "  if __sequenceur[" + événementRacine.UIDDuSéquenceur + "]==0 then\n" +
                                                         "    __sequenceur[" + événementRacine.UIDDuSéquenceur + "]=" + ComplèteÀZéro(événementRacine.blocSuivant.UID) +
                                                         "    __etat = ETAT_EN_MARCHE\n" +
                                                         "  end\n";
@@ -1143,9 +1167,15 @@ namespace Blockly4Thymio
                 codeEvénementBoutonFlèche = "  when button.forward==1 or button.backward==1 or button.left==1 or button.right==1 do\n  " + codeEvénementBoutonFlèche + "\n    end";
             framework = framework.Replace("### EVENEMENT BOUTON FLECHE ###", codeEvénementBoutonFlèche);
 
-
+            if (codeEvénementCapteurSol != "")
+            {
+                codeEvénementCapteur = "  if " + __CAPTEURS.code((int)__CAPTEURS.NOM.DESSOUS_AU_MOINS_UN, (int)__CAPTEURS.PARAMÈTRE.COULEUR_SOL_NOIR) + " then\n  " + codeEvénementCapteurSol + "\n  end";
+            }
             if (codeEvénementCapteurAvant != "")
             {
+                if (codeEvénementCapteur != "")
+                    codeEvénementCapteur += "\n";
+
                 codeEvénementCapteur = "  if " + __CAPTEURS.code((int)__CAPTEURS.NOM.AVANT_AU_MOINS_UN, (int)__CAPTEURS.PARAMÈTRE.DISTANCE_PRÈS) + " then\n  " + codeEvénementCapteurAvant + "\n  end";
             }
             if (codeEvénementCapteurArrière != "")
@@ -1283,6 +1313,11 @@ namespace Blockly4Thymio
                     if (bloc is Evénement_QuandUnBoutonFlècheEstAppuyé)
                     {
                         événementRacine = (Evénement_QuandUnBoutonFlècheEstAppuyé)bloc;
+                        événementsRacines.Add(événementRacine);
+                    }
+                    if (bloc is Evénement_QuandUnCapteurDeSolVoitDuNoir)
+                    {
+                        événementRacine = (Evénement_QuandUnCapteurDeSolVoitDuNoir)bloc;
                         événementsRacines.Add(événementRacine);
                     }
                     if (bloc is Evénement_QuandUnCapteurAvantVoitUnObstacle)

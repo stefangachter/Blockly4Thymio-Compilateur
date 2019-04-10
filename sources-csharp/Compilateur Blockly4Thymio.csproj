@@ -98,6 +98,7 @@ Transforme un fichiers .b4t en fichier .aesl puis le transmet à Thymio.</Descri
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Compilateur\Blocs\Evénements\Evénement_QuandUnCapteurDeSolVoitDuNoir.cs" />
     <Compile Include="FEN_Principale.cs">
       <SubType>Form</SubType>
     </Compile>
